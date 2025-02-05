@@ -22,11 +22,12 @@ public class SkillMovesManager : MonoBehaviour
 
     private float elapsedTime;
 
-    private int currentSequenceIndex = 0;
+    [SerializeField] private int currentSequenceIndex = 0;
 
     private void Awake()
     {
-
+        currentSkillMove = skillMoves[currentSequenceIndex];
+        currentSequenceInput = currentSkillMove.inputSequence;
         // Points to the same list in the memory. If it changed, will change every list. Otherwise use new(currentSkillMove.inputSequence). It will create a copy
 
         InputActionMap map = controls.FindActionMap("DualShock");
@@ -52,55 +53,57 @@ public class SkillMovesManager : MonoBehaviour
         {
             _button = SkillInput.Button_X;
             pressedSequenceInput.Add(_button);
-            Debug.Log("X has been pressed");
+            //Debug.Log("X has been pressed");
         }
         else if (buttonName == "buttonEast")
         {
             _button = SkillInput.Button_Circle;
             pressedSequenceInput.Add(_button);
 
-            Debug.Log("O has been pressed");
+            //Debug.Log("O has been pressed");
         }
         else if (buttonName == "buttonWest")
         {
             _button = SkillInput.Button_Square;
             pressedSequenceInput.Add(_button);
 
-            Debug.Log("Square has been pressed");
+            //Debug.Log("Square has been pressed");
         }
         else if (buttonName == "buttonNorth")
         {
             _button = SkillInput.Button_Triangle;
             pressedSequenceInput.Add(_button);
 
-            Debug.Log("Triangle has been pressed");
+            //Debug.Log("Triangle has been pressed");
         }
     }
 
     void CheckValidity()
     {
-        currentSkillMove = skillMoves[currentSequenceIndex];
-        currentSequenceInput = currentSkillMove.inputSequence;
-
-
         if (pressedSequenceInput.Count > currentSequenceInput.Count)
         {
             pressedSequenceInput.Clear();
-            Debug.Log("too many inputs, clearing the pressed buttons");
+            //Debug.Log("too many inputs, clearing the pressed buttons");
         }
         for (int i = 0; i < pressedSequenceInput.Count; i++)
         {
             if (pressedSequenceInput[i] == currentSequenceInput[i])
             {
-                Debug.Log("all good");
+                //TODO: ADD CORRECT MOVE LOGIC HERE
+                Debug.Log("Correct button pressed. TODO: ADD CORRECT BUTTON LOGIC");
             }
             else { FailedAttempt(); }
         }
         if (pressedSequenceInput.Count == currentSequenceInput.Count)
         {
-            if (currentSequenceIndex <= skillMoves.Count)
+            pressedSequenceInput.Clear();
+            if (currentSequenceIndex < skillMoves.Count - 1)
+            {
                 currentSequenceIndex++;
-            Debug.Log("skill move done");
+                currentSkillMove = skillMoves[currentSequenceIndex];
+                currentSequenceInput = currentSkillMove.inputSequence;
+            }
+            else pressedSequenceInput.Clear();
         }
 
     }

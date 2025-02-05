@@ -427,8 +427,11 @@ MonoBehaviour:
   skillMoves:
   - {fileID: 11400000, guid: c91b27589b09fc345abd7ca39f6326a5, type: 2}
   - {fileID: 11400000, guid: e7c5c655946f4b143bed1465298a79e8, type: 2}
+  - {fileID: 11400000, guid: b43c03eb3799b174ebb84c7c609771d8, type: 2}
+  - {fileID: 11400000, guid: e34d9d218e6f27e4aafbd7593cc46599, type: 2}
   currentSequenceInput: 
   pressedSequenceInput: 
+  currentSequenceIndex: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
