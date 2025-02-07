@@ -117,6 +117,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hold"",
+                    ""type"": ""Button"",
+                    ""id"": ""d441f0e7-41de-49ae-ac5e-b843c8c767b6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -157,6 +166,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""bcc24772-2216-440a-800c-53bdd4c18f46"",
                     ""path"": ""<DualShockGamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Buttons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4a4bdd1-71de-4278-8064-0128ff83f709"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -227,6 +247,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""R"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11ba1a29-daec-4cd4-8d9d-8b2f885851e2"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -301,6 +332,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_DualShock_Buttons = m_DualShock.FindAction("Buttons", throwIfNotFound: true);
         m_DualShock_L = m_DualShock.FindAction("L", throwIfNotFound: true);
         m_DualShock_R = m_DualShock.FindAction("R", throwIfNotFound: true);
+        m_DualShock_Hold = m_DualShock.FindAction("Hold", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -384,6 +416,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_DualShock_Buttons;
     private readonly InputAction m_DualShock_L;
     private readonly InputAction m_DualShock_R;
+    private readonly InputAction m_DualShock_Hold;
     /// <summary>
     /// Provides access to input actions defined in input action map "DualShock".
     /// </summary>
@@ -407,6 +440,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "DualShock/R".
         /// </summary>
         public InputAction @R => m_Wrapper.m_DualShock_R;
+        /// <summary>
+        /// Provides access to the underlying input action "DualShock/Hold".
+        /// </summary>
+        public InputAction @Hold => m_Wrapper.m_DualShock_Hold;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -442,6 +479,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @R.started += instance.OnR;
             @R.performed += instance.OnR;
             @R.canceled += instance.OnR;
+            @Hold.started += instance.OnHold;
+            @Hold.performed += instance.OnHold;
+            @Hold.canceled += instance.OnHold;
         }
 
         /// <summary>
@@ -462,6 +502,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @R.started -= instance.OnR;
             @R.performed -= instance.OnR;
             @R.canceled -= instance.OnR;
+            @Hold.started -= instance.OnHold;
+            @Hold.performed -= instance.OnHold;
+            @Hold.canceled -= instance.OnHold;
         }
 
         /// <summary>
@@ -588,5 +631,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnR(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Hold" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHold(InputAction.CallbackContext context);
     }
 }

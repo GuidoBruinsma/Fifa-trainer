@@ -9,8 +9,10 @@ public class Skill : ScriptableObject
     public float maxTimeBetweenInput;
 }
 
-public enum SkillInput { 
+public enum SkillInput
+{
     L1, L2, L3, R1, R2, R3,
     Button_X, Button_Triangle, Button_Circle, Button_Square,
-    L3_Rotate, R3_Rotate
+    L3_Rotate, R3_Rotate,
+    L1_Hold, L2_Hold, R1_Hold, R2_Hold
 }
