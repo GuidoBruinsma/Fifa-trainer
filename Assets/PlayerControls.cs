@@ -117,6 +117,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hold"",
+                    ""type"": ""Button"",
+                    ""id"": ""d441f0e7-41de-49ae-ac5e-b843c8c767b6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sticks"",
+                    ""type"": ""Value"",
+                    ""id"": ""67cdee8e-a430-46f5-84af-462bc8212115"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -166,19 +184,19 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8e858757-24a7-4193-ae4c-64c5be359f52"",
-                    ""path"": ""<DualShockGamepad>/leftShoulder"",
+                    ""id"": ""b4a4bdd1-71de-4278-8064-0128ff83f709"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""L"",
+                    ""action"": ""Buttons"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""439cbeb4-8809-408e-be38-eb695118f5b5"",
-                    ""path"": ""<DualShockGamepad>/leftTrigger"",
+                    ""id"": ""8e858757-24a7-4193-ae4c-64c5be359f52"",
+                    ""path"": ""<DualShockGamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -210,8 +228,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f587c60c-30b4-4d53-9855-31946b60aa65"",
-                    ""path"": ""<DualShockGamepad>/rightTrigger"",
+                    ""id"": ""25025fc3-93d9-4f37-9e14-698e46348b8f"",
+                    ""path"": ""<DualShockGamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -221,12 +239,56 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""25025fc3-93d9-4f37-9e14-698e46348b8f"",
-                    ""path"": ""<DualShockGamepad>/rightStickPress"",
+                    ""id"": ""439cbeb4-8809-408e-be38-eb695118f5b5"",
+                    ""path"": ""<DualShockGamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""R"",
+                    ""action"": ""Hold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f587c60c-30b4-4d53-9855-31946b60aa65"",
+                    ""path"": ""<DualShockGamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11ba1a29-daec-4cd4-8d9d-8b2f885851e2"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4071f8a-fb7b-4447-831c-44dd60c8006a"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sticks"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9c16abd-3d0f-480d-8c96-eac377ae8a8d"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sticks"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -301,6 +363,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_DualShock_Buttons = m_DualShock.FindAction("Buttons", throwIfNotFound: true);
         m_DualShock_L = m_DualShock.FindAction("L", throwIfNotFound: true);
         m_DualShock_R = m_DualShock.FindAction("R", throwIfNotFound: true);
+        m_DualShock_Hold = m_DualShock.FindAction("Hold", throwIfNotFound: true);
+        m_DualShock_Sticks = m_DualShock.FindAction("Sticks", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -384,6 +448,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_DualShock_Buttons;
     private readonly InputAction m_DualShock_L;
     private readonly InputAction m_DualShock_R;
+    private readonly InputAction m_DualShock_Hold;
+    private readonly InputAction m_DualShock_Sticks;
     /// <summary>
     /// Provides access to input actions defined in input action map "DualShock".
     /// </summary>
@@ -407,6 +473,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "DualShock/R".
         /// </summary>
         public InputAction @R => m_Wrapper.m_DualShock_R;
+        /// <summary>
+        /// Provides access to the underlying input action "DualShock/Hold".
+        /// </summary>
+        public InputAction @Hold => m_Wrapper.m_DualShock_Hold;
+        /// <summary>
+        /// Provides access to the underlying input action "DualShock/Sticks".
+        /// </summary>
+        public InputAction @Sticks => m_Wrapper.m_DualShock_Sticks;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -442,6 +516,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @R.started += instance.OnR;
             @R.performed += instance.OnR;
             @R.canceled += instance.OnR;
+            @Hold.started += instance.OnHold;
+            @Hold.performed += instance.OnHold;
+            @Hold.canceled += instance.OnHold;
+            @Sticks.started += instance.OnSticks;
+            @Sticks.performed += instance.OnSticks;
+            @Sticks.canceled += instance.OnSticks;
         }
 
         /// <summary>
@@ -462,6 +542,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @R.started -= instance.OnR;
             @R.performed -= instance.OnR;
             @R.canceled -= instance.OnR;
+            @Hold.started -= instance.OnHold;
+            @Hold.performed -= instance.OnHold;
+            @Hold.canceled -= instance.OnHold;
+            @Sticks.started -= instance.OnSticks;
+            @Sticks.performed -= instance.OnSticks;
+            @Sticks.canceled -= instance.OnSticks;
         }
 
         /// <summary>
@@ -588,5 +674,19 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnR(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Hold" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHold(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Sticks" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSticks(InputAction.CallbackContext context);
     }
 }

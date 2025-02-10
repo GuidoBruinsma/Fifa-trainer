@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2052c80527d9fa842b9433fd927431b1, type: 3}
   m_Name: _2_T_S_X
   m_EditorClassIdentifier: 
-  moveName: X_X_O
-  inputSequence: 070000000900000006000000
-  maxTimeBetweenInput: 1
+  moveName: T_S_X
+  inputSequence: 0d0000000600000006000000
+  maxTimeBetweenInput: 5

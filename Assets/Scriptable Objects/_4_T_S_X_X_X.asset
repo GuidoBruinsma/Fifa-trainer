@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2052c80527d9fa842b9433fd927431b1, type: 3}
-  m_Name: _1_X_X_O
+  m_Name: _4_T_S_X_X_X
   m_EditorClassIdentifier: 
-  moveName: X_X_O
-  inputSequence: 0f0000000600000015000000
+  moveName: T_S_X_X_X
+  inputSequence: 0d00000009000000060000000600000006000000
   maxTimeBetweenInput: 5
