@@ -5,8 +5,6 @@ using UnityEngine.Events;
 public class SkillsValidator : MonoBehaviour
 {
     public SequenceVisualizer sq;
-    public UnityAction OnSequenceSuccess;
-    public UnityAction OnSequenceFailed;
 
     [SerializeField] private List<SkillInput> currentSequenceInput;  //The Move Input sequence
     [SerializeField] private List<SkillInput> pressedSequenceInput = new();
@@ -46,11 +44,12 @@ public class SkillsValidator : MonoBehaviour
         if (!CheckValidity())
         {
             ResetSequence();
-            OnSequenceFailed?.Invoke();
+            EventManager.OnSequenceFailed?.Invoke();
         }
         else if (currentSequenceInput.Count == pressedSequenceInput.Count)
         {
-            OnSequenceSuccess?.Invoke();
+            Debug.Log("denore");
+            EventManager.OnSequenceSuccess?.Invoke();
             ResetSequence();
         }
     }

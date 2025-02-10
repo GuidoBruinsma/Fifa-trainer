@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-[RequireComponent(typeof (SkillsValidator), typeof (InputHandler))]
+[RequireComponent(typeof(SkillsValidator), typeof(InputHandler))]
 public class SkillMovesManager : MonoBehaviour
 {
     [Header("References")]
@@ -22,8 +20,8 @@ public class SkillMovesManager : MonoBehaviour
         sequenceValidator = GetComponent<SkillsValidator>();
         inputHandler = GetComponent<InputHandler>();
 
-        sequenceValidator.OnSequenceSuccess += HandleSequenceSuccess;
-        sequenceValidator.OnSequenceFailed += HandleSequenceFail;
+        EventManager.OnSequenceSuccess.AddListener(HandleSequenceSuccess);
+        EventManager.OnSequenceFailed.AddListener(HandleSequenceFail);
 
         EventManager.OnWholeSessionFailed.AddListener(RestartGame);
 
@@ -70,8 +68,7 @@ public class SkillMovesManager : MonoBehaviour
 
     private void HandleSequenceSuccess()
     {
-
-        inputHandler.CancelHold(); 
+        inputHandler.CancelHold();
         inputHandler.CancelHoldAndWaitForRelease();
 
         if (currentSequenceIndex < skillMoves.Count - 1)
@@ -87,8 +84,8 @@ public class SkillMovesManager : MonoBehaviour
 
     private void OnDisable()
     {
-        sequenceValidator.OnSequenceSuccess -= HandleSequenceSuccess;
-        sequenceValidator.OnSequenceFailed -= HandleSequenceFail;
+        EventManager.OnSequenceSuccess.RemoveListener(HandleSequenceSuccess);
+        EventManager.OnSequenceFailed.RemoveListener(HandleSequenceFail);
         EventManager.OnWholeSessionFailed.RemoveListener(RestartGame);
 
     }
