@@ -6,6 +6,7 @@ public class UI_Manager : MonoBehaviour
     public static UI_Manager Instance { get; private set; }
 
     [SerializeField] private TextMeshProUGUI timeleftText;
+    [SerializeField] private TextMeshProUGUI timeElapsedText;
 
     private void Awake()
     {
@@ -17,5 +18,9 @@ public class UI_Manager : MonoBehaviour
 
     public void SetTimerText(float timeLeft) {
         timeleftText.text = timeLeft.ToString("0.0");
+    }
+    
+    public void SetElapsedTimeText(float elapsedTime) {
+        timeElapsedText.text = elapsedTime.ToString("00:00");
     }
 }
