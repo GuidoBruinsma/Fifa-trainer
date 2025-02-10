@@ -12,7 +12,16 @@ public class Skill : ScriptableObject
 public enum SkillInput
 {
     L1, L2, L3, R1, R2, R3,
+
     Button_X, Button_Triangle, Button_Circle, Button_Square,
+    
     L3_Rotate, R3_Rotate,
-    L1_Hold, L2_Hold, R1_Hold, R2_Hold
+
+    L1_Hold, L2_Hold, 
+    R1_Hold, R2_Hold,
+
+
+    RS_Left, RS_UpLeft, RS_DownLeft,
+    RS_Right, RS_UpRight, RS_DownRight,
+    RS_Up, RS_Down, RS_None
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: _4_T_S_X_X_X
   m_EditorClassIdentifier: 
   moveName: T_S_X_X_X
-  inputSequence: 0700000009000000060000000600000006000000
-  maxTimeBetweenInput: 1
+  inputSequence: 0d00000009000000060000000600000006000000
+  maxTimeBetweenInput: 5

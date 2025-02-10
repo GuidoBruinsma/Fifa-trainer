@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Sticks",
+                    "type": "Value",
+                    "id": "67cdee8e-a430-46f5-84af-462bc8212115",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -111,17 +120,6 @@
                 },
                 {
                     "name": "",
-                    "id": "439cbeb4-8809-408e-be38-eb695118f5b5",
-                    "path": "<DualShockGamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "L",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d8d72a53-3a2e-4e1b-b25f-3a6ab975b1a0",
                     "path": "<DualShockGamepad>/leftStickPress",
                     "interactions": "",
@@ -144,17 +142,6 @@
                 },
                 {
                     "name": "",
-                    "id": "f587c60c-30b4-4d53-9855-31946b60aa65",
-                    "path": "<DualShockGamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "R",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "25025fc3-93d9-4f37-9e14-698e46348b8f",
                     "path": "<DualShockGamepad>/rightStickPress",
                     "interactions": "",
@@ -166,12 +153,56 @@
                 },
                 {
                     "name": "",
+                    "id": "439cbeb4-8809-408e-be38-eb695118f5b5",
+                    "path": "<DualShockGamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f587c60c-30b4-4d53-9855-31946b60aa65",
+                    "path": "<DualShockGamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "11ba1a29-daec-4cd4-8d9d-8b2f885851e2",
                     "path": "<Keyboard>/space",
                     "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Hold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4071f8a-fb7b-4447-831c-44dd60c8006a",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sticks",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d9c16abd-3d0f-480d-8c96-eac377ae8a8d",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sticks",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

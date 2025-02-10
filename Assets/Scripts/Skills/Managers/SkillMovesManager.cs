@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof (SkillsValidator), typeof (InputHandler))]
 public class SkillMovesManager : MonoBehaviour
@@ -9,9 +11,9 @@ public class SkillMovesManager : MonoBehaviour
     [SerializeField] private InputHandler inputHandler;
     [Space]
     [SerializeField] private List<Skill> skillMoves;
-    private int currentSequenceIndex = 0;
     [SerializeField] private Skill currentSkill;
 
+    private int currentSequenceIndex = 0;
 
     private void Start()
     {
@@ -23,6 +25,15 @@ public class SkillMovesManager : MonoBehaviour
         sequenceValidator.OnSequenceSuccess += HandleSequenceSuccess;
         sequenceValidator.OnSequenceFailed += HandleSequenceFail;
 
+        EventManager.OnWholeSessionFailed.AddListener(RestartGame);
+
+        LoadCurrentSkillMove();
+    }
+
+    private void RestartGame()
+    {
+        currentSequenceIndex = 0;
+
         LoadCurrentSkillMove();
     }
 
@@ -30,7 +41,7 @@ public class SkillMovesManager : MonoBehaviour
     {
         currentSkill = skillMoves[currentSequenceIndex];
 
-        sequenceValidator.SetSequenceInput(currentSkill.inputSequence);
+        sequenceValidator.SetSequenceInput(currentSkill.inputSequence, currentSkill);
         inputHandler.ResetHold();
 
         sequenceValidator.sq.VisualizeSequence(currentSkill.inputSequence, 0);
@@ -40,6 +51,8 @@ public class SkillMovesManager : MonoBehaviour
     {
         if (currentSequenceIndex < skillMoves.Count - 1)
         {
+            Debug.Log("move completed!");
+
             currentSequenceIndex++;
             LoadCurrentSkillMove();
         }
@@ -51,14 +64,15 @@ public class SkillMovesManager : MonoBehaviour
 
     private void HandleSequenceFail()
     {
+        inputHandler.CancelHoldAndWaitForRelease();
         Debug.Log("Skill move failed. Resetting sequence.");
     }
 
     private void HandleSequenceSuccess()
     {
-        //sequenceValidator.pressedSequenceInput.Clear();
 
-        inputHandler.CancelHold();
+        inputHandler.CancelHold(); 
+        inputHandler.CancelHoldAndWaitForRelease();
 
         if (currentSequenceIndex < skillMoves.Count - 1)
         {
@@ -75,5 +89,7 @@ public class SkillMovesManager : MonoBehaviour
     {
         sequenceValidator.OnSequenceSuccess -= HandleSequenceSuccess;
         sequenceValidator.OnSequenceFailed -= HandleSequenceFail;
+        EventManager.OnWholeSessionFailed.RemoveListener(RestartGame);
+
     }
 }

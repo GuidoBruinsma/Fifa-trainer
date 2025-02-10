@@ -9,9 +9,11 @@ public class SequenceVisualizer : MonoBehaviour
     [SerializeField] private string buttonSquareTapIcon;
     [SerializeField] private string buttonTriangleTapIcon;
 
-    [SerializeField] private string L1HoldIcon;
+    [SerializeField] private string L2HoldIcon;
     [Header("UI Reference")]
     [SerializeField] private TextMeshProUGUI sequenceText;
+
+    public string RS_UpLeftIcon;
 
     public void VisualizeSequence(List<SkillInput> sequence, int currentIndex)
     {
@@ -44,7 +46,8 @@ public class SequenceVisualizer : MonoBehaviour
             SkillInput.Button_Circle => buttonCircleTapIcon,
             SkillInput.Button_Square => buttonSquareTapIcon,
             SkillInput.Button_Triangle => buttonTriangleTapIcon,
-            SkillInput.L1_Hold => L1HoldIcon,
+            SkillInput.L2_Hold => L2HoldIcon,
+            SkillInput.RS_UpLeft => RS_UpLeftIcon,
             _ => null,
         };
     }
