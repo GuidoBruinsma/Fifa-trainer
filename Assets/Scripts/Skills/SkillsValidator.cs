@@ -1,18 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class SkillsValidator : MonoBehaviour
 {
     public SequenceVisualizer sq;
-    public UnityAction OnSequenceSuccess;
-    public UnityAction OnSequenceFailed;
 
     [SerializeField] private List<SkillInput> currentSequenceInput;  //The Move Input sequence
     [SerializeField] private List<SkillInput> pressedSequenceInput = new();
 
     private Skill currentSkill;
     private float timeLeftToPress;
+
+    private float currentTime;
 
     private void Start()
     {
@@ -39,6 +38,7 @@ public class SkillsValidator : MonoBehaviour
 
     public void AddInput(SkillInput input)
     {
+        if (pressedSequenceInput.Count == 0) currentTime = Time.time;
         pressedSequenceInput.Add(input);
 
         sq.VisualizeSequence(currentSequenceInput, pressedSequenceInput.Count);
@@ -46,11 +46,18 @@ public class SkillsValidator : MonoBehaviour
         if (!CheckValidity())
         {
             ResetSequence();
-            OnSequenceFailed?.Invoke();
+            EventManager.OnSequenceFailed?.Invoke();
+            sq.VisualizeSequence(currentSequenceInput, 0);
+
         }
         else if (currentSequenceInput.Count == pressedSequenceInput.Count)
         {
-            OnSequenceSuccess?.Invoke();
+            EventManager.OnSequenceSuccess?.Invoke();
+            sq.VisualizeSequence(currentSequenceInput, pressedSequenceInput.Count);
+
+            float elapsedTime = (Time.time - currentTime);
+            UI_Manager.Instance?.SetElapsedTimeCompletion(elapsedTime);
+
             ResetSequence();
         }
     }
