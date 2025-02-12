@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class SkillsValidator : MonoBehaviour
 {
@@ -11,6 +10,8 @@ public class SkillsValidator : MonoBehaviour
 
     private Skill currentSkill;
     private float timeLeftToPress;
+
+    private float currentTime;
 
     private void Start()
     {
@@ -37,6 +38,7 @@ public class SkillsValidator : MonoBehaviour
 
     public void AddInput(SkillInput input)
     {
+        if (pressedSequenceInput.Count == 0) currentTime = Time.time;
         pressedSequenceInput.Add(input);
 
         sq.VisualizeSequence(currentSequenceInput, pressedSequenceInput.Count);
@@ -45,11 +47,17 @@ public class SkillsValidator : MonoBehaviour
         {
             ResetSequence();
             EventManager.OnSequenceFailed?.Invoke();
+            sq.VisualizeSequence(currentSequenceInput, 0);
+
         }
         else if (currentSequenceInput.Count == pressedSequenceInput.Count)
         {
-            Debug.Log("denore");
             EventManager.OnSequenceSuccess?.Invoke();
+            sq.VisualizeSequence(currentSequenceInput, pressedSequenceInput.Count);
+
+            float elapsedTime = (Time.time - currentTime);
+            UI_Manager.Instance?.SetElapsedTimeCompletion(elapsedTime);
+
             ResetSequence();
         }
     }

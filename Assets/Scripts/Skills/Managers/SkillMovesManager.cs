@@ -43,6 +43,7 @@ public class SkillMovesManager : MonoBehaviour
         inputHandler.ResetHold();
 
         sequenceValidator.sq.VisualizeSequence(currentSkill.inputSequence, 0);
+        PredictionSkill();
     }
 
     private void SetCurrentSkillMove()
@@ -57,6 +58,19 @@ public class SkillMovesManager : MonoBehaviour
         else
         {
             Debug.Log("All skill moves completed!");
+        }
+    }
+
+    private void PredictionSkill() {
+        UI_Manager uiManager = UI_Manager.Instance;
+
+        int nextSkillIndex = currentSequenceIndex + 1;
+
+        if (nextSkillIndex <= skillMoves.Count - 1)
+        {
+            Skill skill = skillMoves[nextSkillIndex];
+            uiManager.SetNextMoveInfo(skillMoves[nextSkillIndex].inputSequence, skill.moveName);
+            Debug.Log("shown next move");
         }
     }
 
@@ -87,6 +101,5 @@ public class SkillMovesManager : MonoBehaviour
         EventManager.OnSequenceSuccess.RemoveListener(HandleSequenceSuccess);
         EventManager.OnSequenceFailed.RemoveListener(HandleSequenceFail);
         EventManager.OnWholeSessionFailed.RemoveListener(RestartGame);
-
     }
 }

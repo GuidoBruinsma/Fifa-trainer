@@ -14,12 +14,12 @@ public class ScoreSystem : MonoBehaviour
     private void FixedUpdate()
     {
         timeElapsed += Time.fixedDeltaTime;
-        UI_Manager.Instance.SetElapsedTimeText(timeElapsed);
+        UI_Manager.Instance?.SetElapsedTimeText(timeElapsed);
     }
 
     private void ScoreIncrease()
     {
         score++;
-        Debug.Log("poepeope");
+        //Debug.Log("poepeope");
     }
 }
