@@ -101,24 +101,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""L"",
-                    ""type"": ""Button"",
-                    ""id"": ""5b2bd991-7dd4-4df4-8245-23caec732e46"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""R"",
-                    ""type"": ""Button"",
-                    ""id"": ""18585ddb-a1e2-4e3c-95e5-3b41ef54ba58"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Hold"",
                     ""type"": ""Button"",
                     ""id"": ""d441f0e7-41de-49ae-ac5e-b843c8c767b6"",
@@ -135,6 +117,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Special"",
+                    ""type"": ""Button"",
+                    ""id"": ""872301fb-0d4f-4920-8368-12aa401ecbd7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -195,34 +186,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8e858757-24a7-4193-ae4c-64c5be359f52"",
-                    ""path"": ""<DualShockGamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""L"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""d8d72a53-3a2e-4e1b-b25f-3a6ab975b1a0"",
                     ""path"": ""<DualShockGamepad>/leftStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""L"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c208d658-a11c-4d5b-b8e1-a46f7913220a"",
-                    ""path"": ""<DualShockGamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""R"",
+                    ""action"": ""Buttons"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -233,7 +202,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""R"",
+                    ""action"": ""Buttons"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -261,17 +230,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""11ba1a29-daec-4cd4-8d9d-8b2f885851e2"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Hold"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""b4071f8a-fb7b-4447-831c-44dd60c8006a"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
@@ -289,6 +247,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Sticks"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e858757-24a7-4193-ae4c-64c5be359f52"",
+                    ""path"": ""<DualShockGamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Special"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c208d658-a11c-4d5b-b8e1-a46f7913220a"",
+                    ""path"": ""<DualShockGamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Special"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -361,10 +341,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // DualShock
         m_DualShock = asset.FindActionMap("DualShock", throwIfNotFound: true);
         m_DualShock_Buttons = m_DualShock.FindAction("Buttons", throwIfNotFound: true);
-        m_DualShock_L = m_DualShock.FindAction("L", throwIfNotFound: true);
-        m_DualShock_R = m_DualShock.FindAction("R", throwIfNotFound: true);
         m_DualShock_Hold = m_DualShock.FindAction("Hold", throwIfNotFound: true);
         m_DualShock_Sticks = m_DualShock.FindAction("Sticks", throwIfNotFound: true);
+        m_DualShock_Special = m_DualShock.FindAction("Special", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -446,10 +425,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_DualShock;
     private List<IDualShockActions> m_DualShockActionsCallbackInterfaces = new List<IDualShockActions>();
     private readonly InputAction m_DualShock_Buttons;
-    private readonly InputAction m_DualShock_L;
-    private readonly InputAction m_DualShock_R;
     private readonly InputAction m_DualShock_Hold;
     private readonly InputAction m_DualShock_Sticks;
+    private readonly InputAction m_DualShock_Special;
     /// <summary>
     /// Provides access to input actions defined in input action map "DualShock".
     /// </summary>
@@ -466,14 +444,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Buttons => m_Wrapper.m_DualShock_Buttons;
         /// <summary>
-        /// Provides access to the underlying input action "DualShock/L".
-        /// </summary>
-        public InputAction @L => m_Wrapper.m_DualShock_L;
-        /// <summary>
-        /// Provides access to the underlying input action "DualShock/R".
-        /// </summary>
-        public InputAction @R => m_Wrapper.m_DualShock_R;
-        /// <summary>
         /// Provides access to the underlying input action "DualShock/Hold".
         /// </summary>
         public InputAction @Hold => m_Wrapper.m_DualShock_Hold;
@@ -481,6 +451,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "DualShock/Sticks".
         /// </summary>
         public InputAction @Sticks => m_Wrapper.m_DualShock_Sticks;
+        /// <summary>
+        /// Provides access to the underlying input action "DualShock/Special".
+        /// </summary>
+        public InputAction @Special => m_Wrapper.m_DualShock_Special;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -510,18 +484,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Buttons.started += instance.OnButtons;
             @Buttons.performed += instance.OnButtons;
             @Buttons.canceled += instance.OnButtons;
-            @L.started += instance.OnL;
-            @L.performed += instance.OnL;
-            @L.canceled += instance.OnL;
-            @R.started += instance.OnR;
-            @R.performed += instance.OnR;
-            @R.canceled += instance.OnR;
             @Hold.started += instance.OnHold;
             @Hold.performed += instance.OnHold;
             @Hold.canceled += instance.OnHold;
             @Sticks.started += instance.OnSticks;
             @Sticks.performed += instance.OnSticks;
             @Sticks.canceled += instance.OnSticks;
+            @Special.started += instance.OnSpecial;
+            @Special.performed += instance.OnSpecial;
+            @Special.canceled += instance.OnSpecial;
         }
 
         /// <summary>
@@ -536,18 +507,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Buttons.started -= instance.OnButtons;
             @Buttons.performed -= instance.OnButtons;
             @Buttons.canceled -= instance.OnButtons;
-            @L.started -= instance.OnL;
-            @L.performed -= instance.OnL;
-            @L.canceled -= instance.OnL;
-            @R.started -= instance.OnR;
-            @R.performed -= instance.OnR;
-            @R.canceled -= instance.OnR;
             @Hold.started -= instance.OnHold;
             @Hold.performed -= instance.OnHold;
             @Hold.canceled -= instance.OnHold;
             @Sticks.started -= instance.OnSticks;
             @Sticks.performed -= instance.OnSticks;
             @Sticks.canceled -= instance.OnSticks;
+            @Special.started -= instance.OnSpecial;
+            @Special.performed -= instance.OnSpecial;
+            @Special.canceled -= instance.OnSpecial;
         }
 
         /// <summary>
@@ -661,20 +629,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnButtons(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "L" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnL(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "R" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnR(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "Hold" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -688,5 +642,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSticks(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Special" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSpecial(InputAction.CallbackContext context);
     }
 }
