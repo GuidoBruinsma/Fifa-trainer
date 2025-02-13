@@ -15,24 +15,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "L",
-                    "type": "Button",
-                    "id": "5b2bd991-7dd4-4df4-8245-23caec732e46",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "R",
-                    "type": "Button",
-                    "id": "18585ddb-a1e2-4e3c-95e5-3b41ef54ba58",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Hold",
                     "type": "Button",
                     "id": "d441f0e7-41de-49ae-ac5e-b843c8c767b6",
@@ -49,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Special",
+                    "type": "Button",
+                    "id": "872301fb-0d4f-4920-8368-12aa401ecbd7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -109,34 +100,12 @@
                 },
                 {
                     "name": "",
-                    "id": "8e858757-24a7-4193-ae4c-64c5be359f52",
-                    "path": "<DualShockGamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "L",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d8d72a53-3a2e-4e1b-b25f-3a6ab975b1a0",
                     "path": "<DualShockGamepad>/leftStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "L",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c208d658-a11c-4d5b-b8e1-a46f7913220a",
-                    "path": "<DualShockGamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "R",
+                    "action": "Buttons",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -147,7 +116,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "R",
+                    "action": "Buttons",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -175,17 +144,6 @@
                 },
                 {
                     "name": "",
-                    "id": "11ba1a29-daec-4cd4-8d9d-8b2f885851e2",
-                    "path": "<Keyboard>/space",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Hold",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b4071f8a-fb7b-4447-831c-44dd60c8006a",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
@@ -203,6 +161,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Sticks",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8e858757-24a7-4193-ae4c-64c5be359f52",
+                    "path": "<DualShockGamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Special",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c208d658-a11c-4d5b-b8e1-a46f7913220a",
+                    "path": "<DualShockGamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Special",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

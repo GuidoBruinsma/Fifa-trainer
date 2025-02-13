@@ -7,6 +7,10 @@ public class Skill : ScriptableObject
     public string moveName;
     public List<SkillInput> inputSequence;
     public float maxTimeBetweenInput;
+
+    [Space]
+    [Header("Add only if the skill contains R Rotate or L Rotate")]
+    public SkillInput[] rotationSequence;
 }
 
 public enum SkillInput

@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(SkillsValidator), typeof(InputHandler))]
 public class SkillMovesManager : MonoBehaviour
 {
+    public static SkillMovesManager Instance { get; private set; }
+
     [Header("References")]
     [SerializeField] private SkillsValidator sequenceValidator;
     [SerializeField] private InputHandler inputHandler;
@@ -11,7 +13,17 @@ public class SkillMovesManager : MonoBehaviour
     [SerializeField] private List<Skill> skillMoves;
     [SerializeField] private Skill currentSkill;
 
+    public static Skill CurrentSkill => Instance.currentSkill;
+
     private int currentSequenceIndex = 0;
+    
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     private void Start()
     {
@@ -77,7 +89,7 @@ public class SkillMovesManager : MonoBehaviour
     private void HandleSequenceFail()
     {
         inputHandler.CancelHoldAndWaitForRelease();
-        Debug.Log("Skill move failed. Resetting sequence.");
+        //Debug.Log("Skill move failed. Resetting sequence.");
     }
 
     private void HandleSequenceSuccess()

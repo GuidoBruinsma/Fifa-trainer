@@ -39,6 +39,7 @@ public class SkillsValidator : MonoBehaviour
     public void AddInput(SkillInput input)
     {
         if (pressedSequenceInput.Count == 0) currentTime = Time.time;
+        Debug.Log(input);
         pressedSequenceInput.Add(input);
 
         sq.VisualizeSequence(currentSequenceInput, pressedSequenceInput.Count);

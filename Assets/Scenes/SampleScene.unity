@@ -531,6 +531,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -656,6 +657,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb3ae0cd763f3a4aa099f291a0c1f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0
+  tolerance: 15
+  arcSegments: 100
+  circleColor: {r: 1, g: 1, b: 1, a: 0.5686275}
+  regionColor: {r: 0, g: 1, b: 0, a: 1}
+  boundaryColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &629274800
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,7 +732,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Comletion time:'
+  m_text: 'Completion time:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1376,8 +1395,8 @@ MonoBehaviour:
   sequenceValidator: {fileID: 1682479564}
   inputHandler: {fileID: 1682479565}
   skillMoves:
-  - {fileID: 11400000, guid: e7c5c655946f4b143bed1465298a79e8, type: 2}
   - {fileID: 11400000, guid: c91b27589b09fc345abd7ca39f6326a5, type: 2}
+  - {fileID: 11400000, guid: e7c5c655946f4b143bed1465298a79e8, type: 2}
   - {fileID: 11400000, guid: b43c03eb3799b174ebb84c7c609771d8, type: 2}
   - {fileID: 11400000, guid: e34d9d218e6f27e4aafbd7593cc46599, type: 2}
   - {fileID: 11400000, guid: 39fff527ad70cdf4abb1deab6dff6bcb, type: 2}
@@ -1410,6 +1429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  test: 
 --- !u!114 &1682479566
 MonoBehaviour:
   m_ObjectHideFlags: 0
