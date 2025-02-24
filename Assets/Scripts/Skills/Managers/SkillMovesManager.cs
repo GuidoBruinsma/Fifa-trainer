@@ -39,11 +39,11 @@ public class SkillMovesManager : MonoBehaviour
 
         LoadCurrentSkillMove();
     }
-
+    
     private void RestartGame()
     {
         currentSequenceIndex = 0;
-
+        //GlobalDataManager.IncreaseAttempts();
         LoadCurrentSkillMove();
     }
 
@@ -82,14 +82,12 @@ public class SkillMovesManager : MonoBehaviour
         {
             Skill skill = skillMoves[nextSkillIndex];
             uiManager.SetNextMoveInfo(skillMoves[nextSkillIndex].inputSequence, skill.moveName);
-            Debug.Log("shown next move");
         }
     }
 
     private void HandleSequenceFail()
     {
         inputHandler.CancelHoldAndWaitForRelease();
-        //Debug.Log("Skill move failed. Resetting sequence.");
     }
 
     private void HandleSequenceSuccess()
@@ -107,6 +105,8 @@ public class SkillMovesManager : MonoBehaviour
             Debug.Log("All skill moves completed!");
         }
     }
+
+
 
     private void OnDisable()
     {
