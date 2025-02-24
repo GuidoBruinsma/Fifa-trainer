@@ -34,11 +34,21 @@ public class InputHandler : MonoBehaviour
         //Buttons control
         _Buttons.performed += ctx => { ProcessInput(ctx.control.name, ctx); };
         _Special.performed += ctx => { ProcessInput(ctx.control.name, ctx); };
-        _Special.canceled += ctx =>  { EventManager.OnSkillInputReceived?.Invoke(SkillInput.RS_None); };
+        _Special.canceled += ctx => { EventManager.OnSkillInputReceived?.Invoke(SkillInput.RS_None); };
 
         //Hold control
-        _Hold.started += ctx => { if (!holdDisabled) ProcessInput(ctx.control.name, ctx); };
-        _Hold.canceled += ctx => { ProcessInput(ctx.control.name, ctx); };
+        _Hold.performed += ctx =>
+        {
+            if (!holdDisabled) ProcessInput(ctx.control.name, ctx);
+            
+        };
+        _Hold.canceled += ctx =>
+        {
+            if (ctx.ReadValue<float>() == 0)
+            {
+                EventManager.OnSkillInputReceived?.Invoke(SkillInput.L2_None);
+            }
+        };
 
         //Stick control
         _Sticks.performed += ctx =>
@@ -46,7 +56,7 @@ public class InputHandler : MonoBehaviour
             if (!ProcessRotationInput(ctx.ReadValue<Vector2>()))
                 ProcessStickInput(ctx.ReadValue<Vector2>());
         };
-        _Sticks.canceled += ctx => { ProcessStickInput(ctx.ReadValue<Vector2>()); };
+        //_Sticks.canceled += ctx => { ProcessStickInput(ctx.ReadValue<Vector2>()); };
 
         controls.Enable();
     }
@@ -54,6 +64,7 @@ public class InputHandler : MonoBehaviour
     #region Input Process
     void ProcessInput(string buttonName, InputAction.CallbackContext ctx)
     {
+        
         if (holdDisabled) return;
 
         if (buttonName == "leftShoulder")
@@ -82,7 +93,7 @@ public class InputHandler : MonoBehaviour
             degrees += 360;
 
         SkillInput input = GetSkillStickInput(degrees, stickVector.magnitude);
-        EventManager.OnSkillInputReceived?.Invoke(input);
+        EventManager.OnSkillInputReceived?.Invoke(input);                           //FIX: if a flick move is needed this is called and the same problem, analog sends every movement!
     }
 
     private bool ProcessRotationInput(Vector2 stickVector)
@@ -112,20 +123,17 @@ public class InputHandler : MonoBehaviour
                     if (input == currentSkill.rotationSequence[expectedIndex])
                     {
                         test.Add(input);
-                        Debug.Log("Matched: " + input + " (expected " + currentSkill.rotationSequence[expectedIndex] + ")");
                     }
                     else
                     {
-                        Debug.Log("Mismatch: expected " + currentSkill.rotationSequence[expectedIndex] + " but got " + input);
                         test.Clear();
-                        EventManager.OnSkillInputReceived?.Invoke(input);
+                        //EventManager.OnSkillInputReceived?.Invoke(input);
                         return true;
                     }
                 }
 
                 if (test.Count == currentSkill.rotationSequence.Length)
                 {
-                    Debug.Log("Rotation gesture complete");
                     EventManager.OnSkillInputReceived?.Invoke(SkillInput.R3_Rotate);
                     test.Clear();
                     return true;
@@ -267,8 +275,6 @@ public class InputHandler : MonoBehaviour
 
             ("leftShoulder") => 0,
             ("rightShoulder") => 0,
-
-            ("x") => SkillInput.Button_X,
             _ => null
         };
     }
