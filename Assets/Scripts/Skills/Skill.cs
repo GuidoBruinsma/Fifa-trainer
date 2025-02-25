@@ -27,5 +27,7 @@ public enum SkillInput
 
     RS_Left, RS_UpLeft, RS_DownLeft,
     RS_Right, RS_UpRight, RS_DownRight,
-    RS_Up, RS_Down, RS_None
+    RS_Up, RS_Down, RS_None,
+
+    L2_None, R2_None    
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: _1_X_X_O
   m_EditorClassIdentifier: 
   moveName: X_X_O
-  inputSequence: 0c0000000f0000000d000000
+  inputSequence: 0c0000000f00000006000000
   maxTimeBetweenInput: 5
   rotationSequence: 
