@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(SkillsValidator), typeof(InputHandler))]
@@ -6,14 +7,15 @@ public class SkillMovesManager : MonoBehaviour
 {
     public static SkillMovesManager Instance { get; private set; }
 
+    public static Skill CurrentSkill => Instance.currentSkill;
+
     [Header("References")]
     [SerializeField] private SkillsValidator sequenceValidator;
     [SerializeField] private InputHandler inputHandler;
+
     [Space]
     [SerializeField] private List<Skill> skillMoves;
     [SerializeField] private Skill currentSkill;
-
-    public static Skill CurrentSkill => Instance.currentSkill;
 
     private int currentSequenceIndex = 0;
     
@@ -43,7 +45,7 @@ public class SkillMovesManager : MonoBehaviour
     private void RestartGame()
     {
         currentSequenceIndex = 0;
-        //GlobalDataManager.IncreaseAttempts();
+
         LoadCurrentSkillMove();
     }
 
@@ -51,10 +53,12 @@ public class SkillMovesManager : MonoBehaviour
     {
         currentSkill = skillMoves[currentSequenceIndex];
 
-        sequenceValidator.SetSequenceInput(currentSkill.inputSequence, currentSkill);
+        var flatInputSequence = currentSkill.inputSequence.SelectMany(holder => holder.input).ToList();
+
+        sequenceValidator.SetSequenceInput(flatInputSequence, currentSkill);
         inputHandler.ResetHold();
 
-        sequenceValidator.sq.VisualizeSequence(currentSkill.inputSequence, 0);
+        //sequenceValidator.sq.VisualizeSequence(currentSkill.inputSequence, 0);
         PredictionSkill();
     }
 
@@ -81,7 +85,7 @@ public class SkillMovesManager : MonoBehaviour
         if (nextSkillIndex <= skillMoves.Count - 1)
         {
             Skill skill = skillMoves[nextSkillIndex];
-            uiManager.SetNextMoveInfo(skillMoves[nextSkillIndex].inputSequence, skill.moveName);
+           // uiManager.SetNextMoveInfo(skillMoves[nextSkillIndex].inputSequence, skill.moveName);
         }
     }
 
