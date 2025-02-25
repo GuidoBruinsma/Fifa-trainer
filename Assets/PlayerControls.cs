@@ -284,6 +284,193 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Nintendo"",
+            ""id"": ""bfc00269-e0b1-4eaa-8d7b-780c78c61d7d"",
+            ""actions"": [
+                {
+                    ""name"": ""Buttons"",
+                    ""type"": ""Button"",
+                    ""id"": ""550bf37c-c7b9-4955-8796-01823598e3c0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hold"",
+                    ""type"": ""Button"",
+                    ""id"": ""1bb0b7aa-05f2-476a-bd04-097668bcfb99"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sticks"",
+                    ""type"": ""Value"",
+                    ""id"": ""616a8b7b-5052-4aac-a8ac-486a6a53e997"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Special"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a106899-ead7-4390-ba11-54486932c4be"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ea8f302e-c995-4f03-8936-1b78ead5e24a"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Buttons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e89eab1d-e91d-48ca-bbfd-aa6d40aab480"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Buttons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""51954ea9-4172-4387-b27e-b142de3a5f92"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Buttons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00c9dac7-ff3f-4906-a375-24972d8ae8c9"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Buttons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""35764465-3cc4-4386-bf5f-6bd1fdf2253e"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Buttons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5f895bd9-2c65-47ed-86ab-4e3521e82b0c"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Buttons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""61aec07c-30c2-4fcc-a94b-d176c792a69f"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Buttons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""014aaf1c-ca99-4ce9-8f52-96bca88ad911"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""970cd531-f82a-4b9a-818a-d869b0b9fc19"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0bd9964b-9807-4d7a-9820-5a0ba0cb7a89"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sticks"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""685d2109-69c3-453a-ac20-47d1b83b3602"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sticks"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57dbe96c-c15f-4774-8b5c-1b8a62e087d9"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Special"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""078b5547-952d-4cc6-98d3-f9bf21138bd2"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Special"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -355,11 +542,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_DualShock_Hold = m_DualShock.FindAction("Hold", throwIfNotFound: true);
         m_DualShock_Sticks = m_DualShock.FindAction("Sticks", throwIfNotFound: true);
         m_DualShock_Special = m_DualShock.FindAction("Special", throwIfNotFound: true);
+        // Nintendo
+        m_Nintendo = asset.FindActionMap("Nintendo", throwIfNotFound: true);
+        m_Nintendo_Buttons = m_Nintendo.FindAction("Buttons", throwIfNotFound: true);
+        m_Nintendo_Hold = m_Nintendo.FindAction("Hold", throwIfNotFound: true);
+        m_Nintendo_Sticks = m_Nintendo.FindAction("Sticks", throwIfNotFound: true);
+        m_Nintendo_Special = m_Nintendo.FindAction("Special", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
         UnityEngine.Debug.Assert(!m_DualShock.enabled, "This will cause a leak and performance issues, PlayerControls.DualShock.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Nintendo.enabled, "This will cause a leak and performance issues, PlayerControls.Nintendo.Disable() has not been called.");
     }
 
     /// <summary>
@@ -560,6 +754,135 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="DualShockActions" /> instance referencing this action map.
     /// </summary>
     public DualShockActions @DualShock => new DualShockActions(this);
+
+    // Nintendo
+    private readonly InputActionMap m_Nintendo;
+    private List<INintendoActions> m_NintendoActionsCallbackInterfaces = new List<INintendoActions>();
+    private readonly InputAction m_Nintendo_Buttons;
+    private readonly InputAction m_Nintendo_Hold;
+    private readonly InputAction m_Nintendo_Sticks;
+    private readonly InputAction m_Nintendo_Special;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Nintendo".
+    /// </summary>
+    public struct NintendoActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public NintendoActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Nintendo/Buttons".
+        /// </summary>
+        public InputAction @Buttons => m_Wrapper.m_Nintendo_Buttons;
+        /// <summary>
+        /// Provides access to the underlying input action "Nintendo/Hold".
+        /// </summary>
+        public InputAction @Hold => m_Wrapper.m_Nintendo_Hold;
+        /// <summary>
+        /// Provides access to the underlying input action "Nintendo/Sticks".
+        /// </summary>
+        public InputAction @Sticks => m_Wrapper.m_Nintendo_Sticks;
+        /// <summary>
+        /// Provides access to the underlying input action "Nintendo/Special".
+        /// </summary>
+        public InputAction @Special => m_Wrapper.m_Nintendo_Special;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Nintendo; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="NintendoActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(NintendoActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="NintendoActions" />
+        public void AddCallbacks(INintendoActions instance)
+        {
+            if (instance == null || m_Wrapper.m_NintendoActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_NintendoActionsCallbackInterfaces.Add(instance);
+            @Buttons.started += instance.OnButtons;
+            @Buttons.performed += instance.OnButtons;
+            @Buttons.canceled += instance.OnButtons;
+            @Hold.started += instance.OnHold;
+            @Hold.performed += instance.OnHold;
+            @Hold.canceled += instance.OnHold;
+            @Sticks.started += instance.OnSticks;
+            @Sticks.performed += instance.OnSticks;
+            @Sticks.canceled += instance.OnSticks;
+            @Special.started += instance.OnSpecial;
+            @Special.performed += instance.OnSpecial;
+            @Special.canceled += instance.OnSpecial;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="NintendoActions" />
+        private void UnregisterCallbacks(INintendoActions instance)
+        {
+            @Buttons.started -= instance.OnButtons;
+            @Buttons.performed -= instance.OnButtons;
+            @Buttons.canceled -= instance.OnButtons;
+            @Hold.started -= instance.OnHold;
+            @Hold.performed -= instance.OnHold;
+            @Hold.canceled -= instance.OnHold;
+            @Sticks.started -= instance.OnSticks;
+            @Sticks.performed -= instance.OnSticks;
+            @Sticks.canceled -= instance.OnSticks;
+            @Special.started -= instance.OnSpecial;
+            @Special.performed -= instance.OnSpecial;
+            @Special.canceled -= instance.OnSpecial;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="NintendoActions.UnregisterCallbacks(INintendoActions)" />.
+        /// </summary>
+        /// <seealso cref="NintendoActions.UnregisterCallbacks(INintendoActions)" />
+        public void RemoveCallbacks(INintendoActions instance)
+        {
+            if (m_Wrapper.m_NintendoActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="NintendoActions.AddCallbacks(INintendoActions)" />
+        /// <seealso cref="NintendoActions.RemoveCallbacks(INintendoActions)" />
+        /// <seealso cref="NintendoActions.UnregisterCallbacks(INintendoActions)" />
+        public void SetCallbacks(INintendoActions instance)
+        {
+            foreach (var item in m_Wrapper.m_NintendoActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_NintendoActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="NintendoActions" /> instance referencing this action map.
+    /// </summary>
+    public NintendoActions @Nintendo => new NintendoActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -631,6 +954,42 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// <seealso cref="DualShockActions.AddCallbacks(IDualShockActions)" />
     /// <seealso cref="DualShockActions.RemoveCallbacks(IDualShockActions)" />
     public interface IDualShockActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Buttons" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnButtons(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Hold" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHold(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Sticks" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSticks(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Special" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSpecial(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Nintendo" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="NintendoActions.AddCallbacks(INintendoActions)" />
+    /// <seealso cref="NintendoActions.RemoveCallbacks(INintendoActions)" />
+    public interface INintendoActions
     {
         /// <summary>
         /// Method invoked when associated input action "Buttons" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.

@@ -1794,7 +1794,7 @@ MonoBehaviour:
   sequenceValidator: {fileID: 1682479564}
   inputHandler: {fileID: 1682479565}
   skillMoves:
-  - {fileID: 11400000, guid: e7c5c655946f4b143bed1465298a79e8, type: 2}
+  - {fileID: 11400000, guid: 35a46c53de0dfa040838cd105a03f404, type: 2}
   - {fileID: 11400000, guid: c91b27589b09fc345abd7ca39f6326a5, type: 2}
   - {fileID: 11400000, guid: b43c03eb3799b174ebb84c7c609771d8, type: 2}
   - {fileID: 11400000, guid: e34d9d218e6f27e4aafbd7593cc46599, type: 2}
@@ -1815,6 +1815,7 @@ MonoBehaviour:
   sq: {fileID: 1682479566}
   currentSequenceInput: 
   pressedSequenceInput: 
+  totalAttempts: 0
 --- !u!114 &1682479565
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,7 +24,8 @@ public class InputHandler : MonoBehaviour
 
     private void Awake()
     {
-        InputActionMap map = controls.FindActionMap("DualShock");
+        //InputActionMap map = controls.FindActionMap("DualShock");
+        InputActionMap map = controls.FindActionMap("Nintendo");
 
         _Buttons = map.FindAction("Buttons");
         _Hold = map.FindAction("Hold");
