@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2052c80527d9fa842b9433fd927431b1, type: 3}
   m_Name: Drag back
   m_EditorClassIdentifier: 
-  importantNode: 'TODO: Implement Hold L3 Any and Hold R3 Any'
+  importantNode: Hold L1 + Hold R1 + Hold L3 Any
   moveName: Drag back
-  inputSequence: 030000000a00000007000000
+  inputSequence: []
   maxTimeBetweenInput: 0.7
   rotationSequence: 
+  secondInputSequence: 
+  secondRotationSequence: 

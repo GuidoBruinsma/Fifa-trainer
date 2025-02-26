@@ -38,7 +38,7 @@ public enum SkillInput
     L1, L2, L3, L1_Hold, L2_Hold, L3_Rotate, L3_Any, Hold_L3_Any,
 
     [Space]
-    R1, R2, R3, R1_Hold, R2_Hold, R3_Rotate, R3_Any,
+    R1, R2, R3, R1_Hold, R2_Hold, R3_Rotate, Hold_R3_Any,
 
     [Space]
     Button_X, Button_Triangle, Button_Circle, Button_Square,
@@ -46,25 +46,38 @@ public enum SkillInput
     [Space]
     Hold_Button_X, Hold_Button_Triangle, Hold_Button_Circle, Hold_Button_Square,
 
+    //Old version////////////////////////////////////////////////////
     [Space]
-    RS_Left, RS_UpLeft, RS_DownLeft,
-    RS_Right, RS_UpRight, RS_DownRight,
-    RS_Up, RS_Down, RS_None,
+    R3_Left, R3_UpLeft, R3_DownLeft,
+    R3_Right, R3_UpRight, R3_DownRight,
+    R3_Up, R3_Down, R3_None,
 
     [Space]
-    LS_Left, LS_UpLeft, LS_DownLeft,
-    LS_Right, LS_UpRight, LS_DownRight,
-    LS_Up, LS_Down, LS_None,
+    L3_Left, L3_UpLeft, L3_DownLeft,
+    L3_Right, L3_UpRight, L3_DownRight,
+    L3_Up, L3_Down, L3_None,
+    ///////////////////////////////////////////////////////////////
+    
 
     [Space]
-    Hold_RS_Left, Hold_RS_UpLeft, Hold_RS_DownLeft,
-    Hold_RS_Right, Hold_RS_UpRight, Hold_RS_DownRight,
-    Hold_RS_Up, Hold_RS_Down, Hold_RS_None,
+    R3_RightToUp, R3_RightToDown, 
+
+    R3_UpToRight, R3_UpToLeft,
+
+    R3_DownToRight, R3_DownToLeft,
+
+    R3_LeftToUp, R3_LeftToDown, R3_LeftToDownToLeft, R3_LeftToUpToLeft,
+
 
     [Space]
-    Hold_LS_Left, Hold_LS_UpLeft, Hold_LS_DownLeft,
-    Hold_LS_Right, Hold_LS_UpRight, Hold_LS_DownRight,
-    Hold_LS_Up, Hold_LS_Down, Hold_LS_None,
+    Hold_R3_Left, Hold_R3_UpLeft, Hold_R3_DownLeft,
+    Hold_R3_Right, Hold_R3_UpRight, Hold_R3_DownRight,
+    Hold_R3_Up, Hold_R3_Down, Hold_R3_None,
+
+    [Space]
+    Hold_L3_Left, Hold_L3_UpLeft, Hold_L3_DownLeft,
+    Hold_L3_Right, Hold_L3_UpRight, Hold_L3_DownRight,
+    Hold_L3_Up, Hold_L3_Down, Hold_L3_None,
 
     [Space]
     L2_None, R2_None
