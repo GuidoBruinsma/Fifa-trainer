@@ -41,14 +41,14 @@ public class SkillsValidator : MonoBehaviour
     {
         if (pressedSequenceInput.Count == 0) currentTime = Time.time;
 
-        if (input == SkillInput.L2_None || input == SkillInput.R2_None || input == SkillInput.RS_None) return;
+        if (input == SkillInput.L2_None || input == SkillInput.R2_None || input == SkillInput.R3_None) return;
 
         pressedSequenceInput.Add(input);
         sq.VisualizeSequence(currentSequenceInput, pressedSequenceInput.Count);
 
         if (!CheckValidity())
         {
-            Debug.Log(input);
+            //Debug.Log(input);
             
             totalAttempts++;
             ResetSequence();

@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class InputHandler : MonoBehaviour
 {
     public UnityAction<SkillInput> OnSkillInputReceived;
-
+    public List<SkillInput> inputs = new();
     [Header("Controls")]
     [SerializeField] private InputActionAsset controls;
     private InputAction _Buttons;
     private InputAction _Hold;
-    private InputAction _Sticks;
-    private InputAction _Special;
+
+    private InputAction _HoldL3;
+    private InputAction _HoldR3;
+
+    private InputAction _FlickL3;
+    private InputAction _FlickR3;
+
+    private InputAction _RotateR3;
 
     private bool holdDisabled = false;
     private bool waitingForRelease;
@@ -22,25 +29,38 @@ public class InputHandler : MonoBehaviour
 
     private const float holdThreshold = 0.5f;  //TODO: Adapt this how fast should detect a hold
 
+    private bool isHeld;
+
     private void Awake()
     {
         InputActionMap map = controls.FindActionMap("DualShock");
+        //InputActionMap map = controls.FindActionMap("Nintendo");
 
         _Buttons = map.FindAction("Buttons");
         _Hold = map.FindAction("Hold");
-        _Sticks = map.FindAction("Sticks");
-        _Special = map.FindAction("Special");
+
+        _HoldL3 = map.FindAction("HoldL3Direction");
+        _HoldR3 = map.FindAction("HoldR3Direction");
+
+        _FlickL3 = map.FindAction("FlickL3");
+        _FlickR3 = map.FindAction("FlickR3");
+
+        _RotateR3 = map.FindAction("RotateR3");
 
         //Buttons control
-        _Buttons.performed += ctx => { ProcessInput(ctx.control.name, ctx); };
-        _Special.performed += ctx => { ProcessInput(ctx.control.name, ctx); };
-        _Special.canceled += ctx => { EventManager.OnSkillInputReceived?.Invoke(SkillInput.RS_None); };
+        _Buttons.performed += ctx => { if (!isHeld) ProcessInput(ctx.control.name, isHeld: false); };
 
         //Hold control
         _Hold.performed += ctx =>
         {
-            if (!holdDisabled) ProcessInput(ctx.control.name, ctx);
-            
+            if (!holdDisabled)
+            {
+                if (!isHeld)
+                {
+                    isHeld = true;
+                    ProcessInput(ctx.control.name, isHeld: true);
+                }
+            }
         };
         _Hold.canceled += ctx =>
         {
@@ -48,126 +68,149 @@ public class InputHandler : MonoBehaviour
             {
                 EventManager.OnSkillInputReceived?.Invoke(SkillInput.L2_None);
             }
+            isHeld = false;
         };
 
-        //Stick control
-        _Sticks.performed += ctx =>
+        //TODO URGENT: Add a new element only if the current element is != the the last added element
+        _RotateR3.performed += ctx =>
         {
-            if (!ProcessRotationInput(ctx.ReadValue<Vector2>()))
-                ProcessStickInput(ctx.ReadValue<Vector2>());
+            inputs = GetRotatingInput(ctx.ReadValue<Vector2>());
         };
-        //_Sticks.canceled += ctx => { ProcessStickInput(ctx.ReadValue<Vector2>()); };
+        _RotateR3.canceled += ctx =>
+        {
+            SkillInput? input = SkillInputs.GetStickRotationInput(ctx.control.name, inputs, ctx);
+            Debug.Log(input);
+        };
+
+
+        //TODO: Send the input to the validator to check if the move is valid
+        _HoldL3.performed += ctx => { SkillInput? input = SkillInputs.GetStickInput(ctx.control.name, isLeft: true, isHeld: true); };       // Finished
+        _HoldR3.performed += ctx => { SkillInput? input = SkillInputs.GetStickInput(ctx.control.name, isLeft: false, isHeld: true); };      // Finished
+
+        _FlickL3.performed += ctx => { SkillInput? input = SkillInputs.GetStickInput(ctx.control.name, isLeft: true, isHeld: false); };     // Finished
+        _FlickR3.performed += ctx => { SkillInput? input = SkillInputs.GetStickInput(ctx.control.name, isLeft: false, isHeld: false); };    // Finished
 
         controls.Enable();
     }
 
     #region Input Process
-    void ProcessInput(string buttonName, InputAction.CallbackContext ctx)
+    private void ProcessInput(string buttonName, bool isHeld = false)
     {
-        
         if (holdDisabled) return;
 
-        if (buttonName == "leftShoulder")
+        SkillInput? input = isHeld ? SkillInputs.GetHoldInput(buttonName) : SkillInputs.GetTabInput(buttonName);
+        if (input.HasValue)
         {
-            StartCoroutine(CheckShoulderHold(ctx, SkillInput.L1, SkillInput.L1_Hold));
+            EventManager.OnSkillInputReceived?.Invoke(input.Value);
         }
-        else if (buttonName == "rightShoulder")
+    }
+
+    private List<SkillInput> GetRotatingInput(Vector2 dir)
+    {
+
+        if (dir.y >= 0.9f)
         {
-            StartCoroutine(CheckShoulderHold(ctx, SkillInput.R1, SkillInput.R1_Hold));
+            inputs.Add(SkillInput.R3_Up);
+        }
+        else if (dir.x >= 0.9f)
+        {
+            inputs.Add(SkillInput.R3_Right);
+        }
+        else if (dir.y <= -0.9f)
+        {
+            inputs.Add(SkillInput.R3_Down);
+        }
+        else if (dir.x <= -0.9f)
+        {
+            inputs.Add(SkillInput.R3_Left);
+        }
+
+        return inputs;
+    }
+
+    private void ProcessStickInput(string buttonName, bool isLeft, bool isHeld)
+    {
+        SkillInput? input;
+        if (!isHeld)
+        {
+            input = isLeft ?
+                SkillInputs.GetStickInput(buttonName, isLeft: true, isHeld: false) : SkillInputs.GetStickInput(buttonName, isLeft: false, isHeld: false);
         }
         else
         {
-            SkillInput? input = GetSkillInput(buttonName);
-            if (input.HasValue)
-            {
-                EventManager.OnSkillInputReceived?.Invoke(input.Value);
-            }
+            input = isLeft ?
+                SkillInputs.GetStickInput(buttonName, isLeft: true, isHeld: true) : SkillInputs.GetStickInput(buttonName, isLeft: false, isHeld: true);
+        }
+        if (input.HasValue)
+        {
+            EventManager.OnSkillInputReceived?.Invoke(input.Value);
         }
     }
 
-    void ProcessStickInput(Vector2 stickVector)
-    {
-        var degrees = Mathf.Atan2(stickVector.y, stickVector.x) * Mathf.Rad2Deg;
+    //private void ProcessStickInput(Vector2 stickVector, bool isLeftTrigger)
+    //{
+    //    var degrees = Mathf.Atan2(stickVector.y, stickVector.x) * Mathf.Rad2Deg;
 
-        if (degrees < 0)
-            degrees += 360;
+    //    if (degrees < 0)
+    //        degrees += 360;
 
-        SkillInput input = GetSkillStickInput(degrees, stickVector.magnitude);
-        EventManager.OnSkillInputReceived?.Invoke(input);                           //FIX: if a flick move is needed this is called and the same problem, analog sends every movement!
-    }
+    //    SkillInput? input = isLeftTrigger ?
+    //        SkillInputs.GetSkillStickInput(degrees, stickVector.magnitude, true) : SkillInputs.GetSkillStickInput(degrees, stickVector.magnitude, false);
 
-    private bool ProcessRotationInput(Vector2 stickVector)
-    {
-        float degrees = Mathf.Atan2(stickVector.y, stickVector.x) * Mathf.Rad2Deg;
-        if (degrees < 0)
-            degrees += 360;
 
-        SkillInput input = GetSkillStickInput(degrees, stickVector.magnitude);
 
-        Skill currentSkill = SkillMovesManager.CurrentSkill;
-        if (stickVector.magnitude == 0)
-        {
-            test.Clear();
-            return false;
-        }
-        if (currentSkill != null &&
-            currentSkill.rotationSequence != null &&
-            currentSkill.rotationSequence.Length > 0)
-        {
-            int expectedIndex = test.Count;
+    //    //FIX: if a flick move is needed this is called and the same problem, analog sends every movement!
+    //    EventManager.OnSkillInputReceived?.Invoke(input.Value);
+    //}
 
-            if (expectedIndex < currentSkill.rotationSequence.Length)
-            {
-                if (test.Count == 0 || test[test.Count - 1] != input)
-                {
-                    if (input == currentSkill.rotationSequence[expectedIndex])
-                    {
-                        test.Add(input);
-                    }
-                    else
-                    {
-                        test.Clear();
-                        //EventManager.OnSkillInputReceived?.Invoke(input);
-                        return true;
-                    }
-                }
+    //private bool ProcessRotationInput(Vector2 stickVector, bool isLeftTrigger)
+    //{
+    //    float degrees = Mathf.Atan2(stickVector.y, stickVector.x) * Mathf.Rad2Deg;
+    //    if (degrees < 0)
+    //        degrees += 360;
 
-                if (test.Count == currentSkill.rotationSequence.Length)
-                {
-                    EventManager.OnSkillInputReceived?.Invoke(SkillInput.R3_Rotate);
-                    test.Clear();
-                    return true;
-                }
-                return true;
-            }
-        }
-        return false;
-    }
+    //    SkillInput? input = isLeftTrigger ? SkillInputs.GetSkillStickInput(degrees, stickVector.magnitude, true) : SkillInputs.GetSkillStickInput(degrees, stickVector.magnitude, false);
 
-    private IEnumerator CheckShoulderHold(InputAction.CallbackContext ctx, SkillInput tabInput, SkillInput holdInput)
-    {
-        float startTime = Time.time;
-        bool holdEventFired = false;
+    //    Skill currentSkill = SkillMovesManager.CurrentSkill;
+    //    if (stickVector.magnitude == 0)
+    //    {
+    //        test.Clear();
+    //        return false;
+    //    }
+    //    if (currentSkill != null &&
+    //        currentSkill.rotationSequence != null &&
+    //        currentSkill.rotationSequence.Length > 0)
+    //    {
+    //        int expectedIndex = test.Count;
 
-        while (ctx.ReadValue<float>() > 0)
-        {
-            float holdTime = Time.time - startTime;
-            if (!holdEventFired && holdTime >= holdThreshold)
-            {
-                Debug.Log("Left Shoulder Held for: " + holdTime + " seconds");
-                EventManager.OnSkillInputReceived?.Invoke(holdInput);
-                holdEventFired = true;
-            }
-            yield return null;
-        }
+    //        if (expectedIndex < currentSkill.rotationSequence.Length)
+    //        {
+    //            if (test.Count == 0 || test[test.Count - 1] != input)
+    //            {
+    //                if (input == currentSkill.rotationSequence[expectedIndex])
+    //                {
+    //                    test.Add(input.Value);
+    //                }
+    //                else
+    //                {
+    //                    test.Clear();
+    //                    //EventManager.OnSkillInputReceived?.Invoke(input);
+    //                    return true;
+    //                }
+    //            }
 
-        if (!holdEventFired)
-        {
-            float holdTime = Time.time - startTime;
-            Debug.Log("Left Shoulder Tapped for: " + holdTime + " seconds");
-            EventManager.OnSkillInputReceived?.Invoke(tabInput);
-        }
-    }
+    //            if (test.Count == currentSkill.rotationSequence.Length)
+    //            {
+    //                EventManager.OnSkillInputReceived?.Invoke(SkillInput.L3_Rotate);
+    //                test.Clear();
+    //                return true;
+    //            }
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
+
     #endregion
 
     #region Hold Control
@@ -183,7 +226,7 @@ public class InputHandler : MonoBehaviour
         waitingForRelease = true;
         _Hold.Disable();
 
-        OnSkillInputReceived?.Invoke(SkillInput.RS_None);
+        OnSkillInputReceived?.Invoke(SkillInput.R3_None);
 
         StartCoroutine(WaitForHoldRelease());
     }
@@ -197,7 +240,6 @@ public class InputHandler : MonoBehaviour
         holdDisabled = false;
         waitingForRelease = false;
         _Hold.Enable();
-
     }
 
     public void ResetHold()
@@ -210,74 +252,6 @@ public class InputHandler : MonoBehaviour
     }
 
     #endregion
-
-    SkillInput GetSkillStickInput(float angle, float magnitude, float tolerance = -1)
-    {
-        if (magnitude == 0)
-            return SkillInput.RS_None;
-
-        if (tolerance <= 0f)
-        {
-            float snappedAngle = Mathf.Round(angle / 45f) * 45f;
-            if (snappedAngle >= 360f)
-                snappedAngle = 0f;
-
-            if (snappedAngle == 0f)
-                return SkillInput.RS_Right;
-            else if (snappedAngle == 45f)
-                return SkillInput.RS_UpRight;
-            else if (snappedAngle == 90f)
-                return SkillInput.RS_Up;
-            else if (snappedAngle == 135f)
-                return SkillInput.RS_UpLeft;
-            else if (snappedAngle == 180f)
-                return SkillInput.RS_Left;
-            else if (snappedAngle == 225f)
-                return SkillInput.RS_DownLeft;
-            else if (snappedAngle == 270f)
-                return SkillInput.RS_Down;
-            else
-                return SkillInput.RS_DownRight;
-        }
-        else
-        {
-            if (angle >= (360f - tolerance) || angle < (0f + tolerance))
-                return SkillInput.RS_Right;
-            else if (angle >= (45f - tolerance) && angle < (45f + tolerance))
-                return SkillInput.RS_UpRight;
-            else if (angle >= (90f - tolerance) && angle < (90f + tolerance))
-                return SkillInput.RS_Up;
-            else if (angle >= (135f - tolerance) && angle < (135f + tolerance))
-                return SkillInput.RS_UpLeft;
-            else if (angle >= (180f - tolerance) && angle < (180f + tolerance))
-                return SkillInput.RS_Left;
-            else if (angle >= (225f - tolerance) && angle < (225f + tolerance))
-                return SkillInput.RS_DownLeft;
-            else if (angle >= (270f - tolerance) && angle < (270f + tolerance))
-                return SkillInput.RS_Down;
-            else if (angle >= (315f - tolerance) && angle < (315f + tolerance))
-                return SkillInput.RS_DownRight;
-            else
-                return SkillInput.RS_None;
-        }
-    }
-
-    SkillInput? GetSkillInput(string buttonName)
-    {
-        return (buttonName) switch
-        {
-            ("buttonSouth") => SkillInput.Button_X,
-            ("buttonEast") => SkillInput.Button_Circle,
-            ("buttonWest") => SkillInput.Button_Square,
-            ("buttonNorth") => SkillInput.Button_Triangle,
-            ("leftTrigger") => SkillInput.L2_Hold,
-            ("rightTrigger") => SkillInput.R2_Hold,
-
-            ("leftShoulder") => 0,
-            ("rightShoulder") => 0,
-            _ => null
-        };
-    }
 
     private void OnDisable() => controls.Disable();
 }
