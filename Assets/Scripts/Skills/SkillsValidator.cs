@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class SkillsValidator : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class SkillsValidator : MonoBehaviour
     {
         if (currentSkill == null) return;
 
-        timeLeftToPress -= Time.fixedDeltaTime;
+        //timeLeftToPress -= Time.fixedDeltaTime;
         UI_Manager.Instance?.SetTimerText(timeLeftToPress);
 
         if (timeLeftToPress <= 0)
@@ -41,15 +42,16 @@ public class SkillsValidator : MonoBehaviour
     {
         if (pressedSequenceInput.Count == 0) currentTime = Time.time;
 
-        if (input == SkillInput.L2_None || input == SkillInput.R2_None || input == SkillInput.R3_None) return;
+        if (input == SkillInput.L2_None || input == SkillInput.R2_None || input == SkillInput.R3_None || input == SkillInput.None)
+            return;
 
         pressedSequenceInput.Add(input);
         sq.VisualizeSequence(currentSequenceInput, pressedSequenceInput.Count);
 
         if (!CheckValidity())
         {
-            //Debug.Log(input);
-            
+            // Debug.Log(input);
+
             totalAttempts++;
             ResetSequence();
             EventManager.OnSequenceFailed?.Invoke();
@@ -68,7 +70,7 @@ public class SkillsValidator : MonoBehaviour
             GlobalDataManager.SetNewData(currentSkill.moveName, 0.8f);
         }
     }
-
+    //TODO: Add X or O type of moves
     private bool CheckValidity()
     {
         for (int i = 0; i < pressedSequenceInput.Count; i++)
@@ -78,9 +80,12 @@ public class SkillsValidator : MonoBehaviour
                 return false;
             }
         }
+
         //TODO: ADD CORRECT MOVE LOGIC HERE
+
         Debug.Log("Correct button pressed. TODO: ADD CORRECT BUTTON LOGIC");
         timeLeftToPress = currentSkill.maxTimeBetweenInput;
+
         return true;
     }
 

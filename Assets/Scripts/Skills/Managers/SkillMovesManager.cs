@@ -53,12 +53,12 @@ public class SkillMovesManager : MonoBehaviour
     {
         currentSkill = skillMoves[currentSequenceIndex];
 
-        var flatInputSequence = currentSkill.inputSequence.SelectMany(holder => holder.input).ToList();
+        // var flatInputSequence = currentSkill.inputSequence.SelectMany(holder => holder.input).ToList();
 
-        sequenceValidator.SetSequenceInput(flatInputSequence, currentSkill);
+        sequenceValidator.SetSequenceInput(currentSkill.inputSequence[0].input, currentSkill);
         inputHandler.ResetHold();
 
-        //sequenceValidator.sq.VisualizeSequence(currentSkill.inputSequence, 0);
+        //sequenceValidator.sq.VisualizeSequence(currentSkill.inputSequence[0].input, 0);
         PredictionSkill();
     }
 
@@ -85,7 +85,7 @@ public class SkillMovesManager : MonoBehaviour
         if (nextSkillIndex <= skillMoves.Count - 1)
         {
             Skill skill = skillMoves[nextSkillIndex];
-           // uiManager.SetNextMoveInfo(skillMoves[nextSkillIndex].inputSequence, skill.moveName);
+            //uiManager.SetNextMoveInfo(skillMoves[nextSkillIndex].inputSequence[0].input, skill.moveName);
         }
     }
 
@@ -109,8 +109,6 @@ public class SkillMovesManager : MonoBehaviour
             Debug.Log("All skill moves completed!");
         }
     }
-
-
 
     private void OnDisable()
     {
