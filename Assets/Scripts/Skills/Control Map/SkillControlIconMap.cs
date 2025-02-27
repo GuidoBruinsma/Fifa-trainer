@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SkillControlIconMap", menuName = "Skill Input/Icon Mapping", order = 1)]
 public class SkillControlIconMap : ScriptableObject
 {
+
     [Header("Controller Buttons")]
     public string L1Icon;
     public string L2Icon;
@@ -17,6 +18,11 @@ public class SkillControlIconMap : ScriptableObject
     public string ButtonCircleIcon;
     public string ButtonSquareIcon;
 
+    public string ButtonXHoldIcon;
+    public string ButtonTriangleHoldIcon;
+    public string ButtonCircleHoldIcon;
+    public string ButtonSquareHoldIcon;
+
     [Header("Rotations")]
     public string L3_RotateIcon;
     public string R3_RotateIcon;
@@ -28,15 +34,74 @@ public class SkillControlIconMap : ScriptableObject
     public string R2_HoldIcon;
 
     [Header("Right Stick Directions")]
-    public string RS_LeftIcon;
-    public string RS_UpLeftIcon;
-    public string RS_DownLeftIcon;
-    public string RS_RightIcon;
-    public string RS_UpRightIcon;
-    public string RS_DownRightIcon;
-    public string RS_UpIcon;
-    public string RS_DownIcon;
-    public string RS_NoneIcon;
+    public string R3_LeftIcon;
+    public string R3_UpLeftIcon;
+    public string R3_DownLeftIcon;
+    public string R3_RightIcon;
+    public string R3_UpRightIcon;
+    public string R3_DownRightIcon;
+    public string R3_UpIcon;
+    public string R3_DownIcon;
+    public string R3_NoneIcon;
+    
+    [Header("Left Stick Directions")]
+    public string L3_LeftIcon;
+    public string L3_UpLeftIcon;
+    public string L3_DownLeftIcon;
+    public string L3_RightIcon;
+    public string L3_UpRightIcon;
+    public string L3_DownRightIcon;
+    public string L3_UpIcon;
+    public string L3_DownIcon;
+
+    // Add icons for new R3 and L3 directions
+    [Header("R3 Directions")]
+    public string R3_RightToUpIcon;
+    public string R3_RightToDownIcon;
+    public string R3_UpToRightIcon;
+    public string R3_UpToLeftIcon;
+    public string R3_DownToRightIcon;
+    public string R3_DownToLeftIcon;
+    public string R3_LeftToUpIcon;
+    public string R3_LeftToDownIcon;
+    public string R3_LeftToDownToLeftIcon;
+    public string R3_LeftToUpToLeftIcon;
+
+    // Hold Right Stick Directions
+    public string Hold_R3_LeftIcon;
+    public string Hold_R3_UpLeftIcon;
+    public string Hold_R3_DownLeftIcon;
+    public string Hold_R3_RightIcon;
+    public string Hold_R3_UpRightIcon;
+    public string Hold_R3_DownRightIcon;
+    public string Hold_R3_UpIcon;
+    public string Hold_R3_DownIcon;
+    public string Hold_R3_NoneIcon;
+
+    // Hold L3 Directions
+    public string Hold_L3_LeftIcon;
+    public string Hold_L3_RightIcon;
+    public string Hold_L3_UpIcon;
+    public string Hold_L3_DownIcon;
+
+    public string Hold_L3_AnyIcon;
+    public string Hold_R3_AnyIcon;
+
+    public string Hold_L3_UpLeftIcon;
+    public string Hold_L3_DownLeftIcon;
+    public string Hold_L3_UpRightIcon;
+    public string Hold_L3_DownRightIcon;
+
+    public string L3_RightToUpIcon;
+    public string L3_RightToDownIcon;
+    public string L3_UpToRightIcon;
+    public string L3_UpToLeftIcon;
+    public string L3_DownToRightIcon;
+    public string L3_DownToLeftIcon;
+    public string L3_LeftToUpIcon;
+    public string L3_LeftToDownIcon;
+    public string L3_LeftToDownToLeftIcon;
+    public string L3_LeftToUpToLeftIcon;
 
     public string GetIconForSkillInput(SkillInput input)
     {
@@ -58,19 +123,85 @@ public class SkillControlIconMap : ScriptableObject
             SkillInput.L2_Hold => L2_HoldIcon,
             SkillInput.R1_Hold => R1_HoldIcon,
             SkillInput.R2_Hold => R2_HoldIcon,
-            SkillInput.R3_Left => RS_LeftIcon,
-            SkillInput.R3_UpLeft => RS_UpLeftIcon,
-            SkillInput.R3_DownLeft => RS_DownLeftIcon,
-            SkillInput.R3_Right => RS_RightIcon,
-            SkillInput.R3_UpRight => RS_UpRightIcon,
-            SkillInput.R3_DownRight => RS_DownRightIcon,
-            SkillInput.R3_Up => RS_UpIcon,
-            SkillInput.R3_Down => RS_DownIcon,
-            SkillInput.R3_None => RS_NoneIcon,
+
+            SkillInput.R3_Left => R3_LeftIcon,
+            SkillInput.R3_UpLeft => R3_UpLeftIcon,
+            SkillInput.R3_DownLeft => R3_DownLeftIcon,
+            SkillInput.R3_Right => R3_RightIcon,
+            SkillInput.R3_UpRight => R3_UpRightIcon,
+            SkillInput.R3_DownRight => R3_DownRightIcon,
+            SkillInput.R3_Up => R3_UpIcon,
+            SkillInput.R3_Down => R3_DownIcon,
+            
+            SkillInput.L3_Left => L3_LeftIcon,
+            SkillInput.L3_UpLeft => L3_UpLeftIcon,
+            SkillInput.L3_DownLeft => L3_DownLeftIcon,
+            SkillInput.L3_Right => L3_RightIcon,
+            SkillInput.L3_UpRight => L3_UpRightIcon,
+            SkillInput.L3_DownRight => L3_DownRightIcon,
+            SkillInput.L3_Up => L3_UpIcon,
+            SkillInput.L3_Down => L3_DownIcon,
+
+            SkillInput.Hold_Button_X => ButtonXHoldIcon,
+            SkillInput.Hold_Button_Triangle => ButtonTriangleHoldIcon,
+            SkillInput.Hold_Button_Circle => ButtonCircleHoldIcon,
+            SkillInput.Hold_Button_Square => ButtonSquareHoldIcon,
+
+
+            // R3 Direction Icons
+            SkillInput.R3_RightToUp => R3_RightToUpIcon,
+            SkillInput.R3_RightToDown => R3_RightToDownIcon,
+            SkillInput.R3_UpToRight => R3_UpToRightIcon,
+            SkillInput.R3_UpToLeft => R3_UpToLeftIcon,
+            SkillInput.R3_DownToRight => R3_DownToRightIcon,
+            SkillInput.R3_DownToLeft => R3_DownToLeftIcon,
+            SkillInput.R3_LeftToUp => R3_LeftToUpIcon,
+            SkillInput.R3_LeftToDown => R3_LeftToDownIcon,
+            SkillInput.R3_LeftToDownToLeft => R3_LeftToDownToLeftIcon,
+            SkillInput.R3_LeftToUpToLeft => R3_LeftToUpToLeftIcon,
+
+            SkillInput.L3_RightToUp => L3_RightToUpIcon,
+            SkillInput.L3_RightToDown => L3_RightToDownIcon,
+            SkillInput.L3_UpToRight => L3_UpToRightIcon,
+            SkillInput.L3_UpToLeft => L3_UpToLeftIcon,
+            SkillInput.L3_DownToRight => L3_DownToRightIcon,
+            SkillInput.L3_DownToLeft => L3_DownToLeftIcon,
+            SkillInput.L3_LeftToUp => L3_LeftToUpIcon,
+            SkillInput.L3_LeftToDown => L3_LeftToDownIcon,
+            SkillInput.L3_LeftToDownToLeft => L3_LeftToDownToLeftIcon,
+            SkillInput.L3_LeftToUpToLeft => L3_LeftToUpToLeftIcon,
+
+            // Hold Right Stick Directions
+            SkillInput.Hold_R3_Left => Hold_R3_LeftIcon,
+            SkillInput.Hold_R3_UpLeft => Hold_R3_UpLeftIcon,
+            SkillInput.Hold_R3_DownLeft => Hold_R3_DownLeftIcon,
+            SkillInput.Hold_R3_Right => Hold_R3_RightIcon,
+            SkillInput.Hold_R3_UpRight => Hold_R3_UpRightIcon,
+            SkillInput.Hold_R3_DownRight => Hold_R3_DownRightIcon,
+            SkillInput.Hold_R3_Up => Hold_R3_UpIcon,
+            SkillInput.Hold_R3_Down => Hold_R3_DownIcon,
+
+            // Hold L3 Directions
+            SkillInput.Hold_L3_Left => Hold_L3_LeftIcon,
+            SkillInput.Hold_L3_UpLeft => Hold_L3_UpLeftIcon,
+            SkillInput.Hold_L3_DownLeft => Hold_L3_DownLeftIcon,
+            SkillInput.Hold_L3_Right => Hold_L3_RightIcon,
+            SkillInput.Hold_L3_UpRight => Hold_L3_UpRightIcon,
+            SkillInput.Hold_L3_DownRight => Hold_L3_DownRightIcon,
+            SkillInput.Hold_L3_Up => Hold_L3_UpIcon,
+            SkillInput.Hold_L3_Down => Hold_L3_DownIcon,
+
+            SkillInput.L3_Any => L3Icon,
+            //SkillInput.R3_Any => R3Icon,
+            SkillInput.Hold_L3_Any => Hold_L3_AnyIcon,
+            SkillInput.Hold_R3_Any => Hold_R3_AnyIcon,
+
+            SkillInput.L2_None => L2Icon,
+            SkillInput.R2_None => R2Icon,
+            SkillInput.None => string.Empty,
             _ => string.Empty,
         };
     }
-
     public string SkillInputToString(SkillInput input)
     {
         return GetIconForSkillInput(input);

@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "DiagonalFlick",
+                    "type": "Value",
+                    "id": "62fe079e-8fd6-4795-9b27-d5eacdadf7f8",
+                    "expectedControlType": "Vector2",
+                    "processors": "StickDeadzone",
+                    "interactions": "Tap",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -441,6 +450,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RotateR3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7856bde9-e73e-441e-8e57-230b09ff9f0d",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DiagonalFlick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2cf2173-97b4-4693-b981-4f75b0375f36",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DiagonalFlick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
