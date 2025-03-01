@@ -51,14 +51,24 @@ public class SkillMovesManager : MonoBehaviour
 
     private void LoadCurrentSkillMove()
     {
+        if (currentSequenceIndex >= skillMoves.Count)
+        {
+            Debug.LogWarning("No more skill moves available.");
+            return;
+        }
+
         currentSkill = skillMoves[currentSequenceIndex];
 
-        // var flatInputSequence = currentSkill.inputSequence.SelectMany(holder => holder.input).ToList();
+        if (currentSkill.inputSequence == null || currentSkill.inputSequence.Count == 0)
+        {
+            Debug.LogError($"Skill '{currentSkill.moveName}' has no input sequence!");
+            return;
+        }
 
+        // Now correctly passing the list of valid inputs
         sequenceValidator.SetSequenceInput(currentSkill.inputSequence[0].input, currentSkill);
-        inputHandler.ResetHold();
 
-        //sequenceValidator.sq.VisualizeSequence(currentSkill.inputSequence[0].input, 0);
+        inputHandler.ResetHold();
         PredictionSkill();
     }
 

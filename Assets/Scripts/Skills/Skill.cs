@@ -12,8 +12,6 @@ public class Skill : ScriptableObject
     public string moveName;
     public List<SkillInputHolder> inputSequence;
 
-    public bool hasAnotherSequence;
-
     public float maxTimeBetweenInput;
 }
 

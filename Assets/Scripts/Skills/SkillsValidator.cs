@@ -7,6 +7,8 @@ public class SkillsValidator : MonoBehaviour
     public SequenceVisualizer sq;
 
     [SerializeField] private List<SkillInput> currentSequenceInput;  //The Move Input sequence
+    [SerializeField] private List<SkillInputHolder> currentSequencessInput;  //The Move Input sequence
+
     [SerializeField] private List<SkillInput> pressedSequenceInput = new();
 
     private Skill currentSkill;
@@ -14,6 +16,7 @@ public class SkillsValidator : MonoBehaviour
 
     private float currentTime;
     [SerializeField] private int totalAttempts;
+    int c = 0;
 
     private void Start()
     {
@@ -35,6 +38,17 @@ public class SkillsValidator : MonoBehaviour
             ResetSequence();
             timeLeftToPress = 0;
             EventManager.OnWholeSessionFailed?.Invoke();
+        }
+        Debug.Log(currentSkill.inputSequence.Count);
+
+
+
+        foreach (var input in currentSkill.inputSequence)
+        {
+            foreach (var item in input.input)
+            {
+                Debug.Log($"{item}");
+            }
         }
     }
 
@@ -73,14 +87,39 @@ public class SkillsValidator : MonoBehaviour
     //TODO: Add X or O type of moves
     private bool CheckValidity()
     {
+        currentSequencessInput = new(currentSkill.inputSequence);
+
         for (int i = 0; i < pressedSequenceInput.Count; i++)
         {
             if (pressedSequenceInput[i] != currentSequenceInput[i])
             {
-                return false;
+
+                //FIX: 
+                //check if the input exists in one of the lists with valid inputs, if it's not in any of the lists
+                //return false, exists in only one list, remove the rest
+
+                c++;
+                if (c > currentSequencessInput.Count)
+                {
+
+                }
+                    //foreach (var item in collection)
+                    //{
+
+                    //}
+                    //0
+                    //    0+1
+                    //    spri da chetesh 0
+                    //    1+1
+                    //    spri da chetesh 1
+                    //    2+1
+                    //    spri da chetesh 
+
+                    return false;
+                
             }
         }
-
+            
         //TODO: ADD CORRECT MOVE LOGIC HERE
 
         Debug.Log("Correct button pressed. TODO: ADD CORRECT BUTTON LOGIC");
