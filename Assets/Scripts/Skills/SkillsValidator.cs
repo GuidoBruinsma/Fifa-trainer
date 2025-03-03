@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class SkillsValidator : MonoBehaviour
 {
     public SequenceVisualizer sq;
 
     [SerializeField] private List<SkillInput> currentSequenceInput;  //The Move Input sequence
-    [SerializeField] private List<SkillInputHolder> currentSequencessInput;  //The Move Input sequence
+    [SerializeField] private List<SkillInputHolder> currentSequenceInputHolder;  //The Move Input sequence
 
     [SerializeField] private List<SkillInput> pressedSequenceInput = new();
 
@@ -16,12 +15,13 @@ public class SkillsValidator : MonoBehaviour
 
     private float currentTime;
     [SerializeField] private int totalAttempts;
-    int c = 0;
 
     private void Start()
     {
         EventManager.OnSkillInputReceived.AddListener(AddInput);
-        sq.VisualizeSequence(currentSequenceInput, pressedSequenceInput.Count);
+        currentSequenceInputHolder = new(currentSkill.inputSequence);
+        sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
+
     }
 
     private void OnDisable() => EventManager.OnSkillInputReceived.RemoveListener(AddInput);
@@ -39,17 +39,6 @@ public class SkillsValidator : MonoBehaviour
             timeLeftToPress = 0;
             EventManager.OnWholeSessionFailed?.Invoke();
         }
-        Debug.Log(currentSkill.inputSequence.Count);
-
-
-
-        foreach (var input in currentSkill.inputSequence)
-        {
-            foreach (var item in input.input)
-            {
-                Debug.Log($"{item}");
-            }
-        }
     }
 
     public void AddInput(SkillInput input)
@@ -60,21 +49,19 @@ public class SkillsValidator : MonoBehaviour
             return;
 
         pressedSequenceInput.Add(input);
-        sq.VisualizeSequence(currentSequenceInput, pressedSequenceInput.Count);
+        sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
 
         if (!CheckValidity())
         {
-            // Debug.Log(input);
-
             totalAttempts++;
             ResetSequence();
             EventManager.OnSequenceFailed?.Invoke();
-            sq.VisualizeSequence(currentSequenceInput, 0);
+            sq.VisualizeSequence(currentSkill.inputSequence, 0);
         }
         else if (currentSequenceInput.Count == pressedSequenceInput.Count)
         {
             EventManager.OnSequenceSuccess?.Invoke();
-            sq.VisualizeSequence(currentSequenceInput, pressedSequenceInput.Count);
+            sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
 
             float elapsedTime = (Time.time - currentTime);
             UI_Manager.Instance?.SetElapsedTimeCompletion(elapsedTime);
@@ -84,42 +71,35 @@ public class SkillsValidator : MonoBehaviour
             GlobalDataManager.SetNewData(currentSkill.moveName, 0.8f);
         }
     }
-    //TODO: Add X or O type of moves
+
     private bool CheckValidity()
     {
-        currentSequencessInput = new(currentSkill.inputSequence);
 
         for (int i = 0; i < pressedSequenceInput.Count; i++)
         {
             if (pressedSequenceInput[i] != currentSequenceInput[i])
             {
+                bool validInputFound = false;
 
-                //FIX: 
-                //check if the input exists in one of the lists with valid inputs, if it's not in any of the lists
-                //return false, exists in only one list, remove the rest
-
-                c++;
-                if (c > currentSequencessInput.Count)
+                for (int j = 0; j < currentSequenceInputHolder.Count; j++)
                 {
+                    var item = currentSequenceInputHolder[j];
 
+                    if (item.input.Contains(pressedSequenceInput[i]))
+                    {
+                        validInputFound = true;
+                    }
                 }
-                    //foreach (var item in collection)
-                    //{
-
-                    //}
-                    //0
-                    //    0+1
-                    //    spri da chetesh 0
-                    //    1+1
-                    //    spri da chetesh 1
-                    //    2+1
-                    //    spri da chetesh 
-
+                if (!validInputFound)
+                {
+                    currentSequenceInputHolder.Clear();
+                    Debug.Log("Input doesn't exist in the current list. Removing list.");
                     return false;
-                
+                }
             }
+
         }
-            
+
         //TODO: ADD CORRECT MOVE LOGIC HERE
 
         Debug.Log("Correct button pressed. TODO: ADD CORRECT BUTTON LOGIC");

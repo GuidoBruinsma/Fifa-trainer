@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   importantNode: 
   moveName: Advanced rainbow flick
-  inputSequence: 170000001a0000001a000000
+  inputSequence:
+  - input: 00000000
   maxTimeBetweenInput: 0.7
-  rotationSequence: 
-  secondInputSequence: 
-  secondRotationSequence: 
