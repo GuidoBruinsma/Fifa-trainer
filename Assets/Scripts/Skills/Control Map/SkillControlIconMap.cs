@@ -202,30 +202,51 @@ public class SkillControlIconMap : ScriptableObject
             _ => string.Empty,
         };
     }
+
     public string SkillInputToString(SkillInput input)
     {
         return GetIconForSkillInput(input);
     }
 
-    public string GetSequenceDisplay(List<SkillInput> sequence, int highlightIndex = -1, bool highlight = false)
+    public string GetSequenceDisplay(List<SkillInputHolder> possibleSequences, int highlightIndex = -1, bool highlight = false)
     {
         string display = "";
-        for (int i = 0; i < sequence.Count; i++)
-        {
-            string inputStr = SkillInputToString(sequence[i]);
+        int sequenceLength = possibleSequences[0].input.Count;
 
-            if (highlight && i == highlightIndex)
+        for (int i = 0; i < sequenceLength; i++)
+        {
+            List<string> possibleInputsAtPosition = new List<string>();
+
+            for (int seqIndex = 0; seqIndex < possibleSequences.Count; seqIndex++)
             {
-                inputStr = $"<color=green>{inputStr}</color>";
+                var inputStr = SkillInputToString(possibleSequences[seqIndex].input[i]);
+
+                if (highlight && i == highlightIndex)
+                {
+                    inputStr = $"<color=green>{inputStr}</color>";
+                }
+
+                if (!possibleInputsAtPosition.Contains(inputStr))
+                {
+                    possibleInputsAtPosition.Add(inputStr);
+                }
             }
 
-            display += inputStr;
+            if (possibleInputsAtPosition.Count > 1)
+            {
+                display += string.Join(" OR ", possibleInputsAtPosition);
+            }
+            else
+            {
+                display += possibleInputsAtPosition[0];
+            }
 
-            if (i < sequence.Count - 1)
+            if (i < sequenceLength - 1)
             {
                 display += " - ";
             }
         }
+
         return display;
     }
 }

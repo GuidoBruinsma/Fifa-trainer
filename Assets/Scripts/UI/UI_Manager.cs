@@ -51,7 +51,7 @@ public class UI_Manager : MonoBehaviour
     public void SetNextMoveInfo(List<SkillInput> sequenceList, string moveName)
     {
         nextMoveName.text = moveName;
-        nextMoveSequence.text = skillMap.GetSequenceDisplay(sequenceList);
+        //nextMoveSequence.text = skillMap.GetSequenceDisplay(sequenceList);
     }
 
 
