@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2052c80527d9fa842b9433fd927431b1, type: 3}
   m_Name: Ball juggle
   m_EditorClassIdentifier: 
+  importantNode: 
   moveName: Ball juggle
-  inputSequence: 0400000007000000
+  inputSequence:
+  - input: 190000000f000000
+  - input: 190000001a000000
   maxTimeBetweenInput: 0.5
-  rotationSequence: 

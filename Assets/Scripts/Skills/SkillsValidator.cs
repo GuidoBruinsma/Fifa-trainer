@@ -61,6 +61,8 @@ public class SkillsValidator : MonoBehaviour
         else if (currentSequenceInput.Count == pressedSequenceInput.Count)
         {
             EventManager.OnSequenceSuccess?.Invoke();
+
+            currentSequenceInputHolder = new(currentSkill.inputSequence);
             sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
 
             float elapsedTime = (Time.time - currentTime);
@@ -92,7 +94,7 @@ public class SkillsValidator : MonoBehaviour
                 }
                 if (!validInputFound)
                 {
-                    currentSequenceInputHolder.Clear();
+                    //currentSequenceInputHolder.Clear();
                     Debug.Log("Input doesn't exist in the current list. Removing list.");
                     return false;
                 }

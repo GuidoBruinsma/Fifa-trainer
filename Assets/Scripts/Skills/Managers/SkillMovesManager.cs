@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(SkillsValidator), typeof(InputHandler))]
@@ -65,7 +64,6 @@ public class SkillMovesManager : MonoBehaviour
             return;
         }
 
-        // Now correctly passing the list of valid inputs
         sequenceValidator.SetSequenceInput(currentSkill.inputSequence[0].input, currentSkill);
 
         inputHandler.ResetHold();
@@ -95,7 +93,7 @@ public class SkillMovesManager : MonoBehaviour
         if (nextSkillIndex <= skillMoves.Count - 1)
         {
             Skill skill = skillMoves[nextSkillIndex];
-            //uiManager.SetNextMoveInfo(skillMoves[nextSkillIndex].inputSequence[0].input, skill.moveName);
+            uiManager.SetNextMoveInfo(skillMoves[nextSkillIndex].inputSequence, skill.moveName);
         }
     }
 
