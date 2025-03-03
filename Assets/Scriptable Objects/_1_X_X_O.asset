@@ -15,10 +15,7 @@ MonoBehaviour:
   importantNode: 
   moveName: X_X_O
   inputSequence:
-  - input: 000000000b00000010000000
-  - input: 
-  - input: 
+  - input: 230000000f000000
+  - input: 2300000012000000
+  hasAnotherSequence: 1
   maxTimeBetweenInput: 5
-  rotationSequence: 
-  secondInputSequence: 
-  secondRotationSequence: 

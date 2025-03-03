@@ -22,18 +22,69 @@ MonoBehaviour:
   ButtonTriangleIcon: Triangle
   ButtonCircleIcon: O
   ButtonSquareIcon: Square
+  ButtonXHoldIcon: Hold X
+  ButtonTriangleHoldIcon: Hold Triangle
+  ButtonCircleHoldIcon: Hold O
+  ButtonSquareHoldIcon: Hold Square
   L3_RotateIcon: L3 Rotate
   R3_RotateIcon: R3 Rotate
   L1_HoldIcon: L1 Hold
   L2_HoldIcon: L2 Hold
   R1_HoldIcon: R1 Hold
   R2_HoldIcon: R2 Hold
-  RS_LeftIcon: Left
-  RS_UpLeftIcon: UpLeft
-  RS_DownLeftIcon: DownLeft
-  RS_RightIcon: Right
-  RS_UpRightIcon: UpRight
-  RS_DownRightIcon: DownRight
-  RS_UpIcon: Up
-  RS_DownIcon: Down
-  RS_NoneIcon: None
+  R3_LeftIcon: R3 Left
+  R3_UpLeftIcon: R3 Up Left
+  R3_DownLeftIcon: R3 Down Left
+  R3_RightIcon: R3 Right
+  R3_UpRightIcon: R3 Up Right
+  R3_DownRightIcon: R3 Down Right
+  R3_UpIcon: R3 UP
+  R3_DownIcon: R3 Down
+  R3_NoneIcon: 
+  L3_LeftIcon: L3 Left
+  L3_UpLeftIcon: L3 Up
+  L3_DownLeftIcon: L3 Down Left
+  L3_RightIcon: L3 Right
+  L3_UpRightIcon: L3 Up Right
+  L3_DownRightIcon: L3 Down Right
+  L3_UpIcon: L3 Up
+  L3_DownIcon: L3 Down
+  R3_RightToUpIcon: Right to Up
+  R3_RightToDownIcon: Right to Down
+  R3_UpToRightIcon: Up to Right
+  R3_UpToLeftIcon: Up to Left
+  R3_DownToRightIcon: Down to Right
+  R3_DownToLeftIcon: Down to Left
+  R3_LeftToUpIcon: Left to Up
+  R3_LeftToDownIcon: Left to Down
+  R3_LeftToDownToLeftIcon: Left to Down to Left
+  R3_LeftToUpToLeftIcon: Left to Up to Left
+  Hold_R3_LeftIcon: Hold R3 Left
+  Hold_R3_UpLeftIcon: Hold R3 Up Left
+  Hold_R3_DownLeftIcon: Hold R3 Down Left
+  Hold_R3_RightIcon: Hold R3 Right
+  Hold_R3_UpRightIcon: Hold R3 Up Right
+  Hold_R3_DownRightIcon: Hold R3 Down Right
+  Hold_R3_UpIcon: Hold R3 Up
+  Hold_R3_DownIcon: Hold R3 Down
+  Hold_R3_NoneIcon: 
+  Hold_L3_LeftIcon: Hold L3 Left
+  Hold_L3_RightIcon: Hold L3 Right
+  Hold_L3_UpIcon: Hold L3 Up
+  Hold_L3_DownIcon: Hold L3 Down
+  Hold_L3_AnyIcon: Hold L3 Any
+  Hold_R3_AnyIcon: Hold R3 Any
+  Hold_L3_UpLeftIcon: Hold L3 Up Left
+  Hold_L3_DownLeftIcon: Hold L3 Down Left
+  Hold_L3_UpRightIcon: Hold L3 Up Right
+  Hold_L3_DownRightIcon: Hold L3 Down Right
+  L3_RightToUpIcon: L3 Right to Up
+  L3_RightToDownIcon: L3 Right To Down
+  L3_UpToRightIcon: L3 Up to Right
+  L3_UpToLeftIcon: L3 Up to Left
+  L3_DownToRightIcon: L3 Down to Right
+  L3_DownToLeftIcon: L3 Down to Left
+  L3_LeftToUpIcon: L3 Left to Up
+  L3_LeftToDownIcon: L3 Left to Down
+  L3_LeftToDownToLeftIcon: L3 Left to Down to Left
+  L3_LeftToUpToLeftIcon: L3 Left to Up to Left

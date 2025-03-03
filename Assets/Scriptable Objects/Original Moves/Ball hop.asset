@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   importantNode: 
   moveName: Ball hop
-  inputSequence: 030000000a000000
+  inputSequence:
+  - input: 00000000
+  - input: 00000000
   maxTimeBetweenInput: 0.7
-  rotationSequence: 

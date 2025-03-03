@@ -153,6 +153,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DiagonalFlick"",
+                    ""type"": ""Value"",
+                    ""id"": ""62fe079e-8fd6-4795-9b27-d5eacdadf7f8"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": ""StickDeadzone"",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -529,6 +538,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""RotateR3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7856bde9-e73e-441e-8e57-230b09ff9f0d"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DiagonalFlick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2cf2173-97b4-4693-b981-4f75b0375f36"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DiagonalFlick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -792,6 +823,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_DualShock_FlickL3 = m_DualShock.FindAction("FlickL3", throwIfNotFound: true);
         m_DualShock_FlickR3 = m_DualShock.FindAction("FlickR3", throwIfNotFound: true);
         m_DualShock_RotateR3 = m_DualShock.FindAction("RotateR3", throwIfNotFound: true);
+        m_DualShock_DiagonalFlick = m_DualShock.FindAction("DiagonalFlick", throwIfNotFound: true);
         // Nintendo
         m_Nintendo = asset.FindActionMap("Nintendo", throwIfNotFound: true);
         m_Nintendo_Buttons = m_Nintendo.FindAction("Buttons", throwIfNotFound: true);
@@ -886,6 +918,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_DualShock_FlickL3;
     private readonly InputAction m_DualShock_FlickR3;
     private readonly InputAction m_DualShock_RotateR3;
+    private readonly InputAction m_DualShock_DiagonalFlick;
     /// <summary>
     /// Provides access to input actions defined in input action map "DualShock".
     /// </summary>
@@ -925,6 +958,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "DualShock/RotateR3".
         /// </summary>
         public InputAction @RotateR3 => m_Wrapper.m_DualShock_RotateR3;
+        /// <summary>
+        /// Provides access to the underlying input action "DualShock/DiagonalFlick".
+        /// </summary>
+        public InputAction @DiagonalFlick => m_Wrapper.m_DualShock_DiagonalFlick;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -972,6 +1009,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RotateR3.started += instance.OnRotateR3;
             @RotateR3.performed += instance.OnRotateR3;
             @RotateR3.canceled += instance.OnRotateR3;
+            @DiagonalFlick.started += instance.OnDiagonalFlick;
+            @DiagonalFlick.performed += instance.OnDiagonalFlick;
+            @DiagonalFlick.canceled += instance.OnDiagonalFlick;
         }
 
         /// <summary>
@@ -1004,6 +1044,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RotateR3.started -= instance.OnRotateR3;
             @RotateR3.performed -= instance.OnRotateR3;
             @RotateR3.canceled -= instance.OnRotateR3;
+            @DiagonalFlick.started -= instance.OnDiagonalFlick;
+            @DiagonalFlick.performed -= instance.OnDiagonalFlick;
+            @DiagonalFlick.canceled -= instance.OnDiagonalFlick;
         }
 
         /// <summary>
@@ -1287,6 +1330,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRotateR3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "DiagonalFlick" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDiagonalFlick(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Nintendo" which allows adding and removing callbacks.

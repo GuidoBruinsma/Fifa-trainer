@@ -1795,10 +1795,26 @@ MonoBehaviour:
   inputHandler: {fileID: 1682479565}
   skillMoves:
   - {fileID: 11400000, guid: c91b27589b09fc345abd7ca39f6326a5, type: 2}
-  - {fileID: 11400000, guid: b43c03eb3799b174ebb84c7c609771d8, type: 2}
-  - {fileID: 11400000, guid: e34d9d218e6f27e4aafbd7593cc46599, type: 2}
-  - {fileID: 11400000, guid: 39fff527ad70cdf4abb1deab6dff6bcb, type: 2}
-  - {fileID: 11400000, guid: 35a46c53de0dfa040838cd105a03f404, type: 2}
+  - {fileID: 11400000, guid: d45b03f3d74852a4f8c6ad0ecf635adc, type: 2}
+  - {fileID: 11400000, guid: 010786fe096ee9c40bdf8431f4dd3889, type: 2}
+  - {fileID: 11400000, guid: 53f56d8a8040b79499c59caf27fd00f4, type: 2}
+  - {fileID: 11400000, guid: e5549c6edd31a6549aac7ad7a24f4b91, type: 2}
+  - {fileID: 11400000, guid: 1f252a254f9231e46baa6600d7a3263d, type: 2}
+  - {fileID: 11400000, guid: fb202a063060a4b40998bfd07ed2585e, type: 2}
+  - {fileID: 11400000, guid: 408b46d7a7a694c4b8de5f0d3bc3f6f4, type: 2}
+  - {fileID: 11400000, guid: 89d3ddd8750bd464e83040e78a5ba532, type: 2}
+  - {fileID: 11400000, guid: 8dbffb024fc7a6542bf44ba47950c3a6, type: 2}
+  - {fileID: 11400000, guid: 108e08d7647e78843a9292901ca66d7f, type: 2}
+  - {fileID: 11400000, guid: 3197f50ff8f142e4eb2457651d3c404d, type: 2}
+  - {fileID: 11400000, guid: 25ea7eb435906764ba17baccb189136a, type: 2}
+  - {fileID: 11400000, guid: 072dddb4c13dd924eaa778292e74e0e9, type: 2}
+  - {fileID: 11400000, guid: 21982096bb4cada4f8d388ed51dc8558, type: 2}
+  - {fileID: 11400000, guid: 76c977ac2acb4c74b9626b094eb9cd35, type: 2}
+  - {fileID: 11400000, guid: f0fdfe55c510c984480e10ead6f99355, type: 2}
+  - {fileID: 11400000, guid: 08a7120dcbd1c684eafb671da4d01575, type: 2}
+  - {fileID: 11400000, guid: 69873cee3de33db4e8ba58fdc2969ce6, type: 2}
+  - {fileID: 11400000, guid: ac2ec876498bde54d924f8ee0065cf98, type: 2}
+  - {fileID: 11400000, guid: 5d7c5c4e2ba8d16419887fac8bfca36b, type: 2}
   currentSkill: {fileID: 0}
 --- !u!114 &1682479564
 MonoBehaviour:
@@ -1814,6 +1830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sq: {fileID: 1682479566}
   currentSequenceInput: 
+  currentSequenceInputHolder: []
   pressedSequenceInput: 
   totalAttempts: 0
 --- !u!114 &1682479565
@@ -1829,6 +1846,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  holdDisabled: 0
+  waitingForRelease: 0
+  isHeld: 0
 --- !u!114 &1682479566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2341,8 +2361,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 23.8486}
-  m_SizeDelta: {x: 0, y: 97.6973}
+  m_AnchoredPosition: {x: 0, y: 4.8958}
+  m_SizeDelta: {x: 0, y: 320.919}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1796506497
 MonoBehaviour:

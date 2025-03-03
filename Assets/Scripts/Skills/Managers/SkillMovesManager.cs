@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(SkillsValidator), typeof(InputHandler))]
@@ -51,14 +50,23 @@ public class SkillMovesManager : MonoBehaviour
 
     private void LoadCurrentSkillMove()
     {
+        if (currentSequenceIndex >= skillMoves.Count)
+        {
+            Debug.LogWarning("No more skill moves available.");
+            return;
+        }
+
         currentSkill = skillMoves[currentSequenceIndex];
 
-        var flatInputSequence = currentSkill.inputSequence.SelectMany(holder => holder.input).ToList();
+        if (currentSkill.inputSequence == null || currentSkill.inputSequence.Count == 0)
+        {
+            Debug.LogError($"Skill '{currentSkill.moveName}' has no input sequence!");
+            return;
+        }
 
-        sequenceValidator.SetSequenceInput(flatInputSequence, currentSkill);
+        sequenceValidator.SetSequenceInput(currentSkill.inputSequence[0].input, currentSkill);
+
         inputHandler.ResetHold();
-
-        //sequenceValidator.sq.VisualizeSequence(currentSkill.inputSequence, 0);
         PredictionSkill();
     }
 
@@ -85,7 +93,7 @@ public class SkillMovesManager : MonoBehaviour
         if (nextSkillIndex <= skillMoves.Count - 1)
         {
             Skill skill = skillMoves[nextSkillIndex];
-           // uiManager.SetNextMoveInfo(skillMoves[nextSkillIndex].inputSequence, skill.moveName);
+            uiManager.SetNextMoveInfo(skillMoves[nextSkillIndex].inputSequence, skill.moveName);
         }
     }
 
@@ -109,8 +117,6 @@ public class SkillMovesManager : MonoBehaviour
             Debug.Log("All skill moves completed!");
         }
     }
-
-
 
     private void OnDisable()
     {

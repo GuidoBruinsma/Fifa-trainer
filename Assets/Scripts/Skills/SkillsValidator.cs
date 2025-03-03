@@ -6,6 +6,8 @@ public class SkillsValidator : MonoBehaviour
     public SequenceVisualizer sq;
 
     [SerializeField] private List<SkillInput> currentSequenceInput;  //The Move Input sequence
+    [SerializeField] private List<SkillInputHolder> currentSequenceInputHolder;  //The Move Input sequence
+
     [SerializeField] private List<SkillInput> pressedSequenceInput = new();
 
     private Skill currentSkill;
@@ -17,7 +19,9 @@ public class SkillsValidator : MonoBehaviour
     private void Start()
     {
         EventManager.OnSkillInputReceived.AddListener(AddInput);
-        sq.VisualizeSequence(currentSequenceInput, pressedSequenceInput.Count);
+        currentSequenceInputHolder = new(currentSkill.inputSequence);
+        sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
+
     }
 
     private void OnDisable() => EventManager.OnSkillInputReceived.RemoveListener(AddInput);
@@ -26,7 +30,7 @@ public class SkillsValidator : MonoBehaviour
     {
         if (currentSkill == null) return;
 
-        timeLeftToPress -= Time.fixedDeltaTime;
+        //timeLeftToPress -= Time.fixedDeltaTime;
         UI_Manager.Instance?.SetTimerText(timeLeftToPress);
 
         if (timeLeftToPress <= 0)
@@ -41,24 +45,25 @@ public class SkillsValidator : MonoBehaviour
     {
         if (pressedSequenceInput.Count == 0) currentTime = Time.time;
 
-        if (input == SkillInput.L2_None || input == SkillInput.R2_None || input == SkillInput.R3_None) return;
+        if (input == SkillInput.L2_None || input == SkillInput.R2_None || input == SkillInput.R3_None || input == SkillInput.None)
+            return;
 
         pressedSequenceInput.Add(input);
-        sq.VisualizeSequence(currentSequenceInput, pressedSequenceInput.Count);
+        sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
 
         if (!CheckValidity())
         {
-            //Debug.Log(input);
-            
             totalAttempts++;
             ResetSequence();
             EventManager.OnSequenceFailed?.Invoke();
-            sq.VisualizeSequence(currentSequenceInput, 0);
+            sq.VisualizeSequence(currentSkill.inputSequence, 0);
         }
         else if (currentSequenceInput.Count == pressedSequenceInput.Count)
         {
             EventManager.OnSequenceSuccess?.Invoke();
-            sq.VisualizeSequence(currentSequenceInput, pressedSequenceInput.Count);
+
+            currentSequenceInputHolder = new(currentSkill.inputSequence);
+            sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
 
             float elapsedTime = (Time.time - currentTime);
             UI_Manager.Instance?.SetElapsedTimeCompletion(elapsedTime);
@@ -71,16 +76,37 @@ public class SkillsValidator : MonoBehaviour
 
     private bool CheckValidity()
     {
+
         for (int i = 0; i < pressedSequenceInput.Count; i++)
         {
             if (pressedSequenceInput[i] != currentSequenceInput[i])
             {
-                return false;
+                bool validInputFound = false;
+
+                for (int j = 0; j < currentSequenceInputHolder.Count; j++)
+                {
+                    var item = currentSequenceInputHolder[j];
+
+                    if (item.input.Contains(pressedSequenceInput[i]))
+                    {
+                        validInputFound = true;
+                    }
+                }
+                if (!validInputFound)
+                {
+                    //currentSequenceInputHolder.Clear();
+                    Debug.Log("Input doesn't exist in the current list. Removing list.");
+                    return false;
+                }
             }
+
         }
+
         //TODO: ADD CORRECT MOVE LOGIC HERE
+
         Debug.Log("Correct button pressed. TODO: ADD CORRECT BUTTON LOGIC");
         timeLeftToPress = currentSkill.maxTimeBetweenInput;
+
         return true;
     }
 
