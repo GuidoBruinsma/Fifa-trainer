@@ -43,7 +43,7 @@ public class SkillControlIconMap : ScriptableObject
     public string R3_UpIcon;
     public string R3_DownIcon;
     public string R3_NoneIcon;
-    
+
     [Header("Left Stick Directions")]
     public string L3_LeftIcon;
     public string L3_UpLeftIcon;
@@ -132,7 +132,7 @@ public class SkillControlIconMap : ScriptableObject
             SkillInput.R3_DownRight => R3_DownRightIcon,
             SkillInput.R3_Up => R3_UpIcon,
             SkillInput.R3_Down => R3_DownIcon,
-            
+
             SkillInput.L3_Left => L3_LeftIcon,
             SkillInput.L3_UpLeft => L3_UpLeftIcon,
             SkillInput.L3_DownLeft => L3_DownLeftIcon,
@@ -211,7 +211,9 @@ public class SkillControlIconMap : ScriptableObject
     public string GetSequenceDisplay(List<SkillInputHolder> possibleSequences, int highlightIndex = -1, bool highlight = false)
     {
         string display = "";
-        int sequenceLength = possibleSequences[0].input.Count;
+
+        int sequenceLength = 0;
+        if (possibleSequences.Count > 0) { sequenceLength = possibleSequences[0].input.Count; }
 
         for (int i = 0; i < sequenceLength; i++)
         {

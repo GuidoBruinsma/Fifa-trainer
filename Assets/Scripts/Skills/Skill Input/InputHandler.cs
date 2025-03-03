@@ -170,7 +170,6 @@ public class InputHandler : MonoBehaviour
             SkillInputs.GetFlickDiagonalInput(stickPosition, isLeft: true) :
             SkillInputs.GetFlickDiagonalInput(stickPosition, isLeft: false);
 
-        Debug.Log(input);
         if (input.HasValue)
         {
             EventManager.OnSkillInputReceived?.Invoke(input.Value);

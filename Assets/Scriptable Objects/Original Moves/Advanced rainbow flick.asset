@@ -15,5 +15,6 @@ MonoBehaviour:
   importantNode: 
   moveName: Advanced rainbow flick
   inputSequence:
-  - input: 00000000
+  - input: 0000000012000000
+  - input: 0000000018000000
   maxTimeBetweenInput: 0.7
