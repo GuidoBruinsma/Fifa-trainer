@@ -15,6 +15,6 @@ MonoBehaviour:
   importantNode: 
   moveName: Ball juggle
   inputSequence:
-  - input: 190000000f000000
-  - input: 190000001a000000
+  - input: 0400000008000000
   maxTimeBetweenInput: 0.5
+  difficultyScore: 2.42

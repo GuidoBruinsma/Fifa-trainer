@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2052c80527d9fa842b9433fd927431b1, type: 3}
   m_Name: Feint forward and turn
   m_EditorClassIdentifier: 
+  importantNode: 
   moveName: Feint forward and turn
-  inputSequence: 1600000016000000
+  inputSequence:
+  - input: 1800000018000000
   maxTimeBetweenInput: 0.5
-  rotationSequence: 
+  difficultyScore: 2.42

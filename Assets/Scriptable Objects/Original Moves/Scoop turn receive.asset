@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   importantNode: 
   moveName: Scoop turn receive
-  inputSequence: 030000000b000000
+  inputSequence:
+  - input: 030000000b000000
   maxTimeBetweenInput: 0.7
-  rotationSequence: 
-  secondInputSequence: 
-  secondRotationSequence: 
+  difficultyScore: 2.662

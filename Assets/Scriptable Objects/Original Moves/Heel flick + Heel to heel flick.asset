@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   importantNode: 
   moveName: Heel flick + Heel to heel flick
-  inputSequence: 1a00000017000000
+  inputSequence:
+  - input: 1b00000018000000
   maxTimeBetweenInput: 0.7
-  rotationSequence: 
+  difficultyScore: 2.42

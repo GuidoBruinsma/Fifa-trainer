@@ -76,7 +76,6 @@ public class SkillsValidator : MonoBehaviour
 
     private bool CheckValidity()
     {
-
         for (int i = 0; i < pressedSequenceInput.Count; i++)
         {
             if (pressedSequenceInput[i] != currentSequenceInput[i])
@@ -94,12 +93,10 @@ public class SkillsValidator : MonoBehaviour
                 }
                 if (!validInputFound)
                 {
-                    //currentSequenceInputHolder.Clear();
                     Debug.Log("Input doesn't exist in the current list. Removing list.");
                     return false;
                 }
             }
-
         }
 
         //TODO: ADD CORRECT MOVE LOGIC HERE

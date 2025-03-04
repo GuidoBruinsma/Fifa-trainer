@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   importantNode: 
   moveName: Heel to toe
-  inputSequence: 04000000120000000f000000
+  inputSequence:
+  - input: 040000001300000010000000
   maxTimeBetweenInput: 0.7
-  rotationSequence: 
+  difficultyScore: 3.63

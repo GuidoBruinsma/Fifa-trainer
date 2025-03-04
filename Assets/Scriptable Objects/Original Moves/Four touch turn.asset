@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   importantNode: 
   moveName: Four touch turn
-  inputSequence: 040000001700000017000000
+  inputSequence:
+  - input: 040000001800000018000000
   maxTimeBetweenInput: 0.5
-  rotationSequence: 
-  secondInputSequence: 
-  secondRotationSequence: 
+  difficultyScore: 4.3923

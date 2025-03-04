@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2052c80527d9fa842b9433fd927431b1, type: 3}
-  m_Name: Heel flick turn
+  m_Name: Fake pass exit
   m_EditorClassIdentifier: 
   importantNode: 
-  moveName: Heel flick turn
+  moveName: Fake pass exit
   inputSequence:
-  - input: 0b000000180000001b000000
+  - input: 0c00000013000000100000004e000000
+  - input: 0c00000012000000100000004d000000
   maxTimeBetweenInput: 0.7
-  difficultyScore: 4.3923
+  difficultyScore: 5.324
