@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2052c80527d9fa842b9433fd927431b1, type: 3}
   m_Name: Flick up
   m_EditorClassIdentifier: 
+  importantNode: 
   moveName: Flick up
-  inputSequence: 0300000009000000
+  inputSequence:
+  - input: 030000000a000000
   maxTimeBetweenInput: 0.7
-  rotationSequence: 
+  difficultyScore: 2.42

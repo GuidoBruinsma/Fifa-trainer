@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   importantNode: 
   moveName: Dummy
-  inputSequence: 0b000000
+  inputSequence:
+  - input: 0b000000
   maxTimeBetweenInput: 0.7
-  rotationSequence: 
-  secondInputSequence: 
-  secondRotationSequence: 
+  difficultyScore: 1.1

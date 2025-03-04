@@ -15,6 +15,6 @@ MonoBehaviour:
   importantNode: 
   moveName: Advanced rainbow flick
   inputSequence:
-  - input: 0000000012000000
-  - input: 0000000018000000
+  - input: 180000001b0000001b000000
   maxTimeBetweenInput: 0.7
+  difficultyScore: 3.993

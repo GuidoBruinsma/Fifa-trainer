@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   importantNode: 
   moveName: Simple rainbow flick
-  inputSequence: 170000001a000000
+  inputSequence:
+  - input: 180000001b000000
   maxTimeBetweenInput: 0.7
-  rotationSequence: 
+  difficultyScore: 2.42

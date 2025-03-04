@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   importantNode: 
   moveName: Sombrero flick
-  inputSequence: 1a0000001a00000017000000
+  inputSequence:
+  - input: 1b0000001b00000018000000
   maxTimeBetweenInput: 0.7
-  rotationSequence: 
-  secondInputSequence: 
-  secondRotationSequence: 
+  difficultyScore: 3.993

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2052c80527d9fa842b9433fd927431b1, type: 3}
-  m_Name: Heel flick turn
+  m_Name: Hocus pocus
   m_EditorClassIdentifier: 
   importantNode: 
-  moveName: Heel flick turn
+  moveName: Hocus pocus
   inputSequence:
-  - input: 0b000000180000001b000000
+  - input: 33000000
   maxTimeBetweenInput: 0.7
-  difficultyScore: 4.3923
+  difficultyScore: 1

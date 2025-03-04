@@ -13,6 +13,7 @@ public class Skill : ScriptableObject
     public List<SkillInputHolder> inputSequence;
 
     public float maxTimeBetweenInput;
+    public float difficultyScore;
 }
 
 [Serializable]
@@ -28,7 +29,7 @@ public enum SkillInput
 
     //R Buttons
     [Space]
-    R1, R2, R3, R1_Hold, R2_Hold, R3_Rotate, Hold_R3_Any,
+    R1, R2, R3, R1_Hold, R2_Hold, R3_Rotate, R3_Any, Hold_R3_Any,
 
     //General Button Tab
     [Space]
@@ -68,7 +69,9 @@ public enum SkillInput
 
     L3_DownToRight, L3_DownToLeft,
 
-    L3_LeftToUp, L3_LeftToDown, L3_LeftToDownToLeft, L3_LeftToUpToLeft,
+    L3_LeftToUp, L3_LeftToDown, L3_LeftToDownToLeft, L3_LeftToUpToLeft, 
+    
+    L3_DownToRightToDown, L3_RightToDownToRight,
 
     //Hold Direction R3
     [Space]

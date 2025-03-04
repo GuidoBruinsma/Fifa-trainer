@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2052c80527d9fa842b9433fd927431b1, type: 3}
-  m_Name: Heel flick turn
+  m_Name: Open up fake shot
   m_EditorClassIdentifier: 
   importantNode: 
-  moveName: Heel flick turn
+  moveName: Open up fake shot
   inputSequence:
-  - input: 0b000000180000001b000000
+  - input: 03000000160000000f00000029000000
+  - input: 03000000150000000f0000002a000000
   maxTimeBetweenInput: 0.7
-  difficultyScore: 4.3923
+  difficultyScore: 5.324
