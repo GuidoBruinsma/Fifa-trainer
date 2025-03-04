@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2052c80527d9fa842b9433fd927431b1, type: 3}
-  m_Name: Heel flick turn
+  m_Name: Double touch exit
   m_EditorClassIdentifier: 
   importantNode: 
-  moveName: Heel flick turn
+  moveName: Double touch exit
   inputSequence:
-  - input: 0b000000180000001b000000
-  maxTimeBetweenInput: 0.7
-  difficultyScore: 4.3923
+  - input: 3100000022000000
+  maxTimeBetweenInput: 0.5
+  difficultyScore: 2.662

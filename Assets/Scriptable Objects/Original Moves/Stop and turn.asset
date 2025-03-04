@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   importantNode: 
   moveName: Stop and turn
-  inputSequence: 1a0000001e000000
+  inputSequence:
+  - input: 1b0000001f000000
   maxTimeBetweenInput: 0.7
-  rotationSequence: 
-  secondInputSequence: 
-  secondRotationSequence: 
+  difficultyScore: 2.42

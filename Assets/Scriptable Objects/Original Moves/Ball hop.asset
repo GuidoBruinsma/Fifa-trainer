@@ -15,6 +15,6 @@ MonoBehaviour:
   importantNode: 
   moveName: Ball hop
   inputSequence:
-  - input: 00000000
-  - input: 00000000
+  - input: 030000000a000000
   maxTimeBetweenInput: 0.7
+  difficultyScore: 2.42

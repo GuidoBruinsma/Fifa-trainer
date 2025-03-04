@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2052c80527d9fa842b9433fd927431b1, type: 3}
-  m_Name: Heel flick turn
+  m_Name: Heel chop turn
   m_EditorClassIdentifier: 
   importantNode: 
-  moveName: Heel flick turn
+  moveName: Heel chop turn
   inputSequence:
-  - input: 0b000000180000001b000000
-  maxTimeBetweenInput: 0.7
-  difficultyScore: 4.3923
+  - input: 0400000013000000100000002700000021000000
+  - input: 0400000013000000100000002800000024000000
+  maxTimeBetweenInput: 0.5
+  difficultyScore: 7.3205

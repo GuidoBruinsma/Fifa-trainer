@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   importantNode: 
   moveName: Lateral heel to heel
-  inputSequence: 030000001d000000
+  inputSequence:
+  - input: 030000001e000000
   maxTimeBetweenInput: 0.7
-  rotationSequence: 
+  difficultyScore: 2.662
