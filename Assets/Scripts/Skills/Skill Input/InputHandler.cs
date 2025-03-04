@@ -14,9 +14,9 @@ public class InputHandler : MonoBehaviour
     private InputAction _Buttons, _Hold, _HoldL3, _HoldR3, _FlickL3, _FlickR3, _RotateR3, _DiagonalFlick;
 
     //Control States
-    [SerializeField] private bool holdDisabled = false;
-    [SerializeField] private bool waitingForRelease;
-    [SerializeField] private bool isHeld;
+    private bool holdDisabled = false;
+    private bool waitingForRelease;
+    private bool isHeld;
 
     //Input Data
     private List<SkillInput> inputs = new();
@@ -219,69 +219,6 @@ public class InputHandler : MonoBehaviour
 
     #endregion
 
-    //private void ProcessStickInput(Vector2 stickVector, bool isLeftTrigger)
-    //{
-    //    var degrees = Mathf.Atan2(stickVector.y, stickVector.x) * Mathf.Rad2Deg;
-
-    //    if (degrees < 0)
-    //        degrees += 360;
-
-    //    SkillInput? input = isLeftTrigger ?
-    //        SkillInputs.GetSkillStickInput(degrees, stickVector.magnitude, true) : SkillInputs.GetSkillStickInput(degrees, stickVector.magnitude, false);
-
-
-
-    //    //FIX: if a flick move is needed this is called and the same problem, analog sends every movement!
-    //    EventManager.OnSkillInputReceived?.Invoke(input.Value);
-    //}
-
-    //private bool ProcessRotationInput(Vector2 stickVector, bool isLeftTrigger)
-    //{
-    //    float degrees = Mathf.Atan2(stickVector.y, stickVector.x) * Mathf.Rad2Deg;
-    //    if (degrees < 0)
-    //        degrees += 360;
-
-    //    SkillInput? input = isLeftTrigger ? SkillInputs.GetSkillStickInput(degrees, stickVector.magnitude, true) : SkillInputs.GetSkillStickInput(degrees, stickVector.magnitude, false);
-
-    //    Skill currentSkill = SkillMovesManager.CurrentSkill;
-    //    if (stickVector.magnitude == 0)
-    //    {
-    //        test.Clear();
-    //        return false;
-    //    }
-    //    if (currentSkill != null &&
-    //        currentSkill.rotationSequence != null &&
-    //        currentSkill.rotationSequence.Length > 0)
-    //    {
-    //        int expectedIndex = test.Count;
-
-    //        if (expectedIndex < currentSkill.rotationSequence.Length)
-    //        {
-    //            if (test.Count == 0 || test[test.Count - 1] != input)
-    //            {
-    //                if (input == currentSkill.rotationSequence[expectedIndex])
-    //                {
-    //                    test.Add(input.Value);
-    //                }
-    //                else
-    //                {
-    //                    test.Clear();
-    //                    //EventManager.OnSkillInputReceived?.Invoke(input);
-    //                    return true;
-    //                }
-    //            }
-
-    //            if (test.Count == currentSkill.rotationSequence.Length)
-    //            {
-    //                EventManager.OnSkillInputReceived?.Invoke(SkillInput.L3_Rotate);
-    //                test.Clear();
-    //                return true;
-    //            }
-    //            return true;
-    //        }
-    //    }
-    //    return false;
-    //}
     private void OnDisable() => controls.Disable();
 }
 
