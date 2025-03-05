@@ -87,5 +87,5 @@ public enum SkillInput
 
     //None
     [Space]
-    L2_None, R2_None, None
+    L2_None, R2_None, Hold_None, Flick_None, None
 }

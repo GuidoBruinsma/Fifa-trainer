@@ -11,12 +11,12 @@ public class InputHandler : MonoBehaviour
     //Input Action variables
     [Header("Controls")]
     [SerializeField] private InputActionAsset controls;
-    private InputAction _Buttons, _Hold, _HoldL3, _HoldR3, _FlickL3, _FlickR3, _RotateR3, _DiagonalFlick;
+    private InputAction _Buttons, _Hold, _HoldL3, _HoldR3, _FlickL3, _FlickR3, _RotateR3, _DiagonalFlick, _AnalogButtons;
 
     //Control States
-    private bool holdDisabled = false;
-    private bool waitingForRelease;
-    private bool isHeld;
+    [SerializeField] private bool holdDisabled = false;
+    [SerializeField] private bool waitingForRelease;
+    [SerializeField] private bool isHeld;
 
     //Input Data
     private List<SkillInput> inputs = new();
@@ -41,22 +41,28 @@ public class InputHandler : MonoBehaviour
         _FlickL3 = map.FindAction("FlickL3");
         _FlickR3 = map.FindAction("FlickR3");
         _RotateR3 = map.FindAction("RotateR3");
-
+        _AnalogButtons = map.FindAction("AnalogButtons");
         _DiagonalFlick = map.FindAction("DiagonalFlick");
     }
 
     private void RegisterControlCallbacks()
     {
         // Buttons control
-        _Buttons.performed += ctx => { if (!isHeld) ProcessInput(ctx.control.name, isHeld: false); };
+        _Buttons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
+        
+        // Analog Buttons control
+        _AnalogButtons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
 
         // Hold control
-        _Hold.performed += ctx => { if (!holdDisabled) HandleHoldStart(ctx.control.name); };
+        _Hold.performed += ctx => { /*if (!holdDisabled)*/ HandleHoldStart(ctx.control.name); };
+
         _Hold.canceled += ctx => { HandleHoldEnd(ctx); };
 
         // Rotation control
         _RotateR3.performed += ctx => { inputs = GetRotatingInput(ctx.ReadValue<Vector2>()); };
         _RotateR3.canceled += ctx => { HandleRotationEnd(ctx); };
+
+
 
         // L3 and R3 Hold control
         RegisterStickInputs(_HoldL3, true);
@@ -69,8 +75,8 @@ public class InputHandler : MonoBehaviour
         _DiagonalFlick.performed += ctx =>
         {
             if (ctx.control.name == "leftStick")
-                HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), true);
-            else HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), false);
+                HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: true);
+            else HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: false);
         };
     }
 
@@ -94,7 +100,7 @@ public class InputHandler : MonoBehaviour
     {
         if (ctx.ReadValue<float>() == 0)
         {
-            EventManager.OnSkillInputReceived?.Invoke(SkillInput.None);
+            EventManager.OnSkillInputReceived?.Invoke(SkillInput.Hold_None);
         }
         isHeld = false;
     }

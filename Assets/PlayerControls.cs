@@ -162,6 +162,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": ""StickDeadzone"",
                     ""interactions"": ""Tap"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AnalogButtons"",
+                    ""type"": ""Button"",
+                    ""id"": ""21f7ac12-5daf-454e-ae35-b287640022db"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -202,28 +211,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""bcc24772-2216-440a-800c-53bdd4c18f46"",
                     ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Buttons"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d8d72a53-3a2e-4e1b-b25f-3a6ab975b1a0"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Buttons"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""25025fc3-93d9-4f37-9e14-698e46348b8f"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -560,6 +547,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""DiagonalFlick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8d72a53-3a2e-4e1b-b25f-3a6ab975b1a0"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnalogButtons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25025fc3-93d9-4f37-9e14-698e46348b8f"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnalogButtons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -824,6 +833,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_DualShock_FlickR3 = m_DualShock.FindAction("FlickR3", throwIfNotFound: true);
         m_DualShock_RotateR3 = m_DualShock.FindAction("RotateR3", throwIfNotFound: true);
         m_DualShock_DiagonalFlick = m_DualShock.FindAction("DiagonalFlick", throwIfNotFound: true);
+        m_DualShock_AnalogButtons = m_DualShock.FindAction("AnalogButtons", throwIfNotFound: true);
         // Nintendo
         m_Nintendo = asset.FindActionMap("Nintendo", throwIfNotFound: true);
         m_Nintendo_Buttons = m_Nintendo.FindAction("Buttons", throwIfNotFound: true);
@@ -919,6 +929,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_DualShock_FlickR3;
     private readonly InputAction m_DualShock_RotateR3;
     private readonly InputAction m_DualShock_DiagonalFlick;
+    private readonly InputAction m_DualShock_AnalogButtons;
     /// <summary>
     /// Provides access to input actions defined in input action map "DualShock".
     /// </summary>
@@ -962,6 +973,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "DualShock/DiagonalFlick".
         /// </summary>
         public InputAction @DiagonalFlick => m_Wrapper.m_DualShock_DiagonalFlick;
+        /// <summary>
+        /// Provides access to the underlying input action "DualShock/AnalogButtons".
+        /// </summary>
+        public InputAction @AnalogButtons => m_Wrapper.m_DualShock_AnalogButtons;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1012,6 +1027,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DiagonalFlick.started += instance.OnDiagonalFlick;
             @DiagonalFlick.performed += instance.OnDiagonalFlick;
             @DiagonalFlick.canceled += instance.OnDiagonalFlick;
+            @AnalogButtons.started += instance.OnAnalogButtons;
+            @AnalogButtons.performed += instance.OnAnalogButtons;
+            @AnalogButtons.canceled += instance.OnAnalogButtons;
         }
 
         /// <summary>
@@ -1047,6 +1065,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DiagonalFlick.started -= instance.OnDiagonalFlick;
             @DiagonalFlick.performed -= instance.OnDiagonalFlick;
             @DiagonalFlick.canceled -= instance.OnDiagonalFlick;
+            @AnalogButtons.started -= instance.OnAnalogButtons;
+            @AnalogButtons.performed -= instance.OnAnalogButtons;
+            @AnalogButtons.canceled -= instance.OnAnalogButtons;
         }
 
         /// <summary>
@@ -1337,6 +1358,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDiagonalFlick(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "AnalogButtons" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAnalogButtons(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Nintendo" which allows adding and removing callbacks.

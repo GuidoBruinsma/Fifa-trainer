@@ -30,6 +30,8 @@ public static class SkillInputs
 
             ("leftShoulder") => SkillInput.L1,
             ("rightShoulder") => SkillInput.R1,
+            ("leftStickPress") => SkillInput.L3,
+            ("rightStickPress") => SkillInput.R3,
             _ => null
         };
     }
@@ -45,6 +47,9 @@ public static class SkillInputs
 
             ("leftShoulder") => SkillInput.L1_Hold,
             ("rightShoulder") => SkillInput.R1_Hold,
+            
+            ("leftTrigger") => SkillInput.L2_Hold,
+            ("rightTrigger") => SkillInput.R2_Hold,
             _ => null
         };
     }
@@ -163,6 +168,6 @@ public static class SkillInputs
         {
             return isLeft ? SkillInput.L3_DownRight : SkillInput.R3_DownRight;
         }
-        return SkillInput.None;
+        return SkillInput.Flick_None;
     }
 }

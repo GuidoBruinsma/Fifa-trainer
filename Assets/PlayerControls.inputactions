@@ -76,6 +76,15 @@
                     "processors": "StickDeadzone",
                     "interactions": "Tap",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "AnalogButtons",
+                    "type": "Button",
+                    "id": "21f7ac12-5daf-454e-ae35-b287640022db",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -116,28 +125,6 @@
                     "name": "",
                     "id": "bcc24772-2216-440a-800c-53bdd4c18f46",
                     "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Buttons",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d8d72a53-3a2e-4e1b-b25f-3a6ab975b1a0",
-                    "path": "<Gamepad>/leftStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Buttons",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "25025fc3-93d9-4f37-9e14-698e46348b8f",
-                    "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -472,6 +459,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "DiagonalFlick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8d72a53-3a2e-4e1b-b25f-3a6ab975b1a0",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AnalogButtons",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "25025fc3-93d9-4f37-9e14-698e46348b8f",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AnalogButtons",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

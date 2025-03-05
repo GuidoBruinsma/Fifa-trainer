@@ -1756,7 +1756,6 @@ GameObject:
   - component: {fileID: 1682479564}
   - component: {fileID: 1682479563}
   - component: {fileID: 1682479566}
-  - component: {fileID: 1682479567}
   m_Layer: 0
   m_Name: _SkillMovesManager
   m_TagString: Untagged
@@ -1887,9 +1886,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  holdDisabled: 0
-  waitingForRelease: 0
-  isHeld: 0
 --- !u!114 &1682479566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1903,19 +1899,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillMap: {fileID: 11400000, guid: 3fe59b8ecb3c84d4f95a0bb504c5c62b, type: 2}
---- !u!114 &1682479567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682479561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c62d13c88d5d487448b2c58cfd01f17b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
 --- !u!1 &1686489831
 GameObject:
   m_ObjectHideFlags: 0
