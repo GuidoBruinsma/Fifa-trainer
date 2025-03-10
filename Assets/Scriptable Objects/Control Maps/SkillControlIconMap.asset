@@ -26,6 +26,8 @@ MonoBehaviour:
   ButtonTriangleHoldIcon: Hold Triangle
   ButtonCircleHoldIcon: Hold O
   ButtonSquareHoldIcon: Hold Square
+  L3Any: L3 Any
+  R3Any: R3 Any
   L3_RotateIcon: L3 Rotate
   R3_RotateIcon: R3 Rotate
   L1_HoldIcon: L1 Hold
@@ -42,23 +44,23 @@ MonoBehaviour:
   R3_DownIcon: R3 Down
   R3_NoneIcon: 
   L3_LeftIcon: L3 Left
-  L3_UpLeftIcon: L3 Up
+  L3_UpLeftIcon: L3 Up Left
   L3_DownLeftIcon: L3 Down Left
   L3_RightIcon: L3 Right
   L3_UpRightIcon: L3 Up Right
   L3_DownRightIcon: L3 Down Right
   L3_UpIcon: L3 Up
   L3_DownIcon: L3 Down
-  R3_RightToUpIcon: Right to Up
-  R3_RightToDownIcon: Right to Down
-  R3_UpToRightIcon: Up to Right
-  R3_UpToLeftIcon: Up to Left
-  R3_DownToRightIcon: Down to Right
-  R3_DownToLeftIcon: Down to Left
-  R3_LeftToUpIcon: Left to Up
-  R3_LeftToDownIcon: Left to Down
-  R3_LeftToDownToLeftIcon: Left to Down to Left
-  R3_LeftToUpToLeftIcon: Left to Up to Left
+  R3_RightToUpIcon: R3 Right to Up
+  R3_RightToDownIcon: R3 Right to Down
+  R3_UpToRightIcon: R3 Up to Right
+  R3_UpToLeftIcon: R3 Up to Left
+  R3_DownToRightIcon: R3 Down to Right
+  R3_DownToLeftIcon: R3 Down to Left
+  R3_LeftToUpIcon: R3 Left to Up
+  R3_LeftToDownIcon: R3 Left to Down
+  R3_LeftToDownToLeftIcon: R3 Left to Down to Left
+  R3_LeftToUpToLeftIcon: R3 Left to Up to Left
   Hold_R3_LeftIcon: Hold R3 Left
   Hold_R3_UpLeftIcon: Hold R3 Up Left
   Hold_R3_DownLeftIcon: Hold R3 Down Left

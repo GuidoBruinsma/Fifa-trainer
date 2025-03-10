@@ -11,7 +11,7 @@ public class InputHandler : MonoBehaviour
     //Input Action variables
     [Header("Controls")]
     [SerializeField] private InputActionAsset controls;
-    private InputAction _Buttons, _Hold, _HoldL3, _HoldR3, _FlickL3, _FlickR3, _RotateR3, _DiagonalFlick, _AnalogButtons;
+    private InputAction _Buttons, _Hold, _HoldL3, _HoldR3, _FlickL3, _FlickR3, _RotateR3, _DiagonalFlick, _AnalogButtons, _HoldL1, _HoldR1, _DiagonalHold;
 
     //Control States
     [SerializeField] private bool holdDisabled = false;
@@ -38,47 +38,65 @@ public class InputHandler : MonoBehaviour
         _Hold = map.FindAction("Hold");
         _HoldL3 = map.FindAction("HoldL3Direction");
         _HoldR3 = map.FindAction("HoldR3Direction");
+        _HoldL1 = map.FindAction("HoldL1");
+        _HoldR1 = map.FindAction("HoldR1");
         _FlickL3 = map.FindAction("FlickL3");
         _FlickR3 = map.FindAction("FlickR3");
         _RotateR3 = map.FindAction("RotateR3");
         _AnalogButtons = map.FindAction("AnalogButtons");
         _DiagonalFlick = map.FindAction("DiagonalFlick");
+
+        _DiagonalHold = map.FindAction("DiagonalHold");
     }
 
     private void RegisterControlCallbacks()
     {
         // Buttons control
         _Buttons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
-        
+
         // Analog Buttons control
         _AnalogButtons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
 
         // Hold control
-        _Hold.performed += ctx => { /*if (!holdDisabled)*/ HandleHoldStart(ctx.control.name); };
+        _Hold.performed += ctx => { if (!holdDisabled) HandleHoldStart(ctx.control.name); };
 
         _Hold.canceled += ctx => { HandleHoldEnd(ctx); };
+
+        _HoldL1.performed += ctx => { if (!holdDisabled) HandleHoldStart(ctx.control.name); };
+
+        _HoldL1.canceled += ctx => { HandleHoldEnd(ctx); };
+
+        _HoldR1.performed += ctx => { if (!holdDisabled) HandleHoldStart(ctx.control.name); };
+
+        _HoldR1.canceled += ctx => { HandleHoldEnd(ctx); };
 
         // Rotation control
         _RotateR3.performed += ctx => { inputs = GetRotatingInput(ctx.ReadValue<Vector2>()); };
         _RotateR3.canceled += ctx => { HandleRotationEnd(ctx); };
 
-
-
         // L3 and R3 Hold control
-        RegisterStickInputs(_HoldL3, true);
-        RegisterStickInputs(_HoldR3, false);
+        //RegisterStickInputs(_HoldL3, true);
+        //RegisterStickInputs(_HoldR3, false);
 
         // L3 and R3 Flick control
-        RegisterStickFlicks(_FlickL3, true);
-        RegisterStickFlicks(_FlickR3, false);
+        //RegisterStickFlicks(_FlickL3, true);
+        //RegisterStickFlicks(_FlickR3, false);
 
         _DiagonalFlick.performed += ctx =>
         {
             if (ctx.control.name == "leftStick")
-                HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: true);
-            else HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: false);
+                HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: true, isHeld: false);
+            else HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: false, isHeld: false);
+        };
+
+        _DiagonalHold.performed += ctx =>
+        {
+            if (ctx.control.name == "leftStick")
+                HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: true, isHeld: true);
+            else HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: false, isHeld: true);
         };
     }
+
 
     private void RegisterStickInputs(InputAction inputAction, bool isLeft) => inputAction.performed += ctx => { ProcessStickInput(ctx.control.name, isLeft, isHeld: true); };
 
@@ -89,10 +107,11 @@ public class InputHandler : MonoBehaviour
     #region Input Processing
     private void HandleHoldStart(string controlName)
     {
+
         if (!isHeld)
         {
-            isHeld = true;
             ProcessInput(controlName, isHeld: true);
+            isHeld = true;
         }
     }
 
@@ -119,7 +138,6 @@ public class InputHandler : MonoBehaviour
     private void ProcessInput(string buttonName, bool isHeld = false)
     {
         if (holdDisabled) return;
-
         SkillInput? input = isHeld ? SkillInputs.GetHoldInput(buttonName) : SkillInputs.GetTabInput(buttonName);
         if (input.HasValue)
         {
@@ -170,11 +188,11 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    private void HandleFlickInputDiagonal(Vector2 stickPosition, bool isLeft)
+    private void HandleFlickInputDiagonal(Vector2 stickPosition, bool isLeft, bool isHeld)
     {
         SkillInput? input = isLeft ?
-            SkillInputs.GetFlickDiagonalInput(stickPosition, isLeft: true) :
-            SkillInputs.GetFlickDiagonalInput(stickPosition, isLeft: false);
+            SkillInputs.GetFlickDiagonalInput(stickPosition, isLeft: true, isHeld: isHeld) :
+            SkillInputs.GetFlickDiagonalInput(stickPosition, isLeft: false, isHeld: isHeld);
 
         if (input.HasValue)
         {
@@ -188,14 +206,14 @@ public class InputHandler : MonoBehaviour
     public void CancelHold()
     {
         holdDisabled = true;
-        //_Hold.Disable();
+        _Hold.Disable();
     }
 
     public void CancelHoldAndWaitForRelease()
     {
         holdDisabled = true;
         waitingForRelease = true;
-        //_Hold.Disable();
+        _Hold.Disable();
 
         OnSkillInputReceived?.Invoke(SkillInput.R3_None);
 

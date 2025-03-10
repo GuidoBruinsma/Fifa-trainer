@@ -48,7 +48,7 @@ public class SkillsValidator : MonoBehaviour
             return;
 
 
-        //Debug.Log(input);
+        Debug.Log(input);
 
         pressedSequenceInput.Add(input);
         sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
@@ -76,24 +76,32 @@ public class SkillsValidator : MonoBehaviour
     private bool CheckValidity()
     {
         int pressedInputIndex = pressedSequenceInput.Count - 1;
-        Debug.Log($"Pressed input index: {pressedInputIndex}");  // Debugging the index of the most recent pressed button
+        //Debug.Log($"Pressed input index: {pressedInputIndex}");  // Debugging the index of the most recent pressed button
 
         SkillInput pressedInput = pressedSequenceInput[pressedInputIndex];
-        Debug.Log($"Pressed input: {pressedInput}");  // Debugging the pressed input value
+        //Debug.Log($"Pressed input: {pressedInput}");  // Debugging the pressed input value
 
         foreach (var inputHolder in currentSequenceInputHolder)
         {
             var inputList = inputHolder.input;  // Get the list of valid inputs for the current input holder
-            Debug.Log($"Current input list: {string.Join(", ", inputList)}");  // Debugging the current input list
+            //Debug.Log($"Current input list: {string.Join(", ", inputList)}");  // Debugging the current input list
 
-            if (pressedInput == inputList[pressedInputIndex])
+            if (inputList[pressedInputIndex] == SkillInput.L3_Any || inputList[pressedInputIndex] == SkillInput.R3_Any)
             {
-                Debug.Log($"Pressed input: {pressedInput} matches input at index {pressedInputIndex} in input list.");
+                //TODO: Add the rest of the inputs to handle ANY
+                if (pressedInput == SkillInput.L3_Left || pressedInput == SkillInput.L3_Right ||
+                    pressedInput == SkillInput.R3_Left || pressedInput == SkillInput.R3_Right)
+                {
+                    return true;
+                }
+            }
+            else if (pressedInput == inputList[pressedInputIndex])
+            {
                 return true;
             }
         }
 
-        Debug.Log("Invalid input: No valid input found.");
+        //Debug.Log("Invalid input: No valid input found.");
         return false;
     }
 

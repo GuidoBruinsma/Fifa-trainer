@@ -14,6 +14,13 @@ public class Skill : ScriptableObject
 
     public float maxTimeBetweenInput;
     public float difficultyScore;
+
+    public bool requiresAnyMovement;
+
+    public bool CheckForAnyInput()
+    {
+        return requiresAnyMovement;
+    }
 }
 
 [Serializable]

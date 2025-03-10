@@ -107,7 +107,25 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Hold"",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""HoldL1"",
+                    ""type"": ""Button"",
+                    ""id"": ""0a7898e5-1a11-482a-a0d2-5876a80f7065"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""HoldR1"",
+                    ""type"": ""Button"",
+                    ""id"": ""937344ae-237c-4d68-a8ec-79ccc0eab2f0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""HoldL3Direction"",
@@ -159,8 +177,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""62fe079e-8fd6-4795-9b27-d5eacdadf7f8"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": ""StickDeadzone(min=0.3)"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DiagonalHold"",
+                    ""type"": ""Value"",
+                    ""id"": ""69232248-89a9-43f8-80e5-6c4ed7fc892a"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": ""StickDeadzone"",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": true
                 },
                 {
@@ -319,23 +346,23 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""07f60956-2470-439e-8437-f6dee6e64a76"",
+                    ""id"": ""a29cbefa-130b-4af8-8161-f4c1f003ce33"",
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Hold"",
+                    ""action"": ""HoldL1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c3ca6807-e51f-402f-b1a4-99cde9d08767"",
+                    ""id"": ""f9e4b743-1f41-4437-93e1-26a457789cdb"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Hold"",
+                    ""action"": ""HoldR1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -545,6 +572,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""DiagonalFlick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ede5ffa0-9667-495f-ac46-0475c12c4a3e"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DiagonalHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38cfad06-225a-4d53-8394-40198ab4f7c7"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DiagonalHold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -827,12 +876,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_DualShock = asset.FindActionMap("DualShock", throwIfNotFound: true);
         m_DualShock_Buttons = m_DualShock.FindAction("Buttons", throwIfNotFound: true);
         m_DualShock_Hold = m_DualShock.FindAction("Hold", throwIfNotFound: true);
+        m_DualShock_HoldL1 = m_DualShock.FindAction("HoldL1", throwIfNotFound: true);
+        m_DualShock_HoldR1 = m_DualShock.FindAction("HoldR1", throwIfNotFound: true);
         m_DualShock_HoldL3Direction = m_DualShock.FindAction("HoldL3Direction", throwIfNotFound: true);
         m_DualShock_HoldR3Direction = m_DualShock.FindAction("HoldR3Direction", throwIfNotFound: true);
         m_DualShock_FlickL3 = m_DualShock.FindAction("FlickL3", throwIfNotFound: true);
         m_DualShock_FlickR3 = m_DualShock.FindAction("FlickR3", throwIfNotFound: true);
         m_DualShock_RotateR3 = m_DualShock.FindAction("RotateR3", throwIfNotFound: true);
         m_DualShock_DiagonalFlick = m_DualShock.FindAction("DiagonalFlick", throwIfNotFound: true);
+        m_DualShock_DiagonalHold = m_DualShock.FindAction("DiagonalHold", throwIfNotFound: true);
         m_DualShock_AnalogButtons = m_DualShock.FindAction("AnalogButtons", throwIfNotFound: true);
         // Nintendo
         m_Nintendo = asset.FindActionMap("Nintendo", throwIfNotFound: true);
@@ -923,12 +975,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IDualShockActions> m_DualShockActionsCallbackInterfaces = new List<IDualShockActions>();
     private readonly InputAction m_DualShock_Buttons;
     private readonly InputAction m_DualShock_Hold;
+    private readonly InputAction m_DualShock_HoldL1;
+    private readonly InputAction m_DualShock_HoldR1;
     private readonly InputAction m_DualShock_HoldL3Direction;
     private readonly InputAction m_DualShock_HoldR3Direction;
     private readonly InputAction m_DualShock_FlickL3;
     private readonly InputAction m_DualShock_FlickR3;
     private readonly InputAction m_DualShock_RotateR3;
     private readonly InputAction m_DualShock_DiagonalFlick;
+    private readonly InputAction m_DualShock_DiagonalHold;
     private readonly InputAction m_DualShock_AnalogButtons;
     /// <summary>
     /// Provides access to input actions defined in input action map "DualShock".
@@ -949,6 +1004,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "DualShock/Hold".
         /// </summary>
         public InputAction @Hold => m_Wrapper.m_DualShock_Hold;
+        /// <summary>
+        /// Provides access to the underlying input action "DualShock/HoldL1".
+        /// </summary>
+        public InputAction @HoldL1 => m_Wrapper.m_DualShock_HoldL1;
+        /// <summary>
+        /// Provides access to the underlying input action "DualShock/HoldR1".
+        /// </summary>
+        public InputAction @HoldR1 => m_Wrapper.m_DualShock_HoldR1;
         /// <summary>
         /// Provides access to the underlying input action "DualShock/HoldL3Direction".
         /// </summary>
@@ -973,6 +1036,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "DualShock/DiagonalFlick".
         /// </summary>
         public InputAction @DiagonalFlick => m_Wrapper.m_DualShock_DiagonalFlick;
+        /// <summary>
+        /// Provides access to the underlying input action "DualShock/DiagonalHold".
+        /// </summary>
+        public InputAction @DiagonalHold => m_Wrapper.m_DualShock_DiagonalHold;
         /// <summary>
         /// Provides access to the underlying input action "DualShock/AnalogButtons".
         /// </summary>
@@ -1009,6 +1076,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Hold.started += instance.OnHold;
             @Hold.performed += instance.OnHold;
             @Hold.canceled += instance.OnHold;
+            @HoldL1.started += instance.OnHoldL1;
+            @HoldL1.performed += instance.OnHoldL1;
+            @HoldL1.canceled += instance.OnHoldL1;
+            @HoldR1.started += instance.OnHoldR1;
+            @HoldR1.performed += instance.OnHoldR1;
+            @HoldR1.canceled += instance.OnHoldR1;
             @HoldL3Direction.started += instance.OnHoldL3Direction;
             @HoldL3Direction.performed += instance.OnHoldL3Direction;
             @HoldL3Direction.canceled += instance.OnHoldL3Direction;
@@ -1027,6 +1100,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DiagonalFlick.started += instance.OnDiagonalFlick;
             @DiagonalFlick.performed += instance.OnDiagonalFlick;
             @DiagonalFlick.canceled += instance.OnDiagonalFlick;
+            @DiagonalHold.started += instance.OnDiagonalHold;
+            @DiagonalHold.performed += instance.OnDiagonalHold;
+            @DiagonalHold.canceled += instance.OnDiagonalHold;
             @AnalogButtons.started += instance.OnAnalogButtons;
             @AnalogButtons.performed += instance.OnAnalogButtons;
             @AnalogButtons.canceled += instance.OnAnalogButtons;
@@ -1047,6 +1123,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Hold.started -= instance.OnHold;
             @Hold.performed -= instance.OnHold;
             @Hold.canceled -= instance.OnHold;
+            @HoldL1.started -= instance.OnHoldL1;
+            @HoldL1.performed -= instance.OnHoldL1;
+            @HoldL1.canceled -= instance.OnHoldL1;
+            @HoldR1.started -= instance.OnHoldR1;
+            @HoldR1.performed -= instance.OnHoldR1;
+            @HoldR1.canceled -= instance.OnHoldR1;
             @HoldL3Direction.started -= instance.OnHoldL3Direction;
             @HoldL3Direction.performed -= instance.OnHoldL3Direction;
             @HoldL3Direction.canceled -= instance.OnHoldL3Direction;
@@ -1065,6 +1147,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DiagonalFlick.started -= instance.OnDiagonalFlick;
             @DiagonalFlick.performed -= instance.OnDiagonalFlick;
             @DiagonalFlick.canceled -= instance.OnDiagonalFlick;
+            @DiagonalHold.started -= instance.OnDiagonalHold;
+            @DiagonalHold.performed -= instance.OnDiagonalHold;
+            @DiagonalHold.canceled -= instance.OnDiagonalHold;
             @AnalogButtons.started -= instance.OnAnalogButtons;
             @AnalogButtons.performed -= instance.OnAnalogButtons;
             @AnalogButtons.canceled -= instance.OnAnalogButtons;
@@ -1317,6 +1402,20 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHold(InputAction.CallbackContext context);
         /// <summary>
+        /// Method invoked when associated input action "HoldL1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHoldL1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "HoldR1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHoldR1(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "HoldL3Direction" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -1358,6 +1457,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDiagonalFlick(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "DiagonalHold" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDiagonalHold(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "AnalogButtons" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

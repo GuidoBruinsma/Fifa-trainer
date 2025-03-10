@@ -688,12 +688,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb3ae0cd763f3a4aa099f291a0c1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
-  tolerance: 15
+  controls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  radius: 4.17
   arcSegments: 100
   circleColor: {r: 1, g: 1, b: 1, a: 0.5686275}
   regionColor: {r: 0, g: 1, b: 0, a: 1}
   boundaryColor: {r: 1, g: 0, b: 0, a: 1}
+  stickPositionColor: {r: 0, g: 0, b: 1, a: 1}
+  stickPosition: {x: 0, y: 0}
 --- !u!1 &593406654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,6 +1795,7 @@ MonoBehaviour:
   sequenceValidator: {fileID: 1682479564}
   inputHandler: {fileID: 1682479565}
   skillMoves:
+  - {fileID: 11400000, guid: e5549c6edd31a6549aac7ad7a24f4b91, type: 2}
   - {fileID: 11400000, guid: d45b03f3d74852a4f8c6ad0ecf635adc, type: 2}
   - {fileID: 11400000, guid: 010786fe096ee9c40bdf8431f4dd3889, type: 2}
   - {fileID: 11400000, guid: 53f56d8a8040b79499c59caf27fd00f4, type: 2}
@@ -1804,7 +1807,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7efe51a2b42ba4245aa6f5f3c329d9c1, type: 2}
   - {fileID: 11400000, guid: 43c9c7def2783824da028d03ba956768, type: 2}
   - {fileID: 11400000, guid: 7cd237c6d659aa642be4638d47c40193, type: 2}
-  - {fileID: 11400000, guid: e5549c6edd31a6549aac7ad7a24f4b91, type: 2}
   - {fileID: 11400000, guid: 541ecb3e57154ac4484fbbe2d7779ee0, type: 2}
   - {fileID: 11400000, guid: b61ba7c62bf36f6439e85d5907495c93, type: 2}
   - {fileID: 11400000, guid: a0cad660698087d4d93f031b9a6f0592, type: 2}
@@ -1886,6 +1888,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  holdDisabled: 0
+  waitingForRelease: 0
+  isHeld: 0
 --- !u!114 &1682479566
 MonoBehaviour:
   m_ObjectHideFlags: 0
