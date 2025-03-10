@@ -47,7 +47,7 @@ public static class SkillInputs
 
             ("leftShoulder") => SkillInput.L1_Hold,
             ("rightShoulder") => SkillInput.R1_Hold,
-            
+
             ("leftTrigger") => SkillInput.L2_Hold,
             ("rightTrigger") => SkillInput.R2_Hold,
             _ => null
@@ -186,23 +186,32 @@ public static class SkillInputs
                 return isLeft ? SkillInput.L3_DownRight : SkillInput.R3_DownRight;
             }
 
-            if (degrees <= 20f || degrees > 340f) {
-                return isLeft ? SkillInput.L3_Right : SkillInput.R3_Right;
-                //right
-            } else if (degrees >= 70f && degrees < 110f) {
-                return isLeft ? SkillInput.L3_Up : SkillInput.R3_Up;
-                //Up
+            if (degrees <= 20f || degrees > 340f)
+            {
+                Debug.Log("return right");
+                return isLeft ? SkillInput.L3_Right : SkillInput.R3_Right; // right
             }
-            else if (degrees >= 160f && degrees < 200f) {
-                return isLeft ? SkillInput.L3_Left : SkillInput.R3_Left;
-                //left
+            else if (degrees >= 70f && degrees < 110f)
+            {
+                Debug.Log("return up");
+
+                return isLeft ? SkillInput.L3_Up : SkillInput.R3_Up; // up
             }
-            else if (degrees >= 250f && degrees < 290f) {
-                return isLeft ? SkillInput.L3_Down : SkillInput.R3_Down;
-                //down
+            else if (degrees >= 160f && degrees < 200f)
+            {
+                Debug.Log("return left");
+
+                return isLeft ? SkillInput.L3_Left : SkillInput.R3_Left; // left
+            }
+            else if (degrees >= 250f && degrees < 290f)
+            {
+                Debug.Log("return down");
+
+                return isLeft ? SkillInput.L3_Down : SkillInput.R3_Down; // down
             }
         }
-        else {
+        else
+        {
             if (degrees >= 20f && degrees < 70f)
             {
                 return isLeft ? SkillInput.Hold_L3_UpRight : SkillInput.Hold_R3_UpRight;

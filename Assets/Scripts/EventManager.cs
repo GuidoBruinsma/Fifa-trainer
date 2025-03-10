@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.Events;
 
 public static class EventManager
@@ -10,7 +11,4 @@ public static class EventManager
     public static UnityEvent OnSequenceFailed = new();
 
     public static UnityEvent OnWholeSessionFailed = new();
-
-    // CONTROL EVENTS
-
 }

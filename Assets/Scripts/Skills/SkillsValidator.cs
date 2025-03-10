@@ -72,7 +72,7 @@ public class SkillsValidator : MonoBehaviour
             GlobalDataManager.SetNewData(currentSkill.moveName, 0.8f);
         }
     }
-
+    //TODO: Sometimes detects more buttons than it should. Index out of range 
     private bool CheckValidity()
     {
         int pressedInputIndex = pressedSequenceInput.Count - 1;

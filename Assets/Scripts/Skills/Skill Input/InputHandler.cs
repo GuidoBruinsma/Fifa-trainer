@@ -22,6 +22,8 @@ public class InputHandler : MonoBehaviour
     private List<SkillInput> inputs = new();
     private SkillInput currentInput;
 
+    private Dictionary<string, bool> buttonHoldState = new();
+
     private void Awake()
     {
         SetupControls();
@@ -54,7 +56,7 @@ public class InputHandler : MonoBehaviour
         // Buttons control
         _Buttons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
 
-        // Analog Buttons control
+        //// Analog Buttons control
         _AnalogButtons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
 
         // Hold control
@@ -82,11 +84,26 @@ public class InputHandler : MonoBehaviour
         //RegisterStickFlicks(_FlickL3, true);
         //RegisterStickFlicks(_FlickR3, false);
 
+        Vector2 test = new();   //TODO: change name
+
         _DiagonalFlick.performed += ctx =>
         {
+            float deadZone = 0.2f;
+            if (test.magnitude < deadZone)
+            {
+                test = Vector2.zero;
+            }
+
+            if (ctx.ReadValue<Vector2>().magnitude >= deadZone)
+            {
+                test = ctx.ReadValue<Vector2>();
+            }
+        };
+        _DiagonalFlick.canceled += ctx =>
+        {
             if (ctx.control.name == "leftStick")
-                HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: true, isHeld: false);
-            else HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: false, isHeld: false);
+                HandleFlickInputDiagonal(test, isLeft: true, isHeld: false);
+            else HandleFlickInputDiagonal(test, isLeft: false, isHeld: false);
         };
 
         _DiagonalHold.performed += ctx =>
@@ -108,20 +125,26 @@ public class InputHandler : MonoBehaviour
     private void HandleHoldStart(string controlName)
     {
 
-        if (!isHeld)
+        if (!buttonHoldState.ContainsKey(controlName) || !buttonHoldState[controlName])
         {
             ProcessInput(controlName, isHeld: true);
-            isHeld = true;
+
+            buttonHoldState[controlName] = true;
         }
     }
 
     private void HandleHoldEnd(InputAction.CallbackContext ctx)
     {
+        string controlName = ctx.control.name;
+
         if (ctx.ReadValue<float>() == 0)
         {
             EventManager.OnSkillInputReceived?.Invoke(SkillInput.Hold_None);
+            if (buttonHoldState.ContainsKey(controlName))
+            {
+                buttonHoldState[controlName] = false;
+            }
         }
-        isHeld = false;
     }
 
     private void HandleRotationEnd(InputAction.CallbackContext ctx)
