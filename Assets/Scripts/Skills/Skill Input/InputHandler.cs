@@ -75,35 +75,69 @@ public class InputHandler : MonoBehaviour
         // Rotation control
         _RotateR3.performed += ctx => { inputs = GetRotatingInput(ctx.ReadValue<Vector2>()); };
         _RotateR3.canceled += ctx => { HandleRotationEnd(ctx); };
+        float deadzone = 0.2f;
+        float flickThreshold = 0.4f;
+        float flickSpeedThreshold = 1f;
+        Vector2 previousInput = Vector2.zero;
+        Vector2 smoothedInput = Vector2.zero;
+        float smoothingFactor = 0.05f;
 
-        // L3 and R3 Hold control
-        //RegisterStickInputs(_HoldL3, true);
-        //RegisterStickInputs(_HoldR3, false);
 
-        // L3 and R3 Flick control
-        //RegisterStickFlicks(_FlickL3, true);
-        //RegisterStickFlicks(_FlickR3, false);
-
-        Vector2 test = new();   //TODO: change name
+        bool isFlicking = false;
+        bool isInputStarted = false;
 
         _DiagonalFlick.performed += ctx =>
         {
-            float deadZone = 0.2f;
-            if (test.magnitude < deadZone)
+            if (isInputStarted) return;
+            Vector2 input = ctx.ReadValue<Vector2>();
+
+
+            if (input.magnitude < deadzone)
             {
-                test = Vector2.zero;
+                input = Vector2.zero;
             }
 
-            if (ctx.ReadValue<Vector2>().magnitude >= deadZone)
+
+            float inputChangeMagnitude = Vector2.Distance(input, previousInput);
+
+
+            if (inputChangeMagnitude > flickSpeedThreshold)
             {
-                test = ctx.ReadValue<Vector2>();
+                Debug.Log("Ignoring fast flick");
+                return;
             }
+
+            if (!isFlicking)
+            {
+                if (input.magnitude > flickThreshold)
+                {
+                    smoothedInput = input;
+                    isFlicking = true;
+                    HandleFlickInputDiagonal(smoothedInput, isLeft: true, isHeld: false);
+                    isInputStarted = true;
+                }
+            }
+            else
+            {
+                smoothedInput = Vector2.Lerp(smoothedInput, input, smoothingFactor);
+                HandleFlickInputDiagonal(smoothedInput, isLeft: true, isHeld: false);
+            }
+
+            previousInput = input;  // Update the previous input for next frame
         };
+
         _DiagonalFlick.canceled += ctx =>
         {
-            if (ctx.control.name == "leftStick")
-                HandleFlickInputDiagonal(test, isLeft: true, isHeld: false);
-            else HandleFlickInputDiagonal(test, isLeft: false, isHeld: false);
+            // Reset the flick state when canceled
+            if (isFlicking)
+            {
+                isFlicking = false;
+                isInputStarted = false;
+                Debug.Log("Flick ended.");
+            }
+
+            // Optionally, reset input after a cancel event
+            smoothedInput = Vector2.zero;
         };
 
         _DiagonalHold.performed += ctx =>

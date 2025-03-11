@@ -167,6 +167,8 @@ public static class SkillInputs
          * 
          * if(< 20 && > 340)
          */
+
+        //Debug.Log(degrees);
         if (!isHeld)
         {
             if (degrees >= 20f && degrees < 70f)
@@ -252,5 +254,21 @@ public static class SkillInputs
 
         }
         return SkillInput.Flick_None;
+    }
+
+    public static bool IsL3Input(SkillInput input)
+    {
+        return input == SkillInput.L3_Left || input == SkillInput.L3_Right ||
+               input == SkillInput.L3_Up || input == SkillInput.L3_Down ||
+               input == SkillInput.L3_UpRight || input == SkillInput.L3_UpLeft ||
+               input == SkillInput.L3_DownRight || input == SkillInput.L3_DownLeft;
+    }
+
+    public static bool IsR3Input(SkillInput input)
+    {
+        return input == SkillInput.R3_Left || input == SkillInput.R3_Right ||
+               input == SkillInput.R3_Up || input == SkillInput.R3_Down ||
+               input == SkillInput.R3_UpRight || input == SkillInput.R3_UpLeft ||
+               input == SkillInput.R3_DownRight || input == SkillInput.R3_DownLeft;
     }
 }

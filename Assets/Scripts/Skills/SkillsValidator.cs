@@ -76,24 +76,20 @@ public class SkillsValidator : MonoBehaviour
     private bool CheckValidity()
     {
         int pressedInputIndex = pressedSequenceInput.Count - 1;
-        //Debug.Log($"Pressed input index: {pressedInputIndex}");  // Debugging the index of the most recent pressed button
 
         SkillInput pressedInput = pressedSequenceInput[pressedInputIndex];
-        //Debug.Log($"Pressed input: {pressedInput}");  // Debugging the pressed input value
 
         foreach (var inputHolder in currentSequenceInputHolder)
         {
-            var inputList = inputHolder.input;  // Get the list of valid inputs for the current input holder
-            //Debug.Log($"Current input list: {string.Join(", ", inputList)}");  // Debugging the current input list
+            var inputList = inputHolder.input;
 
-            if (inputList[pressedInputIndex] == SkillInput.L3_Any || inputList[pressedInputIndex] == SkillInput.R3_Any)
+            if (inputList[pressedInputIndex] == SkillInput.L3_Any && SkillInputs.IsL3Input(pressedInput))
             {
-                //TODO: Add the rest of the inputs to handle ANY
-                if (pressedInput == SkillInput.L3_Left || pressedInput == SkillInput.L3_Right ||
-                    pressedInput == SkillInput.R3_Left || pressedInput == SkillInput.R3_Right)
-                {
-                    return true;
-                }
+                return true;
+            }
+            else if (inputList[pressedInputIndex] == SkillInput.R3_Any && SkillInputs.IsR3Input(pressedInput))
+            {
+                return true;
             }
             else if (pressedInput == inputList[pressedInputIndex])
             {
@@ -101,11 +97,10 @@ public class SkillsValidator : MonoBehaviour
             }
         }
 
-        //Debug.Log("Invalid input: No valid input found.");
         return false;
     }
 
-
+  
     private void SequenceFailed()
     {
         totalAttempts++;
