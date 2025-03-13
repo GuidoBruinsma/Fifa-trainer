@@ -113,7 +113,13 @@ public class InputHandler : MonoBehaviour
                 {
                     smoothedInput = input;
                     isFlicking = true;
-                    HandleFlickInputDiagonal(smoothedInput, isLeft: true, isHeld: false);
+
+                    if (ctx.control.name == "leftStick")
+                        HandleFlickInputDiagonal(smoothedInput, isLeft: true, isHeld: false);
+                    else HandleFlickInputDiagonal(smoothedInput, isLeft: false, isHeld: false);
+
+
+
                     isInputStarted = true;
                 }
             }
@@ -123,12 +129,11 @@ public class InputHandler : MonoBehaviour
                 HandleFlickInputDiagonal(smoothedInput, isLeft: true, isHeld: false);
             }
 
-            previousInput = input;  // Update the previous input for next frame
+            previousInput = input;
         };
 
         _DiagonalFlick.canceled += ctx =>
         {
-            // Reset the flick state when canceled
             if (isFlicking)
             {
                 isFlicking = false;
@@ -136,7 +141,6 @@ public class InputHandler : MonoBehaviour
                 Debug.Log("Flick ended.");
             }
 
-            // Optionally, reset input after a cancel event
             smoothedInput = Vector2.zero;
         };
 
@@ -147,12 +151,6 @@ public class InputHandler : MonoBehaviour
             else HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: false, isHeld: true);
         };
     }
-
-
-    private void RegisterStickInputs(InputAction inputAction, bool isLeft) => inputAction.performed += ctx => { ProcessStickInput(ctx.control.name, isLeft, isHeld: true); };
-
-    private void RegisterStickFlicks(InputAction inputAction, bool isLeft) => inputAction.performed += ctx => { ProcessStickInput(ctx.control.name, isLeft, isHeld: false); };
-
     #endregion
 
     #region Input Processing
