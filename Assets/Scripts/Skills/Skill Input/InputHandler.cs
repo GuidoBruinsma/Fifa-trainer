@@ -11,7 +11,7 @@ public class InputHandler : MonoBehaviour
     //Input Action variables
     [Header("Controls")]
     [SerializeField] private InputActionAsset controls;
-    private InputAction _Buttons, _Hold, _HoldL3, _HoldR3, _FlickL3, _FlickR3, _RotateR3, _DiagonalFlick, _AnalogButtons, _HoldL1, _HoldR1, _DiagonalHold;
+    private InputAction _Buttons, _Hold, _DiagonalFlick, _AnalogButtons, _HoldL1, _HoldR1, _DiagonalHold;
 
     //Control States
     [SerializeField] private bool holdDisabled = false;
@@ -19,10 +19,23 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private bool isHeld;
 
     //Input Data
-    private List<SkillInput> inputs = new();
+    [SerializeField] private List<SkillInput> inputs = new();
     private SkillInput currentInput;
+    [SerializeField] private SkillInput currentRequiredTypeInput;
 
     private Dictionary<string, bool> buttonHoldState = new();
+
+    //Analog flick properties
+    private float deadzone = 0.2f;
+    private float flickThreshold = 0.4f;
+    private float flickSpeedThreshold = 1f;
+    private Vector2 previousInput = Vector2.zero;
+    private Vector2 smoothedInput = Vector2.zero;
+    private float smoothingFactor = 0.05f;
+
+    private bool isFlicking = false;
+    private Vector2 lastValidInput = Vector2.zero;
+
 
     private void Awake()
     {
@@ -37,14 +50,12 @@ public class InputHandler : MonoBehaviour
         InputActionMap map = controls.FindActionMap("DualShock");
 
         _Buttons = map.FindAction("Buttons");
+
         _Hold = map.FindAction("Hold");
-        _HoldL3 = map.FindAction("HoldL3Direction");
-        _HoldR3 = map.FindAction("HoldR3Direction");
+
         _HoldL1 = map.FindAction("HoldL1");
         _HoldR1 = map.FindAction("HoldR1");
-        _FlickL3 = map.FindAction("FlickL3");
-        _FlickR3 = map.FindAction("FlickR3");
-        _RotateR3 = map.FindAction("RotateR3");
+
         _AnalogButtons = map.FindAction("AnalogButtons");
         _DiagonalFlick = map.FindAction("DiagonalFlick");
 
@@ -73,33 +84,71 @@ public class InputHandler : MonoBehaviour
         _HoldR1.canceled += ctx => { HandleHoldEnd(ctx); };
 
         // Rotation control
-        _RotateR3.performed += ctx => { inputs = GetRotatingInput(ctx.ReadValue<Vector2>()); };
-        _RotateR3.canceled += ctx => { HandleRotationEnd(ctx); };
-        float deadzone = 0.2f;
-        float flickThreshold = 0.4f;
-        float flickSpeedThreshold = 1f;
-        Vector2 previousInput = Vector2.zero;
-        Vector2 smoothedInput = Vector2.zero;
-        float smoothingFactor = 0.05f;
 
 
-        bool isFlicking = false;
-        bool isInputStarted = false;
+        /* FIX: 
+         * Right now, both performed and calceled are doing the analog detection
+         * What we want is to be able to make left to up or similar without sending another another input 
+         * when cancel is called after release
+         * 
+         * There should be a way to recognize if we are doing such a move or is just a analog direction move like R3_right
+         * 
+         * Check _DiagonalHold as well 
+         */
 
         _DiagonalFlick.performed += ctx =>
         {
-            if (isInputStarted) return;
-            Vector2 input = ctx.ReadValue<Vector2>();
+            //inputs = GetRotatingInput(ctx.ReadValue<Vector2>());
 
+            HandleDiagonalFlickInput(ctx, isStarted: true);
+        };
+
+        _DiagonalFlick.canceled += ctx =>
+        {
+            //if (inputs.Count <= 1)
+            HandleDiagonalFlickInput(ctx, isStarted: false);
+            //else HandleRotationEnd(ctx);
+        };
+
+
+        _DiagonalHold.performed += ctx =>
+        {
+
+            //if (ctx.control.name == "leftStick")
+            //    HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: true, isHeld: true);
+            //else HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: false, isHeld: true);
+
+        };
+    }
+    #endregion
+
+
+    #region Input Processing
+    private void HandleHoldStart(string controlName)
+    {
+
+        if (!buttonHoldState.ContainsKey(controlName) || !buttonHoldState[controlName])
+        {
+            ProcessInput(controlName, isHeld: true);
+
+            buttonHoldState[controlName] = true;
+        }
+    }
+
+
+    private void HandleDiagonalFlickInput(InputAction.CallbackContext ctx, bool isStarted)
+    {
+
+        Vector2 input = ctx.ReadValue<Vector2>();
+        if (isStarted)
+        {
 
             if (input.magnitude < deadzone)
             {
                 input = Vector2.zero;
             }
 
-
             float inputChangeMagnitude = Vector2.Distance(input, previousInput);
-
 
             if (inputChangeMagnitude > flickSpeedThreshold)
             {
@@ -114,54 +163,31 @@ public class InputHandler : MonoBehaviour
                     smoothedInput = input;
                     isFlicking = true;
 
-                    if (ctx.control.name == "leftStick")
-                        HandleFlickInputDiagonal(smoothedInput, isLeft: true, isHeld: false);
-                    else HandleFlickInputDiagonal(smoothedInput, isLeft: false, isHeld: false);
-
-
-
-                    isInputStarted = true;
+                    lastValidInput = smoothedInput; // Store the flick input for later execution
                 }
             }
             else
             {
                 smoothedInput = Vector2.Lerp(smoothedInput, input, smoothingFactor);
-                HandleFlickInputDiagonal(smoothedInput, isLeft: true, isHeld: false);
+                lastValidInput = smoothedInput;
             }
 
             previousInput = input;
-        };
-
-        _DiagonalFlick.canceled += ctx =>
+        }
+        else
         {
             if (isFlicking)
             {
                 isFlicking = false;
-                isInputStarted = false;
-                Debug.Log("Flick ended.");
+                Debug.Log("Flick ended. Executing action.");
+
+                if (ctx.control.name == "leftStick")
+                    HandleFlickInputDiagonal(lastValidInput, isLeft: true, isHeld: false);
+                else
+                    HandleFlickInputDiagonal(lastValidInput, isLeft: false, isHeld: false);
             }
 
             smoothedInput = Vector2.zero;
-        };
-
-        _DiagonalHold.performed += ctx =>
-        {
-            if (ctx.control.name == "leftStick")
-                HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: true, isHeld: true);
-            else HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: false, isHeld: true);
-        };
-    }
-    #endregion
-
-    #region Input Processing
-    private void HandleHoldStart(string controlName)
-    {
-
-        if (!buttonHoldState.ContainsKey(controlName) || !buttonHoldState[controlName])
-        {
-            ProcessInput(controlName, isHeld: true);
-
-            buttonHoldState[controlName] = true;
         }
     }
 
@@ -224,25 +250,6 @@ public class InputHandler : MonoBehaviour
         return inputs;
     }
 
-    private void ProcessStickInput(string buttonName, bool isLeft, bool isHeld)
-    {
-        SkillInput? input;
-        if (!isHeld)
-        {
-            input = isLeft ?
-                SkillInputs.GetStickInput(buttonName, isLeft: true, isHeld: false) : SkillInputs.GetStickInput(buttonName, isLeft: false, isHeld: false);
-        }
-        else
-        {
-            input = isLeft ?
-                SkillInputs.GetStickInput(buttonName, isLeft: true, isHeld: true) : SkillInputs.GetStickInput(buttonName, isLeft: false, isHeld: true);
-        }
-        if (input.HasValue)
-        {
-            EventManager.OnSkillInputReceived?.Invoke(input.Value);
-        }
-    }
-
     private void HandleFlickInputDiagonal(Vector2 stickPosition, bool isLeft, bool isHeld)
     {
         SkillInput? input = isLeft ?
@@ -298,6 +305,9 @@ public class InputHandler : MonoBehaviour
 
     #endregion
 
-    private void OnDisable() => controls.Disable();
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
 }
 

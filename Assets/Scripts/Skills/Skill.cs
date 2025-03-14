@@ -14,13 +14,6 @@ public class Skill : ScriptableObject
 
     public float maxTimeBetweenInput;
     public float difficultyScore;
-
-    public bool requiresAnyMovement;
-
-    public bool CheckForAnyInput()
-    {
-        return requiresAnyMovement;
-    }
 }
 
 [Serializable]
@@ -41,7 +34,7 @@ public enum SkillInput
     //General Button Tab
     [Space]
     Button_X, Button_Triangle, Button_Circle, Button_Square,
-    
+
     //General Button Hold
     [Space]
     Hold_Button_X, Hold_Button_Triangle, Hold_Button_Circle, Hold_Button_Square,
@@ -57,10 +50,10 @@ public enum SkillInput
     L3_Right, L3_UpRight, L3_DownRight,
     L3_Up, L3_Down, L3_None,
     ///////////////////////////////////////////////////////////////
-    
+
     //Rotation buttons R3
     [Space]
-    R3_RightToUp, R3_RightToDown, 
+    R3_RightToUp, R3_RightToDown,
 
     R3_UpToRight, R3_UpToLeft,
 
@@ -76,8 +69,8 @@ public enum SkillInput
 
     L3_DownToRight, L3_DownToLeft,
 
-    L3_LeftToUp, L3_LeftToDown, L3_LeftToDownToLeft, L3_LeftToUpToLeft, 
-    
+    L3_LeftToUp, L3_LeftToDown, L3_LeftToDownToLeft, L3_LeftToUpToLeft,
+
     L3_DownToRightToDown, L3_RightToDownToRight,
 
     //Hold Direction R3

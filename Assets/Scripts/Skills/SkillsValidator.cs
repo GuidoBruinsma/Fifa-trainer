@@ -48,7 +48,7 @@ public class SkillsValidator : MonoBehaviour
             return;
 
 
-        Debug.Log(input);
+       Debug.Log(input);
 
         pressedSequenceInput.Add(input);
         sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
@@ -59,6 +59,7 @@ public class SkillsValidator : MonoBehaviour
         }
         else if (currentSequenceInput.Count == pressedSequenceInput.Count)
         {
+            ResetSequence();
             EventManager.OnSequenceSuccess?.Invoke();
 
             currentSequenceInputHolder = new(currentSkill.inputSequence);
@@ -67,7 +68,6 @@ public class SkillsValidator : MonoBehaviour
             float elapsedTime = (Time.time - currentTime);
             UI_Manager.Instance?.SetElapsedTimeCompletion(elapsedTime);
 
-            ResetSequence();
 
             GlobalDataManager.SetNewData(currentSkill.moveName, 0.8f);
         }
@@ -100,7 +100,6 @@ public class SkillsValidator : MonoBehaviour
         return false;
     }
 
-  
     private void SequenceFailed()
     {
         totalAttempts++;

@@ -42,24 +42,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "HoldL3Direction",
-                    "type": "Button",
-                    "id": "bc032d84-4cd3-42cc-8c29-40b14717573b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "HoldR3Direction",
-                    "type": "Button",
-                    "id": "de60449f-f679-4ce0-93cf-75d74b8fde1b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "FlickL3",
                     "type": "Button",
                     "id": "7eb595e6-4f40-4adb-a649-880a942e90ae",
@@ -76,15 +58,6 @@
                     "processors": "AxisDeadzone",
                     "interactions": "Tap",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "RotateR3",
-                    "type": "Value",
-                    "id": "a936bf12-ca75-49eb-9752-14e687523bd9",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 },
                 {
                     "name": "DiagonalFlick",
@@ -282,94 +255,6 @@
                 },
                 {
                     "name": "",
-                    "id": "b1280517-6af7-4274-af44-bf7ebf13b153",
-                    "path": "<Gamepad>/leftStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HoldL3Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5c00e101-d2b6-4774-a39f-ee9e5ccb0ce0",
-                    "path": "<Gamepad>/leftStick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HoldL3Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ce462011-2a01-4bca-85d7-408d4dfb71bb",
-                    "path": "<Gamepad>/leftStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HoldL3Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8ece42e4-7e6d-434f-89c8-3c73214f2750",
-                    "path": "<Gamepad>/leftStick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HoldL3Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d5c23871-f7c8-468e-9b99-1fb54d0e4604",
-                    "path": "<Gamepad>/rightStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HoldR3Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8ac671bc-9f97-4511-8a1b-479592c0106b",
-                    "path": "<Gamepad>/rightStick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HoldR3Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fb945f1a-6d28-4e4b-adfe-388b28e6e600",
-                    "path": "<Gamepad>/rightStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HoldR3Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4e558498-19e2-4b58-a41d-1d4765cec998",
-                    "path": "<Gamepad>/rightStick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HoldR3Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f4f4bc67-ec93-46e0-ad53-74c57d4511c2",
                     "path": "<Gamepad>/leftStick/up",
                     "interactions": "Tap",
@@ -453,17 +338,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "FlickR3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9706a33f-7d9a-40d3-883a-6732a2e5e5f2",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotateR3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
