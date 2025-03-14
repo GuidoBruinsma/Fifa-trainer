@@ -689,7 +689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  radius: 4.17
+  radius: 466.7
   arcSegments: 100
   circleColor: {r: 1, g: 1, b: 1, a: 0.5686275}
   regionColor: {r: 0, g: 1, b: 0, a: 1}
@@ -1891,6 +1891,8 @@ MonoBehaviour:
   holdDisabled: 0
   waitingForRelease: 0
   isHeld: 0
+  inputs: 
+  currentRequiredTypeInput: 0
 --- !u!114 &1682479566
 MonoBehaviour:
   m_ObjectHideFlags: 0
