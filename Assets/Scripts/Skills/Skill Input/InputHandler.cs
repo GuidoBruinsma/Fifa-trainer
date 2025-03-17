@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -11,7 +12,7 @@ public class InputHandler : MonoBehaviour
     //Input Action variables
     [Header("Controls")]
     [SerializeField] private InputActionAsset controls;
-    private InputAction _Buttons, _Hold, _DiagonalFlick, _AnalogButtons, _HoldL1, _HoldR1, _DiagonalHold;
+    private InputAction _Buttons, _Hold, _AnalogFlick, _AnalogButtons, _HoldL1, _HoldR1, _AnalogHold, _AnalogRotation;
 
     //Control States
     [SerializeField] private bool holdDisabled = false;
@@ -20,7 +21,7 @@ public class InputHandler : MonoBehaviour
 
     //Input Data
     [SerializeField] private List<SkillInput> inputs = new();
-    private SkillInput currentInput;
+    private SkillInput? currentInput;
     [SerializeField] private SkillInput currentRequiredTypeInput;
 
     private Dictionary<string, bool> buttonHoldState = new();
@@ -36,9 +37,9 @@ public class InputHandler : MonoBehaviour
     private bool isFlicking = false;
     private Vector2 lastValidInput = Vector2.zero;
 
-
     private void Awake()
     {
+
         SetupControls();
         RegisterControlCallbacks();
         controls.Enable();
@@ -57,9 +58,10 @@ public class InputHandler : MonoBehaviour
         _HoldR1 = map.FindAction("HoldR1");
 
         _AnalogButtons = map.FindAction("AnalogButtons");
-        _DiagonalFlick = map.FindAction("DiagonalFlick");
+        _AnalogFlick = map.FindAction("AnalogFlick");
 
-        _DiagonalHold = map.FindAction("DiagonalHold");
+        _AnalogHold = map.FindAction("AnalogHold");
+        _AnalogRotation = map.FindAction("AnalogRotation");
     }
 
     private void RegisterControlCallbacks()
@@ -85,39 +87,50 @@ public class InputHandler : MonoBehaviour
 
         // Rotation control
 
+        List<SkillInput?> currentInputs = new();
 
-        /* FIX: 
-         * Right now, both performed and calceled are doing the analog detection
-         * What we want is to be able to make left to up or similar without sending another another input 
-         * when cancel is called after release
-         * 
-         * There should be a way to recognize if we are doing such a move or is just a analog direction move like R3_right
-         * 
-         * Check _DiagonalHold as well 
-         */
-
-        _DiagonalFlick.performed += ctx =>
+        _AnalogHold.performed += ctx =>
         {
-            //inputs = GetRotatingInput(ctx.ReadValue<Vector2>());
 
+            if (ctx.control.name == "leftStick")
+                HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: true, isHeld: true);
+            else HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: false, isHeld: true);
+            if (!currentInputs.Contains(currentInput))
+            {
+                currentInputs.Add(currentInput);
+            }
+
+        };
+
+        _AnalogRotation.performed += ctx =>
+        {
+            inputs = GetRotatingInput(ctx.ReadValue<Vector2>());
+        };
+
+        _AnalogRotation.canceled += ctx =>
+        {
+            HandleRotationEnd(ctx);
+            if (!currentInputs.Contains(currentInput))
+            {
+                currentInputs.Add(currentInput);
+            }
+        };
+
+        _AnalogFlick.performed += ctx =>
+        {
             HandleDiagonalFlickInput(ctx, isStarted: true);
         };
 
-        _DiagonalFlick.canceled += ctx =>
+        _AnalogFlick.canceled += ctx =>
         {
-            //if (inputs.Count <= 1)
             HandleDiagonalFlickInput(ctx, isStarted: false);
-            //else HandleRotationEnd(ctx);
-        };
+            if (!currentInputs.Contains(currentInput))
+            {
+                currentInputs.Add(currentInput);
+            }
 
-
-        _DiagonalHold.performed += ctx =>
-        {
-
-            //if (ctx.control.name == "leftStick")
-            //    HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: true, isHeld: true);
-            //else HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: false, isHeld: true);
-
+            EventManager.OnMultipleInputsSent?.Invoke(currentInputs);
+            currentInputs.Clear();
         };
     }
     #endregion
@@ -210,10 +223,11 @@ public class InputHandler : MonoBehaviour
         SkillInput? input = SkillInputs.GetStickRotationInput(ctx.control.name, inputs);
         if (input.HasValue)
         {
-            EventManager.OnSkillInputReceived?.Invoke(input.Value);
+            currentInput = input;
+            //EventManager.OnSkillInputReceived?.Invoke(input.Value);
         }
         inputs.Clear();
-        currentInput = SkillInput.None;
+        // currentInput = SkillInput.None;
     }
 
     private void ProcessInput(string buttonName, bool isHeld = false)
@@ -241,12 +255,12 @@ public class InputHandler : MonoBehaviour
         else if (dir.x <= -threshold)
             newInput = SkillInput.R3_Left;
 
-        if (newInput.HasValue && currentInput != newInput.Value)
+        if (newInput.HasValue && (inputs.Count == 0 || inputs.Last() != newInput.Value))
         {
             inputs.Add(newInput.Value);
-            currentInput = newInput.Value;
         }
 
+        currentInput = newInput;
         return inputs;
     }
 
@@ -258,7 +272,8 @@ public class InputHandler : MonoBehaviour
 
         if (input.HasValue)
         {
-            EventManager.OnSkillInputReceived?.Invoke(input.Value);
+            currentInput = input;
+            //   EventManager.OnSkillInputReceived?.Invoke(input.Value);
         }
     }
 

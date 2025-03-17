@@ -42,25 +42,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "FlickL3",
-                    "type": "Button",
-                    "id": "7eb595e6-4f40-4adb-a649-880a942e90ae",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Tap",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "FlickR3",
-                    "type": "Button",
-                    "id": "df3ebd19-e4bc-41ef-aeb3-6d624cd5da86",
-                    "expectedControlType": "",
-                    "processors": "AxisDeadzone",
-                    "interactions": "Tap",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "DiagonalFlick",
+                    "name": "AnalogFlick",
                     "type": "Value",
                     "id": "62fe079e-8fd6-4795-9b27-d5eacdadf7f8",
                     "expectedControlType": "Vector2",
@@ -69,7 +51,16 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "DiagonalHold",
+                    "name": "AnalogRotation",
+                    "type": "Value",
+                    "id": "f5791774-4f18-4574-b708-aed9a001d6fd",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "AnalogHold",
                     "type": "Value",
                     "id": "69232248-89a9-43f8-80e5-6c4ed7fc892a",
                     "expectedControlType": "Vector2",
@@ -255,100 +246,12 @@
                 },
                 {
                     "name": "",
-                    "id": "f4f4bc67-ec93-46e0-ad53-74c57d4511c2",
-                    "path": "<Gamepad>/leftStick/up",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FlickL3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "74849151-3155-46b0-aa5a-bd64aceb5bbe",
-                    "path": "<Gamepad>/leftStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FlickL3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7efc1920-6fc2-467b-bc24-ed1abd6001a4",
-                    "path": "<Gamepad>/leftStick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FlickL3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fc8284e6-a4e4-4b80-9081-7b64e601c7cd",
-                    "path": "<Gamepad>/leftStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FlickL3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "89f284da-369d-4a9e-9b07-eb15f0738ec0",
-                    "path": "<Gamepad>/rightStick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FlickR3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f4d214b2-10d3-4f88-8349-d3683ca56b24",
-                    "path": "<Gamepad>/rightStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FlickR3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3c29f079-4106-49fe-8999-045b5b1e2268",
-                    "path": "<Gamepad>/rightStick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FlickR3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "25887925-b9c4-4051-9f97-887e1073f955",
-                    "path": "<Gamepad>/rightStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FlickR3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "7856bde9-e73e-441e-8e57-230b09ff9f0d",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DiagonalFlick",
+                    "action": "AnalogFlick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -359,7 +262,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DiagonalFlick",
+                    "action": "AnalogFlick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c112dba-f63e-4fe6-82a3-042fe6d5faa1",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AnalogRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51013694-139a-45b7-bfa0-353b76ce4649",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AnalogRotation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -370,7 +295,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DiagonalHold",
+                    "action": "AnalogHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -381,7 +306,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DiagonalHold",
+                    "action": "AnalogHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

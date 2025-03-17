@@ -117,39 +117,41 @@ public static class SkillInputs
 
     public static SkillInput? GetStickRotationInput(string buttonName, List<SkillInput> input)
     {
-        if (buttonName.Contains("rightStick"))
-        {
-            if (input.SequenceEqual(R3_RightToUp))
-                return SkillInput.R3_RightToUp;
+        bool isRightStick = buttonName.Contains("rightStick");
+        bool isLeftStick = buttonName.Contains("leftStick");
 
-            if (input.SequenceEqual(R3_RightToDown))
-                return SkillInput.R3_RightToDown;
+        if (!isRightStick && !isLeftStick)
+            return null;
 
-            if (input.SequenceEqual(R3_UpToRight))
-                return SkillInput.R3_UpToRight;
+        if (input.SequenceEqual(R3_RightToUp))
+            return isRightStick ? SkillInput.R3_RightToUp : SkillInput.L3_RightToUp;
 
-            if (input.SequenceEqual(R3_UpToLeft))
-                return SkillInput.R3_UpToLeft;
+        if (input.SequenceEqual(R3_RightToDown))
+            return isRightStick ? SkillInput.R3_RightToDown : SkillInput.L3_RightToDown;
 
-            if (input.SequenceEqual(R3_DownToRight))
-                return SkillInput.R3_DownToRight;
+        if (input.SequenceEqual(R3_UpToRight))
+            return isRightStick ? SkillInput.R3_UpToRight : SkillInput.L3_UpToRight;
 
-            if (input.SequenceEqual(R3_DownToLeft))
-                return SkillInput.R3_DownToLeft;
+        if (input.SequenceEqual(R3_UpToLeft))
+            return isRightStick ? SkillInput.R3_UpToLeft : SkillInput.L3_UpToLeft;
 
-            if (input.SequenceEqual(R3_LeftToUp))
-                return SkillInput.R3_LeftToUp;
+        if (input.SequenceEqual(R3_DownToRight))
+            return isRightStick ? SkillInput.R3_DownToRight : SkillInput.L3_DownToRight;
 
-            if (input.SequenceEqual(R3_LeftToDown))
-                return SkillInput.R3_LeftToDown;
+        if (input.SequenceEqual(R3_DownToLeft))
+            return isRightStick ? SkillInput.R3_DownToLeft : SkillInput.L3_DownToLeft;
 
-            if (input.SequenceEqual(R3_LeftToDownToLeft))
-                return SkillInput.R3_LeftToDownToLeft;
+        if (input.SequenceEqual(R3_LeftToUp))
+            return isRightStick ? SkillInput.R3_LeftToUp : SkillInput.L3_LeftToUp;
 
-            if (input.SequenceEqual(R3_LeftToUpToLeft))
-                return SkillInput.R3_LeftToUpToLeft;
-        }
+        if (input.SequenceEqual(R3_LeftToDown))
+            return isRightStick ? SkillInput.R3_LeftToDown : SkillInput.L3_LeftToDown;
 
+        if (input.SequenceEqual(R3_LeftToDownToLeft))
+            return isRightStick ? SkillInput.R3_LeftToDownToLeft : SkillInput.L3_LeftToDownToLeft;
+
+        if (input.SequenceEqual(R3_LeftToUpToLeft))
+            return isRightStick ? SkillInput.R3_LeftToUpToLeft : SkillInput.L3_LeftToUpToLeft;
 
         return null;
     }
@@ -190,25 +192,18 @@ public static class SkillInputs
 
             if (degrees <= 20f || degrees > 340f)
             {
-                Debug.Log("return right");
                 return isLeft ? SkillInput.L3_Right : SkillInput.R3_Right; // right
             }
             else if (degrees >= 70f && degrees < 110f)
             {
-                Debug.Log("return up");
-
                 return isLeft ? SkillInput.L3_Up : SkillInput.R3_Up; // up
             }
             else if (degrees >= 160f && degrees < 200f)
             {
-                Debug.Log("return left");
-
                 return isLeft ? SkillInput.L3_Left : SkillInput.R3_Left; // left
             }
             else if (degrees >= 250f && degrees < 290f)
             {
-                Debug.Log("return down");
-
                 return isLeft ? SkillInput.L3_Down : SkillInput.R3_Down; // down
             }
         }
@@ -256,7 +251,7 @@ public static class SkillInputs
         return SkillInput.Flick_None;
     }
 
-    public static bool IsL3Input(SkillInput input)
+    public static bool IsL3Input(SkillInput? input)
     {
         return input == SkillInput.L3_Left || input == SkillInput.L3_Right ||
                input == SkillInput.L3_Up || input == SkillInput.L3_Down ||
@@ -264,11 +259,27 @@ public static class SkillInputs
                input == SkillInput.L3_DownRight || input == SkillInput.L3_DownLeft;
     }
 
-    public static bool IsR3Input(SkillInput input)
+    public static bool IsR3Input(SkillInput? input)
     {
         return input == SkillInput.R3_Left || input == SkillInput.R3_Right ||
                input == SkillInput.R3_Up || input == SkillInput.R3_Down ||
                input == SkillInput.R3_UpRight || input == SkillInput.R3_UpLeft ||
                input == SkillInput.R3_DownRight || input == SkillInput.R3_DownLeft;
+    }
+
+    public static bool IsL3HoldInput(SkillInput? input)
+    {
+        return input == SkillInput.Hold_L3_Left || input == SkillInput.Hold_L3_Right ||
+               input == SkillInput.Hold_L3_Up || input == SkillInput.Hold_L3_Down ||
+               input == SkillInput.Hold_L3_UpRight || input == SkillInput.Hold_L3_UpLeft ||
+               input == SkillInput.Hold_L3_DownRight || input == SkillInput.Hold_L3_DownLeft;
+    }
+
+    public static bool IsR3HoldInput(SkillInput? input)
+    {
+        return input == SkillInput.Hold_R3_Left || input == SkillInput.Hold_R3_Right ||
+               input == SkillInput.Hold_R3_Up || input == SkillInput.Hold_R3_Down ||
+               input == SkillInput.Hold_R3_UpRight || input == SkillInput.Hold_R3_UpLeft ||
+               input == SkillInput.Hold_R3_DownRight || input == SkillInput.Hold_R3_DownLeft;
     }
 }

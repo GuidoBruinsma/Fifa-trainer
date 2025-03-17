@@ -24,7 +24,7 @@ public class StickInputVisualizer : MonoBehaviour
     {
         InputActionMap map = controls.FindActionMap("DualShock");
 
-        _stick = map.FindAction("DiagonalFlick");
+        _stick = map.FindAction("AnalogFlick");
 
         _stick.performed += ctx => { stickPosition = ctx.ReadValue<Vector2>(); };
         controls.Enable();
