@@ -54,67 +54,6 @@ public static class SkillInputs
         };
     }
 
-    public static SkillInput? GetStickInput(string buttonName, bool isLeft = true, bool isHeld = false)
-    {
-        if (isLeft)
-        {
-            if (!isHeld)
-                return (buttonName) switch
-                {
-                    ("up") => SkillInput.L3_Up,
-                    ("right") => SkillInput.L3_Right,
-                    ("down") => SkillInput.L3_Down,
-                    ("left") => SkillInput.L3_Left,
-
-                    ("l3_any") => SkillInput.L3_Any,
-                    _ => null
-                };
-            else
-            {
-                return (buttonName) switch
-                {
-                    ("up") => SkillInput.Hold_L3_Up,
-                    ("right") => SkillInput.Hold_L3_Right,
-                    ("down") => SkillInput.Hold_L3_Down,
-                    ("left") => SkillInput.Hold_L3_Left,
-
-                    ("l3_any") => SkillInput.L3_Any,
-                    _ => null
-                };
-            }
-        }
-        else
-        {
-            if (!isHeld)
-            {
-                return (buttonName) switch
-                {
-                    ("up") => SkillInput.R3_Up,
-                    ("right") => SkillInput.R3_Right,
-                    ("down") => SkillInput.R3_Down,
-                    ("left") => SkillInput.R3_Left,
-
-                    ("r3_any") => SkillInput.R3_Any,
-                    _ => null
-                };
-            }
-            else
-            {
-                return (buttonName) switch
-                {
-                    ("up") => SkillInput.Hold_R3_Up,
-                    ("right") => SkillInput.Hold_R3_Right,
-                    ("down") => SkillInput.Hold_R3_Down,
-                    ("left") => SkillInput.Hold_R3_Left,
-
-                    ("r3_any") => SkillInput.R3_Any,
-                    _ => null
-                };
-
-            }
-        }
-    }
-
     public static SkillInput? GetStickRotationInput(string buttonName, List<SkillInput> input)
     {
         bool isRightStick = buttonName.Contains("rightStick");

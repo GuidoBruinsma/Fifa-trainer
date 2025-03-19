@@ -1795,6 +1795,7 @@ MonoBehaviour:
   sequenceValidator: {fileID: 1682479564}
   inputHandler: {fileID: 1682479565}
   skillMoves:
+  - {fileID: 11400000, guid: d293118c4548b9a4ca1f429d3e8f1a42, type: 2}
   - {fileID: 11400000, guid: 1f32fe69814051c4288857f4f1ff9d4f, type: 2}
   - {fileID: 11400000, guid: 8dee91178f8ec7141b5b64899f0b3637, type: 2}
   - {fileID: 11400000, guid: a0cad660698087d4d93f031b9a6f0592, type: 2}
@@ -1836,7 +1837,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b41a56a6343626341a511d5d84bbb788, type: 2}
   - {fileID: 11400000, guid: 21982096bb4cada4f8d388ed51dc8558, type: 2}
   - {fileID: 11400000, guid: bd1a27867c43a4940b936eb72aff8fc4, type: 2}
-  - {fileID: 11400000, guid: d293118c4548b9a4ca1f429d3e8f1a42, type: 2}
   - {fileID: 11400000, guid: 8c7806dd94641614ba71617e78bfe298, type: 2}
   - {fileID: 11400000, guid: 4307daead604dae4eb1a14bd79730e6e, type: 2}
   - {fileID: 11400000, guid: b6e2a33bd5d9f46499e9f36eed1dc430, type: 2}

@@ -15,7 +15,7 @@ public class SkillsValidator : MonoBehaviour
 
     private float currentTime;
     [SerializeField] private int totalAttempts;
-    private SkillInput currentWantedSkill;
+
     private void Start()
     {
         EventManager.OnSkillInputReceived.AddListener(AddInput);
@@ -62,6 +62,12 @@ public class SkillsValidator : MonoBehaviour
         if (!CheckValidity())
         {
             SequenceFailed();
+
+            if (input != SkillInput.None && input != SkillInput.Flick_None && input != SkillInput.Hold_L3_None && input != SkillInput.Hold_None &&
+                input != SkillInput.Hold_R3_None && input != SkillInput.L2_None && input != SkillInput.R2_None && input != SkillInput.L3_None && input != SkillInput.R3_None)
+            {
+                totalAttempts++;
+            }
         }
         else if (currentSequenceInput.Count == pressedSequenceInput.Count)
         {
@@ -78,26 +84,31 @@ public class SkillsValidator : MonoBehaviour
             GlobalDataManager.SetNewData(currentSkill.moveName, 0.8f);
         }
     }
-    /// <summary>
-    /// FIX: After a few skill moves, it starts sending empty input list. Check isFlicking in input handler. Maybe that could be the problem
-    /// 
-    /// </summary>
-    /// <param name="input"></param>
+
     public void AddInput(List<SkillInput?> input)
     {
         if (pressedSequenceInput.Count == 0) currentTime = Time.time;
 
-        if (input.Contains(SkillInput.Flick_None))
+        if (input.Contains(SkillInput.Flick_None) ||
+        input.Contains(SkillInput.Hold_L3_None) ||
+        input.Contains(SkillInput.Hold_None) ||
+        input.Contains(SkillInput.Hold_R3_None) ||
+        input.Contains(SkillInput.L2_None) ||
+        input.Contains(SkillInput.R2_None) ||
+        input.Contains(SkillInput.L3_None) ||
+        input.Contains(SkillInput.R3_None))
+        {
             return;
+        }
 
-        Debug.Log($"Received Inputs: {string.Join(", ", input)}");
-
-        pressedSequenceInput.Add(input[0]); // Store at least one input for sequence tracking
+        pressedSequenceInput.Add(input[0]);
         sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
 
-        if (!CheckValidity(input)) // Check batch validity
+        if (!CheckValidity(input))
         {
             SequenceFailed();
+
+            totalAttempts++;
         }
         else if (currentSequenceInput.Count == pressedSequenceInput.Count)
         {
@@ -178,7 +189,6 @@ public class SkillsValidator : MonoBehaviour
 
     private void SequenceFailed()
     {
-        totalAttempts++;
         ResetSequence();
         EventManager.OnSequenceFailed?.Invoke();
         sq.VisualizeSequence(currentSkill.inputSequence, 0);

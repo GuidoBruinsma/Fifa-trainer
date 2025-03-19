@@ -324,5 +324,11 @@ public class InputHandler : MonoBehaviour
     {
         controls.Disable();
     }
+
+    public bool IsAnyButtonHeld()
+    {
+        return buttonHoldState.Values.Contains(true);
+    }
+
 }
 
