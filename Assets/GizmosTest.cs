@@ -1,53 +1,66 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class StickInputVisualizer : MonoBehaviour
 {
+    [SerializeField] private InputActionAsset controls;
     [Header("Visualization Settings")]
     [Tooltip("Radius of the stick circle.")]
     [SerializeField] private float radius = 1f;
-    [Tooltip("Tolerance in degrees. If 0, use discrete snapping; if > 0, widen each region by this amount.")]
-    [SerializeField] private float tolerance = 0f;
     [SerializeField] private int arcSegments = 30;
 
     [Header("Colors")]
     [SerializeField] private Color circleColor = Color.white;
     [SerializeField] private Color regionColor = new Color(0f, 1f, 0f, 0.3f);  // Semi-transparent green for region arcs.
     [SerializeField] private Color boundaryColor = Color.red;
+    [SerializeField] private Color stickPositionColor = Color.blue; // Color for the stick position line
 
+    [Header("Stick Position")]
+    [SerializeField] private Vector2 stickPosition; // Normalized position of the stick (from -1 to 1)
+
+    private InputAction _stick;
+
+    private void Start()
+    {
+        InputActionMap map = controls.FindActionMap("DualShock");
+
+        _stick = map.FindAction("AnalogFlick");
+
+        _stick.performed += ctx => { stickPosition = ctx.ReadValue<Vector2>(); };
+        controls.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
     private void OnDrawGizmos()
     {
         Vector3 center = transform.position;
 
-        // Draw the outer circle.
+        // Draw the outer circle (representing the analog stick).
         Gizmos.color = circleColor;
         Gizmos.DrawWireSphere(center, radius);
 
-        // If tolerance is 0, visualize using discrete snapping.
-        if (Mathf.Approximately(tolerance, 0f))
-        {
-            Gizmos.color = boundaryColor;
-            // Draw radial lines at multiples of 45°: 0,45,90,...,315.
-            for (int i = 0; i < 8; i++)
-            {
-                float angle = i * 45f;
-                DrawRadialLine(center, radius, angle);
-            }
-        }
-        else
-        {
-            // Visualize widened regions for each direction.
-            // RS_Right is special because it wraps around.
-            DrawRegion(center, radius, 360f - tolerance, 360f);
-            DrawRegion(center, radius, 0f, tolerance);
+        // Calculate the angle from the stick position.
+        float degrees = Mathf.Atan2(stickPosition.y, stickPosition.x) * Mathf.Rad2Deg;
+        if (degrees < 0f)
+            degrees += 360f;
 
-            DrawRegion(center, radius, 45f - tolerance, 45f + tolerance);
-            DrawRegion(center, radius, 90f - tolerance, 90f + tolerance);
-            DrawRegion(center, radius, 135f - tolerance, 135f + tolerance);
-            DrawRegion(center, radius, 180f - tolerance, 180f + tolerance);
-            DrawRegion(center, radius, 225f - tolerance, 225f + tolerance);
-            DrawRegion(center, radius, 270f - tolerance, 270f + tolerance);
-            DrawRegion(center, radius, 315f - tolerance, 315f + tolerance);
-        }
+        // Draw the regions based on your input conditions
+        DrawRegion(center, radius, 20f, 70f);   // Up-Right
+        DrawRegion(center, radius, 110f, 160f);  // Up-Left
+        DrawRegion(center, radius, 200f, 250f);  // Down-Left
+        DrawRegion(center, radius, 290f, 340f);  // Down-Right
+
+        DrawRegion(center, radius, 0f, 20f);     // Right
+        DrawRegion(center, radius, 70f, 110f);   // Up
+        DrawRegion(center, radius, 160f, 200f);  // Left
+        DrawRegion(center, radius, 250f, 290f);  // Down
+
+        // Draw a line from the center to the stick position.
+        Gizmos.color = stickPositionColor;
+        Vector3 stickDirection = new Vector3(Mathf.Cos(degrees * Mathf.Deg2Rad), Mathf.Sin(degrees * Mathf.Deg2Rad), 0f);
+        Gizmos.DrawLine(center, center + stickDirection * radius);
     }
 
     /// <summary>

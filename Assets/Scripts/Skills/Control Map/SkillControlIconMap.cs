@@ -23,6 +23,9 @@ public class SkillControlIconMap : ScriptableObject
     public string ButtonCircleHoldIcon;
     public string ButtonSquareHoldIcon;
 
+    public string L3Any;
+    public string R3Any;
+
     [Header("Rotations")]
     public string L3_RotateIcon;
     public string R3_RotateIcon;
@@ -124,6 +127,9 @@ public class SkillControlIconMap : ScriptableObject
             SkillInput.R1_Hold => R1_HoldIcon,
             SkillInput.R2_Hold => R2_HoldIcon,
 
+            SkillInput.L3_Any => L3Any,
+            SkillInput.R3_Any => R3Any,
+
             SkillInput.R3_Left => R3_LeftIcon,
             SkillInput.R3_UpLeft => R3_UpLeftIcon,
             SkillInput.R3_DownLeft => R3_DownLeftIcon,
@@ -191,8 +197,6 @@ public class SkillControlIconMap : ScriptableObject
             SkillInput.Hold_L3_Up => Hold_L3_UpIcon,
             SkillInput.Hold_L3_Down => Hold_L3_DownIcon,
 
-            SkillInput.L3_Any => L3Icon,
-            //SkillInput.R3_Any => R3Icon,
             SkillInput.Hold_L3_Any => Hold_L3_AnyIcon,
             SkillInput.Hold_R3_Any => Hold_R3_AnyIcon,
 

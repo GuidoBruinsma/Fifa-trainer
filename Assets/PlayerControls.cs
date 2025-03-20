@@ -107,61 +107,61 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Hold"",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""HoldL3Direction"",
+                    ""name"": ""HoldL1"",
                     ""type"": ""Button"",
-                    ""id"": ""bc032d84-4cd3-42cc-8c29-40b14717573b"",
+                    ""id"": ""0a7898e5-1a11-482a-a0d2-5876a80f7065"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
-                    ""initialStateCheck"": false
+                    ""interactions"": ""Hold(duration=0.2)"",
+                    ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""HoldR3Direction"",
+                    ""name"": ""HoldR1"",
                     ""type"": ""Button"",
-                    ""id"": ""de60449f-f679-4ce0-93cf-75d74b8fde1b"",
+                    ""id"": ""937344ae-237c-4d68-a8ec-79ccc0eab2f0"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
-                    ""initialStateCheck"": false
+                    ""interactions"": ""Hold(duration=0.2)"",
+                    ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""FlickL3"",
-                    ""type"": ""Button"",
-                    ""id"": ""7eb595e6-4f40-4adb-a649-880a942e90ae"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Tap"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""FlickR3"",
-                    ""type"": ""Button"",
-                    ""id"": ""df3ebd19-e4bc-41ef-aeb3-6d624cd5da86"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Tap"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RotateR3"",
+                    ""name"": ""AnalogFlick"",
                     ""type"": ""Value"",
-                    ""id"": ""a936bf12-ca75-49eb-9752-14e687523bd9"",
+                    ""id"": ""62fe079e-8fd6-4795-9b27-d5eacdadf7f8"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": ""StickDeadzone"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AnalogRotation"",
+                    ""type"": ""Value"",
+                    ""id"": ""f5791774-4f18-4574-b708-aed9a001d6fd"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""DiagonalFlick"",
+                    ""name"": ""AnalogHold"",
                     ""type"": ""Value"",
-                    ""id"": ""62fe079e-8fd6-4795-9b27-d5eacdadf7f8"",
+                    ""id"": ""69232248-89a9-43f8-80e5-6c4ed7fc892a"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": ""StickDeadzone"",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AnalogButtons"",
+                    ""type"": ""Button"",
+                    ""id"": ""21f7ac12-5daf-454e-ae35-b287640022db"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -202,28 +202,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""bcc24772-2216-440a-800c-53bdd4c18f46"",
                     ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Buttons"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d8d72a53-3a2e-4e1b-b25f-3a6ab975b1a0"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Buttons"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""25025fc3-93d9-4f37-9e14-698e46348b8f"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -332,210 +310,23 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""07f60956-2470-439e-8437-f6dee6e64a76"",
+                    ""id"": ""a29cbefa-130b-4af8-8161-f4c1f003ce33"",
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Hold"",
+                    ""action"": ""HoldL1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c3ca6807-e51f-402f-b1a4-99cde9d08767"",
+                    ""id"": ""f9e4b743-1f41-4437-93e1-26a457789cdb"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Hold"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b1280517-6af7-4274-af44-bf7ebf13b153"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HoldL3Direction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5c00e101-d2b6-4774-a39f-ee9e5ccb0ce0"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HoldL3Direction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ce462011-2a01-4bca-85d7-408d4dfb71bb"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HoldL3Direction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8ece42e4-7e6d-434f-89c8-3c73214f2750"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HoldL3Direction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d5c23871-f7c8-468e-9b99-1fb54d0e4604"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HoldR3Direction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8ac671bc-9f97-4511-8a1b-479592c0106b"",
-                    ""path"": ""<Gamepad>/rightStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HoldR3Direction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fb945f1a-6d28-4e4b-adfe-388b28e6e600"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HoldR3Direction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4e558498-19e2-4b58-a41d-1d4765cec998"",
-                    ""path"": ""<Gamepad>/rightStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HoldR3Direction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f4f4bc67-ec93-46e0-ad53-74c57d4511c2"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FlickL3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""74849151-3155-46b0-aa5a-bd64aceb5bbe"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FlickL3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7efc1920-6fc2-467b-bc24-ed1abd6001a4"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FlickL3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fc8284e6-a4e4-4b80-9081-7b64e601c7cd"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FlickL3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""89f284da-369d-4a9e-9b07-eb15f0738ec0"",
-                    ""path"": ""<Gamepad>/rightStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FlickR3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f4d214b2-10d3-4f88-8349-d3683ca56b24"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FlickR3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3c29f079-4106-49fe-8999-045b5b1e2268"",
-                    ""path"": ""<Gamepad>/rightStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FlickR3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""25887925-b9c4-4051-9f97-887e1073f955"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FlickR3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9706a33f-7d9a-40d3-883a-6732a2e5e5f2"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RotateR3"",
+                    ""action"": ""HoldR1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -546,7 +337,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""DiagonalFlick"",
+                    ""action"": ""AnalogFlick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -557,7 +348,73 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""DiagonalFlick"",
+                    ""action"": ""AnalogFlick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c112dba-f63e-4fe6-82a3-042fe6d5faa1"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnalogRotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""51013694-139a-45b7-bfa0-353b76ce4649"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnalogRotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ede5ffa0-9667-495f-ac46-0475c12c4a3e"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnalogHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38cfad06-225a-4d53-8394-40198ab4f7c7"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnalogHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8d72a53-3a2e-4e1b-b25f-3a6ab975b1a0"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnalogButtons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25025fc3-93d9-4f37-9e14-698e46348b8f"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnalogButtons"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -818,12 +675,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_DualShock = asset.FindActionMap("DualShock", throwIfNotFound: true);
         m_DualShock_Buttons = m_DualShock.FindAction("Buttons", throwIfNotFound: true);
         m_DualShock_Hold = m_DualShock.FindAction("Hold", throwIfNotFound: true);
-        m_DualShock_HoldL3Direction = m_DualShock.FindAction("HoldL3Direction", throwIfNotFound: true);
-        m_DualShock_HoldR3Direction = m_DualShock.FindAction("HoldR3Direction", throwIfNotFound: true);
-        m_DualShock_FlickL3 = m_DualShock.FindAction("FlickL3", throwIfNotFound: true);
-        m_DualShock_FlickR3 = m_DualShock.FindAction("FlickR3", throwIfNotFound: true);
-        m_DualShock_RotateR3 = m_DualShock.FindAction("RotateR3", throwIfNotFound: true);
-        m_DualShock_DiagonalFlick = m_DualShock.FindAction("DiagonalFlick", throwIfNotFound: true);
+        m_DualShock_HoldL1 = m_DualShock.FindAction("HoldL1", throwIfNotFound: true);
+        m_DualShock_HoldR1 = m_DualShock.FindAction("HoldR1", throwIfNotFound: true);
+        m_DualShock_AnalogFlick = m_DualShock.FindAction("AnalogFlick", throwIfNotFound: true);
+        m_DualShock_AnalogRotation = m_DualShock.FindAction("AnalogRotation", throwIfNotFound: true);
+        m_DualShock_AnalogHold = m_DualShock.FindAction("AnalogHold", throwIfNotFound: true);
+        m_DualShock_AnalogButtons = m_DualShock.FindAction("AnalogButtons", throwIfNotFound: true);
         // Nintendo
         m_Nintendo = asset.FindActionMap("Nintendo", throwIfNotFound: true);
         m_Nintendo_Buttons = m_Nintendo.FindAction("Buttons", throwIfNotFound: true);
@@ -913,12 +770,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IDualShockActions> m_DualShockActionsCallbackInterfaces = new List<IDualShockActions>();
     private readonly InputAction m_DualShock_Buttons;
     private readonly InputAction m_DualShock_Hold;
-    private readonly InputAction m_DualShock_HoldL3Direction;
-    private readonly InputAction m_DualShock_HoldR3Direction;
-    private readonly InputAction m_DualShock_FlickL3;
-    private readonly InputAction m_DualShock_FlickR3;
-    private readonly InputAction m_DualShock_RotateR3;
-    private readonly InputAction m_DualShock_DiagonalFlick;
+    private readonly InputAction m_DualShock_HoldL1;
+    private readonly InputAction m_DualShock_HoldR1;
+    private readonly InputAction m_DualShock_AnalogFlick;
+    private readonly InputAction m_DualShock_AnalogRotation;
+    private readonly InputAction m_DualShock_AnalogHold;
+    private readonly InputAction m_DualShock_AnalogButtons;
     /// <summary>
     /// Provides access to input actions defined in input action map "DualShock".
     /// </summary>
@@ -939,29 +796,29 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Hold => m_Wrapper.m_DualShock_Hold;
         /// <summary>
-        /// Provides access to the underlying input action "DualShock/HoldL3Direction".
+        /// Provides access to the underlying input action "DualShock/HoldL1".
         /// </summary>
-        public InputAction @HoldL3Direction => m_Wrapper.m_DualShock_HoldL3Direction;
+        public InputAction @HoldL1 => m_Wrapper.m_DualShock_HoldL1;
         /// <summary>
-        /// Provides access to the underlying input action "DualShock/HoldR3Direction".
+        /// Provides access to the underlying input action "DualShock/HoldR1".
         /// </summary>
-        public InputAction @HoldR3Direction => m_Wrapper.m_DualShock_HoldR3Direction;
+        public InputAction @HoldR1 => m_Wrapper.m_DualShock_HoldR1;
         /// <summary>
-        /// Provides access to the underlying input action "DualShock/FlickL3".
+        /// Provides access to the underlying input action "DualShock/AnalogFlick".
         /// </summary>
-        public InputAction @FlickL3 => m_Wrapper.m_DualShock_FlickL3;
+        public InputAction @AnalogFlick => m_Wrapper.m_DualShock_AnalogFlick;
         /// <summary>
-        /// Provides access to the underlying input action "DualShock/FlickR3".
+        /// Provides access to the underlying input action "DualShock/AnalogRotation".
         /// </summary>
-        public InputAction @FlickR3 => m_Wrapper.m_DualShock_FlickR3;
+        public InputAction @AnalogRotation => m_Wrapper.m_DualShock_AnalogRotation;
         /// <summary>
-        /// Provides access to the underlying input action "DualShock/RotateR3".
+        /// Provides access to the underlying input action "DualShock/AnalogHold".
         /// </summary>
-        public InputAction @RotateR3 => m_Wrapper.m_DualShock_RotateR3;
+        public InputAction @AnalogHold => m_Wrapper.m_DualShock_AnalogHold;
         /// <summary>
-        /// Provides access to the underlying input action "DualShock/DiagonalFlick".
+        /// Provides access to the underlying input action "DualShock/AnalogButtons".
         /// </summary>
-        public InputAction @DiagonalFlick => m_Wrapper.m_DualShock_DiagonalFlick;
+        public InputAction @AnalogButtons => m_Wrapper.m_DualShock_AnalogButtons;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -994,24 +851,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Hold.started += instance.OnHold;
             @Hold.performed += instance.OnHold;
             @Hold.canceled += instance.OnHold;
-            @HoldL3Direction.started += instance.OnHoldL3Direction;
-            @HoldL3Direction.performed += instance.OnHoldL3Direction;
-            @HoldL3Direction.canceled += instance.OnHoldL3Direction;
-            @HoldR3Direction.started += instance.OnHoldR3Direction;
-            @HoldR3Direction.performed += instance.OnHoldR3Direction;
-            @HoldR3Direction.canceled += instance.OnHoldR3Direction;
-            @FlickL3.started += instance.OnFlickL3;
-            @FlickL3.performed += instance.OnFlickL3;
-            @FlickL3.canceled += instance.OnFlickL3;
-            @FlickR3.started += instance.OnFlickR3;
-            @FlickR3.performed += instance.OnFlickR3;
-            @FlickR3.canceled += instance.OnFlickR3;
-            @RotateR3.started += instance.OnRotateR3;
-            @RotateR3.performed += instance.OnRotateR3;
-            @RotateR3.canceled += instance.OnRotateR3;
-            @DiagonalFlick.started += instance.OnDiagonalFlick;
-            @DiagonalFlick.performed += instance.OnDiagonalFlick;
-            @DiagonalFlick.canceled += instance.OnDiagonalFlick;
+            @HoldL1.started += instance.OnHoldL1;
+            @HoldL1.performed += instance.OnHoldL1;
+            @HoldL1.canceled += instance.OnHoldL1;
+            @HoldR1.started += instance.OnHoldR1;
+            @HoldR1.performed += instance.OnHoldR1;
+            @HoldR1.canceled += instance.OnHoldR1;
+            @AnalogFlick.started += instance.OnAnalogFlick;
+            @AnalogFlick.performed += instance.OnAnalogFlick;
+            @AnalogFlick.canceled += instance.OnAnalogFlick;
+            @AnalogRotation.started += instance.OnAnalogRotation;
+            @AnalogRotation.performed += instance.OnAnalogRotation;
+            @AnalogRotation.canceled += instance.OnAnalogRotation;
+            @AnalogHold.started += instance.OnAnalogHold;
+            @AnalogHold.performed += instance.OnAnalogHold;
+            @AnalogHold.canceled += instance.OnAnalogHold;
+            @AnalogButtons.started += instance.OnAnalogButtons;
+            @AnalogButtons.performed += instance.OnAnalogButtons;
+            @AnalogButtons.canceled += instance.OnAnalogButtons;
         }
 
         /// <summary>
@@ -1029,24 +886,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Hold.started -= instance.OnHold;
             @Hold.performed -= instance.OnHold;
             @Hold.canceled -= instance.OnHold;
-            @HoldL3Direction.started -= instance.OnHoldL3Direction;
-            @HoldL3Direction.performed -= instance.OnHoldL3Direction;
-            @HoldL3Direction.canceled -= instance.OnHoldL3Direction;
-            @HoldR3Direction.started -= instance.OnHoldR3Direction;
-            @HoldR3Direction.performed -= instance.OnHoldR3Direction;
-            @HoldR3Direction.canceled -= instance.OnHoldR3Direction;
-            @FlickL3.started -= instance.OnFlickL3;
-            @FlickL3.performed -= instance.OnFlickL3;
-            @FlickL3.canceled -= instance.OnFlickL3;
-            @FlickR3.started -= instance.OnFlickR3;
-            @FlickR3.performed -= instance.OnFlickR3;
-            @FlickR3.canceled -= instance.OnFlickR3;
-            @RotateR3.started -= instance.OnRotateR3;
-            @RotateR3.performed -= instance.OnRotateR3;
-            @RotateR3.canceled -= instance.OnRotateR3;
-            @DiagonalFlick.started -= instance.OnDiagonalFlick;
-            @DiagonalFlick.performed -= instance.OnDiagonalFlick;
-            @DiagonalFlick.canceled -= instance.OnDiagonalFlick;
+            @HoldL1.started -= instance.OnHoldL1;
+            @HoldL1.performed -= instance.OnHoldL1;
+            @HoldL1.canceled -= instance.OnHoldL1;
+            @HoldR1.started -= instance.OnHoldR1;
+            @HoldR1.performed -= instance.OnHoldR1;
+            @HoldR1.canceled -= instance.OnHoldR1;
+            @AnalogFlick.started -= instance.OnAnalogFlick;
+            @AnalogFlick.performed -= instance.OnAnalogFlick;
+            @AnalogFlick.canceled -= instance.OnAnalogFlick;
+            @AnalogRotation.started -= instance.OnAnalogRotation;
+            @AnalogRotation.performed -= instance.OnAnalogRotation;
+            @AnalogRotation.canceled -= instance.OnAnalogRotation;
+            @AnalogHold.started -= instance.OnAnalogHold;
+            @AnalogHold.performed -= instance.OnAnalogHold;
+            @AnalogHold.canceled -= instance.OnAnalogHold;
+            @AnalogButtons.started -= instance.OnAnalogButtons;
+            @AnalogButtons.performed -= instance.OnAnalogButtons;
+            @AnalogButtons.canceled -= instance.OnAnalogButtons;
         }
 
         /// <summary>
@@ -1296,47 +1153,47 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHold(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "HoldL3Direction" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "HoldL1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnHoldL3Direction(InputAction.CallbackContext context);
+        void OnHoldL1(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "HoldR3Direction" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "HoldR1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnHoldR3Direction(InputAction.CallbackContext context);
+        void OnHoldR1(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "FlickL3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "AnalogFlick" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnFlickL3(InputAction.CallbackContext context);
+        void OnAnalogFlick(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "FlickR3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "AnalogRotation" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnFlickR3(InputAction.CallbackContext context);
+        void OnAnalogRotation(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "RotateR3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "AnalogHold" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnRotateR3(InputAction.CallbackContext context);
+        void OnAnalogHold(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "DiagonalFlick" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "AnalogButtons" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnDiagonalFlick(InputAction.CallbackContext context);
+        void OnAnalogButtons(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Nintendo" which allows adding and removing callbacks.
