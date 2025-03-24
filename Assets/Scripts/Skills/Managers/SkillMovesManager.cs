@@ -40,7 +40,7 @@ public class SkillMovesManager : MonoBehaviour
 
         LoadCurrentSkillMove();
     }
-    
+
     private void RestartGame()
     {
         currentSequenceIndex = 0;
