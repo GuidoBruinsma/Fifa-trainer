@@ -38,19 +38,13 @@ public class PauseMenu : MonoBehaviour
     //TODO: Uncomment, delete saving
     private void ActivatePause(string buttonName)
     {
-        
-        //if(buttonName == "select") isPaused = !isPaused;
 
-        //Time.timeScale = isPaused ? 0 : 1;
+        if (buttonName == "select") isPaused = !isPaused;
 
-        //pauseCanvas.SetActive(isPaused);
+        Time.timeScale = isPaused ? 0 : 1;
 
-        if (buttonName == "select")
-        {
+        pauseCanvas.SetActive(isPaused);
 
-            SkillExecutionData data = new("Ernesto", 0.5f);
-            data.SaveData();
 
-        }
     }
 }
