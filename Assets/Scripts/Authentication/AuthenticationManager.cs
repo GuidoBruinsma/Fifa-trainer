@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class AuthenticationManager : MonoBehaviour
 {
+    private static AuthenticationManager instance;
+
     //Username: test Password: _B123d$a
     public TMP_InputField usernameInput;
     public TMP_InputField passwordInput;
@@ -20,9 +22,17 @@ public class AuthenticationManager : MonoBehaviour
     public GameObject loginPanel;
     public GameObject startPanel;
 
-
     async void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else { Destroy(this.gameObject); }
+
+
+
         await UnityServices.InitializeAsync();
         SetupEvents();
         if (PlayerPrefs.HasKey("rememberMe"))
@@ -32,10 +42,8 @@ public class AuthenticationManager : MonoBehaviour
                 SignIn();
         }
     }
-    private void Update()
-    {
-        
-    }
+
+
     public async void SignIn()
     {
         if (AuthenticationService.Instance.SessionTokenExists)
@@ -67,7 +75,7 @@ public class AuthenticationManager : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            PanelManager.OpenClosePanels(startPanel, loginPanel);
+
 
             if (PlayerPrefs.HasKey("username"))
             {
@@ -78,8 +86,6 @@ public class AuthenticationManager : MonoBehaviour
                 playerUsernameText.text = AuthenticationService.Instance.PlayerName;
 
             SceneManager.LoadScene(1);
-            Debug.Log(AuthenticationService.Instance.IsSignedIn);
-
         }
         catch (AuthenticationException e)
         {
@@ -91,11 +97,7 @@ public class AuthenticationManager : MonoBehaviour
         }
     }
 
-    public void SignOut()
-    {
-        AuthenticationService.Instance.SignOut();
-        playerUsernameText.text = "Need to login";
-    }
+
 
     int ConvertBoolToInt()
     {
@@ -118,7 +120,6 @@ public class AuthenticationManager : MonoBehaviour
 
             PlayerPrefs.SetString("username", username);
             PlayerPrefs.SetInt("rememberMe", ConvertBoolToInt());
-
         }
         catch (AuthenticationException e)
         {
@@ -165,9 +166,21 @@ public class AuthenticationManager : MonoBehaviour
     {
         AuthenticationService.Instance.SignedIn += () =>
         {
-            Debug.Log($"Seccessfully sign up {AuthenticationService.Instance.PlayerName}");
-        }; AuthenticationService.Instance.SignedOut += () =>
+            if (loginPanel != null && startPanel != null)
+            {
+                PanelManager.OpenClosePanels(startPanel, loginPanel);
+                Debug.Log($"Successfully signed up {AuthenticationService.Instance.PlayerName}");
+            }
+        };
+
+        AuthenticationService.Instance.SignedOut += () =>
         {
+            PanelManager.OpenClosePanels(loginPanel, startPanel);
+        };
+
+        AuthenticationService.Instance.Expired += () =>
+        {
+            SceneManager.LoadScene(0);
             Debug.Log($"Seccessfully sign out {AuthenticationService.Instance.PlayerName}");
         };
     }
