@@ -12,12 +12,12 @@ public class PlayerOnlineStatus : MonoBehaviour
         if (AuthenticationService.Instance.IsSignedIn)
         {
             onlineStatus.text = "Status: <color=green>Online</color>";
-            playerName.text = "Player name: " + AuthenticationService.Instance.PlayerName;
+            playerName.text = $"Player name: <color=green>{AuthenticationService.Instance.PlayerName}</color>";
         }
         else
         {
             onlineStatus.text = "Status: <color=red>Offline</color>";
-            playerName.text = "Player name: " + AuthenticationService.Instance.PlayerName;
+            playerName.text = $"Player name: <color=green>{AuthenticationService.Instance.PlayerName}</color>";
         }
     }
 }
