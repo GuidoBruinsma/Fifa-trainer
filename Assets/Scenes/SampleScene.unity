@@ -2204,6 +2204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequenceValidator: {fileID: 1682479564}
   inputHandler: {fileID: 1682479565}
+  skillsSettings: {fileID: 11400000, guid: 0d5b13ed1ec67b849959a929ade8c867, type: 2}
   skillMoves:
   - {fileID: 11400000, guid: d293118c4548b9a4ca1f429d3e8f1a42, type: 2}
   - {fileID: 11400000, guid: 1f32fe69814051c4288857f4f1ff9d4f, type: 2}
@@ -2698,7 +2699,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1771852274
 MonoBehaviour:
   m_ObjectHideFlags: 0
