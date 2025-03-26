@@ -45,4 +45,12 @@ public class PauseMenu : MonoBehaviour
 
         pauseCanvas.SetActive(isPaused);
     }
+
+    public void ResumePause() {
+        isPaused = !isPaused;
+
+        Time.timeScale = isPaused ? 0 : 1;
+
+        pauseCanvas.SetActive(isPaused);
+    }
 }

@@ -17,4 +17,9 @@ public class ButtonsManager : MonoBehaviour
     {
         GameManager.LogOut();
     }
+
+    public void Quit() {
+        Application.Quit();
+        SignOut();
+    }
 }
