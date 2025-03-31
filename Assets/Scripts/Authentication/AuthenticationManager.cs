@@ -85,7 +85,7 @@ public class AuthenticationManager : MonoBehaviour
             else
                 playerUsernameText.text = AuthenticationService.Instance.PlayerName;
 
-            SceneManager.LoadScene(1);
+           // SceneManager.LoadScene(1);
         }
         catch (AuthenticationException e)
         {
@@ -139,7 +139,7 @@ public class AuthenticationManager : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
-            playerUsernameText.text = username + AuthenticationService.Instance.PlayerId;
+            playerUsernameText.text = username;
 
             await AuthenticationService.Instance.UpdatePlayerNameAsync(username);
 
@@ -151,6 +151,22 @@ public class AuthenticationManager : MonoBehaviour
             }
 
             Debug.Log($"Seccessfully logged In {AuthenticationService.Instance.PlayerId}");
+        }
+        catch (AuthenticationException e)
+        {
+            errorText.text = e.Message;
+        }
+        catch (RequestFailedException e)
+        {
+            errorText.text = e.Message;
+        }
+    }
+
+    public void LogOut() {
+        try
+        {
+            AuthenticationService.Instance.SignOut();
+
         }
         catch (AuthenticationException e)
         {
