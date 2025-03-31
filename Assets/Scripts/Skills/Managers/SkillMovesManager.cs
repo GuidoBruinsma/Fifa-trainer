@@ -11,6 +11,7 @@ public class SkillMovesManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private SkillsValidator sequenceValidator;
     [SerializeField] private InputHandler inputHandler;
+    [SerializeField] private SkillGameSettings skillsSettings;
 
     [Space]
     [SerializeField] private List<Skill> skillMoves;
@@ -28,6 +29,7 @@ public class SkillMovesManager : MonoBehaviour
 
     private void Start()
     {
+        SetupSkillsGameSettings();
         if (skillMoves.Count <= 0) return;
 
         sequenceValidator = GetComponent<SkillsValidator>();
@@ -40,7 +42,22 @@ public class SkillMovesManager : MonoBehaviour
 
         LoadCurrentSkillMove();
     }
-    
+
+    private void SetupSkillsGameSettings () {
+        if (skillsSettings == null) {
+            Debug.LogError("No game settings attached");
+            return;
+        }
+
+        if (skillsSettings.selectedSkillMoves.Count < 1)
+        {
+            skillMoves = new(skillsSettings.allSkillMoves);
+        }
+        else {
+            skillMoves = new(skillsSettings.selectedSkillMoves);
+        }
+    }
+
     private void RestartGame()
     {
         currentSequenceIndex = 0;

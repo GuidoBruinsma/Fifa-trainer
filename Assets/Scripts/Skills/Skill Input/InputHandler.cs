@@ -15,9 +15,8 @@ public class InputHandler : MonoBehaviour
     private InputAction _Buttons, _Hold, _AnalogFlick, _AnalogButtons, _HoldL1, _HoldR1, _AnalogHold, _AnalogRotation;
 
     //Control States
-    [SerializeField] private bool holdDisabled = false;
-    [SerializeField] private bool waitingForRelease;
-    [SerializeField] private bool isHeld;
+    private bool holdDisabled = false;
+    private bool waitingForRelease;
 
     //Input Data
     [SerializeField] private List<SkillInput> inputs = new();
@@ -39,7 +38,6 @@ public class InputHandler : MonoBehaviour
 
     private void Awake()
     {
-
         SetupControls();
         RegisterControlCallbacks();
         controls.Enable();
