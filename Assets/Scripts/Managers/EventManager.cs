@@ -12,4 +12,9 @@ public static class EventManager
     public static UnityEvent OnSequenceFailed = new();
 
     public static UnityEvent OnWholeSessionFailed = new();
+
+    //Adaptive difficulty feedback events here
+    public static UnityEvent<bool> OnSkillIsCompleted = new();
+
+    public static UnityEvent OnDifficultyChanged = new();
 }

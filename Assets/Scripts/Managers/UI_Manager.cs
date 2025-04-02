@@ -39,7 +39,7 @@ public class UI_Manager : MonoBehaviour
 
     public void SetElapsedTimeText(float elapsedTime)
     {
-        int minutes = Mathf.FloorToInt(elapsedTime / 60f);
+        int minutes = Mathf.FloorToInt(elapsedTime / 60f); 
         int seconds = Mathf.FloorToInt(elapsedTime % 60f);
         timeElapsedText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
@@ -53,6 +53,4 @@ public class UI_Manager : MonoBehaviour
         nextMoveName.text = moveName;
         nextMoveSequence.text = skillMap.GetSequenceDisplay(sequenceList);
     }
-
-
 }
