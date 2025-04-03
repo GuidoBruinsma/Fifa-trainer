@@ -73,7 +73,7 @@ public class SkillsValidator : MonoBehaviour
         {
             ResetSequence();
             EventManager.OnSequenceSuccess?.Invoke();
-            EventManager.OnMoveCompleted?.Invoke(true);
+            EventManager.OnSkillIsCompleted?.Invoke(true);
 
             currentSequenceInputHolder = new(currentSkill.inputSequence);
             sq.VisualizeSequence(currentSkill.inputSequence, 0);
@@ -115,7 +115,7 @@ public class SkillsValidator : MonoBehaviour
         {
             ResetSequence();
             EventManager.OnSequenceSuccess?.Invoke();
-            EventManager.OnMoveCompleted?.Invoke(true);
+            EventManager.OnSkillIsCompleted?.Invoke(true);
 
             currentSequenceInputHolder = new(currentSkill.inputSequence);
             sq.VisualizeSequence(currentSkill.inputSequence, 0);
@@ -193,7 +193,7 @@ public class SkillsValidator : MonoBehaviour
     {
         ResetSequence();
         EventManager.OnSequenceFailed?.Invoke();
-        EventManager.OnMoveCompleted?.Invoke(false);
+        EventManager.OnSkillIsCompleted?.Invoke(false);
         sq.VisualizeSequence(currentSkill.inputSequence, 0);
     }
 
