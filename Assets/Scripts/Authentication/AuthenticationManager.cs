@@ -22,7 +22,7 @@ public class AuthenticationManager : MonoBehaviour
     public GameObject loginPanel;
     public GameObject startPanel;
 
-    async void Start()
+    async void Awake()
     {
         if (instance == null)
         {

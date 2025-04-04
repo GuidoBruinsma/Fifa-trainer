@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Unity.Services.Analytics;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class SkillsValidator : MonoBehaviour
 {
@@ -195,6 +197,8 @@ public class SkillsValidator : MonoBehaviour
         EventManager.OnSequenceFailed?.Invoke();
         EventManager.OnSkillIsCompleted?.Invoke(false);
         sq.VisualizeSequence(currentSkill.inputSequence, 0);
+
+        AnalyticsManager.Instance.FailedAttempTrack(totalAttempts);
     }
 
     public void SetSequenceInput(List<SkillInput> currentSequenceInput, Skill skill)
