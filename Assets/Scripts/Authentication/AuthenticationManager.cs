@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class AuthenticationManager : MonoBehaviour
 {
-    private static AuthenticationManager instance;
+    public static AuthenticationManager instance;
 
     //Username: test Password: _B123d$a
     public TMP_InputField usernameInput;
