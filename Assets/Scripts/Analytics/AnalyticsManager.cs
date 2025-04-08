@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using Unity.Services.Analytics;
 using Unity.Services.Core;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 public class AnalyticsManager : MonoBehaviour
 {

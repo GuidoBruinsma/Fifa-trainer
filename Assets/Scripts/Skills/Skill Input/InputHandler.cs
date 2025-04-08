@@ -121,18 +121,19 @@ public class InputHandler : MonoBehaviour
 
         _AnalogFlick.canceled += ctx =>
         {
+
             HandleDiagonalFlickInput(ctx, isStarted: false);
-            if (!currentInputs.Contains(currentInput))
+
+            if (currentInput != SkillInput.Flick_None && !currentInputs.Contains(currentInput))
             {
                 currentInputs.Add(currentInput);
             }
 
             EventManager.OnMultipleInputsSent?.Invoke(currentInputs);
-            currentInputs.Clear();
+            currentInputs.Clear();     //Test: here it works for normal usage, above it works for logging usage
         };
     }
     #endregion
-
 
     #region Input Processing
     private void HandleHoldStart(string controlName)

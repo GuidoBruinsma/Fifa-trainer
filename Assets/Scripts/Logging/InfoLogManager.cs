@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class InfoLogManager : MonoBehaviour
@@ -10,30 +10,36 @@ public class InfoLogManager : MonoBehaviour
     {
         EventManager.OnSkillInputReceived.AddListener(ValidateCurrentInput);
         EventManager.OnMultipleInputsSent.AddListener(ValidateMultipleCurrentInputs);
+
+        StartSequence();
     }
 
     void ValidateCurrentInput(SkillInput skillInput)
     {
         if (skillInput == SkillInput.Flick_None ||
-       skillInput == SkillInput.Hold_L3_None ||
-        skillInput == SkillInput.Hold_None ||
-        skillInput == SkillInput.Hold_R3_None ||
-       skillInput == SkillInput.L2_None ||
-       skillInput == SkillInput.R2_None ||
-       skillInput == SkillInput.L3_None ||
-        skillInput == SkillInput.R3_None)
+            skillInput == SkillInput.Hold_L3_None ||
+            skillInput == SkillInput.Hold_None ||
+            skillInput == SkillInput.Hold_R3_None ||
+            skillInput == SkillInput.L2_None ||
+            skillInput == SkillInput.R2_None ||
+            skillInput == SkillInput.L3_None ||
+            skillInput == SkillInput.R3_None)
         {
             return;
         }
-        //indexPosition = 0;
+
         CheckValidity(skillInput);
         CorrectSkill();
+
+        ResetSequece();
     }
 
     void ValidateMultipleCurrentInputs(List<SkillInput?> skillInput)
     {
         CheckValidityAnalog(skillInput);
         CorrectSkill();
+
+        ResetSequece();
     }
 
     private void StartSequence()
@@ -70,6 +76,7 @@ public class InfoLogManager : MonoBehaviour
                 if (pressedInputIndex >= inputList.Count)
                 {
                     pressedInputSequnce.Clear();
+                    StartSequence();
                     continue;
                 }
 
@@ -89,14 +96,27 @@ public class InfoLogManager : MonoBehaviour
 
     private void CheckValidityAnalog(List<SkillInput?> analogInputs)
     {
+
+        if (analogInputs == null || analogInputs.Count == 0)
+        {
+            return;
+        }
+
+        if (!analogInputs[0].HasValue)
+        {
+            return;
+        }
+
         if (candidateSkills.Count == 0)
         {
             StartSequence();
         }
 
         SkillInput analogInput = analogInputs[0].Value;
+        Debug.Log($"[Analog] Received input: {analogInput}");
 
         pressedInputSequnce.Add(analogInput);
+
         int pressedInputIndex = pressedInputSequnce.Count - 1;
         List<Skill> filteredCandidates = new List<Skill>();
 
@@ -108,9 +128,10 @@ public class InfoLogManager : MonoBehaviour
             {
                 List<SkillInput> inputList = sequence.input;
 
-                if (pressedInputIndex >= inputList.Count)
+                if (pressedInputIndex > inputList.Count - 1)
                 {
                     pressedInputSequnce.Clear();
+                    StartSequence();
                     continue;
                 }
 
@@ -125,30 +146,36 @@ public class InfoLogManager : MonoBehaviour
             {
                 filteredCandidates.Add(candidate);
             }
-          
         }
-
 
         candidateSkills = filteredCandidates;
     }
 
     private void CorrectSkill()
     {
-        foreach (var candidate in candidateSkills)
-        {
-            foreach (var skill in candidate.inputSequence) { 
-                var input = skill.input;
+        Skill currentSkill = null;
 
-                if (input == pressedInputSequnce) {
-                    Skill currentSkill = candidate;
-                    StartSequence();
-                    Debug.Log(currentSkill.name);
+        foreach (var candidateSkill in candidateSkills)
+        {
+            foreach (var candidateSkillSequence in candidateSkill.inputSequence)
+            {
+                var input = candidateSkillSequence.input;
+
+                if (pressedInputSequnce.Count == input.Count)
+                {
+                    currentSkill = candidateSkill;
+                    Debug.Log($"Correct skill {currentSkill.moveName}");
                 }
             }
         }
-        if (candidateSkills.Count == 1)
+        if (currentSkill != null) candidateSkills.Remove(currentSkill);
+    }
+
+    private void ResetSequece()
+    {
+        if (candidateSkills.Count == 0) //No skills available for this sequence
         {
-            
+            StartSequence();
         }
     }
 }
