@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07588463c01f2c846acc761c4852c957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
   controls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   inputs: 
   currentRequiredTypeInput: 0

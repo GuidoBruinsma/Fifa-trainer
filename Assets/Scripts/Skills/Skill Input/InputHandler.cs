@@ -7,7 +7,14 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
+    private enum InputType { 
+        InGame,
+        Logger
+    }
+
     public UnityAction<SkillInput> OnSkillInputReceived;
+
+    [SerializeField] private InputType type;
 
     //Input Action variables
     [Header("Controls")]
@@ -61,6 +68,7 @@ public class InputHandler : MonoBehaviour
         _AnalogHold = map.FindAction("AnalogHold");
         _AnalogRotation = map.FindAction("AnalogRotation");
     }
+    List<SkillInput?> currentInputs = new();
 
     private void RegisterControlCallbacks()
     {
@@ -85,11 +93,9 @@ public class InputHandler : MonoBehaviour
 
         // Rotation control
 
-        List<SkillInput?> currentInputs = new();
 
         _AnalogHold.performed += ctx =>
         {
-
             if (ctx.control.name == "leftStick")
                 HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: true, isHeld: true);
             else HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: false, isHeld: true);
@@ -121,16 +127,37 @@ public class InputHandler : MonoBehaviour
 
         _AnalogFlick.canceled += ctx =>
         {
-            currentInputs.Clear();     //Test: here it works for normal usage, above it works for logging usage
+            
 
-            HandleDiagonalFlickInput(ctx, isStarted: false);
-
-            if (currentInput != SkillInput.Flick_None && !currentInputs.Contains(currentInput))
+            if (type == InputType.InGame)
             {
-                currentInputs.Add(currentInput);
-            }
+                HandleDiagonalFlickInput(ctx, isStarted: false);
 
-            EventManager.OnMultipleInputsSent?.Invoke(currentInputs);
+                if (currentInput != SkillInput.Flick_None && !currentInputs.Contains(currentInput))
+                {
+                    currentInputs.Add(currentInput);
+                }
+
+                EventManager.OnMultipleInputsSent?.Invoke(currentInputs);
+
+                currentInputs.Clear();     //FIX: Here it works for ingame
+
+            }
+            //FIX: The list is not cleared properly. It sends 2 inputs. if it's above, it clears the hold inputs, if it's at the bottom works fine but sends more than 1 input
+            else if (type == InputType.Logger)
+            {
+                //currentInputs.Clear();    //FIX: Here it works for logging
+
+                HandleDiagonalFlickInput(ctx, isStarted: false);
+
+                if (currentInput != SkillInput.Flick_None && !currentInputs.Contains(currentInput))
+                {
+                    currentInputs.Add(currentInput);
+                }
+
+                EventManager.OnMultipleInputsSent?.Invoke(currentInputs);
+
+            }
         };
     }
     #endregion
@@ -154,7 +181,6 @@ public class InputHandler : MonoBehaviour
         Vector2 input = ctx.ReadValue<Vector2>();
         if (isStarted)
         {
-
             if (input.magnitude < deadzone)
             {
                 input = Vector2.zero;

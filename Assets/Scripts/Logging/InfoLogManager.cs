@@ -5,10 +5,19 @@ using UnityEngine;
 public class InfoLogManager : MonoBehaviour
 {
     [SerializeField] private List<Skill> allSkills;
-    [SerializeField] List<Skill> candidateSkills = new();
+    [SerializeField] private List<Skill> candidateSkills = new();
+
+    [SerializeField] private List<SkillInput> pressedInputSequnce = new();
+    private List<Skill> successful = new();
 
     private SkillLogWrapper skillLogData = new();
     private string path;
+
+    private float totalSkillCompletionTime;
+    private List<float> _timeBetweenInputs = new();
+
+    private float skillStartTime;
+    private float lastInputTime;
 
     private void Awake()
     {
@@ -57,9 +66,21 @@ public class InfoLogManager : MonoBehaviour
         pressedInputSequnce.Clear();
     }
 
-    public List<SkillInput> pressedInputSequnce = new();
-    private List<Skill> successful = new();
+    private void TimeTracker() {
+        float currentTime = Time.time;
 
+        if (pressedInputSequnce.Count == 1)
+        {
+            skillStartTime = currentTime;
+            _timeBetweenInputs.Clear();
+        }
+        else
+        {
+            _timeBetweenInputs.Add(currentTime - lastInputTime);
+        }
+
+        lastInputTime = currentTime;
+    }
 
     private void CheckValidity(SkillInput currentInput)
     {
@@ -69,6 +90,8 @@ public class InfoLogManager : MonoBehaviour
         }
 
         pressedInputSequnce.Add(currentInput);
+        TimeTracker();
+
         int pressedInputIndex = pressedInputSequnce.Count - 1;
 
         List<Skill> filteredCandidates = new List<Skill>();
@@ -98,14 +121,18 @@ public class InfoLogManager : MonoBehaviour
 
             if (isValidSkill)
             {
-                successful.Add(candidate);
+                filteredCandidates.Add(candidate);
             }
+
+            candidateSkills = filteredCandidates;
         }
     }
 
     private void CheckValidityAnalog(List<SkillInput?> analogInputs)
     {
-
+        foreach (var input in analogInputs) {
+            Debug.Log($"The gotten input {input} and input with index 0 {analogInputs[0].Value}, elements in the list {analogInputs.Count}");
+        }
         if (analogInputs == null || analogInputs.Count == 0)
         {
             return;
@@ -121,12 +148,15 @@ public class InfoLogManager : MonoBehaviour
             StartSequence();
         }
 
-        SkillInput analogInput = analogInputs[0].Value;
+        SkillInput analogInput = analogInputs[analogInputs.Count - 1].Value;
         Debug.Log($"[Analog] Received input: {analogInput}");
 
         pressedInputSequnce.Add(analogInput);
-
+        
+        TimeTracker();
+        
         int pressedInputIndex = pressedInputSequnce.Count - 1;
+
         List<Skill> filteredCandidates = new List<Skill>();
 
         foreach (Skill candidate in candidateSkills)
@@ -174,7 +204,7 @@ public class InfoLogManager : MonoBehaviour
                 {
                     currentSkill = candidateSkill;
 
-                
+
 
                     Debug.Log($"Correct skill {currentSkill.moveName}");
                 }
@@ -182,10 +212,13 @@ public class InfoLogManager : MonoBehaviour
         }
         if (currentSkill != null)
         {
+            Debug.Log("How many time frames does it have " + _timeBetweenInputs.Count);
             var logInfo = new SkillLogData
             {
                 skillMoveName = currentSkill.moveName,
-                username = $"Test {UnityEngine.Random.Range(0, 1000)}"
+                username = $"Test {UnityEngine.Random.Range(0, 1000)}",
+                timeSinceStart = Time.time - skillStartTime,
+                timeBetweenInputs = new List<float>(_timeBetweenInputs)
             };
 
             skillLogData.data.Add(logInfo);

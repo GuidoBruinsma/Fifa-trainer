@@ -5,6 +5,9 @@ public class SkillLogData
 {
     public string username;
     public string skillMoveName;
+
+    public float timeSinceStart;
+    public List<float> timeBetweenInputs = new();
 }
 
 [System.Serializable]

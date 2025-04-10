@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SkillsValidator : MonoBehaviour
 {
+    //TODO: Add check if last skill has been completed
+
     public SequenceVisualizer sq;
 
     [SerializeField] private List<SkillInput> currentSequenceInput;
@@ -33,7 +35,6 @@ public class SkillsValidator : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log($"pressed input count {pressedSequenceInput.Count}");
         if (currentSkill == null) return;
 
         //timeLeftToPress -= Time.fixedDeltaTime;
@@ -83,7 +84,6 @@ public class SkillsValidator : MonoBehaviour
 
             float elapsedTime = (Time.time - currentTime);
             UI_Manager.Instance?.SetElapsedTimeCompletion(elapsedTime);
-            Debug.Log(elapsedTime);
 
             if (AuthenticationManager.instance != null)
             {  //FIX: Just for testing. Delete later
@@ -108,7 +108,7 @@ public class SkillsValidator : MonoBehaviour
         {
             return;
         }
-
+        Debug.Log(input[0]);
         pressedSequenceInput.Add(input[0]);
         sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
 
