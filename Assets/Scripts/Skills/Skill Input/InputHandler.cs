@@ -121,6 +121,7 @@ public class InputHandler : MonoBehaviour
 
         _AnalogFlick.canceled += ctx =>
         {
+            currentInputs.Clear();     //Test: here it works for normal usage, above it works for logging usage
 
             HandleDiagonalFlickInput(ctx, isStarted: false);
 
@@ -130,7 +131,6 @@ public class InputHandler : MonoBehaviour
             }
 
             EventManager.OnMultipleInputsSent?.Invoke(currentInputs);
-            currentInputs.Clear();     //Test: here it works for normal usage, above it works for logging usage
         };
     }
     #endregion

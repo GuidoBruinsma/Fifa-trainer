@@ -1,10 +1,19 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class InfoLogManager : MonoBehaviour
 {
     [SerializeField] private List<Skill> allSkills;
     [SerializeField] List<Skill> candidateSkills = new();
+
+    private SkillLogWrapper skillLogData = new();
+    private string path;
+
+    private void Awake()
+    {
+        path = Path.Combine(Application.persistentDataPath, "skill_log.json");
+    }
 
     private void Start()
     {
@@ -164,11 +173,32 @@ public class InfoLogManager : MonoBehaviour
                 if (pressedInputSequnce.Count == input.Count)
                 {
                     currentSkill = candidateSkill;
+
+                
+
                     Debug.Log($"Correct skill {currentSkill.moveName}");
                 }
             }
         }
-        if (currentSkill != null) candidateSkills.Remove(currentSkill);
+        if (currentSkill != null)
+        {
+            var logInfo = new SkillLogData
+            {
+                skillMoveName = currentSkill.moveName,
+                username = $"Test {UnityEngine.Random.Range(0, 1000)}"
+            };
+
+            skillLogData.data.Add(logInfo);
+            SaveLogToJson();
+            candidateSkills.Remove(currentSkill);
+        }
+    }
+
+    private void SaveLogToJson()
+    {
+        string json = JsonUtility.ToJson(skillLogData, true);
+        File.WriteAllText(path, json);
+        Debug.Log($"Json saved");
     }
 
     private void ResetSequece()
