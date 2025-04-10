@@ -8,7 +8,7 @@ public static class SkillInputs
     private static readonly SkillInput[] R3_RightToDown = { SkillInput.R3_Right, SkillInput.R3_Down };
 
     private static readonly SkillInput[] R3_UpToRight = { SkillInput.R3_Up, SkillInput.R3_Right };
-    private static readonly SkillInput[] R3_UpToLeft = { SkillInput.R3_Right, SkillInput.R3_Left };
+    private static readonly SkillInput[] R3_UpToLeft = { SkillInput.R3_Up, SkillInput.R3_Left };
 
     private static readonly SkillInput[] R3_DownToRight = { SkillInput.R3_Down, SkillInput.R3_Right };
     private static readonly SkillInput[] R3_DownToLeft = { SkillInput.R3_Down, SkillInput.R3_Left };

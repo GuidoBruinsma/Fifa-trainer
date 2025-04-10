@@ -11,4 +11,45 @@ public class AdaptiveFeedbackManager : MonoBehaviour
      * if i'ts less, = bad performance = easier
      * 
      */
+    [SerializeField] private float difficultyScore;
+
+    [SerializeField] private int total;
+    [SerializeField] private int successful;
+
+    [SerializeField] private int adjustmentRate;
+
+    private void Start()
+    {
+        EventManager.OnSkillIsCompleted.AddListener(ReceivedScore);
+    }
+
+    void ReceivedScore(bool isCompleted)
+    {
+        total++;
+
+        if (isCompleted)
+            successful++;
+
+        if (total % adjustmentRate == 0)
+        {
+            AdjustDifficulty();
+        }
+    }
+
+    // TODO: 
+    void AdjustDifficulty()
+    {
+        float successRate = (float)successful / total;
+
+        if (successRate > 0.8f)
+        { 
+            //Make it harder if the success rate is > 80%
+            //more difficult moves?
+            //more time to execute?
+        }
+        if (successRate < 0.5f)
+        {
+            //make it easier
+        }
+    }
 }
