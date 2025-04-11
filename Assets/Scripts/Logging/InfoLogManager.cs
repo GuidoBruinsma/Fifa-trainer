@@ -130,8 +130,9 @@ public class InfoLogManager : MonoBehaviour
 
     private void CheckValidityAnalog(List<SkillInput?> analogInputs)
     {
+        Debug.Log("here");
         foreach (var input in analogInputs) {
-            Debug.Log($"The gotten input {input} and input with index 0 {analogInputs[0].Value}, elements in the list {analogInputs.Count}");
+            Debug.Log($"The gotten input {input} and input with index 0 {analogInputs[analogInputs.Count - 1].Value}, elements in the list {analogInputs.Count}");
         }
         if (analogInputs == null || analogInputs.Count == 0)
         {
@@ -203,16 +204,12 @@ public class InfoLogManager : MonoBehaviour
                 if (pressedInputSequnce.Count == input.Count)
                 {
                     currentSkill = candidateSkill;
-
-
-
                     Debug.Log($"Correct skill {currentSkill.moveName}");
                 }
             }
         }
         if (currentSkill != null)
         {
-            Debug.Log("How many time frames does it have " + _timeBetweenInputs.Count);
             var logInfo = new SkillLogData
             {
                 skillMoveName = currentSkill.moveName,
@@ -231,7 +228,6 @@ public class InfoLogManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(skillLogData, true);
         File.WriteAllText(path, json);
-        Debug.Log($"Json saved");
     }
 
     private void ResetSequece()

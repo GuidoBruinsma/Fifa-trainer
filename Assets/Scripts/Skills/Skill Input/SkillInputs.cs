@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -109,7 +109,7 @@ public static class SkillInputs
          * if(< 20 && > 340)
          */
 
-        //Debug.Log(degrees);
+        Debug.Log(degrees);
         if (!isHeld)
         {
             if (degrees >= 20f && degrees < 70f)

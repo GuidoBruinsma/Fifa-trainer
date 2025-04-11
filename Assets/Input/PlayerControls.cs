@@ -133,7 +133,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""62fe079e-8fd6-4795-9b27-d5eacdadf7f8"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": ""StickDeadzone"",
-                    ""interactions"": """",
+                    ""interactions"": ""Tap(duration=0.2)"",
                     ""initialStateCheck"": true
                 },
                 {
@@ -150,8 +150,26 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""69232248-89a9-43f8-80e5-6c4ed7fc892a"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""StickDeadzone"",
-                    ""interactions"": ""Hold"",
+                    ""processors"": ""StickDeadzone(min=0.125,max=1)"",
+                    ""interactions"": ""Hold(duration=0.2,pressPoint=0.9)"",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Analog"",
+                    ""type"": ""Value"",
+                    ""id"": ""4ce443c3-e1ec-4c48-b204-d4dfb124c77d"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Analog1"",
+                    ""type"": ""Value"",
+                    ""id"": ""1514d672-8c56-4905-89b0-27641420459c"",
+                    ""expectedControlType"": ""Stick"",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": true
                 },
                 {
@@ -393,6 +411,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""AnalogHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0be433d8-ff57-4a40-8190-e7451ecc5019"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Analog"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a447c7fb-b8ba-47e8-92a9-2e4efd0c6911"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Analog"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1a59d2f-3ccd-4e1b-a20a-55eed6ce7ea9"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Analog1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4cef6b06-58c3-4c59-a6cf-8df8b2ce6c62"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Analog1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -680,6 +742,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_DualShock_AnalogFlick = m_DualShock.FindAction("AnalogFlick", throwIfNotFound: true);
         m_DualShock_AnalogRotation = m_DualShock.FindAction("AnalogRotation", throwIfNotFound: true);
         m_DualShock_AnalogHold = m_DualShock.FindAction("AnalogHold", throwIfNotFound: true);
+        m_DualShock_Analog = m_DualShock.FindAction("Analog", throwIfNotFound: true);
+        m_DualShock_Analog1 = m_DualShock.FindAction("Analog1", throwIfNotFound: true);
         m_DualShock_AnalogButtons = m_DualShock.FindAction("AnalogButtons", throwIfNotFound: true);
         // Nintendo
         m_Nintendo = asset.FindActionMap("Nintendo", throwIfNotFound: true);
@@ -775,6 +839,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_DualShock_AnalogFlick;
     private readonly InputAction m_DualShock_AnalogRotation;
     private readonly InputAction m_DualShock_AnalogHold;
+    private readonly InputAction m_DualShock_Analog;
+    private readonly InputAction m_DualShock_Analog1;
     private readonly InputAction m_DualShock_AnalogButtons;
     /// <summary>
     /// Provides access to input actions defined in input action map "DualShock".
@@ -815,6 +881,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "DualShock/AnalogHold".
         /// </summary>
         public InputAction @AnalogHold => m_Wrapper.m_DualShock_AnalogHold;
+        /// <summary>
+        /// Provides access to the underlying input action "DualShock/Analog".
+        /// </summary>
+        public InputAction @Analog => m_Wrapper.m_DualShock_Analog;
+        /// <summary>
+        /// Provides access to the underlying input action "DualShock/Analog1".
+        /// </summary>
+        public InputAction @Analog1 => m_Wrapper.m_DualShock_Analog1;
         /// <summary>
         /// Provides access to the underlying input action "DualShock/AnalogButtons".
         /// </summary>
@@ -866,6 +940,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AnalogHold.started += instance.OnAnalogHold;
             @AnalogHold.performed += instance.OnAnalogHold;
             @AnalogHold.canceled += instance.OnAnalogHold;
+            @Analog.started += instance.OnAnalog;
+            @Analog.performed += instance.OnAnalog;
+            @Analog.canceled += instance.OnAnalog;
+            @Analog1.started += instance.OnAnalog1;
+            @Analog1.performed += instance.OnAnalog1;
+            @Analog1.canceled += instance.OnAnalog1;
             @AnalogButtons.started += instance.OnAnalogButtons;
             @AnalogButtons.performed += instance.OnAnalogButtons;
             @AnalogButtons.canceled += instance.OnAnalogButtons;
@@ -901,6 +981,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AnalogHold.started -= instance.OnAnalogHold;
             @AnalogHold.performed -= instance.OnAnalogHold;
             @AnalogHold.canceled -= instance.OnAnalogHold;
+            @Analog.started -= instance.OnAnalog;
+            @Analog.performed -= instance.OnAnalog;
+            @Analog.canceled -= instance.OnAnalog;
+            @Analog1.started -= instance.OnAnalog1;
+            @Analog1.performed -= instance.OnAnalog1;
+            @Analog1.canceled -= instance.OnAnalog1;
             @AnalogButtons.started -= instance.OnAnalogButtons;
             @AnalogButtons.performed -= instance.OnAnalogButtons;
             @AnalogButtons.canceled -= instance.OnAnalogButtons;
@@ -1187,6 +1273,20 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAnalogHold(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Analog" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAnalog(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Analog1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAnalog1(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "AnalogButtons" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
