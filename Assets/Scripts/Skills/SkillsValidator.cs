@@ -69,7 +69,7 @@ public class SkillsValidator : MonoBehaviour
                 totalAttempts++;
                 if (AuthenticationManager.instance != null)
                 {  //FIX: Just for testing. Delete later
-                    AnalyticsManager.Instance.FailedAttempTrack(currentSkill.moveName, totalAttempts);
+                    //AnalyticsManager.Instance.FailedAttempTrack(currentSkill.moveName, totalAttempts);
                 }
             }
         }
@@ -87,7 +87,7 @@ public class SkillsValidator : MonoBehaviour
 
             if (AuthenticationManager.instance != null)
             {  //FIX: Just for testing. Delete later
-                AnalyticsManager.Instance.CompletionTimeTrackEvent(currentSkill.moveName, elapsedTime);
+                //AnalyticsManager.Instance.CompletionTimeTrackEvent(currentSkill.moveName, elapsedTime);
             }
             GlobalDataManager.SetNewData(currentSkill.moveName, 0.8f);
         }
@@ -120,7 +120,7 @@ public class SkillsValidator : MonoBehaviour
 
             if (AuthenticationManager.instance != null)
             { //FIX: Just for testing. Delete later
-                AnalyticsManager.Instance.FailedAttempTrack(currentSkill.moveName, totalAttempts);
+                //AnalyticsManager.Instance.FailedAttempTrack(currentSkill.moveName, totalAttempts);
             }
         }
         else if (currentSequenceInput.Count == pressedSequenceInput.Count)
@@ -137,7 +137,7 @@ public class SkillsValidator : MonoBehaviour
             UI_Manager.Instance?.SetElapsedTimeCompletion(elapsedTime);
 
             if (AuthenticationManager.instance != null) //FIX: Just for testing. Delete later
-                AnalyticsManager.Instance.CompletionTimeTrackEvent(currentSkill.moveName, elapsedTime);
+                //AnalyticsManager.Instance.CompletionTimeTrackEvent(currentSkill.moveName, elapsedTime);
 
             GlobalDataManager.SetNewData(currentSkill.moveName, 0.8f);
         }

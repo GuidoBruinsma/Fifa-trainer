@@ -78,15 +78,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Analog1",
-                    "type": "Value",
-                    "id": "1514d672-8c56-4905-89b0-27641420459c",
-                    "expectedControlType": "Stick",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "AnalogButtons",
                     "type": "Button",
                     "id": "21f7ac12-5daf-454e-ae35-b287640022db",
@@ -347,28 +338,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Analog",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a1a59d2f-3ccd-4e1b-a20a-55eed6ce7ea9",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Analog1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4cef6b06-58c3-4c59-a6cf-8df8b2ce6c62",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Analog1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

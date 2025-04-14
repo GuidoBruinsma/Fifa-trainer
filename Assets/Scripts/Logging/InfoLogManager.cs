@@ -204,7 +204,7 @@ public class InfoLogManager : MonoBehaviour
                 if (pressedInputSequnce.Count == input.Count)
                 {
                     currentSkill = candidateSkill;
-                    Debug.Log($"Correct skill {currentSkill.moveName}");
+                    //Debug.Log($"Correct skill {currentSkill.moveName}");
                 }
             }
         }
@@ -221,6 +221,8 @@ public class InfoLogManager : MonoBehaviour
             skillLogData.data.Add(logInfo);
             SaveLogToJson();
             candidateSkills.Remove(currentSkill);
+
+            Debug.Log($"Correct skill {currentSkill.moveName}");
         }
     }
 

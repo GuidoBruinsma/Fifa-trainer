@@ -4,25 +4,17 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 
 public class InputHandler : MonoBehaviour
 {
-    private enum InputType
-    {
-        InGame,
-        Logger
-    }
 
     public UnityAction<SkillInput> OnSkillInputReceived;
-
-    [SerializeField] private InputType type;
 
     //Input Action variables
     [Header("Controls")]
     [SerializeField] private InputActionAsset controls;
-    private InputAction _Buttons, _Hold, _AnalogFlick, _AnalogButtons,
-        _HoldL1, _HoldR1, _AnalogHold, _AnalogRotation, _Analog, _Analog1;
+    private InputAction _Buttons, _Hold, _AnalogButtons,
+        _HoldL1, _HoldR1, _Analog;
 
     //Control States
     private bool holdDisabled = false;
@@ -80,13 +72,8 @@ public class InputHandler : MonoBehaviour
         _HoldR1 = map.FindAction("HoldR1");
 
         _AnalogButtons = map.FindAction("AnalogButtons");
-        _AnalogFlick = map.FindAction("AnalogFlick");
-
-        _AnalogHold = map.FindAction("AnalogHold");
-        _AnalogRotation = map.FindAction("AnalogRotation");
 
         _Analog = map.FindAction("Analog");
-        _Analog1 = map.FindAction("Analog1");
     }
 
     List<SkillInput?> currentInputs = new();
@@ -114,11 +101,17 @@ public class InputHandler : MonoBehaviour
 
         // Rotation control
 
-        _Analog.performed += ctx =>
-        {
-            //HandleDiagonalFlickInput(ctx, isStarted: true);
 
+        _Analog.started += ctx =>
+        {
+            timeStarrted = true;
         };
+        Vector2 lastInput = new();
+        _Analog.performed += ctx => { 
+            if(isFlicked)
+                lastInput = ctx.ReadValue<Vector2>();
+        };
+
         _Analog.canceled += ctx =>
         {
             if (isRotated)
@@ -127,17 +120,18 @@ public class InputHandler : MonoBehaviour
                 if (!currentInputs.Contains(currentInput))
                 {
                     currentInputs.Add(currentInput);
+                    Debug.Log($"Added this input {currentInput}");
                 }
             }
             else if (isHeld)
             {
                 if (ctx.control.name == "leftStick")
                 {
-                    HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: true, isHeld: true);
+                    GetFlickInput(ctx.ReadValue<Vector2>(), isLeft: true, isHeld: true);
                 }
                 else
                 {
-                    HandleFlickInputDiagonal(ctx.ReadValue<Vector2>(), isLeft: false, isHeld: true);
+                    GetFlickInput(ctx.ReadValue<Vector2>(), isLeft: false, isHeld: true);
                 }
 
                 //Debug.Log($"[HOLD] Stick: {ctx.control.name}, Input: {currentInput}");
@@ -151,126 +145,55 @@ public class InputHandler : MonoBehaviour
             else if (isFlicked)
             {
                 actualFlick = true;
-                Debug.Log("Step0");
+                Debug.Log("[FLICKED] Step0: Flick logic starting.");
 
-                HandleDiagonalFlickInput(ctx, isStarted: false);
-                Debug.Log("Step1");
+                HandleFlickInput(ctx, lastInput);
+                Debug.Log($"[FLICKED] Step1: Input detected = {currentInput}");
 
                 if (currentInput != SkillInput.Flick_None && !currentInputs.Contains(currentInput))
                 {
-                    Debug.Log("Step2");
+                    Debug.Log("[FLICKED] Step2: Valid flick input found.");
 
                     if (currentInputs.Count < 1)
                     {
-                        Debug.Log("Step3");
-
+                        Debug.Log("[FLICKED] Step3: Adding first flick input.");
                         currentInputs.Add(currentInput);
-                        Debug.Log("Step4");
-
+                        Debug.Log($"[FLICKED] Step4: Added input = {currentInput}");
                     }
                 }
             }
-            Debug.Log("Current Inpot    " + currentInput);
+
+            // Print all collected inputs
+            Debug.Log("[ALL INPUTS]");
+            foreach (var input in currentInputs)
+            {
+                Debug.Log($"→ {input}");
+            }
+
+            Debug.Log($"[FINAL] Current Input: {currentInput}");
+
+            // Reset flags
             isRotated = false;
             isHeld = false;
             isFlicked = false;
             actionStarted = false;
             timeStarrted = false;
             nTime = 0;
-            //actualFlick = false;
-            if (currentInputs.Count > 0)
-                EventManager.OnMultipleInputsSent?.Invoke(currentInputs);
 
+            // Send inputs if any
+            if (currentInputs.Count > 0)
+            {
+                Debug.Log($"[SEND] Sending {currentInputs.Count} inputs to EventManager.");
+                EventManager.OnMultipleInputsSent?.Invoke(currentInputs);
+            }
+
+            // Clear for next input sequence
             currentInputs.Clear();
             inputs.Clear();
-
-            Debug.Log(inputs.Count);
-
         };
-
-        //////////////////////////////////////////////////////////////////////////
-        //_AnalogRotation.performed += ctx =>
-        //{
-        //    inputs = GetRotatingInput(ctx.ReadValue<Vector2>());
-        //};
-
-        //_AnalogRotation.canceled += ctx =>
-        //{
-        //    //if inputs has more than 1 item inside?
-        //    if (inputs.Count > 1)
-        //    {
-
-        //    }
-        //};
-        //////////////////////////////////////////////////////////////////////////////
-
-
-        //_AnalogHold.performed += ctx =>
-        //{
-        //    Debug.Log("Holdadadadada NOW");
-
-        //    //    Debug.Log($"[HOLD] Added: {currentInput} | List now: {string.Join(", ", currentInputs)}");
-        //    //}
-        //    //else
-        //    //{
-        //    //    Debug.Log($"[HOLD] Input already in list: {currentInput}");
-        //    //}
-        //};
-
-
-
-        //_AnalogFlick.performed += ctx =>
-        //{
-        //    Debug.Log("FLKICKCKCK NOW");
-
-        //    HandleDiagonalFlickInput(ctx, isStarted: true);
-        //};
-
-
-        //_AnalogFlick.canceled += ctx =>
-        //{
-        //    HandleDiagonalFlickInput(ctx, isStarted: false);
-        //    Debug.Log($"[FLICK END] Input: {currentInput} | List Before: {string.Join(", ", currentInputs)}");
-
-        //    if (currentInput != SkillInput.Flick_None && !currentInputs.Contains(currentInput))
-        //    {
-        //        if (currentInputs.Count < 1)
-        //        {
-        //            currentInputs.Add(currentInput);
-        //            Debug.Log($"[FLICK END] Added: {currentInput} | List now: {string.Join(", ", currentInputs)}");
-
-        //        }
-        //    }
-        //    //    else
-        //    //    {
-        //    //        Debug.Log($"[FLICK END] List already has items, did NOT add: {currentInput}");
-        //    //    }
-        //    //}
-        //    //else
-        //    //{
-        //    //    Debug.Log($"[FLICK END] Input was Flick_None or already in list");
-        //    //}
-
-        //    EventManager.OnMultipleInputsSent?.Invoke(currentInputs);
-        //    //Debug.Log($"[EVENT] OnMultipleInputsSent invoked with: {string.Join(", ", currentInputs)}");
-
-        //    currentInputs.Clear();
-        //    //Debug.Log($"[CLEAR] Input list cleared. Count: {currentInputs.Count}");
-
-        //};
-
-        _Analog.started += ctx =>
-        {
-            timeStarrted = true;
-        };
-
-
-
-
     }
     #endregion
 
-    //FIX: Returns 0, 0 at upleft position of the stick and sned hold r3 right
     void AnalogInputType()
     {
         //Debug.Log(_Analog.IsPressed());
@@ -317,7 +240,7 @@ public class InputHandler : MonoBehaviour
         AnalogInputType();
 
         Vector2 rawValue = Gamepad.current.rightStick.ReadValue();
-        Debug.Log($"[Update] LeftStick Raw Value: {rawValue.ToString("F2")}");
+        // Debug.Log($"[Update] LeftStick Raw Value: {rawValue.ToString("F2")}");
     }
 
     #region Input Processing
@@ -333,59 +256,14 @@ public class InputHandler : MonoBehaviour
     }
 
 
-    private void HandleDiagonalFlickInput(InputAction.CallbackContext ctx, bool isStarted)
+    private void HandleFlickInput(InputAction.CallbackContext ctx, Vector2 input)
     {
-        Vector2 input = ctx.ReadValue<Vector2>();
-        if (isStarted)
-        {
-            if (input.magnitude < deadzone)
-            {
-                input = Vector2.zero;
-            }
-
-            float inputChangeMagnitude = Vector2.Distance(input, previousInput);
-
-            if (inputChangeMagnitude > flickSpeedThreshold)
-            {
-                Debug.Log("Ignoring fast flick");
-                return;
-            }
-
-            if (!isFlicking)
-            {
-                if (input.magnitude > flickThreshold)
-                {
-                    smoothedInput = input;
-                    isFlicking = true;
-
-                    lastValidInput = smoothedInput; // Store the flick input for later execution
-
-                }
-            }
-            else
-            {
-                smoothedInput = Vector2.Lerp(smoothedInput, input, smoothingFactor);
-                lastValidInput = smoothedInput;
-            }
-
-            previousInput = input;
-        }
+        if (ctx.control.name == "leftStick")
+            GetFlickInput(input, isLeft: true, isHeld: false);
         else
-        {
-            if (isFlicking)
-            {
-                isFlicking = false;
-                Debug.Log("Flick ended. Executing action.");
-
-                if (ctx.control.name == "leftStick")
-                    HandleFlickInputDiagonal(lastValidInput, isLeft: true, isHeld: false);
-                else
-                    HandleFlickInputDiagonal(lastValidInput, isLeft: false, isHeld: false);
-            }
-
-            smoothedInput = Vector2.zero;
-        }
+            GetFlickInput(input, isLeft: false, isHeld: false);
     }
+
 
     private void HandleHoldEnd(InputAction.CallbackContext ctx)
     {
@@ -407,10 +285,7 @@ public class InputHandler : MonoBehaviour
         if (input.HasValue)
         {
             currentInput = input;
-            //EventManager.OnSkillInputReceived?.Invoke(input.Value);
         }
-
-        // currentInput = SkillInput.None;
     }
 
     private void ProcessInput(string buttonName, bool isHeld = false)
@@ -447,7 +322,7 @@ public class InputHandler : MonoBehaviour
         return inputs;
     }
 
-    private void HandleFlickInputDiagonal(Vector2 stickPosition, bool isLeft, bool isHeld)
+    private void GetFlickInput(Vector2 stickPosition, bool isLeft, bool isHeld)
     {
         SkillInput? input = isLeft ?
             SkillInputs.GetFlickDiagonalInput(stickPosition, isLeft: true, isHeld: isHeld) :
@@ -456,7 +331,6 @@ public class InputHandler : MonoBehaviour
         if (input.HasValue)
         {
             currentInput = input;
-            //   EventManager.OnSkillInputReceived?.Invoke(input.Value);
         }
     }
 
@@ -512,6 +386,5 @@ public class InputHandler : MonoBehaviour
     {
         return buttonHoldState.Values.Contains(true);
     }
-
 }
 
