@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class AdaptiveFeedbackManager : MonoBehaviour
@@ -11,6 +12,8 @@ public class AdaptiveFeedbackManager : MonoBehaviour
      * if i'ts less, = bad performance = easier
      * 
      */
+    [SerializeField] private TextMeshProUGUI difficultyScoreText;
+
     [SerializeField] private float difficultyScore;
 
     [SerializeField] private int total;
@@ -40,6 +43,8 @@ public class AdaptiveFeedbackManager : MonoBehaviour
     void AdjustDifficulty()
     {
         float successRate = (float)successful / total;
+
+        difficultyScoreText.text = "Difficulty: " + successRate.ToString();
 
         if (successRate > 0.8f)
         { 
