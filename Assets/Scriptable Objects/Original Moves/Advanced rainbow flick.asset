@@ -18,3 +18,5 @@ MonoBehaviour:
   - input: 180000001b0000001b000000
   maxTimeBetweenInput: 0.7
   difficultyScore: 3.993
+  attempts: 10
+  successes: 5

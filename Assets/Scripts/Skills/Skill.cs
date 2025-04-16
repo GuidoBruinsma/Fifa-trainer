@@ -14,6 +14,11 @@ public class Skill : ScriptableObject
 
     public float maxTimeBetweenInput;
     public float difficultyScore;
+
+    public int attempts;
+    public int successes;
+
+    public float SuccessRate => attempts == 0 ? 0f : (float)successes / attempts;
 }
 
 [Serializable]

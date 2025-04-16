@@ -4,14 +4,21 @@ using UnityEngine;
 [RequireComponent(typeof(SkillsValidator), typeof(InputHandler))]
 public class SkillMovesManager : MonoBehaviour
 {
+    private enum Type { 
+        Normal,
+        Adaptive
+    }
+
     public static SkillMovesManager Instance { get; private set; }
 
     public static Skill CurrentSkill => Instance.currentSkill;
 
+    [SerializeField] private Type type;
+
     [Header("References")]
-    [SerializeField] private SkillsValidator sequenceValidator;
-    [SerializeField] private InputHandler inputHandler;
     [SerializeField] private SkillGameSettings skillsSettings;
+    private SkillsValidator sequenceValidator;
+    private InputHandler inputHandler;
 
     [Space]
     [SerializeField] private List<Skill> skillMoves;
@@ -48,13 +55,19 @@ public class SkillMovesManager : MonoBehaviour
             Debug.LogError("No game settings attached");
             return;
         }
-
-        if (skillsSettings.selectedSkillMoves.Count < 1)
+        if (type == Type.Normal)
         {
-            skillMoves = new(skillsSettings.allSkillMoves);
+            if (skillsSettings.selectedSkillMoves.Count < 1)
+            {
+                skillMoves = new(skillsSettings.allSkillMoves);
+            }
+            else
+            {
+                skillMoves = new(skillsSettings.selectedSkillMoves);
+            }
         }
-        else {
-            skillMoves = new(skillsSettings.selectedSkillMoves);
+        else if (type == Type.Adaptive) {
+            skillMoves = new(SkillStatsManager.GetSortedByRateSkillList(skillsSettings.allSkillMoves));
         }
     }
 
@@ -117,12 +130,16 @@ public class SkillMovesManager : MonoBehaviour
     private void HandleSequenceFail()
     {
         inputHandler.CancelHoldAndWaitForRelease();
+
+        currentSkill.attempts++;
     }
 
     private void HandleSequenceSuccess()
     {
         inputHandler.CancelHold();
         inputHandler.CancelHoldAndWaitForRelease();
+
+        currentSkill.successes++;
 
         if (currentSequenceIndex < skillMoves.Count - 1)
         {

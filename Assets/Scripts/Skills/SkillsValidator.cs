@@ -53,20 +53,29 @@ public class SkillsValidator : MonoBehaviour
     {
         if (pressedSequenceInput.Count == 0) currentTime = Time.time;
 
-        if (input == SkillInput.Flick_None)
+        if (input == (SkillInput.Flick_None) ||
+          input == (SkillInput.Hold_L3_None) ||
+          input == (SkillInput.Hold_None) ||
+          input == (SkillInput.Hold_R3_None) ||
+          input == (SkillInput.L2_None) ||
+          input == (SkillInput.R2_None) ||
+          input == (SkillInput.L3_None) ||
+          input == (SkillInput.R3_None))
+        {
             return;
-
+        }
+        Debug.Log("Called bez list");
         pressedSequenceInput.Add(input);
         sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
 
         if (!CheckValidity())
         {
-
             SequenceFailed();
             if (input != SkillInput.None && input != SkillInput.Flick_None && input != SkillInput.Hold_L3_None && input != SkillInput.Hold_None &&
                 input != SkillInput.Hold_R3_None && input != SkillInput.L2_None && input != SkillInput.R2_None && input != SkillInput.L3_None && input != SkillInput.R3_None)
             {
                 totalAttempts++;
+
                 if (AuthenticationManager.instance != null)
                 {  //FIX: Just for testing. Delete later
                     //AnalyticsManager.Instance.FailedAttempTrack(currentSkill.moveName, totalAttempts);
@@ -108,7 +117,7 @@ public class SkillsValidator : MonoBehaviour
         {
             return;
         }
-        Debug.Log(input[0]);
+        Debug.Log("Called list");
         pressedSequenceInput.Add(input[0]);
         sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
 

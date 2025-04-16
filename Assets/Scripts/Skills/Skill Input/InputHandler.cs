@@ -23,7 +23,6 @@ public class InputHandler : MonoBehaviour
     //Input Data
     [SerializeField] private List<SkillInput> inputs = new();
     private SkillInput? currentInput;
-    [SerializeField] private SkillInput currentRequiredTypeInput;
 
     private Dictionary<string, bool> buttonHoldState = new();
 
@@ -37,20 +36,17 @@ public class InputHandler : MonoBehaviour
 
     private bool isFlicking = false;
     private Vector2 lastValidInput = Vector2.zero;
-    public SkillInput a;
 
+    private bool isHeld = false;
+    private bool isRotated = false;
+    private bool actualFlick;
+    private bool actionStarted = false;
 
+    private float nTime;
 
-    public bool isHeld = false;
-    public bool isRotated = false;
-    public bool actualFlick;
-    public bool actionStarted = false;
+    private bool isFlicked = false;
 
-    float nTime;
-
-    public bool isFlicked = false;
-
-    bool timeStarrted = false;
+    private bool timeStarrted = false;
     private void Awake()
     {
         SetupControls();

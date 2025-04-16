@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class AdaptiveFeedbackManager : MonoBehaviour
      * if i'ts less, = bad performance = easier
      * 
      */
+    [SerializeField] private SkillGameSettings skillGameSettings;
+
     [SerializeField] private TextMeshProUGUI difficultyScoreText;
 
     [SerializeField] private float difficultyScore;
@@ -21,9 +24,15 @@ public class AdaptiveFeedbackManager : MonoBehaviour
 
     [SerializeField] private int adjustmentRate;
 
+    [SerializeField] private Skill currentSkill;
+    [SerializeField] private List<Skill> skillList = new();
+
     private void Start()
     {
+        SkillStatsManager.Load(skillGameSettings.allSkillMoves);
+
         EventManager.OnSkillIsCompleted.AddListener(ReceivedScore);
+
     }
 
     void ReceivedScore(bool isCompleted)
@@ -39,7 +48,7 @@ public class AdaptiveFeedbackManager : MonoBehaviour
         }
     }
 
-    // TODO: 
+    // TODO: every skill has success rate, more rate, less ofter, less rate, more often
     void AdjustDifficulty()
     {
         float successRate = (float)successful / total;
@@ -47,7 +56,7 @@ public class AdaptiveFeedbackManager : MonoBehaviour
         difficultyScoreText.text = "Difficulty: " + successRate.ToString();
 
         if (successRate > 0.8f)
-        { 
+        {
             //Make it harder if the success rate is > 80%
             //more difficult moves?
             //more time to execute?
@@ -56,5 +65,15 @@ public class AdaptiveFeedbackManager : MonoBehaviour
         {
             //make it easier
         }
+    }
+
+    void SkillSuccessRate()
+    {
+        currentSkill = SkillMovesManager.CurrentSkill;
+    }
+
+    private void OnApplicationQuit()
+    {
+        SkillStatsManager.Save(skillGameSettings.allSkillMoves);
     }
 }
