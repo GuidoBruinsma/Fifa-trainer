@@ -117,7 +117,7 @@ public class SkillsValidator : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Called list");
+        Debug.Log(input[0]);
         pressedSequenceInput.Add(input[0]);
         sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
 

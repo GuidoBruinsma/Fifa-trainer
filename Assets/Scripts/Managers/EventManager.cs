@@ -17,4 +17,6 @@ public static class EventManager
     public static UnityEvent<bool> OnSkillIsCompleted = new();
 
     public static UnityEvent OnDifficultyChanged = new();
+
+    public static UnityEvent<Skill> OnSkillChanged = new();
 }

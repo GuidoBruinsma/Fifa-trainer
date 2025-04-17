@@ -26,27 +26,15 @@ public class InputHandler : MonoBehaviour
 
     private Dictionary<string, bool> buttonHoldState = new();
 
-    //Analog flick properties
-    private float deadzone = 0.2f;
-    private float flickThreshold = 0.4f;
-    private float flickSpeedThreshold = 1f;
-    private Vector2 previousInput = Vector2.zero;
-    private Vector2 smoothedInput = Vector2.zero;
-    private float smoothingFactor = 0.05f;
-
-    private bool isFlicking = false;
-    private Vector2 lastValidInput = Vector2.zero;
-
     private bool isHeld = false;
     private bool isRotated = false;
-    private bool actualFlick;
-    private bool actionStarted = false;
 
     private float nTime;
 
     private bool isFlicked = false;
 
     private bool timeStarrted = false;
+
     private void Awake()
     {
         SetupControls();
@@ -102,7 +90,9 @@ public class InputHandler : MonoBehaviour
         {
             timeStarrted = true;
         };
+
         Vector2 lastInput = new();
+
         _Analog.performed += ctx => { 
             if(isFlicked)
                 lastInput = ctx.ReadValue<Vector2>();
@@ -123,11 +113,11 @@ public class InputHandler : MonoBehaviour
             {
                 if (ctx.control.name == "leftStick")
                 {
-                    GetFlickInput(ctx.ReadValue<Vector2>(), isLeft: true, isHeld: true);
+                    GetFlickInput(lastInput, isLeft: true, isHeld: true);
                 }
                 else
                 {
-                    GetFlickInput(ctx.ReadValue<Vector2>(), isLeft: false, isHeld: true);
+                    GetFlickInput(lastInput, isLeft: false, isHeld: true);
                 }
 
                 //Debug.Log($"[HOLD] Stick: {ctx.control.name}, Input: {currentInput}");
@@ -140,7 +130,6 @@ public class InputHandler : MonoBehaviour
             }
             else if (isFlicked)
             {
-                actualFlick = true;
                 Debug.Log("[FLICKED] Step0: Flick logic starting.");
 
                 HandleFlickInput(ctx, lastInput);
@@ -172,7 +161,6 @@ public class InputHandler : MonoBehaviour
             isRotated = false;
             isHeld = false;
             isFlicked = false;
-            actionStarted = false;
             timeStarrted = false;
             nTime = 0;
 

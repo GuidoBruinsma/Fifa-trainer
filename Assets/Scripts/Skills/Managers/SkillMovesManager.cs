@@ -87,6 +87,7 @@ public class SkillMovesManager : MonoBehaviour
         }
 
         currentSkill = skillMoves[currentSequenceIndex];
+        EventManager.OnSkillChanged?.Invoke(currentSkill);
 
         if (currentSkill.inputSequence == null || currentSkill.inputSequence.Count == 0)
         {
@@ -132,6 +133,8 @@ public class SkillMovesManager : MonoBehaviour
         inputHandler.CancelHoldAndWaitForRelease();
 
         currentSkill.attempts++;
+        EventManager.OnSkillChanged?.Invoke(currentSkill);
+
     }
 
     private void HandleSequenceSuccess()
