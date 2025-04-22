@@ -222,9 +222,6 @@ public class InputHandler : MonoBehaviour
     private void Update()
     {
         AnalogInputType();
-
-        Vector2 rawValue = Gamepad.current.rightStick.ReadValue();
-        // Debug.Log($"[Update] LeftStick Raw Value: {rawValue.ToString("F2")}");
     }
 
     #region Input Processing
