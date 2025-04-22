@@ -53,23 +53,32 @@ public class SkillsValidator : MonoBehaviour
     {
         if (pressedSequenceInput.Count == 0) currentTime = Time.time;
 
-        if (input == SkillInput.Flick_None)
+        if (input == (SkillInput.Flick_None) ||
+          input == (SkillInput.Hold_L3_None) ||
+          input == (SkillInput.Hold_None) ||
+          input == (SkillInput.Hold_R3_None) ||
+          input == (SkillInput.L2_None) ||
+          input == (SkillInput.R2_None) ||
+          input == (SkillInput.L3_None) ||
+          input == (SkillInput.R3_None))
+        {
             return;
-
+        }
+        Debug.Log("Called bez list");
         pressedSequenceInput.Add(input);
         sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
 
         if (!CheckValidity())
         {
-
             SequenceFailed();
             if (input != SkillInput.None && input != SkillInput.Flick_None && input != SkillInput.Hold_L3_None && input != SkillInput.Hold_None &&
                 input != SkillInput.Hold_R3_None && input != SkillInput.L2_None && input != SkillInput.R2_None && input != SkillInput.L3_None && input != SkillInput.R3_None)
             {
                 totalAttempts++;
+
                 if (AuthenticationManager.instance != null)
                 {  //FIX: Just for testing. Delete later
-                    AnalyticsManager.Instance.FailedAttempTrack(currentSkill.moveName, totalAttempts);
+                    //AnalyticsManager.Instance.FailedAttempTrack(currentSkill.moveName, totalAttempts);
                 }
             }
         }
@@ -87,7 +96,7 @@ public class SkillsValidator : MonoBehaviour
 
             if (AuthenticationManager.instance != null)
             {  //FIX: Just for testing. Delete later
-                AnalyticsManager.Instance.CompletionTimeTrackEvent(currentSkill.moveName, elapsedTime);
+                //AnalyticsManager.Instance.CompletionTimeTrackEvent(currentSkill.moveName, elapsedTime);
             }
             GlobalDataManager.SetNewData(currentSkill.moveName, 0.8f);
         }
@@ -120,7 +129,7 @@ public class SkillsValidator : MonoBehaviour
 
             if (AuthenticationManager.instance != null)
             { //FIX: Just for testing. Delete later
-                AnalyticsManager.Instance.FailedAttempTrack(currentSkill.moveName, totalAttempts);
+                //AnalyticsManager.Instance.FailedAttempTrack(currentSkill.moveName, totalAttempts);
             }
         }
         else if (currentSequenceInput.Count == pressedSequenceInput.Count)
@@ -137,7 +146,7 @@ public class SkillsValidator : MonoBehaviour
             UI_Manager.Instance?.SetElapsedTimeCompletion(elapsedTime);
 
             if (AuthenticationManager.instance != null) //FIX: Just for testing. Delete later
-                AnalyticsManager.Instance.CompletionTimeTrackEvent(currentSkill.moveName, elapsedTime);
+                //AnalyticsManager.Instance.CompletionTimeTrackEvent(currentSkill.moveName, elapsedTime);
 
             GlobalDataManager.SetNewData(currentSkill.moveName, 0.8f);
         }

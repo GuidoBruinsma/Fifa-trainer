@@ -47,7 +47,7 @@
                     "id": "62fe079e-8fd6-4795-9b27-d5eacdadf7f8",
                     "expectedControlType": "Vector2",
                     "processors": "StickDeadzone",
-                    "interactions": "",
+                    "interactions": "Tap(duration=0.2)",
                     "initialStateCheck": true
                 },
                 {
@@ -64,8 +64,17 @@
                     "type": "Value",
                     "id": "69232248-89a9-43f8-80e5-6c4ed7fc892a",
                     "expectedControlType": "Vector2",
-                    "processors": "StickDeadzone",
-                    "interactions": "Hold",
+                    "processors": "StickDeadzone(min=0.125,max=1)",
+                    "interactions": "Hold(duration=0.2,pressPoint=0.9)",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Analog",
+                    "type": "Value",
+                    "id": "4ce443c3-e1ec-4c48-b204-d4dfb124c77d",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": true
                 },
                 {
@@ -307,6 +316,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "AnalogHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0be433d8-ff57-4a40-8190-e7451ecc5019",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Analog",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a447c7fb-b8ba-47e8-92a9-2e4efd0c6911",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Analog",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
