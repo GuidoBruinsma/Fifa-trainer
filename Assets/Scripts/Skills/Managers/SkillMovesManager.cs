@@ -87,6 +87,7 @@ public class SkillMovesManager : MonoBehaviour
         }
 
         currentSkill = skillMoves[currentSequenceIndex];
+        currentSkill.ResetStats();
         EventManager.OnSkillChanged?.Invoke(currentSkill);
 
         if (currentSkill.inputSequence == null || currentSkill.inputSequence.Count == 0)

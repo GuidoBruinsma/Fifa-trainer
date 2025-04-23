@@ -64,7 +64,7 @@ public class SkillsValidator : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Called bez list");
+        Debug.Log(input);
         pressedSequenceInput.Add(input);
         sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
 
@@ -232,6 +232,8 @@ public class SkillsValidator : MonoBehaviour
         EventManager.OnSequenceFailed?.Invoke();
         EventManager.OnSkillIsCompleted?.Invoke(false);
         sq.VisualizeSequence(currentSkill.inputSequence, 0);
+
+        currentSkill.SendAnalytics();
     }
 
     public void SetSequenceInput(List<SkillInput> currentSequenceInput, Skill skill)

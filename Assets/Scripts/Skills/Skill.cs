@@ -19,6 +19,32 @@ public class Skill : ScriptableObject
     public int successes;
 
     public float SuccessRate => attempts == 0 ? 0f : (float)successes / attempts;
+
+    public void ResetStats() { 
+        attempts = 0; 
+        successes = 0;
+    }
+
+    public void SendAnalytics() {
+
+        SkillAnalyzeData skillAnalyzeData = new SkillAnalyzeData { 
+            moveName = moveName,
+            attempts = attempts,
+            successes = successes,
+            successRate = SuccessRate
+        };
+
+        EventManager.OnAnalyzeSkillDataSent?.Invoke(skillAnalyzeData);
+    }
+}
+
+public class SkillAnalyzeData {
+    public string moveName;
+
+    public int attempts;
+    public int successes;
+
+    public float successRate;
 }
 
 [Serializable]
