@@ -22,7 +22,7 @@ public class Skill : ScriptableObject
 
     public void ResetStats() { 
         attempts = 0; 
-        successes = 0;
+        //successes = 0;
     }
 
     public void SendAnalytics() {
@@ -34,7 +34,7 @@ public class Skill : ScriptableObject
             successRate = SuccessRate
         };
 
-        EventManager.OnAnalyzeSkillDataSent?.Invoke(skillAnalyzeData);
+        //EventManager.OnAnalyzeSkillDataSent?.Invoke(skillAnalyzeData);
     }
 }
 
