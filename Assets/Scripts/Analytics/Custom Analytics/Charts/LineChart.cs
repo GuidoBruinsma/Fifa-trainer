@@ -87,7 +87,7 @@ public class LineChart : MonoBehaviour
 
             yValues.Add(y);
 
-            Debug.Log($"Data Point {i}: X (Cumulative Successes) = {cumulativeSuccess}, Y ({_skillDataType}) = {y}");
+            //Debug.Log($"Data Point {i}: X (Cumulative Successes) = {cumulativeSuccess}, Y ({_skillDataType}) = {y}");
         }
         StartCoroutine(AnimateGraph(xValues, yValues));
        // ShowGraph(xValues, yValues);

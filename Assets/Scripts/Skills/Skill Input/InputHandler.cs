@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
-
     public UnityAction<SkillInput> OnSkillInputReceived;
 
     //Input Action variables
