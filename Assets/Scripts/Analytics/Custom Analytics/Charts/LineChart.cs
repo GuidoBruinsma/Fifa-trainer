@@ -17,7 +17,7 @@ public class LineChart : MonoBehaviour
 
     private List<SkillChartData> skillChartData = new();
 
-    private void Start()
+    private void Awake()
     {
         EventManager.OnSkillChanged.AddListener(LoadChartData);
     }

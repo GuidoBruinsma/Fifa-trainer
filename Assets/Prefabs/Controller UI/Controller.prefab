@@ -485,8 +485,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 87.9, y: -27}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 86.96, y: -25.8}
+  m_SizeDelta: {x: 105, y: 105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5298565507184494302
 CanvasRenderer:
@@ -817,7 +817,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 4698954314010467977, guid: e9b3a6e15518f4146a4909046e28dfef, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -854,15 +854,15 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7222434, y: 0.7222434, z: 0.7222434}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1837220774416276980}
   m_Father: {fileID: 6384997591540794821}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -88, y: -27}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -87.50936, y: -26.264}
+  m_SizeDelta: {x: 105, y: 105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5562218381824522287
 CanvasRenderer:
@@ -1000,12 +1000,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b133a883976718e4bb6d912e15fcdf4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   xButton: {fileID: 305135849007920188}
   circleButton: {fileID: 810292350758279241}
   squareButton: {fileID: 5186479809042901322}
   triangleButton: {fileID: 8050121467237476665}
   l1Button: {fileID: 108293000995187384}
-  l2Button: {fileID: 6372068239545144870}
+  l2Trigger: {fileID: 6372068239545144870}
   r1Button: {fileID: 7649048514663000204}
-  r2Button: {fileID: 8094892727360250223}
+  r2Trigger: {fileID: 8094892727360250223}
+  l3Analog: {fileID: 4135815900648556291}
+  r3Analog: {fileID: 6764014254349318588}
   highlightColor: {r: 0.9245283, g: 0.675924, b: 0.07413671, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}

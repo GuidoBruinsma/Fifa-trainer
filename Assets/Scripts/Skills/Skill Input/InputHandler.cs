@@ -92,8 +92,9 @@ public class InputHandler : MonoBehaviour
 
         Vector2 lastInput = new();
 
-        _Analog.performed += ctx => { 
-            if(isFlicked)
+        _Analog.performed += ctx =>
+        {
+            if (isFlicked)
                 lastInput = ctx.ReadValue<Vector2>();
         };
 

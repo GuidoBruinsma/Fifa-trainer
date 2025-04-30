@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -7,7 +6,7 @@ public class ControllerOverlay : MonoBehaviour
 {
     [Header("Controls")]
     [SerializeField] private InputActionAsset controls;
-    private InputAction _Buttons, _Analog;
+    private InputAction _Buttons;
 
     [Header("References")]
     [SerializeField] private Image xButton;
@@ -16,9 +15,9 @@ public class ControllerOverlay : MonoBehaviour
     [SerializeField] private Image triangleButton;
 
     [SerializeField] private Image l1Button;
-    [SerializeField] private Image l2Button;
+    [SerializeField] private Image l2Trigger;
     [SerializeField] private Image r1Button;
-    [SerializeField] private Image r2Button;
+    [SerializeField] private Image r2Trigger;
 
     [SerializeField] private Image l3Analog;
     [SerializeField] private Image r3Analog;
@@ -30,13 +29,6 @@ public class ControllerOverlay : MonoBehaviour
     {
         InputActionMap map = controls.FindActionMap("DualShock");
         _Buttons = map.FindAction("Buttons");
-        _Analog = map.FindAction("Analog");
-        _Analog.canceled += ctx =>
-        {
-            l3Analog.transform.localPosition = new Vector3(0f, 0f, 0f);
-            r3Analog.transform.localPosition = new Vector3(0f, 0f, 0f);
-        };
-
         controls.Enable();
     }
 
@@ -44,29 +36,54 @@ public class ControllerOverlay : MonoBehaviour
     {
         ResetColors();
 
-        if (!_Buttons.enabled) return;
-        CheckButtons();
         CheckAnalog();
+        CheckTriggers();
+        CheckButtons(); 
+        StickButtons();
     }
 
     private void CheckAnalog()
     {
-        foreach (var stick in _Analog.controls)
-        {
-            if (stick.IsPressed())
-            {
-                Vector2 dir = _Analog.ReadValue<Vector2>();
-                if (stick.name == "leftStick")
-                {
-                    l3Analog.transform.localPosition = new Vector3(dir.x * 50f, dir.y * 50f, 0f);
-                    Debug.Log($"Left Stick Direction: {dir}");
-                }
-                else if()
-                {
-                    r3Analog.transform.localPosition = new Vector3(dir.x * 50f, dir.y * 50f, 0f);
-                }
-            }
+        var gamepad = Gamepad.current;
 
+        if (gamepad != null)
+        {
+            Vector2 leftDir = gamepad.leftStick.ReadValue();
+            Vector2 rightDir = gamepad.rightStick.ReadValue();
+
+            if (leftDir.magnitude > 0.01f)
+            {
+                l3Analog.transform.localPosition = new Vector3(leftDir.x * 50f, leftDir.y * 50f, 0f);
+                l3Analog.color = Color.Lerp(defaultColor, highlightColor, leftDir.magnitude);
+            }
+            else l3Analog.transform.localPosition = Vector3.zero;
+
+            if (rightDir.magnitude > 0.01f)
+            {
+                r3Analog.transform.localPosition = new Vector3(rightDir.x * 50f, rightDir.y * 50f, 0f);
+                r3Analog.color = Color.Lerp(defaultColor, highlightColor, rightDir.magnitude);
+            }
+            else r3Analog.transform.localPosition = Vector3.zero;
+
+        }
+    }
+
+    private void CheckTriggers()
+    {
+        var gamepad = Gamepad.current;
+        if (gamepad != null)
+        {
+            float l2 = gamepad.leftTrigger.ReadValue();
+            float r2 = gamepad.rightTrigger.ReadValue();
+
+            if (l2 > 0.01f)
+            {
+                l2Trigger.color = Color.Lerp(defaultColor, highlightColor, l2);
+            }
+            if (r2 > 0.01f)
+            {
+                r2Trigger.color = Color.Lerp(defaultColor, highlightColor, r2);
+            }
         }
     }
 
@@ -93,19 +110,35 @@ public class ControllerOverlay : MonoBehaviour
                     case "leftShoulder":
                         l1Button.color = highlightColor;
                         break;
-                    case "L2":
-                        l2Button.color = highlightColor;
-                        break;
                     case "rightShoulder":
                         r1Button.color = highlightColor;
-                        break;
-                    case "R2":
-                        r2Button.color = highlightColor;
                         break;
                 }
             }
         }
+    }
 
+    private void StickButtons()
+    {
+        var gamepad = Gamepad.current;
+        if (gamepad != null)
+        {
+            Vector2 leftDir = gamepad.leftStick.ReadValue();
+            Vector2 rightDir = gamepad.rightStick.ReadValue();
+
+            if (gamepad.rightStickButton.IsPressed())
+            {
+                r3Analog.color = highlightColor;
+            }
+            else if(!gamepad.rightStickButton.IsPressed() && rightDir.magnitude  < 0.01f) r3Analog.color = defaultColor;
+
+            if (gamepad.leftStickButton.IsPressed())
+            {
+                l3Analog.color = highlightColor;
+            }
+            else if (!gamepad.leftStickButton.IsPressed() && leftDir.magnitude < 0.01f) l3Analog.color = defaultColor;
+
+        }
     }
 
     private void ResetColors()
@@ -116,8 +149,8 @@ public class ControllerOverlay : MonoBehaviour
         if (triangleButton) triangleButton.color = defaultColor;
 
         if (l1Button) l1Button.color = defaultColor;
-        if (l2Button) l2Button.color = defaultColor;
+        if (l2Trigger) l2Trigger.color = defaultColor;
         if (r1Button) r1Button.color = defaultColor;
-        if (r2Button) r2Button.color = defaultColor;
+        if (r2Trigger) r2Trigger.color = defaultColor;
     }
 }
