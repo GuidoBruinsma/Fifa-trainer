@@ -94,7 +94,7 @@ public class InputHandler : MonoBehaviour
 
         _Analog.performed += ctx =>
         {
-            if (isFlicked)
+           if (isFlicked)
                 lastInput = ctx.ReadValue<Vector2>();
         };
 
@@ -189,7 +189,10 @@ public class InputHandler : MonoBehaviour
                 //Debug.Log(nTime);
             }
 
-            inputs = GetRotatingInput(_Analog.ReadValue<Vector2>());
+            string path = _Analog.activeControl.path;
+            bool isRightStick = path.Contains("rightStick");
+
+            inputs = GetRotatingInput(_Analog.ReadValue<Vector2>(), isRightStick);
 
             if (inputs.Count > 1)
             {
@@ -279,20 +282,19 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    private List<SkillInput> GetRotatingInput(Vector2 dir)
+    private List<SkillInput> GetRotatingInput(Vector2 dir, bool isRightStick)
     {
         const float threshold = 0.9f;
-
         SkillInput? newInput = null;
-        Vector2 rawValue = Gamepad.current.rightStick.ReadValue();
-        if (rawValue.y >= threshold)
-            newInput = SkillInput.R3_Up;
-        else if (rawValue.x >= threshold)
-            newInput = SkillInput.R3_Right;
-        else if (rawValue.y <= -threshold)
-            newInput = SkillInput.R3_Down;
-        else if (rawValue.x <= -threshold)
-            newInput = SkillInput.R3_Left;
+
+        if (dir.y >= threshold)
+            newInput = isRightStick ? SkillInput.R3_Up : SkillInput.L3_Up;
+        else if (dir.x >= threshold)
+            newInput = isRightStick ? SkillInput.R3_Right : SkillInput.L3_Right;
+        else if (dir.y <= -threshold)
+            newInput = isRightStick ? SkillInput.R3_Down : SkillInput.L3_Down;
+        else if (dir.x <= -threshold)
+            newInput = isRightStick ? SkillInput.R3_Left : SkillInput.L3_Left;
 
         if (newInput.HasValue && (inputs.Count == 0 || inputs.Last() != newInput.Value))
         {
