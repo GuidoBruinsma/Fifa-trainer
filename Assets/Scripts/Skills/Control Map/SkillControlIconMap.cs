@@ -105,6 +105,8 @@ public class SkillControlIconMap : ScriptableObject
     public string L3_LeftToDownIcon;
     public string L3_LeftToDownToLeftIcon;
     public string L3_LeftToUpToLeftIcon;
+    public string L3_DownToRightToDown;
+    public string L3_RightToDownToRight;
 
     public string GetIconForSkillInput(SkillInput input)
     {
@@ -176,6 +178,8 @@ public class SkillControlIconMap : ScriptableObject
             SkillInput.L3_LeftToDown => L3_LeftToDownIcon,
             SkillInput.L3_LeftToDownToLeft => L3_LeftToDownToLeftIcon,
             SkillInput.L3_LeftToUpToLeft => L3_LeftToUpToLeftIcon,
+            SkillInput.L3_DownToRightToDown => L3_DownToRightToDown,
+            SkillInput.L3_RightToDownToRight => L3_RightToDownToRight,
 
             // Hold Right Stick Directions
             SkillInput.Hold_R3_Left => Hold_R3_LeftIcon,

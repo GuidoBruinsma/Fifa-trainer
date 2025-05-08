@@ -90,3 +90,5 @@ MonoBehaviour:
   L3_LeftToDownIcon: L3 Left to Down
   L3_LeftToDownToLeftIcon: L3 Left to Down to Left
   L3_LeftToUpToLeftIcon: L3 Left to Up to Left
+  L3_DownToRightToDown: L3 Down to Right to Down
+  L3_RightToDownToRight: L3 Right to Down to Right

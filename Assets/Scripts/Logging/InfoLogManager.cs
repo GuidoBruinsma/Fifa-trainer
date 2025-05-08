@@ -21,7 +21,7 @@ public class InfoLogManager : MonoBehaviour
 
     private void Awake()
     {
-        path = Path.Combine(Application.persistentDataPath, "skill_log.json");
+        path = Path.Combine(Application.persistentDataPath, "skill_logging_data.json");
     }
 
     private void Start()

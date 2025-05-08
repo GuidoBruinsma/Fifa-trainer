@@ -19,4 +19,7 @@ public static class EventManager
     public static UnityEvent OnDifficultyChanged = new();
 
     public static UnityEvent<Skill> OnSkillChanged = new();
+
+    //Analyze
+    //public static UnityEvent<Skill> OnAnalyzeSkillDataSent = new();
 }

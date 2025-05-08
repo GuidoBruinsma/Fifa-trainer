@@ -87,6 +87,9 @@ public class SkillMovesManager : MonoBehaviour
         }
 
         currentSkill = skillMoves[currentSequenceIndex];
+        //currentSkill.ResetStats();
+
+        //currentSkill.SendAnalytics();
         EventManager.OnSkillChanged?.Invoke(currentSkill);
 
         if (currentSkill.inputSequence == null || currentSkill.inputSequence.Count == 0)
@@ -143,6 +146,8 @@ public class SkillMovesManager : MonoBehaviour
         inputHandler.CancelHoldAndWaitForRelease();
 
         currentSkill.successes++;
+
+        SaveChartInfo.DataToSave(currentSkill);
 
         if (currentSequenceIndex < skillMoves.Count - 1)
         {
