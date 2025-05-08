@@ -247,7 +247,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bauhaus Color Palette_0: -6322654270717161751
+      Bauhaus Color Palette_1: -8692834321803680502
+      Bauhaus Color Palette_2: 6306791858452826768
+      Bauhaus Color Palette_3: -1644164954641407358
+      Bauhaus Color Palette_4: 3248461792720910034
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
