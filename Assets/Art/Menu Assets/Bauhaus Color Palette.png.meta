@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: e3ebb4f06c3e4be4382c2d33705aa97e
+guid: 8a677adee7aa39b4bac7af67bdb76822
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8806780078333464972
-    second: Triangle Button Unpressed_0
+      213: -6322654270717161751
+    second: Bauhaus Color Palette_0
+  - first:
+      213: -8692834321803680502
+    second: Bauhaus Color Palette_1
+  - first:
+      213: 6306791858452826768
+    second: Bauhaus Color Palette_2
+  - first:
+      213: -1644164954641407358
+    second: Bauhaus Color Palette_3
+  - first:
+      213: 3248461792720910034
+    second: Bauhaus Color Palette_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Triangle Button Unpressed_0
+      name: Bauhaus Color Palette_0
       rect:
         serializedVersion: 2
-        x: 332
-        y: 331
-        width: 1258
-        height: 1258
+        x: 201
+        y: 825
+        width: 272
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +140,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c819d0822d7f73a70800000000000000
-      internalID: 8806780078333464972
+      spriteID: 9ee0c4c807b6148a0800000000000000
+      internalID: -6322654270717161751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bauhaus Color Palette_1
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 825
+        width: 271
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a05619dad39dc5780800000000000000
+      internalID: -8692834321803680502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bauhaus Color Palette_2
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 825
+        width: 271
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09a086bc7c9368750800000000000000
+      internalID: 6306791858452826768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bauhaus Color Palette_3
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 825
+        width: 271
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 282e3765fa0ce29e0800000000000000
+      internalID: -1644164954641407358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bauhaus Color Palette_4
+      rect:
+        serializedVersion: 2
+        x: 1447
+        y: 825
+        width: 272
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d6fe851acad41d20800000000000000
+      internalID: 3248461792720910034
       vertices: []
       indices: 
       edges: []
@@ -147,8 +247,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Triangle Button Unpressed_0: 8806780078333464972
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

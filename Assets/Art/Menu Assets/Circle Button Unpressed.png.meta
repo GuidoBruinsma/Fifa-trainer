@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e3ebb4f06c3e4be4382c2d33705aa97e
+guid: 1ba1acfd1c976ca4981479aa502eb3ae
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8806780078333464972
-    second: Triangle Button Unpressed_0
+      213: 4698954314010467977
+    second: Circle Button Unpressed_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,10 +113,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Triangle Button Unpressed_0
+      name: Circle Button Unpressed_0
       rect:
         serializedVersion: 2
-        x: 332
+        x: 331
         y: 331
         width: 1258
         height: 1258
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c819d0822d7f73a70800000000000000
-      internalID: 8806780078333464972
+      spriteID: 98e126e6d0a063140800000000000000
+      internalID: 4698954314010467977
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Triangle Button Unpressed_0: 8806780078333464972
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
