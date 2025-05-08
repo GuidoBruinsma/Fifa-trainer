@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e3ebb4f06c3e4be4382c2d33705aa97e
+guid: c9ce1d6a34431f841b8deb9fa09fe130
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8806780078333464972
-    second: Triangle Button Unpressed_0
+      213: -4444833689374100259
+    second: RSorR3 UpRight_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Triangle Button Unpressed_0
+      name: RSorR3 UpRight_0
       rect:
         serializedVersion: 2
-        x: 332
+        x: 331
         y: 331
-        width: 1258
-        height: 1258
+        width: 1395
+        height: 1384
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c819d0822d7f73a70800000000000000
-      internalID: 8806780078333464972
+      spriteID: dd4fa2b2f47c052c0800000000000000
+      internalID: -4444833689374100259
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Triangle Button Unpressed_0: 8806780078333464972
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
