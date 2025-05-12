@@ -1,12 +1,15 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(SkillsValidator), typeof(InputHandler))]
 public class SkillMovesManager : MonoBehaviour
 {
-    private enum Type { 
+    private enum Type
+    {
         Normal,
-        Adaptive
+        Adaptive,
+        Random
     }
 
     public static SkillMovesManager Instance { get; private set; }
@@ -25,7 +28,7 @@ public class SkillMovesManager : MonoBehaviour
     [SerializeField] private Skill currentSkill;
 
     private int currentSequenceIndex = 0;
-    
+
     private void Awake()
     {
         if (Instance == null)
@@ -50,8 +53,10 @@ public class SkillMovesManager : MonoBehaviour
         LoadCurrentSkillMove();
     }
 
-    private void SetupSkillsGameSettings () {
-        if (skillsSettings == null) {
+    private void SetupSkillsGameSettings()
+    {
+        if (skillsSettings == null)
+        {
             Debug.LogError("No game settings attached");
             return;
         }
@@ -66,8 +71,14 @@ public class SkillMovesManager : MonoBehaviour
                 skillMoves = new(skillsSettings.selectedSkillMoves);
             }
         }
-        else if (type == Type.Adaptive) {
+        else if (type == Type.Adaptive)
+        {
             skillMoves = new(SkillStatsManager.GetSortedByRateSkillList(skillsSettings.allSkillMoves));
+        }
+        else if (type == Type.Random)
+        {
+            //shuffledList = myList.OrderBy( x => Random.value ).ToList( );
+            skillMoves = new(skillsSettings.allSkillMoves.OrderBy(x => Random.value).ToList());
         }
     }
 
@@ -119,7 +130,8 @@ public class SkillMovesManager : MonoBehaviour
         }
     }
 
-    private void PredictionSkill() {
+    private void PredictionSkill()
+    {
         UI_Manager uiManager = UI_Manager.Instance;
 
         int nextSkillIndex = currentSequenceIndex + 1;
