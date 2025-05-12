@@ -8,6 +8,9 @@ public class LineChart : MonoBehaviour
     public enum SkillDataType { Attempts, Successes, SuccessRate }
     public SkillDataType _skillDataType;
 
+    public SkillDataType dataTypeXaxis;
+    public SkillDataType dataTypeYaxis;
+    
     public RectTransform chartContainer;
     public Sprite circleSprite;
 
@@ -66,18 +69,20 @@ public class LineChart : MonoBehaviour
         List<float> yValues = new();
         float cumulativeSuccess = 0f;
 
-        Debug.Log($"Loaded {skillChartData.Count} entries from file for skill: {skill.moveName}");
+        //Debug.Log($"Loaded {skillChartData.Count} entries from file for skill: {skill.moveName}");
 
         for (int i = 0; i < skillChartData.Count; i++)
         {
-            cumulativeSuccess = 0;
-
             var s = skillChartData[i];
 
-            cumulativeSuccess += s.success;
-            xValues.Add(cumulativeSuccess);
+            float x = dataTypeXaxis switch{
+                SkillDataType.Attempts => s.attempts,
+                SkillDataType.Successes => s.success,
+                SkillDataType.SuccessRate => s.attempts == 0 ? 0f : (float)s.success / s.attempts * 100f,
+                _ => 0f
+            };
 
-            float y = _skillDataType switch
+            float y = dataTypeYaxis switch
             {
                 SkillDataType.Attempts => s.attempts,
                 SkillDataType.Successes => s.success,
@@ -85,6 +90,7 @@ public class LineChart : MonoBehaviour
                 _ => 0f
             };
 
+            xValues.Add(x);
             yValues.Add(y);
 
             //Debug.Log($"Data Point {i}: X (Cumulative Successes) = {cumulativeSuccess}, Y ({_skillDataType}) = {y}");
@@ -142,6 +148,7 @@ public class LineChart : MonoBehaviour
             }
         }
     }
+    
     private IEnumerator AnimateLine(Vector2 start, Vector2 end, float duration)
     {
         GameObject line = new("Line", typeof(Image));
@@ -175,7 +182,7 @@ public class LineChart : MonoBehaviour
 
         chartObjects.Add(line);
     }
-
+    
     private void DrawVerticalLabels(float maxX)
     {
         int steps = 5;
@@ -224,7 +231,7 @@ public class LineChart : MonoBehaviour
 
         return label;
     }
-
+ 
     private GameObject CreateLineObject(Vector2 size, Vector2 position)
     {
         GameObject line = new("Line", typeof(Image));
@@ -238,7 +245,7 @@ public class LineChart : MonoBehaviour
 
         return line;
     }
-
+    
     private GameObject CreatePoint(Vector2 position)
     {
         GameObject point = new("Point", typeof(Image));
@@ -352,5 +359,4 @@ public class LineChart : MonoBehaviour
         // Connect 0,0 to first point
         chartObjects.Add(CreateLine(Vector2.zero, animatedPoints[0].anchoredPosition));
     }
-
 }
