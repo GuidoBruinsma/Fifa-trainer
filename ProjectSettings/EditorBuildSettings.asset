@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Adaptive Skill Training.unity
     guid: 707fc029f9d59494b894de78554a099d
+  - enabled: 1
+    path: Assets/Scenes/Random.unity
+    guid: a66749f59596b3642abc92f138f61de8
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 170a4997b33f2cf4bbce502fd41f9530, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
