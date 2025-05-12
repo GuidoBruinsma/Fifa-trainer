@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Triangle Button Unpressed_0: 8806780078333464972
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Controller Disconnected_0: 618034432489947276
+      Controller Disconnected_1: 328523518600398126
+      Controller Disconnected_2: -8231081313927753192
+      Controller Disconnected_3: 142043367640367603
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

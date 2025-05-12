@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Controller Connected-General_0: 7108829901253346952
+      Controller Connected-General_1: -3732623597765462282
+      Controller Connected-General_2: -7282819009874708114
+      Controller Connected-General_3: 5512557707315516600
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

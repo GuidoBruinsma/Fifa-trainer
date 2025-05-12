@@ -397,7 +397,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Logo Rensulab_0: 1029517660518024548
+      Logo Rensulab_1: 2217619671786011153
+      Logo Rensulab_10: 7274631607157304038
+      Logo Rensulab_2: 2593890053497606509
+      Logo Rensulab_3: 7965737682933353000
+      Logo Rensulab_4: -93729257366355601
+      Logo Rensulab_5: 6944212799926267558
+      Logo Rensulab_6: 6711332839044189420
+      Logo Rensulab_7: 3430220971883335905
+      Logo Rensulab_8: -7391763111466007929
+      Logo Rensulab_9: -1208983999802872185
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
