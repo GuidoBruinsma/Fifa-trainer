@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,11 +5,10 @@ using UnityEngine.UI;
 public class LineChart : MonoBehaviour
 {
     public enum SkillDataType { Attempts, Successes, SuccessRate }
-    public SkillDataType _skillDataType;
 
     public SkillDataType dataTypeXaxis;
     public SkillDataType dataTypeYaxis;
-    
+
     public RectTransform chartContainer;
     public Sprite circleSprite;
 
@@ -24,6 +22,9 @@ public class LineChart : MonoBehaviour
     {
         EventManager.OnSkillChanged.AddListener(LoadChartData);
     }
+
+
+    void Start() => DisplaySavedData(SkillMovesManager.CurrentSkill);
 
     private void OnDisable() => EventManager.OnSkillChanged.RemoveListener(LoadChartData);
 
@@ -44,20 +45,24 @@ public class LineChart : MonoBehaviour
 
         List<float> xValues = new();
         List<float> yValues = new();
-        float cumulativeSuccess = 0f;
 
-        foreach (var s in skillAnalyzeHistory)
+        foreach (var s in skillChartData)
         {
-            cumulativeSuccess += s.successes;
-            xValues.Add(cumulativeSuccess);
-
-            yValues.Add(_skillDataType switch
+            float x = dataTypeXaxis switch
             {
                 SkillDataType.Attempts => s.attempts,
-                SkillDataType.Successes => s.successes,
-                SkillDataType.SuccessRate => s.successRate * 100f,
+                SkillDataType.Successes => s.success,
+                SkillDataType.SuccessRate => s.attempts == 0 ? 0f : (float)s.success / s.attempts * 100f,
                 _ => 0f
-            });
+            };
+
+            float y = dataTypeYaxis switch
+            {
+                SkillDataType.Attempts => s.attempts,
+                SkillDataType.Successes => s.success,
+                SkillDataType.SuccessRate => s.attempts == 0 ? 0f : (float)s.success / s.attempts * 100f,
+                _ => 0f
+            };
         }
 
         ShowGraph(xValues, yValues);
@@ -67,15 +72,13 @@ public class LineChart : MonoBehaviour
     {
         List<float> xValues = new();
         List<float> yValues = new();
-        float cumulativeSuccess = 0f;
-
-        //Debug.Log($"Loaded {skillChartData.Count} entries from file for skill: {skill.moveName}");
 
         for (int i = 0; i < skillChartData.Count; i++)
         {
             var s = skillChartData[i];
 
-            float x = dataTypeXaxis switch{
+            float x = dataTypeXaxis switch
+            {
                 SkillDataType.Attempts => s.attempts,
                 SkillDataType.Successes => s.success,
                 SkillDataType.SuccessRate => s.attempts == 0 ? 0f : (float)s.success / s.attempts * 100f,
@@ -92,16 +95,15 @@ public class LineChart : MonoBehaviour
 
             xValues.Add(x);
             yValues.Add(y);
-
-            //Debug.Log($"Data Point {i}: X (Cumulative Successes) = {cumulativeSuccess}, Y ({_skillDataType}) = {y}");
         }
-        StartCoroutine(AnimateGraph(xValues, yValues));
-       // ShowGraph(xValues, yValues);
+
+        ShowGraph(xValues, yValues);
     }
 
     public void ShowGraph(List<float> xValues, List<float> yValues)
     {
-        if (xValues.Count <= 0 || yValues.Count <= 0) {
+        if (xValues.Count <= 0 || yValues.Count <= 0)
+        {
             Debug.Log("Nothing to display");
             return;
         }
@@ -119,7 +121,6 @@ public class LineChart : MonoBehaviour
         DrawHorizontalLines(yMaxRounded);
         DrawVerticalLabels(xMaxRounded);
 
-        //Connect the 0,0 to the first dot
         float firstX = (xValues[0] / xMaxRounded) * chartWidth;
         float firstY = (yValues[0] / yMaxRounded) * chartHeight;
 
@@ -127,7 +128,6 @@ public class LineChart : MonoBehaviour
         Vector2 firstPointPos = new(firstX, firstY);
 
         chartObjects.Add(CreateLine(startPos, firstPointPos));
-        //
 
         for (int i = 0; i < xValues.Count; i++)
         {
@@ -148,41 +148,7 @@ public class LineChart : MonoBehaviour
             }
         }
     }
-    
-    private IEnumerator AnimateLine(Vector2 start, Vector2 end, float duration)
-    {
-        GameObject line = new("Line", typeof(Image));
-        line.transform.SetParent(chartContainer, false);
-        Image img = line.GetComponent<Image>();
-        img.color = Color.green;
 
-        RectTransform rt = line.GetComponent<RectTransform>();
-        rt.anchorMin = rt.anchorMax = Vector2.zero;
-        rt.sizeDelta = new Vector2(0, 3);
-        rt.anchoredPosition = start;
-        rt.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(end.y - start.y, end.x - start.x) * Mathf.Rad2Deg);
-
-        Vector2 dir = (end - start).normalized;
-        float totalDistance = Vector2.Distance(start, end);
-
-        float elapsed = 0f;
-        while (elapsed < duration)
-        {
-            float t = elapsed / duration;
-            float currentLength = Mathf.Lerp(0, totalDistance, t);
-            rt.sizeDelta = new Vector2(currentLength, 3);
-            rt.anchoredPosition = start + dir * (currentLength * 0.5f);
-
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        rt.sizeDelta = new Vector2(totalDistance, 3);
-        rt.anchoredPosition = start + dir * (totalDistance * 0.5f);
-
-        chartObjects.Add(line);
-    }
-    
     private void DrawVerticalLabels(float maxX)
     {
         int steps = 5;
@@ -231,7 +197,7 @@ public class LineChart : MonoBehaviour
 
         return label;
     }
- 
+
     private GameObject CreateLineObject(Vector2 size, Vector2 position)
     {
         GameObject line = new("Line", typeof(Image));
@@ -245,7 +211,7 @@ public class LineChart : MonoBehaviour
 
         return line;
     }
-    
+
     private GameObject CreatePoint(Vector2 position)
     {
         GameObject point = new("Point", typeof(Image));
@@ -291,72 +257,5 @@ public class LineChart : MonoBehaviour
 
         chartObjects.Clear();
         pointRects.Clear();
-    }
-
-    private IEnumerator AnimateGraph(List<float> xValues, List<float> yValues)
-    {
-        ClearDynamicChart();
-
-        float chartWidth = chartContainer.sizeDelta.x;
-        float chartHeight = chartContainer.sizeDelta.y;
-
-        float maxY = Mathf.Max(1f, Mathf.Max(yValues.ToArray()));
-        float maxX = Mathf.Max(1f, Mathf.Max(xValues.ToArray()));
-        float yMaxRounded = Mathf.Ceil(maxY / 10f) * 10f;
-        float xMaxRounded = Mathf.Ceil(maxX / 5f) * 5f;
-
-        DrawHorizontalLines(yMaxRounded);
-        DrawVerticalLabels(xMaxRounded);
-
-        List<RectTransform> animatedPoints = new();
-
-        for (int i = 0; i < xValues.Count; i++)
-        {
-            float x = (xValues[i] / xMaxRounded) * chartWidth;
-            float y = (yValues[i] / yMaxRounded) * chartHeight;
-            Vector2 targetPos = new(x, y);
-
-            var point = CreatePoint(Vector2.zero); // Start at origin
-            chartObjects.Add(point);
-            animatedPoints.Add(point.GetComponent<RectTransform>());
-            chartObjects.Add(CreateVerticalLine(x, chartHeight));
-        }
-
-        float duration = 1f; // Total animation time
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / duration);
-
-            for (int i = 0; i < animatedPoints.Count; i++)
-            {
-                float x = (xValues[i] / xMaxRounded) * chartWidth;
-                float y = (yValues[i] / yMaxRounded) * chartHeight;
-                Vector2 targetPos = new(x, y);
-                animatedPoints[i].anchoredPosition = Vector2.Lerp(Vector2.zero, targetPos, t);
-            }
-
-            yield return null;
-        }
-
-        // Ensure final positions and draw lines
-        for (int i = 0; i < animatedPoints.Count; i++)
-        {
-            float x = (xValues[i] / xMaxRounded) * chartWidth;
-            float y = (yValues[i] / yMaxRounded) * chartHeight;
-            Vector2 currentPos = new(x, y);
-            animatedPoints[i].anchoredPosition = currentPos;
-
-            if (i > 0)
-            {
-                Vector2 prevPos = animatedPoints[i - 1].anchoredPosition;
-                chartObjects.Add(CreateLine(prevPos, currentPos));
-            }
-        }
-
-        // Connect 0,0 to first point
-        chartObjects.Add(CreateLine(Vector2.zero, animatedPoints[0].anchoredPosition));
     }
 }
