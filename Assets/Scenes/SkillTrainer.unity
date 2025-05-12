@@ -456,6 +456,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 413.6
       objectReference: {fileID: 0}
+    - target: {fileID: 8748266170974187949, guid: c438f94f94cb39f4b9b772bf3afd5eab, type: 3}
+      propertyPath: dataTypeXaxis
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
