@@ -1,10 +1,12 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ControllerStateInMenu : MonoBehaviour
 {
+    [SerializeField] private EventSystem system;
     [SerializeField] private TextMeshProUGUI controllerStateText;
 
     private void Update()
@@ -27,6 +29,10 @@ public class ControllerStateInMenu : MonoBehaviour
             foreach (var item in b)
             {
                 item.interactable = true;
+            }
+            if (system.currentSelectedGameObject == null)
+            {
+                system.SetSelectedGameObject(transform.GetComponentInChildren<Button>().gameObject);
             }
         }
     }

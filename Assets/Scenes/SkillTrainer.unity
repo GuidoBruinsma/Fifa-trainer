@@ -3326,6 +3326,10 @@ PrefabInstance:
       value: _UIManager
       objectReference: {fileID: 0}
     - target: {fileID: 2072627521345099090, guid: 26d900ee370d7a443ad1d82990d7a4f0, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 1627821477}
+    - target: {fileID: 2072627521345099090, guid: 26d900ee370d7a443ad1d82990d7a4f0, type: 3}
       propertyPath: pauseCanvas
       value: 
       objectReference: {fileID: 1771852273}
