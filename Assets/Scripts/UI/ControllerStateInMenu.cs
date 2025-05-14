@@ -8,31 +8,45 @@ public class ControllerStateInMenu : MonoBehaviour
 {
     [SerializeField] private EventSystem system;
     [SerializeField] private TextMeshProUGUI controllerStateText;
+    [SerializeField] private Button[] buttons;
+
+    private void Start()
+    {
+        buttons = GetComponentsInChildren<Button>(true); // include inactive
+        UpdateControllerState();
+    }
 
     private void Update()
     {
+        UpdateControllerState();
+    }
+
+    private void UpdateControllerState()
+    {
         Gamepad pad = Gamepad.current;
+
         if (pad == null)
         {
             controllerStateText.text = "<color=red>Controller not connected</color>";
-
-            var b = transform.GetComponentsInChildren<Button>();
-            foreach (var item in b)
-            {
-                item.interactable = false;
-            }
+            foreach (var btn in buttons)
+                btn.interactable = false;
         }
         else
         {
             controllerStateText.text = "<color=green>Controller connected</color>";
-            var b = transform.GetComponentsInChildren<Button>();
-            foreach (var item in b)
-            {
-                item.interactable = true;
-            }
+            foreach (var btn in buttons)
+                btn.interactable = true;
+
             if (system.currentSelectedGameObject == null)
             {
-                system.SetSelectedGameObject(transform.GetComponentInChildren<Button>().gameObject);
+                foreach (var btn in buttons)
+                {
+                    if (btn.gameObject.activeInHierarchy)
+                    {
+                        system.SetSelectedGameObject(btn.gameObject);
+                        break;
+                    }
+                }
             }
         }
     }
