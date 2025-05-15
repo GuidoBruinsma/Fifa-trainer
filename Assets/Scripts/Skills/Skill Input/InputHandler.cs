@@ -20,7 +20,9 @@ public class InputHandler : MonoBehaviour
     private bool waitingForRelease;
 
     //Input Data
-    [SerializeField] private List<SkillInput> inputs = new();
+    [SerializeField][Range(0, 1)] private float deadzone;
+
+    private List<SkillInput> inputs = new();
     private SkillInput? currentInput;
 
     private Dictionary<string, bool> buttonHoldState = new();
@@ -90,16 +92,17 @@ public class InputHandler : MonoBehaviour
             timeStarrted = true;
         };
 
-        Vector2 lastInput = new();
+        Vector2 lastInput = new(); 
 
         _Analog.performed += ctx =>
         {
-           if (isFlicked)
+            if (isFlicked)
                 lastInput = ctx.ReadValue<Vector2>();
         };
 
         _Analog.canceled += ctx =>
         {
+            
             if (isRotated)
             {
                 HandleRotationEnd(ctx);
@@ -130,26 +133,18 @@ public class InputHandler : MonoBehaviour
             }
             else if (isFlicked)
             {
-                Debug.Log("[FLICKED] Step0: Flick logic starting.");
-
                 HandleFlickInput(ctx, lastInput);
                 Debug.Log($"[FLICKED] Step1: Input detected = {currentInput}");
 
                 if (currentInput != SkillInput.Flick_None && !currentInputs.Contains(currentInput))
                 {
-                    Debug.Log("[FLICKED] Step2: Valid flick input found.");
-
                     if (currentInputs.Count < 1)
                     {
-                        Debug.Log("[FLICKED] Step3: Adding first flick input.");
                         currentInputs.Add(currentInput);
-                        Debug.Log($"[FLICKED] Step4: Added input = {currentInput}");
                     }
                 }
             }
 
-            // Print all collected inputs
-            Debug.Log("[ALL INPUTS]");
             foreach (var input in currentInputs)
             {
                 Debug.Log($"→ {input}");
@@ -157,21 +152,17 @@ public class InputHandler : MonoBehaviour
 
             Debug.Log($"[FINAL] Current Input: {currentInput}");
 
-            // Reset flags
             isRotated = false;
             isHeld = false;
             isFlicked = false;
             timeStarrted = false;
             nTime = 0;
 
-            // Send inputs if any
             if (currentInputs.Count > 0)
             {
-                Debug.Log($"[SEND] Sending {currentInputs.Count} inputs to EventManager.");
                 EventManager.OnMultipleInputsSent?.Invoke(currentInputs);
             }
 
-            // Clear for next input sequence
             currentInputs.Clear();
             inputs.Clear();
         };

@@ -148,8 +148,7 @@ public class SkillMovesManager : MonoBehaviour
         inputHandler.CancelHoldAndWaitForRelease();
 
         currentSkill.attempts++;
-        EventManager.OnSkillChanged?.Invoke(currentSkill);
-
+        EventManager.OnSkillChanged?.Invoke(currentSkill); 
     }
 
     private void HandleSequenceSuccess()

@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System.Collections;
 
 public class SelectorManager : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class SelectorManager : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private EventSystem eventSystem;
-    private Button[] buttons;
+    [SerializeField] private Button[] buttons;
 
     [Header("Lerp Settings")]
     [SerializeField] private float interpolationSpeed = 10f;
@@ -20,7 +19,9 @@ public class SelectorManager : MonoBehaviour
     private RectTransform selectorRect;
     private bool hasTriggered = false;
     public Vector2 adaptSize;
-    private void Start()
+    public GameObject go;
+
+    private void OnEnable()
     {
         selectorRect = GetComponent<RectTransform>();
 
@@ -32,6 +33,7 @@ public class SelectorManager : MonoBehaviour
 
     private void Update()
     {
+        go = eventSystem.currentSelectedGameObject;
         float lerpSpeed = Time.deltaTime * interpolationSpeed;
         SetSelectorToButtonPosition(lerpSpeed);
     }

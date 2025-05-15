@@ -121,7 +121,6 @@ public static class SkillInputs
          * if(< 20 && > 340)
          */
 
-        Debug.Log(degrees);
         if (!isHeld)
         {
             if (degrees >= 20f && degrees < 70f)

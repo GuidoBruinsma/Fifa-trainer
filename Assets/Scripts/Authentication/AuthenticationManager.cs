@@ -176,14 +176,14 @@ public class AuthenticationManager : MonoBehaviour
         {
             if (loginPanel != null && startPanel != null)
             {
-                PanelManager.OpenClosePanels(startPanel, loginPanel);
+                PanelManager.OpenClosePanels(startPanel, loginPanel, true);
                 Debug.Log($"Successfully signed up {AuthenticationService.Instance.PlayerName}");
             }
         };
 
         AuthenticationService.Instance.SignedOut += () =>
         {
-            PanelManager.OpenClosePanels(loginPanel, startPanel);
+            PanelManager.OpenClosePanels(loginPanel, startPanel, true);
         };
 
         AuthenticationService.Instance.Expired += () =>

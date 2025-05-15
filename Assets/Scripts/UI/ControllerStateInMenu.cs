@@ -8,7 +8,8 @@ public class ControllerStateInMenu : MonoBehaviour
 {
     [SerializeField] private EventSystem system;
     [SerializeField] private TextMeshProUGUI controllerStateText;
-    [SerializeField] private Button[] buttons;
+    
+    private Button[] buttons;
 
     private void Start()
     {
@@ -37,7 +38,7 @@ public class ControllerStateInMenu : MonoBehaviour
             foreach (var btn in buttons)
                 btn.interactable = true;
 
-            if (system.currentSelectedGameObject == null)
+            if (system.currentSelectedGameObject == null || !system.currentSelectedGameObject.activeInHierarchy)
             {
                 foreach (var btn in buttons)
                 {

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 public static class SaveChartInfo
@@ -12,6 +13,20 @@ public static class SaveChartInfo
         {
             Directory.CreateDirectory(historyFolder);
         }
+    }
+    
+    [MenuItem("Data Menu/Clear all data")] 
+    public static void ClearAllData() {
+        CreatePath();
+
+        string[] files = Directory.GetFiles(historyFolder, "*.json");
+
+        foreach (string file in files)
+        {
+            File.Delete(file);
+        }
+
+        Debug.Log("All skill chart data has been cleared.");
     }
 
     public static void DataToSave(Skill currentSkill)
