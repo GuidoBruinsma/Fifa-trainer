@@ -20,7 +20,7 @@ public class InputHandler : MonoBehaviour
     private bool waitingForRelease;
 
     //Input Data
-    [SerializeField][Range(0, 1)] private float deadzone;
+    [SerializeField][Range(0.3f, 1f)] private float holdDetectionTime;
 
     private List<SkillInput> inputs = new();
     private SkillInput? currentInput;
@@ -36,12 +36,14 @@ public class InputHandler : MonoBehaviour
 
     private bool timeStarrted = false;
 
+    List<SkillInput?> currentInputs = new();
+
+
     private void Awake()
     {
         SetupControls();
         RegisterControlCallbacks();
         controls.Enable();
-
     }
 
     #region Input Setup & Initialization
@@ -61,7 +63,6 @@ public class InputHandler : MonoBehaviour
         _Analog = map.FindAction("Analog");
     }
 
-    List<SkillInput?> currentInputs = new();
 
     private void RegisterControlCallbacks()
     {
@@ -193,7 +194,7 @@ public class InputHandler : MonoBehaviour
                 isHeld = false;
                 isFlicked = false;
             }
-            else if (nTime > 0.3f)
+            else if (nTime > holdDetectionTime)
             {
                 //is held
                 isRotated = false;
@@ -202,7 +203,7 @@ public class InputHandler : MonoBehaviour
 
                 isFlicked = false;
             }
-            else if (nTime <= 0.3f)
+            else if (nTime <= holdDetectionTime)
             {
                 isRotated = false;
 

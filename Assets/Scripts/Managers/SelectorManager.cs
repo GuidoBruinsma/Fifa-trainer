@@ -10,16 +10,15 @@ public class SelectorManager : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private EventSystem eventSystem;
-    [SerializeField] private Button[] buttons;
+    private Button[] buttons;
 
     [Header("Lerp Settings")]
     [SerializeField] private float interpolationSpeed = 10f;
     [SerializeField] private float threshold = 0.9f;
 
+    [SerializeField] private Vector2 adaptSize;
     private RectTransform selectorRect;
     private bool hasTriggered = false;
-    public Vector2 adaptSize;
-    public GameObject go;
 
     private void OnEnable()
     {
@@ -29,11 +28,33 @@ public class SelectorManager : MonoBehaviour
         {
             buttons = transform.parent.GetComponentsInChildren<Button>(true);
         }
+
+        foreach (var b in buttons)
+        {
+            AddEventTriggerComponent(b);
+        }
+    }
+
+    private void AddEventTriggerComponent(Button b)
+    {
+        EventTrigger eventTrigger = b.gameObject.GetComponent<EventTrigger>();
+        if (eventTrigger == null)
+            eventTrigger = b.gameObject.AddComponent<EventTrigger>();
+
+        eventTrigger.triggers.Clear();
+
+        EventTrigger.Entry entry = new ();
+        entry.eventID = EventTriggerType.PointerEnter;
+        entry.callback.AddListener((eventData) =>
+        {
+            eventSystem.SetSelectedGameObject(b.gameObject);
+        });
+
+        eventTrigger.triggers.Add(entry);
     }
 
     private void Update()
     {
-        go = eventSystem.currentSelectedGameObject;
         float lerpSpeed = Time.deltaTime * interpolationSpeed;
         SetSelectorToButtonPosition(lerpSpeed);
     }
@@ -44,7 +65,6 @@ public class SelectorManager : MonoBehaviour
 
         if (selected == null || !selected.TryGetComponent<RectTransform>(out var selectedRect))
             return;
-
         selectorRect.position = Vector3.Lerp(selectorRect.position, selectedRect.position, lerpSpeed);
         selectorRect.sizeDelta = Vector2.Lerp(selectorRect.sizeDelta, selectedRect.sizeDelta + adaptSize, lerpSpeed);
         selectorRect.pivot = selectedRect.pivot;
