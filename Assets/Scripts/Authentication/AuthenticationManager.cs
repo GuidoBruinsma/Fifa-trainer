@@ -17,8 +17,6 @@ public class AuthenticationManager : MonoBehaviour
 
     public TextMeshProUGUI errorText;
 
-    public TextMeshProUGUI playerUsernameText;
-
     public GameObject loginPanel;
     public GameObject startPanel;
 
@@ -80,10 +78,7 @@ public class AuthenticationManager : MonoBehaviour
             if (PlayerPrefs.HasKey("username"))
             {
                 string lastUsername = PlayerPrefs.GetString("username");
-                playerUsernameText.text = lastUsername;
             }
-            else
-                playerUsernameText.text = AuthenticationService.Instance.PlayerName;
 
            // SceneManager.LoadScene(1);
         }
@@ -116,8 +111,6 @@ public class AuthenticationManager : MonoBehaviour
         {
             await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(username, password);
 
-            playerUsernameText.text = username + AuthenticationService.Instance.PlayerId;
-
             PlayerPrefs.SetString("username", username);
             PlayerPrefs.SetInt("rememberMe", ConvertBoolToInt());
         }
@@ -139,7 +132,6 @@ public class AuthenticationManager : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
-            playerUsernameText.text = username;
 
             await AuthenticationService.Instance.UpdatePlayerNameAsync(username);
 
@@ -184,14 +176,14 @@ public class AuthenticationManager : MonoBehaviour
         {
             if (loginPanel != null && startPanel != null)
             {
-                PanelManager.OpenClosePanels(startPanel, loginPanel);
+                PanelManager.OpenClosePanels(startPanel, loginPanel, true);
                 Debug.Log($"Successfully signed up {AuthenticationService.Instance.PlayerName}");
             }
         };
 
         AuthenticationService.Instance.SignedOut += () =>
         {
-            PanelManager.OpenClosePanels(loginPanel, startPanel);
+            PanelManager.OpenClosePanels(loginPanel, startPanel, true);
         };
 
         AuthenticationService.Instance.Expired += () =>

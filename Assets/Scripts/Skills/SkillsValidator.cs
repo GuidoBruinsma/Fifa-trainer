@@ -54,9 +54,6 @@ public class SkillsValidator : MonoBehaviour
         if (pressedSequenceInput.Count == 0) currentTime = Time.time;
 
         if (input == (SkillInput.Flick_None) ||
-          input == (SkillInput.Hold_L3_None) ||
-          input == (SkillInput.Hold_None) ||
-          input == (SkillInput.Hold_R3_None) ||
           input == (SkillInput.L2_None) ||
           input == (SkillInput.R2_None) ||
           input == (SkillInput.L3_None) ||

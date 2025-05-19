@@ -1,26 +1,18 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] EventSystem eventSystem;
-
     [SerializeField] private GameObject pauseCanvas;
-
-    /// <summary>
-    /// Add buttons in array as they are in the scene. First Resume, Settings, Quit, Etc.
-    /// </summary>
-    [SerializeField] private GameObject[] buttons;
 
     [Header("Controls")]
     [SerializeField] private InputActionAsset controls;
 
     private InputAction _Buttons;
 
-    private bool isPaused = false;
+    [SerializeField] private bool isPaused = false;
 
-    private void Awake()
+    private void Start()
     {
         pauseCanvas.SetActive(isPaused);
 
@@ -30,16 +22,11 @@ public class PauseMenu : MonoBehaviour
         _Buttons.performed += ctx => { ActivatePause(ctx.control.name); };
     }
 
-    private void Update()
-    {
-
-    }
-
     //TODO: Uncomment, delete saving
     private void ActivatePause(string buttonName)
     {
-
-        if (buttonName == "select") isPaused = !isPaused;
+        Debug.Log(buttonName);
+        if (buttonName == "start") isPaused = !isPaused;
 
         Time.timeScale = isPaused ? 0 : 1;
 

@@ -18,6 +18,11 @@ public class StickInputVisualizer : MonoBehaviour
     [Header("Stick Position")]
     [SerializeField] private Vector2 stickPosition; // Normalized position of the stick (from -1 to 1)
 
+    [Header("Deadzone")]
+    [Tooltip("Radius from center within which stick input is considered dead.")]
+    [SerializeField, Range(0f, 1f)] private float deadzone = 0.2f;
+    [SerializeField] private Color deadzoneColor = new Color(1f, 1f, 0f, 0.2f); // Semi-transparent yellow
+
     private InputAction _stick;
 
     private void Start()
@@ -56,11 +61,14 @@ public class StickInputVisualizer : MonoBehaviour
         DrawRegion(center, radius, 70f, 110f);   // Up
         DrawRegion(center, radius, 160f, 200f);  // Left
         DrawRegion(center, radius, 250f, 290f);  // Down
+                                                 // Draw deadzone circle
+        Gizmos.color = deadzoneColor;
+        Gizmos.DrawWireSphere(center, radius * deadzone);
 
         // Draw a line from the center to the stick position.
         Gizmos.color = stickPositionColor;
         Vector3 stickDirection = new Vector3(Mathf.Cos(degrees * Mathf.Deg2Rad), Mathf.Sin(degrees * Mathf.Deg2Rad), 0f);
-        Gizmos.DrawLine(center, center + stickDirection * radius);
+        Gizmos.DrawLine(center, center + stickDirection * radius * stickPosition.magnitude);
     }
 
     /// <summary>
