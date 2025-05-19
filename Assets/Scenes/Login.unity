@@ -3286,11 +3286,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: f743e64dc307933459cd0b7e5af3a11e, type: 2}
   eventSystem: {fileID: 478606851}
-  buttons: []
   interpolationSpeed: 20
   threshold: 0.8
   adaptSize: {x: 35, y: 35}
-  go: {fileID: 0}
 --- !u!114 &591838363
 MonoBehaviour:
   m_ObjectHideFlags: 0
