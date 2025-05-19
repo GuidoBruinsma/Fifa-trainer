@@ -22,6 +22,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nextMoveName;
     [SerializeField] private TextMeshProUGUI nextMoveSequence;
 
+    [SerializeField] private TextMeshProUGUI sequenceName;
     [SerializeField] private TextMeshProUGUI sequenceText;
 
     private void Awake()
@@ -46,7 +47,11 @@ public class UI_Manager : MonoBehaviour
 
     public void SetElapsedTimeCompletion(float elapsedTime) => timeElapsedComlpetionText.text = $"Skill completion time: {elapsedTime.ToString("0.000")}";
 
-    public void SetSkillMoveInfo(string sequence) => sequenceText.text = sequence;
+    public void SetSkillMoveInfo(string sequence)
+    {
+        sequenceName.text = SkillMovesManager.CurrentSkill.moveName;
+        sequenceText.text = sequence;
+    }
 
     public void SetNextMoveInfo(List<SkillInputHolder> sequenceList, string moveName)
     {

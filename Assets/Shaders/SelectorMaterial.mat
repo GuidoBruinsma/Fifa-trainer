@@ -46,8 +46,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
-    - _RunEffect: 1
-    - _Speed: 1
+    - _RunEffect: 0
+    - _Speed: 20
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -55,7 +55,7 @@ Material:
     - _StencilWriteMask: 255
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
-    - _noise_scale: 0
+    - _noise_scale: 200
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
     - _Noise_Color: {r: 0.920394, g: 0.9607843, b: 0.19607839, a: 1}
