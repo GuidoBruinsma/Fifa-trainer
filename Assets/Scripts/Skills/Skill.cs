@@ -33,8 +33,6 @@ public class Skill : ScriptableObject
             successes = successes,
             successRate = SuccessRate
         };
-
-        //EventManager.OnAnalyzeSkillDataSent?.Invoke(skillAnalyzeData);
     }
 }
 

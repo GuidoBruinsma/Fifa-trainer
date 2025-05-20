@@ -19,10 +19,8 @@ public class AnalyticsManager : MonoBehaviour
 
     public void FailedAttempTrack(string skillName, int totalAttempts) {
 
-        // Get the current date (no time)
         DateTime currentDate = DateTime.Today;
 
-        // Format the date as "yyyy-MM-dd" (Year-Month-Day)
         string dateString = currentDate.ToString("dd-MM-yyyy");
 
         CustomEvent failsTrackEvent = new CustomEvent("failedAttemp")
