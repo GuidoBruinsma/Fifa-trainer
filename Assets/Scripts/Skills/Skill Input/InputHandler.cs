@@ -70,18 +70,18 @@ public class InputHandler : MonoBehaviour
     private void RegisterControlCallbacks()
     {
         // Buttons control
-        //_Buttons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
+        _Buttons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
 
         //// Analog Buttons control
         _AnalogButtons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
 
         _HoldL1.performed += ctx => { if (!holdDisabled) HandleHoldStart(ctx.control.name); };
 
-        _HoldL1.canceled += ctx => { HandleHoldEnd(ctx); };
+        //_HoldL1.canceled += ctx => { HandleHoldEnd(ctx); };
 
         _HoldR1.performed += ctx => { if (!holdDisabled) HandleHoldStart(ctx.control.name); };
 
-        _HoldR1.canceled += ctx => { HandleHoldEnd(ctx); };
+        //_HoldR1.canceled += ctx => { HandleHoldEnd(ctx); };
 
         // Rotation control
 
