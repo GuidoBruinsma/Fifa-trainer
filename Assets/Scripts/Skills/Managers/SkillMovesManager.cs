@@ -9,7 +9,8 @@ public class SkillMovesManager : MonoBehaviour
     {
         Normal,
         Adaptive,
-        Random
+        Random,
+        Debug
     }
 
     public static SkillMovesManager Instance { get; private set; }
@@ -80,6 +81,10 @@ public class SkillMovesManager : MonoBehaviour
             //shuffledList = myList.OrderBy( x => Random.value ).ToList( );
             skillMoves = new(skillsSettings.allSkillMoves.OrderBy(x => Random.value).ToList());
         }
+        else if (type == Type.Debug)
+        {
+            skillMoves = new(skillsSettings.allSkillMoves);
+        }
     }
 
     private void RestartGame()
@@ -148,7 +153,7 @@ public class SkillMovesManager : MonoBehaviour
         inputHandler.CancelHoldAndWaitForRelease();
 
         currentSkill.attempts++;
-        EventManager.OnSkillChanged?.Invoke(currentSkill); 
+        EventManager.OnSkillChanged?.Invoke(currentSkill);
     }
 
     private void HandleSequenceSuccess()
