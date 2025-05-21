@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ScriptableObject that maps skill input enums to corresponding icon strings.
+/// Used for displaying controller button icons and directional inputs in the UI.
+/// </summary>
 [CreateAssetMenu(fileName = "SkillControlIconMap", menuName = "Skill Input/Icon Mapping", order = 1)]
 public class SkillControlIconMap : ScriptableObject
 {
@@ -108,6 +112,10 @@ public class SkillControlIconMap : ScriptableObject
     public string L3_DownToRightToDown;
     public string L3_RightToDownToRight;
 
+    /// <summary>
+    /// Returns the icon string associated with the given SkillInput enum.
+    /// Uses a switch expression for efficient mapping.
+    /// </summary>
     public string GetIconForSkillInput(SkillInput input)
     {
         return input switch
@@ -211,11 +219,23 @@ public class SkillControlIconMap : ScriptableObject
         };
     }
 
+    /// <summary>
+    /// Returns the icon string for the given SkillInput.
+    /// Currently just calls GetIconForSkillInput for convenience.
+    /// </summary>
     public string SkillInputToString(SkillInput input)
     {
         return GetIconForSkillInput(input);
     }
 
+    /// <summary>
+    /// Creates a formatted display string representing a sequence of possible skill inputs.
+    /// Supports highlighting a specific index in the sequence.
+    /// </summary>
+    /// <param name="possibleSequences">List of possible input sequences.</param>
+    /// <param name="highlightIndex">Index of input to highlight (default -1 for no highlight).</param>
+    /// <param name="highlight">Whether to apply highlight color.</param>
+    /// <returns>Formatted string showing inputs at each sequence step with OR between alternatives.</returns>
     public string GetSequenceDisplay(List<SkillInputHolder> possibleSequences, int highlightIndex = -1, bool highlight = false)
     {
         string display = "";

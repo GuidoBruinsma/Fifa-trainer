@@ -2,9 +2,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Manages the lifecycle and flow of skill move sequences during a training session.
+/// Handles skill move selection based on different strategies (Normal, Adaptive, Random, Debug),
+/// tracks progress, and responds to success/failure events.
+/// </summary>
 [RequireComponent(typeof(SkillsValidator), typeof(InputHandler))]
 public class SkillMovesManager : MonoBehaviour
 {
+    /// <summary>
+    /// Defines the mode of skill selection for the training session.
+    /// </summary>
     private enum Type
     {
         Normal,
@@ -15,6 +23,9 @@ public class SkillMovesManager : MonoBehaviour
 
     public static SkillMovesManager Instance { get; private set; }
 
+    /// <summary>
+    /// Returns the currently active skill.
+    /// </summary>
     public static Skill CurrentSkill => Instance.currentSkill;
 
     [SerializeField] private Type type;
@@ -30,6 +41,9 @@ public class SkillMovesManager : MonoBehaviour
 
     private int currentSequenceIndex = 0;
 
+    /// <summary>
+    /// Singleton initialization.
+    /// </summary>
     private void Awake()
     {
         if (Instance == null)
@@ -38,6 +52,9 @@ public class SkillMovesManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Initializes the manager, sets up skill list and event listeners.
+    /// </summary>
     private void Start()
     {
         SetupSkillsGameSettings();
@@ -54,6 +71,9 @@ public class SkillMovesManager : MonoBehaviour
         LoadCurrentSkillMove();
     }
 
+    /// <summary>
+    /// Prepares the skill list based on the selected session type (Normal, Adaptive, Random, Debug).
+    /// </summary>
     private void SetupSkillsGameSettings()
     {
         if (skillsSettings == null)
@@ -87,6 +107,9 @@ public class SkillMovesManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resets session progress and reloads the first skill.
+    /// </summary>
     private void RestartGame()
     {
         currentSequenceIndex = 0;
@@ -94,6 +117,9 @@ public class SkillMovesManager : MonoBehaviour
         LoadCurrentSkillMove();
     }
 
+    /// <summary>
+    /// Loads and displays the current skill move and sets the input sequence.
+    /// </summary>
     private void LoadCurrentSkillMove()
     {
         if (currentSequenceIndex >= skillMoves.Count)
@@ -120,6 +146,9 @@ public class SkillMovesManager : MonoBehaviour
         PredictionSkill();
     }
 
+    /// <summary>
+    /// Advances to the next skill in the list and loads it.
+    /// </summary>
     private void SetCurrentSkillMove()
     {
         if (currentSequenceIndex < skillMoves.Count - 1)
@@ -135,6 +164,9 @@ public class SkillMovesManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Predicts and shows the next skill move in the UI (if available).
+    /// </summary>
     private void PredictionSkill()
     {
         UI_Manager uiManager = UI_Manager.Instance;
@@ -148,6 +180,10 @@ public class SkillMovesManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles logic when a skill move sequence is failed.
+    /// Increments attempt counter and updates UI.
+    /// </summary>
     private void HandleSequenceFail()
     {
         inputHandler.CancelHoldAndWaitForRelease();
@@ -156,6 +192,10 @@ public class SkillMovesManager : MonoBehaviour
         EventManager.OnSkillChanged?.Invoke(currentSkill);
     }
 
+    /// <summary>
+    /// Handles logic when a skill move sequence is completed successfully.
+    /// Increments success counter, logs stats, and loads the next move.
+    /// </summary>
     private void HandleSequenceSuccess()
     {
         inputHandler.CancelHold();
@@ -163,7 +203,16 @@ public class SkillMovesManager : MonoBehaviour
 
         currentSkill.successes++;
 
-        SaveChartInfo.DataToSave(currentSkill);
+        SkillChartData skillChartData = new SkillChartData
+        {
+            skillName = currentSkill.moveName,
+            successes = currentSkill.successes,
+            attempts = currentSkill.attempts,
+            successRate = currentSkill.SuccessRate
+        };
+
+        GlobalDataManager.SaveData(skillChartData, isTemp: true);  // Save to temp
+        GlobalDataManager.SaveData(skillChartData, isTemp: false); // Save to permanent history
 
         if (currentSequenceIndex < skillMoves.Count - 1)
         {
@@ -176,6 +225,9 @@ public class SkillMovesManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Removes all event listeners when the object is disabled.
+    /// </summary>
     private void OnDisable()
     {
         EventManager.OnSequenceSuccess.RemoveListener(HandleSequenceSuccess);

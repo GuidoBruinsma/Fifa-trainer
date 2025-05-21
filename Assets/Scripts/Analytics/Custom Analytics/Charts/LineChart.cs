@@ -2,8 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Displays a line chart visualization of skill performance data.
+/// Updates dynamically based on user performance and saved chart history.
+/// </summary>
 public class LineChart : MonoBehaviour
-{
+{  
+    /// <summary>
+    /// Defines the type of skill data to display on each axis.
+    /// </summary>
     public enum SkillDataType { Attempts, Successes, SuccessRate }
 
     public SkillDataType dataTypeXaxis;
@@ -14,60 +21,43 @@ public class LineChart : MonoBehaviour
 
     private List<GameObject> chartObjects = new();
     private List<RectTransform> pointRects = new();
-    private List<SkillAnalyzeData> skillAnalyzeHistory = new();
 
     private List<SkillChartData> skillChartData = new();
-
+   
+    /// <summary>
+    /// Subscribes to the skill change event when the component is initialized.
+    /// </summary>
     private void Awake()
     {
         EventManager.OnSkillChanged.AddListener(LoadChartData);
     }
 
-
+    /// <summary>
+    /// Displays the saved data for the current skill on start.
+    /// </summary>
     void Start() => DisplaySavedData(SkillMovesManager.CurrentSkill);
-
+    
+    /// <summary>
+    /// Unsubscribes from the skill change event when the component is disabled.
+    /// </summary>
     private void OnDisable() => EventManager.OnSkillChanged.RemoveListener(LoadChartData);
-
+   
+    /// <summary>
+    /// Loads saved skill chart data when a skill is selected or changed.
+    /// </summary>
+    /// <param name="skill">The selected skill.</param>
     void LoadChartData(Skill skill)
     {
-        SkillChartDataWrapper chartData = SaveChartInfo.LoadChart(skill);
+        SkillChartDataWrapper chartData = ChartInfo.LoadAllTimeChart(skill);
         skillChartData = new(chartData.history);
 
         DisplaySavedData(skill);
     }
 
-    private void ReceiveData(SkillAnalyzeData skillData)
-    {
-        skillAnalyzeHistory.Clear();
-
-        skillAnalyzeHistory.Add(skillData);
-        if (skillAnalyzeHistory.Count > 10) skillAnalyzeHistory.RemoveAt(0);
-
-        List<float> xValues = new();
-        List<float> yValues = new();
-
-        foreach (var s in skillChartData)
-        {
-            float x = dataTypeXaxis switch
-            {
-                SkillDataType.Attempts => s.attempts,
-                SkillDataType.Successes => s.success,
-                SkillDataType.SuccessRate => s.attempts == 0 ? 0f : (float)s.success / s.attempts * 100f,
-                _ => 0f
-            };
-
-            float y = dataTypeYaxis switch
-            {
-                SkillDataType.Attempts => s.attempts,
-                SkillDataType.Successes => s.success,
-                SkillDataType.SuccessRate => s.attempts == 0 ? 0f : (float)s.success / s.attempts * 100f,
-                _ => 0f
-            };
-        }
-
-        ShowGraph(xValues, yValues);
-    }
-
+    /// <summary>
+    /// Displays saved chart data for a given skill.
+    /// </summary>
+    /// <param name="skill">The skill whose data should be displayed.</param>
     private void DisplaySavedData(Skill skill)
     {
         List<float> xValues = new();
@@ -80,16 +70,16 @@ public class LineChart : MonoBehaviour
             float x = dataTypeXaxis switch
             {
                 SkillDataType.Attempts => s.attempts,
-                SkillDataType.Successes => s.success,
-                SkillDataType.SuccessRate => s.attempts == 0 ? 0f : (float)s.success / s.attempts * 100f,
+                SkillDataType.Successes => s.successes,
+                SkillDataType.SuccessRate => s.attempts == 0 ? 0f : (float)s.successes / s.attempts * 100f,
                 _ => 0f
             };
 
             float y = dataTypeYaxis switch
             {
                 SkillDataType.Attempts => s.attempts,
-                SkillDataType.Successes => s.success,
-                SkillDataType.SuccessRate => s.attempts == 0 ? 0f : (float)s.success / s.attempts * 100f,
+                SkillDataType.Successes => s.successes,
+                SkillDataType.SuccessRate => s.attempts == 0 ? 0f : (float)s.successes / s.attempts * 100f,
                 _ => 0f
             };
 
@@ -100,6 +90,11 @@ public class LineChart : MonoBehaviour
         ShowGraph(xValues, yValues);
     }
 
+    /// <summary>
+    /// Displays the line chart based on X and Y value lists.
+    /// </summary>
+    /// <param name="xValues">List of X-axis values.</param>
+    /// <param name="yValues">List of Y-axis values.</param>
     public void ShowGraph(List<float> xValues, List<float> yValues)
     {
         if (xValues.Count <= 0 || yValues.Count <= 0)
@@ -149,6 +144,10 @@ public class LineChart : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Draws vertical axis labels for the X-axis.
+    /// </summary>
+    /// <param name="maxX">Maximum X value for scaling.</param>
     private void DrawVerticalLabels(float maxX)
     {
         int steps = 5;
@@ -163,7 +162,10 @@ public class LineChart : MonoBehaviour
         }
     }
 
-    //every time the skill is gonne be performed, it saves how many times attempt this session, and save overall successes, and it updates the chart based on that
+    /// <summary>
+    /// Draws horizontal grid lines and Y-axis labels.
+    /// </summary>
+    /// <param name="maxY">Maximum Y value for scaling.</param>
     private void DrawHorizontalLines(float maxY)
     {
         int steps = 5;
@@ -180,6 +182,9 @@ public class LineChart : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Creates a UI text label at the specified position.
+    /// </summary>
     private GameObject CreateTextLabel(string textValue, Vector2 position)
     {
         GameObject label = new("Label", typeof(Text));
@@ -198,6 +203,9 @@ public class LineChart : MonoBehaviour
         return label;
     }
 
+    /// <summary>
+    /// Creates a horizontal or vertical line UI element.
+    /// </summary>
     private GameObject CreateLineObject(Vector2 size, Vector2 position)
     {
         GameObject line = new("Line", typeof(Image));
@@ -212,6 +220,9 @@ public class LineChart : MonoBehaviour
         return line;
     }
 
+    /// <summary>
+    /// Creates a point (circle) at the specified chart position.
+    /// </summary>
     private GameObject CreatePoint(Vector2 position)
     {
         GameObject point = new("Point", typeof(Image));
@@ -226,6 +237,9 @@ public class LineChart : MonoBehaviour
         return point;
     }
 
+    /// <summary>
+    /// Creates a line connecting two chart points.
+    /// </summary>
     private GameObject CreateLine(Vector2 start, Vector2 end)
     {
         GameObject line = new("Line", typeof(Image));
@@ -245,11 +259,17 @@ public class LineChart : MonoBehaviour
         return line;
     }
 
+    /// <summary>
+    /// Creates a vertical guideline at a specified X position.
+    /// </summary>
     private GameObject CreateVerticalLine(float x, float height)
     {
         return CreateLineObject(new Vector2(2, height), new Vector2(x, height / 2));
     }
 
+    /// <summary>
+    /// Clears all dynamically created chart elements from the display.
+    /// </summary>
     private void ClearDynamicChart()
     {
         foreach (var obj in chartObjects)

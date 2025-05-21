@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Validates the sequence of skill inputs entered by the player against a target skill sequence.
+/// Tracks attempts, success, and timing for performance analytics.
+/// </summary>
 public class SkillsValidator : MonoBehaviour
 {
     //TODO: Add check if last skill has been completed
@@ -18,6 +22,9 @@ public class SkillsValidator : MonoBehaviour
     [SerializeField] private float currentTime;
     [SerializeField] private int totalAttempts;
 
+    /// <summary>
+    /// Subscribes to input events and initializes visualization.
+    /// </summary>
     private void Start()
     {
         EventManager.OnSkillInputReceived.AddListener(AddInput);
@@ -26,6 +33,9 @@ public class SkillsValidator : MonoBehaviour
         sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
     }
 
+    /// <summary>
+    /// Unsubscribes from input events on disable.
+    /// </summary>
     private void OnDisable()
     {
         EventManager.OnSkillInputReceived.RemoveListener(AddInput);
@@ -33,6 +43,9 @@ public class SkillsValidator : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Tracks timer and fails the sequence if time runs out.
+    /// </summary>
     private void FixedUpdate()
     {
         if (currentSkill == null) return;
@@ -48,7 +61,10 @@ public class SkillsValidator : MonoBehaviour
         }
     }
 
-    //TODO: Fix elapsed time for skill completion. it returns 0 every time
+    /// <summary>
+    /// Adds a single skill input and validates the sequence.
+    /// </summary>
+    /// <param name="input">The skill input received.</param>
     public void AddInput(SkillInput input)
     {
         if (pressedSequenceInput.Count == 0) currentTime = Time.time;
@@ -95,10 +111,13 @@ public class SkillsValidator : MonoBehaviour
             {  //FIX: Just for testing. Delete later
                 //AnalyticsManager.Instance.CompletionTimeTrackEvent(currentSkill.moveName, elapsedTime);
             }
-            GlobalDataManager.SetNewData(currentSkill.moveName, 0.8f);
         }
     }
 
+    /// <summary>
+    /// Adds multiple inputs at once and validates them against the skill sequence.
+    /// </summary>
+    /// <param name="input">The list of inputs received.</param>
     public void AddInput(List<SkillInput?> input)
     {
         if (pressedSequenceInput.Count == 0) currentTime = Time.time;
@@ -139,16 +158,20 @@ public class SkillsValidator : MonoBehaviour
             sq.VisualizeSequence(currentSkill.inputSequence, 0);
 
             float elapsedTime = (Time.time - currentTime);
-            Debug.Log(elapsedTime + " " + Time.time );
+            Debug.Log(elapsedTime + " " + Time.time);
             UI_Manager.Instance?.SetElapsedTimeCompletion(elapsedTime);
+            
+            //FIX: Just for testing. Delete later
+            //if (AuthenticationManager.instance != null) 
+            //AnalyticsManager.Instance.CompletionTimeTrackEvent(currentSkill.moveName, elapsedTime);
 
-            if (AuthenticationManager.instance != null) //FIX: Just for testing. Delete later
-                //AnalyticsManager.Instance.CompletionTimeTrackEvent(currentSkill.moveName, elapsedTime);
-
-            GlobalDataManager.SetNewData(currentSkill.moveName, 0.8f);
         }
     }
 
+    /// <summary>
+    /// Checks if the latest single input is valid according to the expected sequence.
+    /// </summary>
+    /// <returns>True if valid; otherwise false.</returns>
     private bool CheckValidity()
     {
         int pressedInputIndex = pressedSequenceInput.Count - 1;
@@ -176,6 +199,11 @@ public class SkillsValidator : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Checks if any of the received inputs match the expected input at the current sequence step.
+    /// </summary>
+    /// <param name="receivedInputs">List of possible inputs.</param>
+    /// <returns>True if valid; otherwise false.</returns>
     private bool CheckValidity(List<SkillInput?> receivedInputs)
     {
         int pressedInputIndex = pressedSequenceInput.Count - 1;
@@ -223,6 +251,9 @@ public class SkillsValidator : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Handles logic for when the input sequence fails.
+    /// </summary>
     private void SequenceFailed()
     {
         ResetSequence();
@@ -233,6 +264,11 @@ public class SkillsValidator : MonoBehaviour
         currentSkill.SendAnalytics();
     }
 
+    /// <summary>
+    /// Sets the current sequence inputs and skill to validate.
+    /// </summary>
+    /// <param name="currentSequenceInput">List of expected inputs.</param>
+    /// <param name="skill">The skill associated with the input sequence.</param>
     public void SetSequenceInput(List<SkillInput> currentSequenceInput, Skill skill)
     {
         this.currentSequenceInput = new(currentSequenceInput);
@@ -240,5 +276,8 @@ public class SkillsValidator : MonoBehaviour
         timeLeftToPress = currentSkill.maxTimeBetweenInput;
     }
 
+    /// <summary>
+    /// Clears all pressed inputs to restart validation.
+    /// </summary>
     public void ResetSequence() => pressedSequenceInput.Clear();
 }

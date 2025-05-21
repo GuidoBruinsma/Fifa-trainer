@@ -2,6 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+/// <summary>
+/// Displays a visual overlay for DualShock controller input.
+/// Highlights UI elements when buttons, triggers, or sticks are pressed or moved.
+/// </summary>
 public class ControllerOverlay : MonoBehaviour
 {
     [Header("Controls")]
@@ -25,6 +29,9 @@ public class ControllerOverlay : MonoBehaviour
     [SerializeField] private Color highlightColor;
     [SerializeField] private Color defaultColor = Color.white;
 
+    /// <summary>
+    /// Finds and enables the controller input action map on Awake.
+    /// </summary>
     private void Awake()
     {
         InputActionMap map = controls.FindActionMap("DualShock");
@@ -32,16 +39,22 @@ public class ControllerOverlay : MonoBehaviour
         controls.Enable();
     }
 
+    /// <summary>
+    /// Resets button colors and checks for active inputs each frame.
+    /// </summary>
     private void Update()
     {
         ResetColors();
 
         CheckAnalog();
         CheckTriggers();
-        CheckButtons(); 
+        CheckButtons();
         StickButtons();
     }
 
+    /// <summary>
+    /// Checks analog stick movement and updates L3 and R3 position and color.
+    /// </summary>
     private void CheckAnalog()
     {
         var gamepad = Gamepad.current;
@@ -68,6 +81,9 @@ public class ControllerOverlay : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks trigger input (L2, R2) and updates color based on pressure.
+    /// </summary>
     private void CheckTriggers()
     {
         var gamepad = Gamepad.current;
@@ -87,6 +103,9 @@ public class ControllerOverlay : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Highlights button images based on which buttons are currently pressed.
+    /// </summary>
     private void CheckButtons()
     {
         foreach (var control in _Buttons.controls)
@@ -118,6 +137,9 @@ public class ControllerOverlay : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Highlights the stick button (L3/R3) if pressed, and resets when released.
+    /// </summary>
     private void StickButtons()
     {
         var gamepad = Gamepad.current;
@@ -130,7 +152,7 @@ public class ControllerOverlay : MonoBehaviour
             {
                 r3Analog.color = highlightColor;
             }
-            else if(!gamepad.rightStickButton.IsPressed() && rightDir.magnitude  < 0.01f) r3Analog.color = defaultColor;
+            else if (!gamepad.rightStickButton.IsPressed() && rightDir.magnitude < 0.01f) r3Analog.color = defaultColor;
 
             if (gamepad.leftStickButton.IsPressed())
             {
@@ -141,6 +163,9 @@ public class ControllerOverlay : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resets all button and trigger images to their default color.
+    /// </summary>
     private void ResetColors()
     {
         if (xButton) xButton.color = defaultColor;
