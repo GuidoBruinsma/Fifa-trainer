@@ -4,6 +4,9 @@ using Unity.Services.Leaderboards;
 using Unity.Services.Leaderboards.Models;
 using UnityEngine;
 
+/// <summary>
+/// Handles leaderboard interactions such as submitting scores, displaying the leaderboard, and updating entries in real-time.
+/// </summary>
 public class Leaderboard : MonoBehaviour
 {
     [SerializeField] private string leaderboardId;
@@ -11,7 +14,10 @@ public class Leaderboard : MonoBehaviour
     [SerializeField] private Transform leaderboardParent;
     [SerializeField] private Transform leaderboardContentParent;
     [SerializeField] private Transform leaderboardItem;
-
+    
+    /// <summary>
+    /// Submits a random score to the leaderboard for demonstration/testing purposes.
+    /// </summary>
     public async void SubmitScore()
     {
         int s = Random.Range(0, 1000);
@@ -19,12 +25,18 @@ public class Leaderboard : MonoBehaviour
         await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardId, s);
     }
 
+    /// <summary>
+    /// Opens the leaderboard UI and begins updating the leaderboard in real-time.
+    /// </summary>
     public void OpenLeaderboard()
     {
         leaderboardParent.gameObject.SetActive(true);
         UpdateLeaderboard();
     }
 
+    /// <summary>
+    /// Continuously fetches and displays leaderboard scores while the leaderboard UI is active.
+    /// </summary>
     public async void UpdateLeaderboard()
     {
         while (Application.isPlaying && leaderboardParent.gameObject.activeInHierarchy)

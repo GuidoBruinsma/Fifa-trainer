@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages the UI selector behavior, such as tracking button selection and updating visual effects.
+/// </summary>
 public class SelectorManager : MonoBehaviour
 {
     [Header("Shader Settings")]
@@ -20,6 +23,9 @@ public class SelectorManager : MonoBehaviour
     private RectTransform selectorRect;
     private bool hasTriggered = false;
 
+    /// <summary>
+    /// Called when the GameObject is enabled. Initializes selector and sets up button triggers.
+    /// </summary>
     private void OnEnable()
     {
         selectorRect = GetComponent<RectTransform>();
@@ -35,6 +41,10 @@ public class SelectorManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Adds a pointer enter trigger to a button to update selection.
+    /// </summary>
+    /// <param name="b">The button to add the event trigger to.</param>
     private void AddEventTriggerComponent(Button b)
     {
         EventTrigger eventTrigger = b.gameObject.GetComponent<EventTrigger>();
@@ -43,7 +53,7 @@ public class SelectorManager : MonoBehaviour
 
         eventTrigger.triggers.Clear();
 
-        EventTrigger.Entry entry = new ();
+        EventTrigger.Entry entry = new();
         entry.eventID = EventTriggerType.PointerEnter;
         entry.callback.AddListener((eventData) =>
         {
@@ -53,12 +63,20 @@ public class SelectorManager : MonoBehaviour
         eventTrigger.triggers.Add(entry);
     }
 
+    /// <summary>
+    /// Updates the selector position and size each frame to follow the selected button.
+    /// </summary>
     private void Update()
     {
         float lerpSpeed = Time.deltaTime * interpolationSpeed;
         SetSelectorToButtonPosition(lerpSpeed);
     }
 
+
+    /// <summary>
+    /// Smoothly moves and resizes the selector to match the currently selected button.
+    /// </summary>
+    /// <param name="lerpSpeed">The speed at which to interpolate position and size.</param>
     private void SetSelectorToButtonPosition(float lerpSpeed)
     {
         GameObject selected = eventSystem.currentSelectedGameObject;
@@ -89,6 +107,10 @@ public class SelectorManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Toggles the selector material's shader effect on or off.
+    /// </summary>
+    /// <param name="enabled">Whether to enable or disable the shader effect.</param>
     private void SetShaderEffect(bool enabled)
     {
         if (material != null && material.HasProperty(shaderProperty))
