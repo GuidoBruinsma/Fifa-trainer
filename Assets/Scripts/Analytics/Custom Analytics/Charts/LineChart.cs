@@ -23,42 +23,23 @@ public class LineChart : MonoBehaviour
     private List<RectTransform> pointRects = new();
 
     private List<SkillChartData> skillChartData = new();
-   
-    /// <summary>
-    /// Subscribes to the skill change event when the component is initialized.
-    /// </summary>
-    private void Awake()
-    {
-        EventManager.OnSkillChanged.AddListener(LoadChartData);
-    }
-
-    /// <summary>
-    /// Displays the saved data for the current skill on start.
-    /// </summary>
-    void Start() => DisplaySavedData(SkillMovesManager.CurrentSkill);
-    
-    /// <summary>
-    /// Unsubscribes from the skill change event when the component is disabled.
-    /// </summary>
-    private void OnDisable() => EventManager.OnSkillChanged.RemoveListener(LoadChartData);
-   
+      
     /// <summary>
     /// Loads saved skill chart data when a skill is selected or changed.
     /// </summary>
     /// <param name="skill">The selected skill.</param>
-    void LoadChartData(Skill skill)
+    public async void LoadChartData(string filename)
     {
-        SkillChartDataWrapper chartData = ChartInfo.LoadAllTimeChart(skill);
+        SkillChartDataWrapper chartData = await ChartInfo.LoadAllTimeChartAsync(filename);
         skillChartData = new(chartData.history);
 
-        DisplaySavedData(skill);
+        DisplaySavedData();
     }
 
     /// <summary>
     /// Displays saved chart data for a given skill.
     /// </summary>
-    /// <param name="skill">The skill whose data should be displayed.</param>
-    private void DisplaySavedData(Skill skill)
+    private void DisplaySavedData()
     {
         List<float> xValues = new();
         List<float> yValues = new();
