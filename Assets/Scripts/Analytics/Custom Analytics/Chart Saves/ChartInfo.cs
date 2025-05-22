@@ -1,5 +1,5 @@
 using System.IO;
-using UnityEditor;
+using System.Threading.Tasks;
 using UnityEngine;
 
 /// <summary>
@@ -15,47 +15,36 @@ public static class ChartInfo
     /// </summary>
     /// <param name="skillData">The skill for which history is to be loaded.</param>
     /// <returns>A <see cref="SkillChartDataWrapper"/> containing the skill history.</returns>
-    public static SkillChartDataWrapper LoadAllTimeChart(Skill skillData)
+    public static async Task<SkillChartDataWrapper> LoadAllTimeChartAsync(string filename)
     {
-        string filePath = Path.Combine(historyFolder, $"{skillData.moveName}.json");
+        string filePath = Path.Combine(historyFolder, $"{filename}.json");
 
         if (!File.Exists(filePath))
         {
             Debug.LogWarning("No saved skill chart data found.");
-            SkillChartData skillChartData = new SkillChartData()
+            return new SkillChartDataWrapper
             {
-                skillName = null,
-                attempts = 0,
-                successes = 0
+                history = { new SkillChartData
+                {
+                    skillName = null,
+                    attempts = 0,
+                    successes = 0
+                }}
             };
-            SkillChartDataWrapper wrapper = new();
-            wrapper.history.Add(skillChartData);
-            return wrapper;
         }
 
-        string json = File.ReadAllText(filePath);
-        return JsonUtility.FromJson<SkillChartDataWrapper>(json);
-    }
-
-    public static SkillChartDataWrapper LoadTempChart(Skill skillData)
-    {
-        string filePath = Path.Combine(historyFolder, $"{skillData.moveName}.json");
-
-        if (!File.Exists(filePath))
+        try
         {
-            Debug.LogWarning("No saved skill chart data found.");
-            SkillChartData skillChartData = new SkillChartData()
-            {
-                skillName = null,
-                attempts = 0,
-                successes = 0
-            };
-            SkillChartDataWrapper wrapper = new();
-            wrapper.history.Add(skillChartData);
-            return wrapper;
-        }
+            // Read the file off the main thread
+            string json = await Task.Run(() => File.ReadAllText(filePath));
 
-        string json = File.ReadAllText(filePath);
-        return JsonUtility.FromJson<SkillChartDataWrapper>(json);
+            // Parse on the main thread (or off, depending on Unity version behavior)
+            return JsonUtility.FromJson<SkillChartDataWrapper>(json);
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Failed to load chart data: {ex.Message}");
+            return null;
+        }
     }
 }
