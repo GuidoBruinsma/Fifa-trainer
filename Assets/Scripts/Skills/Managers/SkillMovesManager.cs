@@ -223,6 +223,8 @@ public class SkillMovesManager : MonoBehaviour
             sequenceValidator.ResetSequence();
             Debug.Log("All skill moves completed!");
         }
+
+        JsonToCsvExporter.ExportSkillHistoryToCsv();
     }
 
     /// <summary>
