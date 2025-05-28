@@ -4,6 +4,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages the controller connection state display in the menu
+/// and enables/disables UI buttons accordingly.
+/// </summary>
 public class ControllerStateInMenu : MonoBehaviour
 {
     [SerializeField] private EventSystem system;
@@ -11,17 +15,27 @@ public class ControllerStateInMenu : MonoBehaviour
     
     private Button[] buttons;
 
+    /// <summary>
+    /// Initializes the buttons array and updates controller state display on start.
+    /// </summary>
     private void Start()
     {
         buttons = GetComponentsInChildren<Button>(true); // include inactive
         UpdateControllerState();
     }
 
+    /// <summary>
+    /// Updates the controller state every frame.
+    /// </summary>
     private void Update()
     {
         UpdateControllerState();
     }
 
+    /// <summary>
+    /// Checks if a gamepad controller is connected, updates the UI text color and message,
+    /// enables/disables buttons, and sets the selected UI button if none is selected.
+    /// </summary>
     private void UpdateControllerState()
     {
         Gamepad pad = Gamepad.current;

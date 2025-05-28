@@ -6,8 +6,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages player authentication using Unity's Authentication and Core services.
+/// Supports sign-up, login, logout, and anonymous sign-in, with "Remember Me" support.
+/// </summary>
 public class AuthenticationManager : MonoBehaviour
 {
+
+    /// <summary>
+    /// Singleton instance of the AuthenticationManager.
+    /// </summary>
     public static AuthenticationManager instance;
 
     //Username: test Password: _B123d$a
@@ -20,6 +28,10 @@ public class AuthenticationManager : MonoBehaviour
     public GameObject loginPanel;
     public GameObject startPanel;
 
+    /// <summary>
+    /// Initializes Unity Services and sets up authentication event handlers.
+    /// Auto signs-in if "Remember Me" was previously checked.
+    /// </summary>
     async void Awake()
     {
         if (instance == null)
@@ -41,7 +53,9 @@ public class AuthenticationManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Signs in automatically if a valid session token exists.
+    /// </summary>
     public async void SignIn()
     {
         if (AuthenticationService.Instance.SessionTokenExists)
@@ -63,11 +77,17 @@ public class AuthenticationManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called from a UI button to trigger anonymous sign-in.
+    /// </summary>
     public async void SingInAnonymoulsyButton()
     {
         await SingInAnonymoulsy();
     }
 
+    /// <summary>
+    /// Signs in the player anonymously using Unity Authentication.
+    /// </summary>
     public async Task SingInAnonymoulsy()
     {
         try
@@ -80,7 +100,7 @@ public class AuthenticationManager : MonoBehaviour
                 string lastUsername = PlayerPrefs.GetString("username");
             }
 
-           // SceneManager.LoadScene(1);
+            // SceneManager.LoadScene(1);
         }
         catch (AuthenticationException e)
         {
@@ -92,8 +112,10 @@ public class AuthenticationManager : MonoBehaviour
         }
     }
 
-
-
+    /// <summary>
+    /// Converts the rememberMe toggle to an integer for saving in PlayerPrefs.
+    /// </summary>
+    /// <returns>1 if toggle is on, otherwise 0.</returns>
     int ConvertBoolToInt()
     {
         if (rememberMe.isOn)
@@ -102,6 +124,10 @@ public class AuthenticationManager : MonoBehaviour
             return 0;
     }
 
+    /// <summary>
+    /// Signs up a new user using username and password.
+    /// Saves user preferences if successful.
+    /// </summary>
     public async void SignUp()
     {
         string username = usernameInput.text;
@@ -124,6 +150,10 @@ public class AuthenticationManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Logs in the user using credentials from input fields.
+    /// Updates player name and stores preferences.
+    /// </summary>
     public async void LogIn()
     {
         string username = usernameInput.text;
@@ -154,7 +184,11 @@ public class AuthenticationManager : MonoBehaviour
         }
     }
 
-    public void LogOut() {
+    /// <summary>
+    /// Signs the user out and clears session data.
+    /// </summary>
+    public void LogOut()
+    {
         try
         {
             AuthenticationService.Instance.SignOut();
@@ -170,6 +204,9 @@ public class AuthenticationManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets up event handlers for Unity Authentication lifecycle events.
+    /// </summary>
     public void SetupEvents()
     {
         AuthenticationService.Instance.SignedIn += () =>

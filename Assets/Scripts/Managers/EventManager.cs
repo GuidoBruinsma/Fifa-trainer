@@ -1,25 +1,63 @@
 using System.Collections.Generic;
 using UnityEngine.Events;
 
+/// <summary>
+/// Manages all global game events using UnityEvent for broadcasting and subscribing.
+/// </summary>
 public static class EventManager
 {
+    /// <summary>
+    /// Triggered when multiple skill inputs are sent at once.
+    /// </summary>
     public static UnityEvent<List<SkillInput?>> OnMultipleInputsSent = new();
+
+    /// <summary>
+    /// Triggered when a single skill input is received.
+    /// </summary>
     public static UnityEvent<SkillInput> OnSkillInputReceived = new();
+
+    /// <summary>
+    /// Triggered when a skill input is received from the analog stick.
+    /// </summary>
     public static UnityEvent<SkillInput> OnSkillInputReceivedFromStick = new();
 
+    /// <summary>
+    /// Triggered when a skill input sequence is successfully completed.
+    /// </summary>
     public static UnityEvent OnSequenceSuccess = new();
 
+    /// <summary>
+    /// Triggered when a skill input sequence fails.
+    /// </summary>
     public static UnityEvent OnSequenceFailed = new();
 
-    public static UnityEvent OnWholeSessionFailed = new();
+    /// <summary>
+    /// Triggered when the entire skill session is starts.
+    /// </summary>
+    public static UnityEvent OnSessionStart = new();
 
-    //Adaptive difficulty feedback events here
+    /// <summary>
+    /// Triggered when the entire skill session is failed.
+    /// </summary>
+    public static UnityEvent OnSessionEnd = new();
+
+    /// <summary>
+    /// Triggered when a skill is completed, used for adaptive difficulty feedback.
+    /// </summary>
     public static UnityEvent<bool> OnSkillIsCompleted = new();
 
+    /// <summary>
+    /// Triggered when the difficulty level changes.
+    /// </summary>
     public static UnityEvent OnDifficultyChanged = new();
 
+    /// <summary>
+    /// Triggered when the current skill is changed.
+    /// </summary>
     public static UnityEvent<Skill> OnSkillChanged = new();
 
-    //Analyze
-    //public static UnityEvent<Skill> OnAnalyzeSkillDataSent = new();
+    /// <summary>
+    /// Triggered when skill data is ready for analysis.
+    /// </summary>
+    public static UnityEvent<Skill> OnAnalyzeSkillDataSent = new();
 }

@@ -2,20 +2,10 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-[System.Serializable]
-public class SkillStatEntry
-{
-    public string skillName;
-    public int attempts;
-    public int successes;
-}
 
-[System.Serializable]
-public class SkillStat
-{
-    public List<SkillStatEntry> allSkillsEntry = new();
-}
-
+/// <summary>
+/// Handles saving and loading of skill statistics to a JSON file.
+/// </summary>
 public static class SkillStatsManager
 {
     private static readonly string savePath = Application.persistentDataPath + "/skillStats.json";
@@ -33,9 +23,9 @@ public static class SkillStatsManager
         }
 
         string json = File.ReadAllText(savePath);
-        SkillStat loadedStats = JsonUtility.FromJson<SkillStat>(json);
+        SkillChartDataWrapper loadedStats = JsonUtility.FromJson<SkillChartDataWrapper>(json);
 
-        foreach (var saved in loadedStats.allSkillsEntry)
+        foreach (var saved in loadedStats.history)
         {
             var match = skills.Find(s => s.moveName == saved.skillName);
             if (match != null)
@@ -47,15 +37,15 @@ public static class SkillStatsManager
     }
 
     /// <summary>
-    /// Saves the current attempts/successes of all skills to file.
+    /// Saves the current statistics of all skills to disk.
     /// </summary>
     public static void Save(List<Skill> skills)
     {
-        SkillStat skillStats = new SkillStat();
+        SkillChartDataWrapper skillStats = new SkillChartDataWrapper();
 
         foreach (Skill skill in skills)
         {
-            skillStats.allSkillsEntry.Add(new SkillStatEntry
+            skillStats.history.Add(new SkillChartData
             {
                 skillName = skill.moveName,
                 attempts = skill.attempts,
@@ -68,7 +58,7 @@ public static class SkillStatsManager
     }
 
     /// <summary>
-    /// Sorts a copy of the list by success rate in ascending order (lowest to highest).
+    /// Returns a copy of the skill list sorted by success rate (ascending).
     /// </summary>
     public static List<Skill> GetSortedByRateSkillList(List<Skill> all)
     {

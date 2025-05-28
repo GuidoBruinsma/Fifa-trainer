@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SkillGameSettings
   m_EditorClassIdentifier: 
   allSkillMoves:
+  - {fileID: 11400000, guid: 69873cee3de33db4e8ba58fdc2969ce6, type: 2}
   - {fileID: 11400000, guid: d45b03f3d74852a4f8c6ad0ecf635adc, type: 2}
   - {fileID: 11400000, guid: 010786fe096ee9c40bdf8431f4dd3889, type: 2}
   - {fileID: 11400000, guid: 53f56d8a8040b79499c59caf27fd00f4, type: 2}
@@ -64,7 +65,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76c977ac2acb4c74b9626b094eb9cd35, type: 2}
   - {fileID: 11400000, guid: f0fdfe55c510c984480e10ead6f99355, type: 2}
   - {fileID: 11400000, guid: 08a7120dcbd1c684eafb671da4d01575, type: 2}
-  - {fileID: 11400000, guid: 69873cee3de33db4e8ba58fdc2969ce6, type: 2}
   - {fileID: 11400000, guid: ac2ec876498bde54d924f8ee0065cf98, type: 2}
   - {fileID: 11400000, guid: 4ea318adba82aeb428ea6a49c89cdeab, type: 2}
   - {fileID: 11400000, guid: 94a26bd69ac0a074bab63a20ad377924, type: 2}

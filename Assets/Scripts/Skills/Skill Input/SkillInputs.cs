@@ -2,6 +2,9 @@
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Provides static utility methods for translating controller inputs into skill inputs.
+/// </summary>
 public static class SkillInputs
 {
     private static readonly SkillInput[] R3_RightToUp = { SkillInput.R3_Right, SkillInput.R3_Up };
@@ -31,6 +34,9 @@ public static class SkillInputs
     private static readonly SkillInput[] L3_DownToRightToDown = { SkillInput.L3_Down, SkillInput.L3_Right, SkillInput.L3_Down };
     private static readonly SkillInput[] L3_RightToDownToRight = { SkillInput.L3_Right, SkillInput.L3_Down, SkillInput.L3_Right };
 
+    /// <summary>
+    /// Maps a button name to a corresponding tap SkillInput.
+    /// </summary>
     public static SkillInput? GetTabInput(string buttonName)
     {
         return (buttonName) switch
@@ -48,6 +54,9 @@ public static class SkillInputs
         };
     }
 
+    /// <summary>
+    /// Maps a button name to a corresponding hold SkillInput.
+    /// </summary>
     public static SkillInput? GetHoldInput(string buttonName)
     {
         return (buttonName) switch
@@ -66,6 +75,9 @@ public static class SkillInputs
         };
     }
 
+    /// <summary>
+    /// Detects complex stick rotation inputs based on the current input sequence and stick type.
+    /// </summary>
     public static SkillInput? GetStickRotationInput(string buttonName, List<SkillInput> input)
     {
         bool isRightStick = buttonName.Contains("rightStick");
@@ -107,6 +119,9 @@ public static class SkillInputs
         return null;
     }
 
+    /// <summary>
+    /// Maps a stick direction vector to a flick or held directional SkillInput based on angle and stick type.
+    /// </summary>
     public static SkillInput? GetFlickDiagonalInput(Vector2 stickPosition, bool isLeft = true, bool isHeld = false)
     {
         float degrees = Mathf.Atan2(stickPosition.y, stickPosition.x) * Mathf.Rad2Deg;

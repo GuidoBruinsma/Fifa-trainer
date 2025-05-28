@@ -4,9 +4,16 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
+/// <summary>
+/// Handles input processing for skill-based mechanics using Unity's Input System.
+/// Processes button taps, holds, stick flicks, and rotations to emit skill inputs.
+/// </summary>
 public class InputHandler : MonoBehaviour
-{
+{    /// <summary>
+     /// Event invoked when a skill input is received.
+     /// </summary>
     public UnityAction<SkillInput> OnSkillInputReceived;
 
     //Input Action variables
@@ -25,7 +32,9 @@ public class InputHandler : MonoBehaviour
     private List<SkillInput> inputs = new();
     private SkillInput? currentInput;
 
+    //Buttons state
     private Dictionary<string, bool> buttonHoldState = new();
+    private Dictionary<string, float> holdTimers = new();
 
     private bool isHeld = false;
     private bool isRotated = false;
@@ -38,7 +47,9 @@ public class InputHandler : MonoBehaviour
 
     List<SkillInput?> currentInputs = new();
 
-
+    /// <summary>
+    /// Sets up and registers input controls on Awake.
+    /// </summary>
     private void Awake()
     {
         SetupControls();
@@ -47,6 +58,10 @@ public class InputHandler : MonoBehaviour
     }
 
     #region Input Setup & Initialization
+
+    /// <summary>
+    /// Assigns InputAction references from the InputActionAsset.
+    /// </summary>
     private void SetupControls()
     {
         InputActionMap map = controls.FindActionMap("DualShock");
@@ -63,30 +78,26 @@ public class InputHandler : MonoBehaviour
         _Analog = map.FindAction("Analog");
     }
 
-
+    /// <summary>
+    /// Registers callbacks for input events like button presses, stick movement, and holds.
+    /// </summary>
     private void RegisterControlCallbacks()
     {
         // Buttons control
-        _Buttons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
+        //_Buttons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
 
         //// Analog Buttons control
         _AnalogButtons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
 
-        // Hold control
-        _Hold.performed += ctx => { if (!holdDisabled) HandleHoldStart(ctx.control.name); };
-
-        _Hold.canceled += ctx => { HandleHoldEnd(ctx); };
-
         _HoldL1.performed += ctx => { if (!holdDisabled) HandleHoldStart(ctx.control.name); };
 
-        _HoldL1.canceled += ctx => { HandleHoldEnd(ctx); };
+        //_HoldL1.canceled += ctx => { HandleHoldEnd(ctx); };
 
         _HoldR1.performed += ctx => { if (!holdDisabled) HandleHoldStart(ctx.control.name); };
 
-        _HoldR1.canceled += ctx => { HandleHoldEnd(ctx); };
+        //_HoldR1.canceled += ctx => { HandleHoldEnd(ctx); };
 
         // Rotation control
-
 
         _Analog.started += ctx =>
         {
@@ -170,6 +181,9 @@ public class InputHandler : MonoBehaviour
     }
     #endregion
 
+    /// <summary>
+    /// Detects analog input type (hold, flick, rotate) based on timing and stick movement.
+    /// </summary>
     void AnalogInputType()
     {
         //Debug.Log(_Analog.IsPressed());
@@ -214,15 +228,75 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Unity's Update loop. Handles analog input and button hold timing.
+    /// </summary>
     private void Update()
     {
         AnalogInputType();
+        HandleButtonHoldTimers();
+    }
+
+    /// <summary>
+    /// Checks held buttons and fires events if hold duration exceeds threshold.
+    /// </summary>
+    private void HandleButtonHoldTimers()
+    {
+        foreach (var control in _Hold.controls)
+        {
+            var button = control as ButtonControl;
+            if (button == null) continue;
+
+            string name = control.name;
+
+            if (button.isPressed)
+            {
+                if (!holdTimers.ContainsKey(name))
+                {
+                    holdTimers[name] = 0f;
+                    buttonHoldState[name] = false;
+                }
+
+                holdTimers[name] += Time.deltaTime;
+
+                if (!buttonHoldState[name] && holdTimers[name] >= holdDetectionTime)
+                {
+                    Debug.Log($"[HOLD DETECTED] {name} for {holdTimers[name]:0.00}s");
+                    ProcessInput(name, isHeld: true);
+                    buttonHoldState[name] = true;
+                }
+            }
+            else
+            {
+                if (holdTimers.ContainsKey(name))
+                {
+                    bool wasHeld = buttonHoldState[name];
+
+                    if (!wasHeld)
+                    {
+                        Debug.Log($"[TAP DETECTED] {name}");
+                        ProcessInput(name, isHeld: false);
+                    }
+                    else
+                    {
+                        EventManager.OnSkillInputReceived?.Invoke(SkillInput.Hold_None);
+                    }
+
+                    holdTimers.Remove(name);
+                    buttonHoldState[name] = false;
+                }
+            }
+        }
     }
 
     #region Input Processing
+
+    /// <summary>
+    /// Handles beginning of a hold input for specific controls (e.g. L1/R1).
+    /// </summary>
     private void HandleHoldStart(string controlName)
     {
-
+        Debug.Log($"Hold started: {controlName}");
         if (!buttonHoldState.ContainsKey(controlName) || !buttonHoldState[controlName])
         {
             ProcessInput(controlName, isHeld: true);
@@ -231,16 +305,9 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-
-    private void HandleFlickInput(InputAction.CallbackContext ctx, Vector2 input)
-    {
-        if (ctx.control.name == "leftStick")
-            GetFlickInput(input, isLeft: true, isHeld: false);
-        else
-            GetFlickInput(input, isLeft: false, isHeld: false);
-    }
-
-
+    /// <summary>
+    /// Optional handler for end of a hold input.
+    /// </summary>
     private void HandleHoldEnd(InputAction.CallbackContext ctx)
     {
         string controlName = ctx.control.name;
@@ -255,6 +322,37 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Processes button or hold input and invokes skill event if valid.
+    /// </summary>
+    private void ProcessInput(string buttonName, bool isHeld = false)
+    {        
+        if (holdDisabled) return;
+        SkillInput? input = isHeld ? SkillInputs.GetHoldInput(buttonName) : SkillInputs.GetTabInput(buttonName);
+        if (input.HasValue)
+        {
+            if (input != SkillInput.None && input != SkillInput.Flick_None && input != SkillInput.Hold_L3_None && input != SkillInput.Hold_None &&
+                input != SkillInput.Hold_R3_None && input != SkillInput.L2_None && input != SkillInput.R2_None && input != SkillInput.L3_None && input != SkillInput.R3_None)
+            {
+                EventManager.OnSkillInputReceived?.Invoke(input.Value);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Handles flick detection input from stick release.
+    /// </summary>
+    private void HandleFlickInput(InputAction.CallbackContext ctx, Vector2 input)
+    {
+        if (ctx.control.name == "leftStick")
+            GetFlickInput(input, isLeft: true, isHeld: false);
+        else
+            GetFlickInput(input, isLeft: false, isHeld: false);
+    }
+
+    /// <summary>
+    /// Sets current input based on final rotation sequence.
+    /// </summary>
     private void HandleRotationEnd(InputAction.CallbackContext ctx)
     {
         SkillInput? input = SkillInputs.GetStickRotationInput(ctx.control.name, inputs);
@@ -263,17 +361,9 @@ public class InputHandler : MonoBehaviour
             currentInput = input;
         }
     }
-
-    private void ProcessInput(string buttonName, bool isHeld = false)
-    {
-        if (holdDisabled) return;
-        SkillInput? input = isHeld ? SkillInputs.GetHoldInput(buttonName) : SkillInputs.GetTabInput(buttonName);
-        if (input.HasValue)
-        {
-            EventManager.OnSkillInputReceived?.Invoke(input.Value);
-        }
-    }
-
+    /// <summary>
+    /// Determines rotating stick input sequence (e.g. Up, Down, etc.).
+    /// </summary>
     private List<SkillInput> GetRotatingInput(Vector2 dir, bool isRightStick)
     {
         const float threshold = 0.9f;
@@ -296,7 +386,9 @@ public class InputHandler : MonoBehaviour
         currentInput = newInput;
         return inputs;
     }
-
+    /// <summary>
+    /// Detects flick input direction from stick movement and sets current input.
+    /// </summary>
     private void GetFlickInput(Vector2 stickPosition, bool isLeft, bool isHeld)
     {
         SkillInput? input = isLeft ?
@@ -312,12 +404,19 @@ public class InputHandler : MonoBehaviour
     #endregion
 
     #region Hold Control
+
+    /// <summary>
+    /// Cancels hold input detection.
+    /// </summary>
     public void CancelHold()
     {
         holdDisabled = true;
         _Hold.Disable();
     }
 
+    /// <summary>
+    /// Cancels hold and waits until input is released before re-enabling.
+    /// </summary>
     public void CancelHoldAndWaitForRelease()
     {
         holdDisabled = true;
@@ -328,7 +427,9 @@ public class InputHandler : MonoBehaviour
 
         StartCoroutine(WaitForHoldRelease());
     }
-
+    /// <summary>
+    /// Waits asynchronously until the hold input is released.
+    /// </summary>
     private IEnumerator WaitForHoldRelease()
     {
         while (_Hold.ReadValue<float>() > 0.1f)
@@ -338,7 +439,6 @@ public class InputHandler : MonoBehaviour
         holdDisabled = false;
         waitingForRelease = false;
         _Hold.Enable();
-
     }
 
     public void ResetHold()

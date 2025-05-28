@@ -2,6 +2,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Manages adaptive feedback based on the player's skill success rate,
+/// adjusting difficulty dynamically depending on performance.
+/// </summary>
 public class AdaptiveFeedbackManager : MonoBehaviour
 {
     /*
@@ -26,7 +30,10 @@ public class AdaptiveFeedbackManager : MonoBehaviour
 
     [SerializeField] private Skill currentSkill;
     [SerializeField] private List<Skill> skillList = new();
-
+    
+    /// <summary>
+    /// Initializes skill stats and sets up event listeners.
+    /// </summary>
     private void Start()
     {
         SkillStatsManager.Load(skillGameSettings.allSkillMoves);
@@ -35,6 +42,10 @@ public class AdaptiveFeedbackManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Called when a skill completion result is received. Updates counters and triggers difficulty adjustment.
+    /// </summary>
+    /// <param name="isCompleted">Indicates whether the skill was completed successfully.</param>
     void ReceivedScore(bool isCompleted)
     {
         total++;
@@ -48,7 +59,9 @@ public class AdaptiveFeedbackManager : MonoBehaviour
         }
     }
 
-    // TODO: every skill has success rate, more rate, less ofter, less rate, more often
+    /// <summary>
+    /// Adjusts the difficulty based on the player's success rate.
+    /// </summary>
     void AdjustDifficulty()
     {
         float successRate = (float)successful / total;
@@ -67,11 +80,17 @@ public class AdaptiveFeedbackManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the current skill from the SkillMovesManager.
+    /// </summary>
     void SkillSuccessRate()
     {
         currentSkill = SkillMovesManager.CurrentSkill;
     }
 
+    /// <summary>
+    /// Saves skill stats when the application quits.
+    /// </summary>
     private void OnApplicationQuit()
     {
         SkillStatsManager.Save(skillGameSettings.allSkillMoves);

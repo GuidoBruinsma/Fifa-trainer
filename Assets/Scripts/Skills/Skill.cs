@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Defines a skill move using an input sequence and various metadata.
+/// </summary>
 [CreateAssetMenu(fileName = "SkillMove", menuName = "Skill Moves/Skill")]
 public class Skill : ScriptableObject
 {
@@ -18,41 +21,46 @@ public class Skill : ScriptableObject
     public int attempts;
     public int successes;
 
+    /// <summary>
+    /// The success rate for this skill (0 to 1).
+    /// </summary>
     public float SuccessRate => attempts == 0 ? 0f : (float)successes / attempts;
 
+    /// <summary>
+    /// Resets the attempt and success stats.
+    /// </summary>
     public void ResetStats() { 
         attempts = 0; 
         //successes = 0;
     }
 
+    /// <summary>
+    /// Sends analytics data for this skill (data structure only—no external call).
+    /// </summary>
     public void SendAnalytics() {
 
-        SkillAnalyzeData skillAnalyzeData = new SkillAnalyzeData { 
-            moveName = moveName,
+        SkillChartData skillAnalyzeData = new SkillChartData
+        { 
+            skillName = moveName,
             attempts = attempts,
             successes = successes,
             successRate = SuccessRate
         };
-
-        //EventManager.OnAnalyzeSkillDataSent?.Invoke(skillAnalyzeData);
     }
 }
 
-public class SkillAnalyzeData {
-    public string moveName;
-
-    public int attempts;
-    public int successes;
-
-    public float successRate;
-}
-
+/// <summary>
+/// Represents one step in a skill sequence, which can contain multiple simultaneous inputs.
+/// </summary>
 [Serializable]
 public class SkillInputHolder
 {
     public List<SkillInput> input;
 }
 
+/// <summary>
+/// Enumeration of all possible skill inputs.
+/// </summary>
 public enum SkillInput
 {
     //L Buttons

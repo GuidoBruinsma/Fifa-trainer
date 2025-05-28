@@ -3,6 +3,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Updates a UI slider and text to display the success rate of a given skill.
+/// Includes smooth animation of slider value changes and a pop effect for feedback.
+/// </summary>
 public class SuccessRate_Slider : MonoBehaviour
 {
     [SerializeField] private Skill currentSkill;
@@ -21,6 +25,10 @@ public class SuccessRate_Slider : MonoBehaviour
     private float targetValue;
     private Vector3 originalScale;
 
+    /// <summary>
+    /// Called before Start. Ensures slider reference is assigned.
+    /// Subscribes to the global skill change event.
+    /// </summary>
     private void Awake()
     {
         if (slider == null)
@@ -28,6 +36,9 @@ public class SuccessRate_Slider : MonoBehaviour
         EventManager.OnSkillChanged.AddListener(SkillChanged);
     }
 
+    /// <summary>
+    /// Updates the percentage text to reflect the current slider value every frame.
+    /// </summary>
     private void Update()
     {
 
@@ -37,6 +48,11 @@ public class SuccessRate_Slider : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Callback for when the skill changes.
+    /// Updates the target slider value and starts the pop animation coroutine.
+    /// </summary>
+    /// <param name="newSkill">The newly selected skill</param>
     private void SkillChanged(Skill newSkill)
     {
         if (newSkill == currentSkill)
@@ -57,6 +73,10 @@ public class SuccessRate_Slider : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine that smoothly animates the slider value to the target value.
+    /// Uses Lerp with deltaTime for smooth interpolation.
+    /// </summary>
     private IEnumerator AnimatePop()
     {
         if (slider.value < targetValue)

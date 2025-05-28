@@ -2,6 +2,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Manages UI elements related to skill moves, timers, and move sequences.
+/// Implements a singleton pattern for global access.
+/// </summary>
 public class UI_Manager : MonoBehaviour
 {
     public static UI_Manager Instance { get; private set; }
@@ -22,8 +26,12 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nextMoveName;
     [SerializeField] private TextMeshProUGUI nextMoveSequence;
 
+    [SerializeField] private TextMeshProUGUI sequenceName;
     [SerializeField] private TextMeshProUGUI sequenceText;
-
+    
+    /// <summary>
+    /// Initializes the singleton instance or destroys duplicate instances.
+    /// </summary>
     private void Awake()
     {
         if (Instance == null)
@@ -31,26 +39,14 @@ public class UI_Manager : MonoBehaviour
         else
             Destroy(this.gameObject);
     }
-
-    public void SetTimerText(float timeLeft)
+    
+    /// <summary>
+    /// Sets the current skill move name and its input sequence on the UI.
+    /// </summary>
+    /// <param name="sequence">The move input sequence as string.</param>
+    public void SetSkillMoveInfo(string sequence)
     {
-        timeleftText.text = timeLeft.ToString("0.0");
-    }
-
-    public void SetElapsedTimeText(float elapsedTime)
-    {
-        int minutes = Mathf.FloorToInt(elapsedTime / 60f); 
-        int seconds = Mathf.FloorToInt(elapsedTime % 60f);
-        timeElapsedText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
-
-    public void SetElapsedTimeCompletion(float elapsedTime) => timeElapsedComlpetionText.text = $"Skill completion time: {elapsedTime.ToString("0.000")}";
-
-    public void SetSkillMoveInfo(string sequence) => sequenceText.text = sequence;
-
-    public void SetNextMoveInfo(List<SkillInputHolder> sequenceList, string moveName)
-    {
-        nextMoveName.text = moveName;
-        nextMoveSequence.text = skillMap.GetSequenceDisplay(sequenceList);
+        sequenceName.text = SkillMovesManager.CurrentSkill.moveName;
+        sequenceText.text = sequence;
     }
 }
