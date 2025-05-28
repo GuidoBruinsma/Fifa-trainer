@@ -32,9 +32,14 @@ public static class EventManager
     public static UnityEvent OnSequenceFailed = new();
 
     /// <summary>
+    /// Triggered when the entire skill session is starts.
+    /// </summary>
+    public static UnityEvent OnSessionStart = new();
+
+    /// <summary>
     /// Triggered when the entire skill session is failed.
     /// </summary>
-    public static UnityEvent OnWholeSessionFailed = new();
+    public static UnityEvent OnSessionEnd = new();
 
     /// <summary>
     /// Triggered when a skill is completed, used for adaptive difficulty feedback.

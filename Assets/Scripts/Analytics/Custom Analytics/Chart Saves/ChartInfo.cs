@@ -35,10 +35,8 @@ public static class ChartInfo
 
         try
         {
-            // Read the file off the main thread
             string json = await Task.Run(() => File.ReadAllText(filePath));
 
-            // Parse on the main thread (or off, depending on Unity version behavior)
             return JsonUtility.FromJson<SkillChartDataWrapper>(json);
         }
         catch (System.Exception ex)

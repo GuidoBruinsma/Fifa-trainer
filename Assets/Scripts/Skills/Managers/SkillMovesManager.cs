@@ -41,6 +41,11 @@ public class SkillMovesManager : MonoBehaviour
 
     private int currentSequenceIndex = 0;
 
+    public float testTime = 0;
+    public float testRTime = 0;
+    public float testComplTime = 0;
+    public List<float> testbetewTime = new();
+
     /// <summary>
     /// Singleton initialization.
     /// </summary>
@@ -66,9 +71,24 @@ public class SkillMovesManager : MonoBehaviour
         EventManager.OnSequenceSuccess.AddListener(HandleSequenceSuccess);
         EventManager.OnSequenceFailed.AddListener(HandleSequenceFail);
 
-        EventManager.OnWholeSessionFailed.AddListener(RestartGame);
+        EventManager.OnSessionStart.AddListener(StartSession);
+        EventManager.OnSessionEnd.AddListener(RestartGame);
 
         LoadCurrentSkillMove();
+    }
+
+    private void StartSession()
+    {
+        if (!TimeManager.IsSessionActive())
+            TimeManager.StartSession();
+    }
+
+    private void Update()
+    {
+        TimeManager.UpdateSessionTime();
+        testTime = TimeManager.GetSessionDuration();
+        testRTime = TimeManager.GetReactionTime();
+        testComplTime = TimeManager.GetCompletionTime();
     }
 
     /// <summary>
@@ -112,9 +132,11 @@ public class SkillMovesManager : MonoBehaviour
     /// </summary>
     private void RestartGame()
     {
+        TimeManager.EndSession();
+
         currentSequenceIndex = 0;
 
-        LoadCurrentSkillMove();
+        // LoadCurrentSkillMove();
     }
 
     /// <summary>
@@ -128,10 +150,10 @@ public class SkillMovesManager : MonoBehaviour
             return;
         }
 
-        currentSkill = skillMoves[currentSequenceIndex];
-        //currentSkill.ResetStats();
+        TimeManager.RegisterCompletionTime();
 
-        //currentSkill.SendAnalytics();
+        currentSkill = skillMoves[currentSequenceIndex];
+
         EventManager.OnSkillChanged?.Invoke(currentSkill);
 
         if (currentSkill.inputSequence == null || currentSkill.inputSequence.Count == 0)
@@ -143,7 +165,10 @@ public class SkillMovesManager : MonoBehaviour
         sequenceValidator.SetSequenceInput(currentSkill.inputSequence[0].input, currentSkill);
 
         inputHandler.ResetHold();
-        PredictionSkill();
+
+        EventManager.OnSessionStart?.Invoke();
+
+        TimeManager.StartReactionTime();
     }
 
     /// <summary>
@@ -161,22 +186,6 @@ public class SkillMovesManager : MonoBehaviour
         else
         {
             Debug.Log("All skill moves completed!");
-        }
-    }
-
-    /// <summary>
-    /// Predicts and shows the next skill move in the UI (if available).
-    /// </summary>
-    private void PredictionSkill()
-    {
-        UI_Manager uiManager = UI_Manager.Instance;
-
-        int nextSkillIndex = currentSequenceIndex + 1;
-
-        if (nextSkillIndex <= skillMoves.Count - 1)
-        {
-            Skill skill = skillMoves[nextSkillIndex];
-            uiManager.SetNextMoveInfo(skillMoves[nextSkillIndex].inputSequence, skill.moveName);
         }
     }
 
@@ -203,12 +212,17 @@ public class SkillMovesManager : MonoBehaviour
 
         currentSkill.successes++;
 
+        TimeManager.CompletionTimeCompleted();
+
         SkillChartData skillChartData = new SkillChartData
         {
             skillName = currentSkill.moveName,
             successes = currentSkill.successes,
             attempts = currentSkill.attempts,
-            successRate = currentSkill.SuccessRate
+            successRate = currentSkill.SuccessRate,
+            reactionTime = TimeManager.GetReactionTime(),
+            completionTime = TimeManager.GetCompletionTime(),
+            timeBetweenInputs = TimeManager.GetTimeBetweenInputs().ToArray()
         };
 
         GlobalDataManager.SaveData(skillChartData, isTemp: true);  // Save to temp
@@ -232,6 +246,7 @@ public class SkillMovesManager : MonoBehaviour
     {
         EventManager.OnSequenceSuccess.RemoveListener(HandleSequenceSuccess);
         EventManager.OnSequenceFailed.RemoveListener(HandleSequenceFail);
-        EventManager.OnWholeSessionFailed.RemoveListener(RestartGame);
+        EventManager.OnSessionStart.RemoveListener(StartSession);
+        EventManager.OnSessionEnd.RemoveListener(RestartGame);
     }
 }
