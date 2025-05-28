@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
@@ -15,6 +14,17 @@ public class SkillScrollViewData : MonoBehaviour
 
     [SerializeField] private bool isTemp;
     [SerializeField] private LineChart lineChart;
+
+    [Header("Is Temp References (Add only if needed)")]
+    [SerializeField] private TextMeshProUGUI skillNameText;
+    [SerializeField] private TextMeshProUGUI attemptsText;
+    [SerializeField] private TextMeshProUGUI successesText;
+    [SerializeField] private TextMeshProUGUI successRateText;
+    [SerializeField] private TextMeshProUGUI reactionTimeText;
+    [SerializeField] private TextMeshProUGUI completionTimeText;
+    [SerializeField] private TextMeshProUGUI timeBetweenInputsText;
+    [SerializeField] private TextMeshProUGUI overallPerformanceText;
+
     private string GetFolderPath()
     {
         string basePath = Path.Combine(Application.persistentDataPath, "SkillHistory");
@@ -65,7 +75,12 @@ public class SkillScrollViewData : MonoBehaviour
 
     private void OnSkillButtonClicked(string skillNameCopy)
     {
-        lineChart.LoadChartData(skillNameCopy);
+        if (lineChart != null)
+            lineChart.LoadChartData(skillNameCopy);
+
+        if (isTemp) { 
+            
+        }
     }
 
 

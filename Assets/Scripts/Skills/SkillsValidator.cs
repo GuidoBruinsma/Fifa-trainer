@@ -17,7 +17,6 @@ public class SkillsValidator : MonoBehaviour
     [SerializeField] private List<SkillInput?> pressedSequenceInput = new();
 
     private Skill currentSkill;
-    private float timeLeftToPress;
 
     [SerializeField] private float currentTime;
     [SerializeField] private int totalAttempts;
@@ -40,25 +39,6 @@ public class SkillsValidator : MonoBehaviour
     {
         EventManager.OnSkillInputReceived.RemoveListener(AddInput);
         EventManager.OnMultipleInputsSent.RemoveListener(AddInput);
-
-    }
-
-    /// <summary>
-    /// Tracks timer and fails the sequence if time runs out.
-    /// </summary>
-    private void FixedUpdate()
-    {
-        if (currentSkill == null) return;
-
-        //timeLeftToPress -= Time.fixedDeltaTime;
-        UI_Manager.Instance?.SetTimerText(timeLeftToPress);
-
-        if (timeLeftToPress <= 0)
-        {
-            ResetSequence();
-            timeLeftToPress = 0;
-            EventManager.OnWholeSessionFailed?.Invoke();
-        }
     }
 
     /// <summary>
@@ -67,8 +47,11 @@ public class SkillsValidator : MonoBehaviour
     /// <param name="input">The skill input received.</param>
     public void AddInput(SkillInput input)
     {
-        if (pressedSequenceInput.Count == 0) currentTime = Time.time;
-
+        if (pressedSequenceInput.Count == 0)
+        {
+            if (TimeManager.GetReactionActive())
+                TimeManager.ReactionTimeCompleted();
+        }
         if (input == (SkillInput.Flick_None) ||
           input == (SkillInput.L2_None) ||
           input == (SkillInput.R2_None) ||
@@ -79,6 +62,7 @@ public class SkillsValidator : MonoBehaviour
         }
         Debug.Log(input);
         pressedSequenceInput.Add(input);
+        TimeManager.RegisterInputTime(pressedSequenceInput.Count);
         sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
 
         if (!CheckValidity())
@@ -104,9 +88,6 @@ public class SkillsValidator : MonoBehaviour
             currentSequenceInputHolder = new(currentSkill.inputSequence);
             sq.VisualizeSequence(currentSkill.inputSequence, 0);
 
-            float elapsedTime = (Time.time - currentTime);
-            UI_Manager.Instance?.SetElapsedTimeCompletion(elapsedTime);
-
             if (AuthenticationManager.instance != null)
             {  //FIX: Just for testing. Delete later
                 //AnalyticsManager.Instance.CompletionTimeTrackEvent(currentSkill.moveName, elapsedTime);
@@ -120,7 +101,11 @@ public class SkillsValidator : MonoBehaviour
     /// <param name="input">The list of inputs received.</param>
     public void AddInput(List<SkillInput?> input)
     {
-        if (pressedSequenceInput.Count == 0) currentTime = Time.time;
+        if (pressedSequenceInput.Count == 0)
+        {
+            if (TimeManager.GetReactionActive())
+                TimeManager.ReactionTimeCompleted();
+        }
 
         if (input.Contains(SkillInput.Flick_None) ||
             input.Contains(SkillInput.Hold_L3_None) ||
@@ -135,6 +120,8 @@ public class SkillsValidator : MonoBehaviour
         }
         Debug.Log(input[0]);
         pressedSequenceInput.Add(input[0]);
+        TimeManager.RegisterInputTime(pressedSequenceInput.Count);
+
         sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
 
         if (!CheckValidity(input))
@@ -157,14 +144,9 @@ public class SkillsValidator : MonoBehaviour
             currentSequenceInputHolder = new(currentSkill.inputSequence);
             sq.VisualizeSequence(currentSkill.inputSequence, 0);
 
-            float elapsedTime = (Time.time - currentTime);
-            Debug.Log(elapsedTime + " " + Time.time);
-            UI_Manager.Instance?.SetElapsedTimeCompletion(elapsedTime);
-            
             //FIX: Just for testing. Delete later
             //if (AuthenticationManager.instance != null) 
             //AnalyticsManager.Instance.CompletionTimeTrackEvent(currentSkill.moveName, elapsedTime);
-
         }
     }
 
@@ -273,7 +255,6 @@ public class SkillsValidator : MonoBehaviour
     {
         this.currentSequenceInput = new(currentSequenceInput);
         currentSkill = skill;
-        timeLeftToPress = currentSkill.maxTimeBetweenInput;
     }
 
     /// <summary>

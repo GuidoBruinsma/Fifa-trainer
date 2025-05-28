@@ -41,32 +41,6 @@ public class UI_Manager : MonoBehaviour
     }
     
     /// <summary>
-    /// Updates the UI text showing the remaining time.
-    /// </summary>
-    /// <param name="timeLeft">Time left in seconds.</param>
-    public void SetTimerText(float timeLeft)
-    {
-        timeleftText.text = timeLeft.ToString("0.0");
-    }
-    
-    /// <summary>
-    /// Updates the UI text showing elapsed time in mm:ss format.
-    /// </summary>
-    /// <param name="elapsedTime">Elapsed time in seconds.</param>
-    public void SetElapsedTimeText(float elapsedTime)
-    {
-        int minutes = Mathf.FloorToInt(elapsedTime / 60f); 
-        int seconds = Mathf.FloorToInt(elapsedTime % 60f);
-        timeElapsedText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
-    
-    /// <summary>
-    /// Updates the UI text showing precise skill completion time.
-    /// </summary>
-    /// <param name="elapsedTime">Elapsed time in seconds.</param>
-    public void SetElapsedTimeCompletion(float elapsedTime) => timeElapsedComlpetionText.text = $"Skill completion time: {elapsedTime.ToString("0.000")}";
-    
-    /// <summary>
     /// Sets the current skill move name and its input sequence on the UI.
     /// </summary>
     /// <param name="sequence">The move input sequence as string.</param>
@@ -74,16 +48,5 @@ public class UI_Manager : MonoBehaviour
     {
         sequenceName.text = SkillMovesManager.CurrentSkill.moveName;
         sequenceText.text = sequence;
-    }
-
-    /// <summary>
-    /// Displays the next move's name and input sequence on the UI.
-    /// </summary>
-    /// <param name="sequenceList">List of input holders representing the next move sequence.</param>
-    /// <param name="moveName">Name of the next skill move.</param>
-    public void SetNextMoveInfo(List<SkillInputHolder> sequenceList, string moveName)
-    {
-        nextMoveName.text = moveName;
-        nextMoveSequence.text = skillMap.GetSequenceDisplay(sequenceList);
     }
 }
