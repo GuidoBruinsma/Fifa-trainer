@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
 
@@ -44,8 +45,8 @@ public static class GlobalDataManager
         {
             wrapper = new();
         }
-        wrapper.history.Add(skillData);
 
+        wrapper.history.Add(skillData);
         string updatedJson = JsonUtility.ToJson(wrapper, true);
         File.WriteAllText(filePath, updatedJson);
         Debug.Log($"Skill data saved to: {filePath}");
@@ -87,7 +88,6 @@ public static class GlobalDataManager
 
         Debug.Log("All skill chart data has been cleared.");
     }
-
 }
 
 
@@ -102,6 +102,12 @@ public class SkillChartData
     public int attempts;
     public int successes;
     public float successRate;
+
+    public float reactionTime;
+    public float completionTime;
+    public float[] timeBetweenInputs;   //????
+
+    public float overallPerformance;    //Compare if it's better or worse than the previous one
 }
 
 /// <summary>
@@ -116,6 +122,9 @@ public class SkillChartDataWrapper
 /// <summary>
 /// Represents a single log entry for a performed skill move,
 /// including the player's username, skill name, time taken, and input timing.
+/// 
+/// Used in Logger mode
+/// 
 /// </summary>
 [Serializable]
 public class SkillLogData
@@ -128,7 +137,9 @@ public class SkillLogData
 }
 
 /// <summary>
+/// 
 /// A wrapper class used to store a list of skill log entries for serialization.
+/// 
 /// </summary>
 [Serializable]
 public class SkillLogWrapper
