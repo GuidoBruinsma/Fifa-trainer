@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
@@ -78,12 +79,48 @@ public class SkillScrollViewData : MonoBehaviour
         if (lineChart != null)
             lineChart.LoadChartData(skillNameCopy);
 
-        if (isTemp) { 
-            
+        if (isTemp)
+        {
+            DisplayTempAnalys(skillNameCopy);
         }
     }
 
+    private void DisplayTempAnalys(string skillNameCopy)
+    {
+        string filePath = Path.Combine(GetFolderPath(), $"{skillNameCopy}.json");
 
+        if (!File.Exists(filePath))
+        {
+            Debug.Log(skillNameCopy);
+            Debug.Log(filePath);
+            Debug.LogError("The file not found");
+            return;
+        }
+
+        string json = File.ReadAllText(filePath);
+
+        SkillChartDataWrapper data = JsonUtility.FromJson<SkillChartDataWrapper>(json);
+
+        SetUI(data);
+    }
+
+    private void SetUI(SkillChartDataWrapper data)
+    {
+        if (data == null) return;
+        skillNameText.text = data.history[^1].skillName;
+        attemptsText.text = data.history[^1].attempts.ToString();
+        successesText.text = data.history[^1].successes.ToString();
+        successRateText.text = data.history[^1].successRate.ToString("0.000");
+        reactionTimeText.text = data.history[^1].reactionTime.ToString("0.000");
+        completionTimeText.text = data.history[^1].completionTime.ToString("0.000");
+        timeBetweenInputsText.text = string.Empty;
+
+        for (int i = 0; i < data.history[^1].timeBetweenInputs.Length; i++)
+        {
+            timeBetweenInputsText.text += data.history[^1].timeBetweenInputs[i].ToString("0.000") + "\n";
+        }
+
+    }
 
     private void ClearExistingButtons()
     {

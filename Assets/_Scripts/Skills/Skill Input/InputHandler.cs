@@ -84,7 +84,7 @@ public class InputHandler : MonoBehaviour
     private void RegisterControlCallbacks()
     {
         // Buttons control
-        //_Buttons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
+        _Buttons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
 
         //// Analog Buttons control
         _AnalogButtons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
