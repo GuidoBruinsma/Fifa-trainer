@@ -15,13 +15,14 @@ public class PauseMenu : MonoBehaviour
     private InputAction _Buttons;
 
     [SerializeField] private bool isPaused = false;
-   
+
     /// <summary>
     /// Initializes the pause menu by setting the pause canvas active state
     /// and subscribing to the button input action to listen for pause toggling.
     /// </summary>
     private void Start()
     {
+        if (pauseCanvas == null) return;
         pauseCanvas.SetActive(isPaused);
 
         InputActionMap map = controls.FindActionMap("DualShock");
@@ -51,7 +52,8 @@ public class PauseMenu : MonoBehaviour
     /// Toggles pause state off, resumes time, and hides pause UI.
     /// Can be hooked to a UI button to resume from pause.
     /// </summary>
-    public void ResumePause() {
+    public void ResumePause()
+    {
         isPaused = !isPaused;
 
         Time.timeScale = isPaused ? 0 : 1;

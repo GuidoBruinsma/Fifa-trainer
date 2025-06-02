@@ -13,7 +13,7 @@ public class SelectorManager : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private EventSystem eventSystem;
-    private Button[] buttons;
+    [SerializeField] private Button[] buttons;
 
     [Header("Lerp Settings")]
     [SerializeField] private float interpolationSpeed = 10f;
@@ -70,6 +70,22 @@ public class SelectorManager : MonoBehaviour
     {
         float lerpSpeed = Time.deltaTime * interpolationSpeed;
         SetSelectorToButtonPosition(lerpSpeed);
+
+        var currentButtons = transform.parent.GetComponentsInChildren<Button>(false);
+        if (currentButtons.Length != buttons.Length)
+        {
+            buttons = currentButtons;
+
+            if (buttons.Length > 0)
+            {
+                eventSystem.SetSelectedGameObject(buttons[0].gameObject);
+
+                foreach (var b in buttons)
+                {
+                    AddEventTriggerComponent(b);
+                }
+            }
+        }
     }
 
 

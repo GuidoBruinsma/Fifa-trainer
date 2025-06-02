@@ -222,7 +222,8 @@ public class SkillMovesManager : MonoBehaviour
             successRate = currentSkill.SuccessRate,
             reactionTime = TimeManager.GetReactionTime(),
             completionTime = TimeManager.GetCompletionTime(),
-            timeBetweenInputs = TimeManager.GetTimeBetweenInputs().ToArray()
+            timeBetweenInputs = TimeManager.GetTimeBetweenInputs().ToArray(),
+            dateTime = System.DateTime.Now.ToString("HH:mm:tt"),
         };
 
         GlobalDataManager.SaveData(skillChartData, isTemp: true);  // Save to temp

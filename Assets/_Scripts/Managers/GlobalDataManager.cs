@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
 
@@ -106,6 +105,8 @@ public class SkillChartData
     public float reactionTime;
     public float completionTime;
     public float[] timeBetweenInputs;   //????
+
+    public string dateTime;
 
     public float overallPerformance;    //Compare if it's better or worse than the previous one
 }

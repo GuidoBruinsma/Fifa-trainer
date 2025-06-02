@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
@@ -7,9 +6,6 @@ using UnityEngine.UI;
 
 public class SkillScrollViewData : MonoBehaviour
 {
-    //TODO: Get data from saved json and create the buttons and add it to the scroll view
-    //when selected, send the data of that one to the chart and the rest of the windows that shows whatever information
-
     [SerializeField] private Transform contentParent;
     [SerializeField] private GameObject contentItemPrefab;
 
@@ -24,7 +20,12 @@ public class SkillScrollViewData : MonoBehaviour
     [SerializeField] private TextMeshProUGUI reactionTimeText;
     [SerializeField] private TextMeshProUGUI completionTimeText;
     [SerializeField] private TextMeshProUGUI timeBetweenInputsText;
+
+    [SerializeField] private TextMeshProUGUI startDateTime;
+
     [SerializeField] private TextMeshProUGUI overallPerformanceText;
+
+    //Session duration, session start (Real time date)
 
     private string GetFolderPath()
     {
@@ -77,8 +78,10 @@ public class SkillScrollViewData : MonoBehaviour
     private void OnSkillButtonClicked(string skillNameCopy)
     {
         if (lineChart != null)
+        {
             lineChart.LoadChartData(skillNameCopy);
-
+            DisplayTempAnalys(skillNameCopy);
+        }
         if (isTemp)
         {
             DisplayTempAnalys(skillNameCopy);
@@ -120,6 +123,7 @@ public class SkillScrollViewData : MonoBehaviour
             timeBetweenInputsText.text += data.history[^1].timeBetweenInputs[i].ToString("0.000") + "\n";
         }
 
+        startDateTime.text = data.history[^1].dateTime;
     }
 
     private void ClearExistingButtons()

@@ -44,7 +44,7 @@ public class ControllerOverlay : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        ResetColors();
+        //ResetColors();
 
         CheckAnalog();
         CheckTriggers();
@@ -80,6 +80,8 @@ public class ControllerOverlay : MonoBehaviour
 
         }
     }
+
+
 
     /// <summary>
     /// Checks trigger input (L2, R2) and updates color based on pressure.
@@ -166,7 +168,7 @@ public class ControllerOverlay : MonoBehaviour
     /// <summary>
     /// Resets all button and trigger images to their default color.
     /// </summary>
-    private void ResetColors()
+    public void ResetColors()
     {
         if (xButton) xButton.color = defaultColor;
         if (circleButton) circleButton.color = defaultColor;
@@ -178,4 +180,108 @@ public class ControllerOverlay : MonoBehaviour
         if (r1Button) r1Button.color = defaultColor;
         if (r2Trigger) r2Trigger.color = defaultColor;
     }
+
+    //Delete later
+    #region Test  
+    public void SimulateButton(SkillInput input)
+    {
+        string name = input.ToString();
+
+        if (name.Contains("None")) return;
+
+        if (name.Contains("_Hold") || name.StartsWith("Hold_"))
+        {
+            name = name.Replace("_Hold", "").Replace("Hold_", "");
+        }
+
+        if (name.Contains("To"))
+        {
+            // Stick rotations: e.g., R3_LeftToUp → highlight R3 and show direction
+            HighlightStickRotation(name);
+            return;
+        }
+
+        if (name.StartsWith("L2")) l2Trigger.color = highlightColor;
+        else if (name.StartsWith("R2")) r2Trigger.color = highlightColor;
+        else if (name.StartsWith("L1")) l1Button.color = highlightColor;
+        else if (name.StartsWith("R1")) r1Button.color = highlightColor;
+        else if (name.StartsWith("Button_X")) xButton.color = highlightColor;
+        else if (name.StartsWith("Button_O")) circleButton.color = highlightColor;
+        else if (name.StartsWith("Button_Square")) squareButton.color = highlightColor;
+        else if (name.StartsWith("Button_Triangle")) triangleButton.color = highlightColor;
+        else if (name.StartsWith("R3")) r3Analog.color = highlightColor;
+        else if (name.StartsWith("L3")) l3Analog.color = highlightColor;
+    }
+
+    private void HighlightStickRotation(string name)
+    {
+        // Very basic version, you can animate arrows later
+        if (name.StartsWith("R3")) r3Analog.color = highlightColor;
+        else if (name.StartsWith("L3")) l3Analog.color = highlightColor;
+    }
+
+    public void SetStick(SkillInput input)
+    {
+
+
+        var up = new Vector2(0, 1);
+        var down = new Vector2(0, -1);
+        var left = new Vector2(-1, 0);
+        var right = new Vector2(1, 0);
+
+        if (input == SkillInput.L3_Up)
+        {
+            l3Analog.transform.localPosition = new Vector3(up.x * 50f, up.y * 50f, 0f);
+            l3Analog.color = Color.Lerp(defaultColor, highlightColor, up.magnitude);
+        }
+        if (input == SkillInput.L3_Down)
+        {
+            l3Analog.transform.localPosition = new Vector3(down.x * 50f, down.y * 50f, 0f);
+            l3Analog.color = Color.Lerp(defaultColor, highlightColor, down.magnitude);
+        }
+        if (input == SkillInput.L3_Left)
+        {
+            l3Analog.transform.localPosition = new Vector3(left.x * 50f, left.y * 50f, 0f);
+            l3Analog.color = Color.Lerp(defaultColor, highlightColor, left.magnitude);
+        }
+        if (input == SkillInput.L3_Right)
+        {
+            l3Analog.transform.localPosition = new Vector3(right.x * 50f, right.y * 50f, 0f);
+            l3Analog.color = Color.Lerp(defaultColor, highlightColor, right.magnitude);
+        }
+
+
+
+
+
+        if (input == SkillInput.R3_Up)
+        {
+            Debug.Log($"move input {input}");
+            r3Analog.transform.localPosition = new Vector3(up.x * 50f, up.y * 50f, 0f);
+            r3Analog.color = Color.Lerp(defaultColor, highlightColor, up.magnitude);
+        }
+        if (input == SkillInput.R3_Down)
+        {
+            Debug.Log($"move input {input}");
+
+            r3Analog.transform.localPosition = new Vector3(down.x * 50f, down.y * 50f, 0f);
+            r3Analog.color = Color.Lerp(defaultColor, highlightColor, down.magnitude);
+        }
+        if (input == SkillInput.R3_Left)
+        {
+            Debug.Log($"move input {input}");
+
+            r3Analog.transform.localPosition = new Vector3(left.x * 50f, left.y * 50f, 0f);
+            r3Analog.color = Color.Lerp(defaultColor, highlightColor, left.magnitude);
+        }
+        if (input == SkillInput.R3_Right)
+        {
+            Debug.Log($"move input {input}");
+
+            r3Analog.transform.localPosition = new Vector3(right.x * 50f, right.y * 50f, 0f);
+            r3Analog.color = Color.Lerp(defaultColor, highlightColor, right.magnitude);
+        }
+    }
+
+    #endregion
 }
