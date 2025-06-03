@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -46,10 +47,10 @@ public class ControllerOverlay : MonoBehaviour
     {
         //ResetColors();
 
-        CheckAnalog();
-        CheckTriggers();
-        CheckButtons();
-        StickButtons();
+        //CheckAnalog();
+        //CheckTriggers();
+        //CheckButtons();
+        //StickButtons();
     }
 
     /// <summary>
@@ -179,6 +180,12 @@ public class ControllerOverlay : MonoBehaviour
         if (l2Trigger) l2Trigger.color = defaultColor;
         if (r1Button) r1Button.color = defaultColor;
         if (r2Trigger) r2Trigger.color = defaultColor;
+
+        //Delete after
+        r3Analog.color = defaultColor;
+        l3Analog.color = defaultColor;
+        l3Analog.transform.localPosition = Vector3.zero;
+        r3Analog.transform.localPosition = Vector3.zero;
     }
 
     //Delete later
@@ -189,41 +196,139 @@ public class ControllerOverlay : MonoBehaviour
 
         if (name.Contains("None")) return;
 
-        if (name.Contains("_Hold") || name.StartsWith("Hold_"))
-        {
-            name = name.Replace("_Hold", "").Replace("Hold_", "");
-        }
+        bool isHold = name.Contains("_Hold") || name.StartsWith("Hold_");
+        string cleanName = name.Replace("_Hold", "").Replace("Hold_", "");
 
-        if (name.Contains("To"))
+        // Stick rotations: e.g., R3_LeftToUp → highlight R3 and show direction
+        if (cleanName.Contains("To"))
         {
-            // Stick rotations: e.g., R3_LeftToUp → highlight R3 and show direction
-            HighlightStickRotation(name);
+            HighlightStickRotation(cleanName);
             return;
         }
 
-        if (name.StartsWith("L2")) l2Trigger.color = highlightColor;
-        else if (name.StartsWith("R2")) r2Trigger.color = highlightColor;
-        else if (name.StartsWith("L1")) l1Button.color = highlightColor;
-        else if (name.StartsWith("R1")) r1Button.color = highlightColor;
-        else if (name.StartsWith("Button_X")) xButton.color = highlightColor;
-        else if (name.StartsWith("Button_O")) circleButton.color = highlightColor;
-        else if (name.StartsWith("Button_Square")) squareButton.color = highlightColor;
-        else if (name.StartsWith("Button_Triangle")) triangleButton.color = highlightColor;
-        else if (name.StartsWith("R3")) r3Analog.color = highlightColor;
-        else if (name.StartsWith("L3")) l3Analog.color = highlightColor;
-    }
+        Color colorToUse = isHold ? Color.red : highlightColor;
 
+        if (cleanName.StartsWith("L2")) l2Trigger.color = colorToUse;
+        else if (cleanName.StartsWith("R2")) r2Trigger.color = colorToUse;
+        else if (cleanName.StartsWith("L1")) l1Button.color = colorToUse;
+        else if (cleanName.StartsWith("R1")) r1Button.color = colorToUse;
+        else if (cleanName.StartsWith("Button_X")) xButton.color = colorToUse;
+        else if (cleanName.StartsWith("Button_Circle")) circleButton.color = colorToUse;
+        else if (cleanName.StartsWith("Button_Square")) squareButton.color = colorToUse;
+        else if (cleanName.StartsWith("Button_Triangle")) triangleButton.color = colorToUse;
+        else if (cleanName.StartsWith("L3")) l3Analog.color = colorToUse;
+        else if (cleanName.StartsWith("R3")) r3Analog.color = colorToUse;
+    }
     private void HighlightStickRotation(string name)
     {
-        // Very basic version, you can animate arrows later
-        if (name.StartsWith("R3")) r3Analog.color = highlightColor;
-        else if (name.StartsWith("L3")) l3Analog.color = highlightColor;
+        if (name.StartsWith("L3"))
+            StartCoroutine(AnimateStickDirection(l3Analog, name.Replace("L3_", "")));
+        else if (name.StartsWith("R3"))
+            StartCoroutine(AnimateStickDirection(r3Analog, name.Replace("R3_", "")));
     }
 
+    private IEnumerator AnimateStickDirection(Image stick, string direction)
+    {
+        Vector2 start = Vector2.zero;
+        Vector2 end = Vector2.zero;
+
+        float radius = 50f;
+        float duration = 0.3f;
+        float elapsed = 0f;
+
+        Color originalColor = stick.color;
+        stick.color = highlightColor;
+
+        // Simple directions
+        switch (direction)
+        {
+            case "Left":
+                start = Vector2.zero;
+                end = Vector2.left;
+                break;
+            case "Right":
+                start = Vector2.zero;
+                end = Vector2.right;
+                break;
+            case "Up":
+                start = Vector2.zero;
+                end = Vector2.up;
+                break;
+            case "Down":
+                start = Vector2.zero;
+                end = Vector2.down;
+                break;
+
+            // Two-part rotations
+            case "LeftToDown":
+                start = Vector2.left;
+                end = Vector2.down;
+                break;
+            case "DownToRight":
+                start = Vector2.down;
+                end = Vector2.right;
+                break;
+            case "RightToUp":
+                start = Vector2.right;
+                end = Vector2.up;
+                break;
+            case "UpToLeft":
+                start = Vector2.up;
+                end = Vector2.left;
+                break;
+
+            // Three-part arcs
+            case "LeftToDownToLeft":
+                yield return AnimateArc(stick, Vector2.left, Vector2.down, Vector2.left, radius, duration * 1.5f);
+                goto Reset;
+            case "LeftToUpToLeft":
+                yield return AnimateArc(stick, Vector2.left, Vector2.up, Vector2.left, radius, duration * 1.5f);
+                goto Reset;
+            case "DownToRightToDown":
+                yield return AnimateArc(stick, Vector2.down, Vector2.right, Vector2.down, radius, duration * 1.5f);
+                goto Reset;
+            case "RightToDownToRight":
+                yield return AnimateArc(stick, Vector2.right, Vector2.down, Vector2.right, radius, duration * 1.5f);
+                goto Reset;
+            case "HalfCircleBack":
+                yield return AnimateArc(stick, Vector2.right, Vector2.down, Vector2.left, radius, duration * 1.5f);
+                goto Reset;
+            default:
+                Debug.LogWarning("Unknown stick direction: " + direction);
+                yield break;
+        }
+
+        // Animate simple directions linearly
+        Vector2 from = start * radius;
+        Vector2 to = end * radius;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.SmoothStep(0, 1, elapsed / duration);
+            stick.transform.localPosition = Vector2.Lerp(from, to, t);
+            yield return null;
+        }
+
+    Reset:
+        stick.transform.localPosition = Vector3.zero;
+        stick.color = originalColor;
+    }
+
+    private IEnumerator AnimateArc(Image stick, Vector2 p0, Vector2 p1, Vector2 p2, float radius, float duration)
+    {
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / duration;
+            Vector2 point = Mathf.Pow(1 - t, 2) * p0 + 2 * (1 - t) * t * p1 + Mathf.Pow(t, 2) * p2;
+            stick.transform.localPosition = point * radius;
+            yield return null;
+        }
+    }
+    
     public void SetStick(SkillInput input)
     {
-
-
         var up = new Vector2(0, 1);
         var down = new Vector2(0, -1);
         var left = new Vector2(-1, 0);

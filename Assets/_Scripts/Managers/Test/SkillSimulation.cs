@@ -26,6 +26,7 @@ public class SkillSimulation : MonoBehaviour
     {
         while (currentSkillIndex < skills.Count)
         {
+            overlay.ResetColors();
             currentSkill = skills[currentSkillIndex];
 
             if (currentSkill.inputSequence == null || currentSkill.inputSequence.Count == 0)
@@ -52,12 +53,17 @@ public class SkillSimulation : MonoBehaviour
                     visualizer.VisualizeSequence(sequence, i);
 
                 yield return new WaitForSeconds(inputDelay);
-                overlay.ResetColors();
+                if (!IsHoldInput(input))
+                    overlay.ResetColors();
             }
-
             currentSkillIndex++;
             Debug.Log("Next Skill");
         }
+    }
+    private bool IsHoldInput(SkillInput input)
+    {
+        string name = input.ToString();
+        return name.StartsWith("Hold_") || name.EndsWith("_Hold");
     }
 
     private void PerformInput(SkillInput input)
