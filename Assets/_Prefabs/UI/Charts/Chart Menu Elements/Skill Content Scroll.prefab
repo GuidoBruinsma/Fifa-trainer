@@ -212,8 +212,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentParent: {fileID: 496878830166807384}
   contentItemPrefab: {fileID: 474284507756007970, guid: cee469520229a9449be3ec062156eb97, type: 3}
-  isTemp: 0
+  isTemp: 1
   lineChart: {fileID: 0}
+  skillNameText: {fileID: 0}
+  attemptsText: {fileID: 0}
+  successesText: {fileID: 0}
+  successRateText: {fileID: 0}
+  reactionTimeText: {fileID: 0}
+  completionTimeText: {fileID: 0}
+  timeBetweenInputsText: {fileID: 0}
+  overallPerformanceText: {fileID: 0}
 --- !u!1 &8612548403153797987
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +257,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -200, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1442177209456863
 MonoBehaviour:

@@ -63,50 +63,6 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "c608013b-73f9-408f-be75-5d1a7bcb4e57",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Buttons",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7cd66177-a997-44d2-ab13-1d7c8deb5537",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Buttons",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cd6668f9-c283-41f5-b825-ddfe88dfb64c",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Buttons",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bcc24772-2216-440a-800c-53bdd4c18f46",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Buttons",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0eecbf0c-151e-4d70-b67c-2c0cc20e9731",
                     "path": "<Gamepad>/start",
                     "interactions": "",

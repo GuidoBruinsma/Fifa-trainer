@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class SkillScrollViewData : MonoBehaviour
 {
-    //TODO: Get data from saved json and create the buttons and add it to the scroll view
-    //when selected, send the data of that one to the chart and the rest of the windows that shows whatever information
-
     [SerializeField] private Transform contentParent;
     [SerializeField] private GameObject contentItemPrefab;
 
@@ -23,7 +20,12 @@ public class SkillScrollViewData : MonoBehaviour
     [SerializeField] private TextMeshProUGUI reactionTimeText;
     [SerializeField] private TextMeshProUGUI completionTimeText;
     [SerializeField] private TextMeshProUGUI timeBetweenInputsText;
+
+    [SerializeField] private TextMeshProUGUI startDateTime;
+
     [SerializeField] private TextMeshProUGUI overallPerformanceText;
+
+    //Session duration, session start (Real time date)
 
     private string GetFolderPath()
     {
@@ -76,14 +78,53 @@ public class SkillScrollViewData : MonoBehaviour
     private void OnSkillButtonClicked(string skillNameCopy)
     {
         if (lineChart != null)
+        {
             lineChart.LoadChartData(skillNameCopy);
-
-        if (isTemp) { 
-            
+            DisplayTempAnalys(skillNameCopy);
+        }
+        if (isTemp)
+        {
+            DisplayTempAnalys(skillNameCopy);
         }
     }
 
+    private void DisplayTempAnalys(string skillNameCopy)
+    {
+        string filePath = Path.Combine(GetFolderPath(), $"{skillNameCopy}.json");
 
+        if (!File.Exists(filePath))
+        {
+            Debug.Log(skillNameCopy);
+            Debug.Log(filePath);
+            Debug.LogError("The file not found");
+            return;
+        }
+
+        string json = File.ReadAllText(filePath);
+
+        SkillChartDataWrapper data = JsonUtility.FromJson<SkillChartDataWrapper>(json);
+
+        SetUI(data);
+    }
+
+    private void SetUI(SkillChartDataWrapper data)
+    {
+        if (data == null) return;
+        skillNameText.text = data.history[^1].skillName;
+        attemptsText.text = data.history[^1].attempts.ToString();
+        successesText.text = data.history[^1].successes.ToString();
+        successRateText.text = data.history[^1].successRate.ToString("0.000");
+        reactionTimeText.text = data.history[^1].reactionTime.ToString("0.000");
+        completionTimeText.text = data.history[^1].completionTime.ToString("0.000");
+        timeBetweenInputsText.text = string.Empty;
+
+        for (int i = 0; i < data.history[^1].timeBetweenInputs.Length; i++)
+        {
+            timeBetweenInputsText.text += data.history[^1].timeBetweenInputs[i].ToString("0.000") + "\n";
+        }
+
+        startDateTime.text = data.history[^1].dateTime;
+    }
 
     private void ClearExistingButtons()
     {

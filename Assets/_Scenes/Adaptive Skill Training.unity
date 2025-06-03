@@ -4146,7 +4146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8613308472556165858, guid: 3f6446d9bf45b54419c59837364c39b4, type: 3}
       propertyPath: holdDetectionTime
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
