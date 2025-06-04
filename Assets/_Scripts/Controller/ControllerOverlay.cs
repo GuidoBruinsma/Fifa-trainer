@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -81,8 +82,6 @@ public class ControllerOverlay : MonoBehaviour
 
         }
     }
-
-
 
     /// <summary>
     /// Checks trigger input (L2, R2) and updates color based on pressure.
@@ -186,10 +185,155 @@ public class ControllerOverlay : MonoBehaviour
         l3Analog.color = defaultColor;
         l3Analog.transform.localPosition = Vector3.zero;
         r3Analog.transform.localPosition = Vector3.zero;
+
+        Debug.Log("Color resets");
     }
 
     //Delete later
     #region Test  
+    public void ResetColors(SkillInput input)
+    {
+        switch (input)
+        {
+            case SkillInput.Button_X:
+            case SkillInput.Hold_Button_X:
+                if (xButton) xButton.color = defaultColor;
+                break;
+
+            case SkillInput.Button_Circle:
+            case SkillInput.Hold_Button_Circle:
+                if (circleButton) circleButton.color = defaultColor;
+                break;
+
+            case SkillInput.Button_Square:
+            case SkillInput.Hold_Button_Square:
+                if (squareButton) squareButton.color = defaultColor;
+                break;
+
+            case SkillInput.Button_Triangle:
+            case SkillInput.Hold_Button_Triangle:
+                if (triangleButton) triangleButton.color = defaultColor;
+                break;
+
+            case SkillInput.L1:
+            case SkillInput.L1_Hold:
+                if (l1Button) l1Button.color = defaultColor;
+                break;
+
+            case SkillInput.L2:
+            case SkillInput.L2_Hold:
+            case SkillInput.L2_None:
+                if (l2Trigger) l2Trigger.color = defaultColor;
+                break;
+
+            case SkillInput.R1:
+            case SkillInput.R1_Hold:
+                if (r1Button) r1Button.color = defaultColor;
+                break;
+
+            case SkillInput.R2:
+            case SkillInput.R2_Hold:
+            case SkillInput.R2_None:
+                if (r2Trigger) r2Trigger.color = defaultColor;
+                break;
+
+            // Analog sticks resets: reset color and position
+            // All L3 and R3 inputs (including hold and rotation)
+            case SkillInput.L3:
+            case SkillInput.L3_Any:
+            case SkillInput.Hold_L3_Any:
+            case SkillInput.L3_Left:
+            case SkillInput.L3_UpLeft:
+            case SkillInput.L3_DownLeft:
+            case SkillInput.L3_Right:
+            case SkillInput.L3_UpRight:
+            case SkillInput.L3_DownRight:
+            case SkillInput.L3_Up:
+            case SkillInput.L3_Down:
+            case SkillInput.L3_None:
+            case SkillInput.L3_RightToUp:
+            case SkillInput.L3_RightToDown:
+            case SkillInput.L3_UpToRight:
+            case SkillInput.L3_UpToLeft:
+            case SkillInput.L3_DownToRight:
+            case SkillInput.L3_DownToLeft:
+            case SkillInput.L3_LeftToUp:
+            case SkillInput.L3_LeftToDown:
+            case SkillInput.L3_LeftToDownToLeft:
+            case SkillInput.L3_LeftToUpToLeft:
+            case SkillInput.L3_DownToRightToDown:
+            case SkillInput.L3_RightToDownToRight:
+            case SkillInput.Hold_L3_Left:
+            case SkillInput.Hold_L3_UpLeft:
+            case SkillInput.Hold_L3_DownLeft:
+            case SkillInput.Hold_L3_Right:
+            case SkillInput.Hold_L3_UpRight:
+            case SkillInput.Hold_L3_DownRight:
+            case SkillInput.Hold_L3_Up:
+            case SkillInput.Hold_L3_Down:
+            case SkillInput.Hold_L3_None:
+                if (l3Analog)
+                {
+                    l3Analog.color = defaultColor;
+                    l3Analog.transform.localPosition = Vector3.zero;
+                }
+                break;
+
+            case SkillInput.R3:
+            case SkillInput.R3_Any:
+            case SkillInput.Hold_R3_Any:
+            case SkillInput.R3_Left:
+            case SkillInput.R3_UpLeft:
+            case SkillInput.R3_DownLeft:
+            case SkillInput.R3_Right:
+            case SkillInput.R3_UpRight:
+            case SkillInput.R3_DownRight:
+            case SkillInput.R3_Up:
+            case SkillInput.R3_Down:
+            case SkillInput.R3_None:
+            case SkillInput.R3_RightToUp:
+            case SkillInput.R3_RightToDown:
+            case SkillInput.R3_UpToRight:
+            case SkillInput.R3_UpToLeft:
+            case SkillInput.R3_DownToRight:
+            case SkillInput.R3_DownToLeft:
+            case SkillInput.R3_LeftToUp:
+            case SkillInput.R3_LeftToDown:
+            case SkillInput.R3_LeftToDownToLeft:
+            case SkillInput.R3_LeftToUpToLeft:
+            case SkillInput.Hold_R3_Left:
+            case SkillInput.Hold_R3_UpLeft:
+            case SkillInput.Hold_R3_DownLeft:
+            case SkillInput.Hold_R3_Right:
+            case SkillInput.Hold_R3_UpRight:
+            case SkillInput.Hold_R3_DownRight:
+            case SkillInput.Hold_R3_Up:
+            case SkillInput.Hold_R3_Down:
+            case SkillInput.Hold_R3_None:
+                if (r3Analog)
+                {
+                    r3Analog.color = defaultColor;
+                    r3Analog.transform.localPosition = Vector3.zero;
+                }
+                break;
+
+            default:
+                Debug.LogWarning("ResetColors called with unhandled SkillInput: " + input);
+                break;
+        }
+
+        Debug.Log($"Reset color for {input}");
+    }
+
+    public void ResetAnalogPositions()
+    {
+        l3Analog.transform.localPosition = Vector3.zero;
+        r3Analog.transform.localPosition = Vector3.zero;
+
+        l3Analog.color = defaultColor;
+        r3Analog.color = defaultColor;
+    }
+
     public void SimulateButton(SkillInput input)
     {
         string name = input.ToString();
@@ -219,6 +363,7 @@ public class ControllerOverlay : MonoBehaviour
         else if (cleanName.StartsWith("L3")) l3Analog.color = colorToUse;
         else if (cleanName.StartsWith("R3")) r3Analog.color = colorToUse;
     }
+
     private void HighlightStickRotation(string name)
     {
         if (name.StartsWith("L3"))
@@ -326,65 +471,54 @@ public class ControllerOverlay : MonoBehaviour
             yield return null;
         }
     }
-    
+
     public void SetStick(SkillInput input)
     {
-        var up = new Vector2(0, 1);
-        var down = new Vector2(0, -1);
-        var left = new Vector2(-1, 0);
-        var right = new Vector2(1, 0);
+        // All possible directions including diagonals
+        var directions = new Dictionary<string, Vector2>()
+    {
+        { "Up", new Vector2(0, 1) },
+        { "Down", new Vector2(0, -1) },
+        { "Left", new Vector2(-1, 0) },
+        { "Right", new Vector2(1, 0) },
+        { "UpLeft", new Vector2(-1, 1).normalized },
+        { "UpRight", new Vector2(1, 1).normalized },
+        { "LeftDown", new Vector2(-1, -1).normalized },
+        { "RightDown", new Vector2(1, -1).normalized },
+    };
 
-        if (input == SkillInput.L3_Up)
+        string inputName = input.ToString();
+        bool isHold = inputName.StartsWith("Hold_");
+        if (isHold)
+            inputName = inputName.Substring(5); // remove "Hold_"
+
+        foreach (var dir in directions)
         {
-            l3Analog.transform.localPosition = new Vector3(up.x * 50f, up.y * 50f, 0f);
-            l3Analog.color = Color.Lerp(defaultColor, highlightColor, up.magnitude);
+            if (inputName == $"L3_{dir.Key}")
+            {
+                l3Analog.transform.localPosition = dir.Value * 50f;
+                l3Analog.color = Color.Lerp(defaultColor, highlightColor, dir.Value.magnitude);
+                return;
+            }
+            if (inputName == $"R3_{dir.Key}")
+            {
+                r3Analog.transform.localPosition = dir.Value * 50f;
+                r3Analog.color = Color.Lerp(defaultColor, highlightColor, dir.Value.magnitude);
+                return;
+            }
         }
-        if (input == SkillInput.L3_Down)
+    }
+    public void ResetStick(SkillInput input)
+    {
+        if (input.ToString().StartsWith("L3"))
         {
-            l3Analog.transform.localPosition = new Vector3(down.x * 50f, down.y * 50f, 0f);
-            l3Analog.color = Color.Lerp(defaultColor, highlightColor, down.magnitude);
+            l3Analog.transform.localPosition = Vector3.zero;
+            l3Analog.color = defaultColor;
         }
-        if (input == SkillInput.L3_Left)
+        else if (input.ToString().StartsWith("R3"))
         {
-            l3Analog.transform.localPosition = new Vector3(left.x * 50f, left.y * 50f, 0f);
-            l3Analog.color = Color.Lerp(defaultColor, highlightColor, left.magnitude);
-        }
-        if (input == SkillInput.L3_Right)
-        {
-            l3Analog.transform.localPosition = new Vector3(right.x * 50f, right.y * 50f, 0f);
-            l3Analog.color = Color.Lerp(defaultColor, highlightColor, right.magnitude);
-        }
-
-
-
-
-
-        if (input == SkillInput.R3_Up)
-        {
-            Debug.Log($"move input {input}");
-            r3Analog.transform.localPosition = new Vector3(up.x * 50f, up.y * 50f, 0f);
-            r3Analog.color = Color.Lerp(defaultColor, highlightColor, up.magnitude);
-        }
-        if (input == SkillInput.R3_Down)
-        {
-            Debug.Log($"move input {input}");
-
-            r3Analog.transform.localPosition = new Vector3(down.x * 50f, down.y * 50f, 0f);
-            r3Analog.color = Color.Lerp(defaultColor, highlightColor, down.magnitude);
-        }
-        if (input == SkillInput.R3_Left)
-        {
-            Debug.Log($"move input {input}");
-
-            r3Analog.transform.localPosition = new Vector3(left.x * 50f, left.y * 50f, 0f);
-            r3Analog.color = Color.Lerp(defaultColor, highlightColor, left.magnitude);
-        }
-        if (input == SkillInput.R3_Right)
-        {
-            Debug.Log($"move input {input}");
-
-            r3Analog.transform.localPosition = new Vector3(right.x * 50f, right.y * 50f, 0f);
-            r3Analog.color = Color.Lerp(defaultColor, highlightColor, right.magnitude);
+            r3Analog.transform.localPosition = Vector3.zero;
+            r3Analog.color = defaultColor;
         }
     }
 
