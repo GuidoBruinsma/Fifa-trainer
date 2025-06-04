@@ -27,7 +27,9 @@ public class SkillSimulation : MonoBehaviour
         while (currentSkillIndex < skills.Count)
         {
             overlay.ResetColors();
+
             currentSkill = skills[currentSkillIndex];
+            yield return new WaitForSeconds(1f);
 
             if (currentSkill.inputSequence == null || currentSkill.inputSequence.Count == 0)
             {
@@ -47,19 +49,29 @@ public class SkillSimulation : MonoBehaviour
             {
                 SkillInput input = sequence[0].input[i];
 
+                if (input.ToString().StartsWith("L3") || input.ToString().StartsWith("R3"))
+                {
+                    overlay.ResetStick(input);
+                    yield return new WaitForSeconds(0.2f);
+                }
+                yield return new WaitForSeconds(0.5f);
+
                 PerformInput(input);
 
                 if (visualizer != null)
                     visualizer.VisualizeSequence(sequence, i);
 
                 yield return new WaitForSeconds(inputDelay);
+
                 if (!IsHoldInput(input))
-                    overlay.ResetColors();
+                    overlay.ResetColors(input);
             }
+
             currentSkillIndex++;
             Debug.Log("Next Skill");
         }
     }
+
     private bool IsHoldInput(SkillInput input)
     {
         string name = input.ToString();
@@ -74,6 +86,5 @@ public class SkillSimulation : MonoBehaviour
             overlay.SetStick(input);
         }
         Debug.Log($"Performing input: {input}");
-
     }
 }
