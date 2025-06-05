@@ -29,6 +29,7 @@ public class SkillSimulation : MonoBehaviour
             overlay.ResetColors();
 
             currentSkill = skills[currentSkillIndex];
+
             yield return new WaitForSeconds(1f);
 
             if (currentSkill.inputSequence == null || currentSkill.inputSequence.Count == 0)
@@ -41,7 +42,11 @@ public class SkillSimulation : MonoBehaviour
             List<SkillInputHolder> sequence = currentSkill.inputSequence;
 
             if (visualizer != null)
+            {
                 visualizer.VisualizeSequence(sequence, -1);
+                UI_Manager.Instance?.SetName(currentSkill.moveName);
+
+            }
             else
                 Debug.LogWarning("Visualizer not assigned!");
 
@@ -59,8 +64,10 @@ public class SkillSimulation : MonoBehaviour
                 PerformInput(input);
 
                 if (visualizer != null)
+                {
                     visualizer.VisualizeSequence(sequence, i);
-
+                    UI_Manager.Instance?.SetName(currentSkill.moveName);
+                }
                 yield return new WaitForSeconds(inputDelay);
 
                 if (!IsHoldInput(input))

@@ -46,7 +46,12 @@ public class UI_Manager : MonoBehaviour
     /// <param name="sequence">The move input sequence as string.</param>
     public void SetSkillMoveInfo(string sequence)
     {
-        sequenceName.text = SkillMovesManager.CurrentSkill.moveName;
+        //sequenceName.text = SkillMovesManager.CurrentSkill.moveName;
         sequenceText.text = sequence;
+    }
+
+    //Delete This
+    public void SetName(string name) {
+        sequenceName.text = name;
     }
 }

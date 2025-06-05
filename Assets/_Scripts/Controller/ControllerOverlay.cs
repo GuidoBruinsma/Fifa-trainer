@@ -325,15 +325,6 @@ public class ControllerOverlay : MonoBehaviour
         Debug.Log($"Reset color for {input}");
     }
 
-    public void ResetAnalogPositions()
-    {
-        l3Analog.transform.localPosition = Vector3.zero;
-        r3Analog.transform.localPosition = Vector3.zero;
-
-        l3Analog.color = defaultColor;
-        r3Analog.color = defaultColor;
-    }
-
     public void SimulateButton(SkillInput input)
     {
         string name = input.ToString();
@@ -384,66 +375,91 @@ public class ControllerOverlay : MonoBehaviour
         Color originalColor = stick.color;
         stick.color = highlightColor;
 
+        // Remove prefixes for simpler parsing
+        if (direction.StartsWith("R3_") || direction.StartsWith("L3_"))
+            direction = direction.Substring(3);
+
         // Simple directions
         switch (direction)
         {
             case "Left":
-                start = Vector2.zero;
                 end = Vector2.left;
                 break;
             case "Right":
-                start = Vector2.zero;
                 end = Vector2.right;
                 break;
             case "Up":
-                start = Vector2.zero;
                 end = Vector2.up;
                 break;
             case "Down":
-                start = Vector2.zero;
                 end = Vector2.down;
                 break;
 
-            // Two-part rotations
-            case "LeftToDown":
-                start = Vector2.left;
-                end = Vector2.down;
-                break;
-            case "DownToRight":
-                start = Vector2.down;
-                end = Vector2.right;
-                break;
+
+            // Two-part arcs
             case "RightToUp":
                 start = Vector2.right;
                 end = Vector2.up;
+                break;
+            case "RightToDown":
+                start = Vector2.right;
+                end = Vector2.down;
+                break;
+
+            case "UpToRight":
+                start = Vector2.up;
+                end = Vector2.right;
                 break;
             case "UpToLeft":
                 start = Vector2.up;
                 end = Vector2.left;
                 break;
 
+            case "DownToRight":
+                start = Vector2.down;
+                end = Vector2.right;
+                break;
+            case "DownToLeft":
+                start = Vector2.down;
+                end = Vector2.left;
+                break;
+
+            case "LeftToUp":
+                start = Vector2.left;
+                end = Vector2.up;
+                break;
+            case "LeftToDown":
+                start = Vector2.left;
+                end = Vector2.down;
+                break;
+
             // Three-part arcs
             case "LeftToDownToLeft":
                 yield return AnimateArc(stick, Vector2.left, Vector2.down, Vector2.left, radius, duration * 1.5f);
                 goto Reset;
+
             case "LeftToUpToLeft":
                 yield return AnimateArc(stick, Vector2.left, Vector2.up, Vector2.left, radius, duration * 1.5f);
                 goto Reset;
+
             case "DownToRightToDown":
                 yield return AnimateArc(stick, Vector2.down, Vector2.right, Vector2.down, radius, duration * 1.5f);
                 goto Reset;
+
             case "RightToDownToRight":
                 yield return AnimateArc(stick, Vector2.right, Vector2.down, Vector2.right, radius, duration * 1.5f);
                 goto Reset;
-            case "HalfCircleBack":
-                yield return AnimateArc(stick, Vector2.right, Vector2.down, Vector2.left, radius, duration * 1.5f);
+
+            // Idle / fallback
+            case "None":
                 goto Reset;
+
             default:
                 Debug.LogWarning("Unknown stick direction: " + direction);
                 yield break;
         }
 
-        // Animate simple directions linearly
+        // Animate linear move
         Vector2 from = start * radius;
         Vector2 to = end * radius;
 
@@ -459,6 +475,7 @@ public class ControllerOverlay : MonoBehaviour
         stick.transform.localPosition = Vector3.zero;
         stick.color = originalColor;
     }
+
 
     private IEnumerator AnimateArc(Image stick, Vector2 p0, Vector2 p1, Vector2 p2, float radius, float duration)
     {
@@ -483,8 +500,8 @@ public class ControllerOverlay : MonoBehaviour
         { "Right", new Vector2(1, 0) },
         { "UpLeft", new Vector2(-1, 1).normalized },
         { "UpRight", new Vector2(1, 1).normalized },
-        { "LeftDown", new Vector2(-1, -1).normalized },
-        { "RightDown", new Vector2(1, -1).normalized },
+        { "DownLeft", new Vector2(-1, -1).normalized },
+        { "DownRight", new Vector2(1, -1).normalized },
     };
 
         string inputName = input.ToString();
