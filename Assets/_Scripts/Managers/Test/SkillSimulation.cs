@@ -31,6 +31,7 @@ public class SkillSimulation : MonoBehaviour
             currentSkill = skills[currentSkillIndex];
 
             yield return new WaitForSeconds(1f);
+            EventManager.OnSkillChanged?.Invoke(currentSkill);
 
             if (currentSkill.inputSequence == null || currentSkill.inputSequence.Count == 0)
             {
@@ -75,7 +76,8 @@ public class SkillSimulation : MonoBehaviour
             }
 
             currentSkillIndex++;
-            Debug.Log("Next Skill");
+            Debug.Log("Next Skill"); 
+
         }
     }
 
