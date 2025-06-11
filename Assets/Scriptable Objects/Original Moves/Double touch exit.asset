@@ -20,3 +20,4 @@ MonoBehaviour:
   difficultyScore: 2.662
   attempts: 100
   successes: 0
+  clip: {fileID: 32900000, guid: 9ada10db42faa5143983e0a7cec52818, type: 3}

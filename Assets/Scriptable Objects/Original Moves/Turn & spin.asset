@@ -19,3 +19,6 @@ MonoBehaviour:
   - input: 1b0000001f000000
   maxTimeBetweenInput: 0.7
   difficultyScore: 2.42
+  attempts: 0
+  successes: 0
+  clip: {fileID: 32900000, guid: 88b93f0d4a4956747b048112a1fc4d7d, type: 3}

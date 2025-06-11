@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 /// <summary>
 /// Defines a skill move using an input sequence and various metadata.
@@ -26,13 +27,7 @@ public class Skill : ScriptableObject
     /// </summary>
     public float SuccessRate => attempts == 0 ? 0f : (float)successes / attempts;
 
-    /// <summary>
-    /// Resets the attempt and success stats.
-    /// </summary>
-    public void ResetStats() { 
-        attempts = 0; 
-        //successes = 0;
-    }
+    public VideoClip clip;
 
     /// <summary>
     /// Sends analytics data for this skill (data structure only—no external call).

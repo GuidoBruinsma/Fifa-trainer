@@ -26,7 +26,12 @@ public class SkillSimulation : MonoBehaviour
     {
         while (currentSkillIndex < skills.Count)
         {
+            overlay.ResetColors();
+
             currentSkill = skills[currentSkillIndex];
+
+            yield return new WaitForSeconds(1f);
+            EventManager.OnSkillChanged?.Invoke(currentSkill);
 
             if (currentSkill.inputSequence == null || currentSkill.inputSequence.Count == 0)
             {
@@ -38,7 +43,11 @@ public class SkillSimulation : MonoBehaviour
             List<SkillInputHolder> sequence = currentSkill.inputSequence;
 
             if (visualizer != null)
+            {
                 visualizer.VisualizeSequence(sequence, -1);
+                UI_Manager.Instance?.SetName(currentSkill.moveName);
+
+            }
             else
                 Debug.LogWarning("Visualizer not assigned!");
 
@@ -46,18 +55,36 @@ public class SkillSimulation : MonoBehaviour
             {
                 SkillInput input = sequence[0].input[i];
 
+                if (input.ToString().StartsWith("L3") || input.ToString().StartsWith("R3"))
+                {
+                    overlay.ResetStick(input);
+                    yield return new WaitForSeconds(0.2f);
+                }
+                yield return new WaitForSeconds(0.5f);
+
                 PerformInput(input);
 
                 if (visualizer != null)
+                {
                     visualizer.VisualizeSequence(sequence, i);
-
+                    UI_Manager.Instance?.SetName(currentSkill.moveName);
+                }
                 yield return new WaitForSeconds(inputDelay);
-                overlay.ResetColors();
+
+                if (!IsHoldInput(input))
+                    overlay.ResetColors(input);
             }
 
             currentSkillIndex++;
-            Debug.Log("Next Skill");
+            Debug.Log("Next Skill"); 
+
         }
+    }
+
+    private bool IsHoldInput(SkillInput input)
+    {
+        string name = input.ToString();
+        return name.StartsWith("Hold_") || name.EndsWith("_Hold");
     }
 
     private void PerformInput(SkillInput input)
@@ -68,6 +95,5 @@ public class SkillSimulation : MonoBehaviour
             overlay.SetStick(input);
         }
         Debug.Log($"Performing input: {input}");
-
     }
 }
