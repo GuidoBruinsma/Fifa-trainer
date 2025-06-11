@@ -19,8 +19,6 @@ public class AdaptiveFeedbackManager : MonoBehaviour
      */
     [SerializeField] private SkillGameSettings skillGameSettings;
 
-    [SerializeField] private TextMeshProUGUI difficultyScoreText;
-
     [SerializeField] private float difficultyScore;
 
     [SerializeField] private int total;
@@ -66,7 +64,6 @@ public class AdaptiveFeedbackManager : MonoBehaviour
     {
         float successRate = (float)successful / total;
 
-        difficultyScoreText.text = "Difficulty: " + successRate.ToString();
 
         if (successRate > 0.8f)
         {

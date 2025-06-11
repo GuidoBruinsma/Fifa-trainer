@@ -69,7 +69,7 @@ public static class GlobalDataManager
             Debug.Log("Temporary skill data cleared.");
         }
     }
-
+#if UNITY_EDITOR
     /// <summary>
     /// Clears all saved skill chart data by deleting all JSON files in the history folder.
     /// </summary>
@@ -87,6 +87,7 @@ public static class GlobalDataManager
 
         Debug.Log("All skill chart data has been cleared.");
     }
+#endif
 }
 
 

@@ -11,7 +11,6 @@ public class VideoPlayerHandler : MonoBehaviour
 
     private void PlayCurrentSkillTutorial(Skill skill)
     {
-        Debug.Log("new skill " + skill.moveName);
         player.clip = skill.clip;
     }
 }
