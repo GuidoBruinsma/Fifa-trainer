@@ -19,8 +19,7 @@ public class InputHandler : MonoBehaviour
     //Input Action variables
     [Header("Controls")]
     [SerializeField] private InputActionAsset controls;
-    private InputAction _Buttons, _Hold, _AnalogButtons,
-        _HoldL1, _HoldR1, _Analog;
+    private InputAction _Buttons, _Hold, _AnalogButtons, _Analog;
 
     //Control States
     private bool holdDisabled = false;
@@ -70,8 +69,8 @@ public class InputHandler : MonoBehaviour
 
         _Hold = map.FindAction("Hold");
 
-        _HoldL1 = map.FindAction("HoldL1");
-        _HoldR1 = map.FindAction("HoldR1");
+       // _HoldL1 = map.FindAction("HoldL1");
+       // _HoldR1 = map.FindAction("HoldR1");
 
         _AnalogButtons = map.FindAction("AnalogButtons");
 
@@ -89,11 +88,11 @@ public class InputHandler : MonoBehaviour
         //// Analog Buttons control
         _AnalogButtons.performed += ctx => { ProcessInput(ctx.control.name, isHeld: false); };
 
-        _HoldL1.performed += ctx => { if (!holdDisabled) HandleHoldStart(ctx.control.name); };
+        //_HoldL1.performed += ctx => { if (!holdDisabled) HandleHoldStart(ctx.control.name); };
 
         //_HoldL1.canceled += ctx => { HandleHoldEnd(ctx); };
 
-        _HoldR1.performed += ctx => { if (!holdDisabled) HandleHoldStart(ctx.control.name); };
+        //_HoldR1.performed += ctx => { if (!holdDisabled) HandleHoldStart(ctx.control.name); };
 
         //_HoldR1.canceled += ctx => { HandleHoldEnd(ctx); };
 
@@ -291,36 +290,36 @@ public class InputHandler : MonoBehaviour
 
     #region Input Processing
 
-    /// <summary>
-    /// Handles beginning of a hold input for specific controls (e.g. L1/R1).
-    /// </summary>
-    private void HandleHoldStart(string controlName)
-    {
-        Debug.Log($"Hold started: {controlName}");
-        if (!buttonHoldState.ContainsKey(controlName) || !buttonHoldState[controlName])
-        {
-            ProcessInput(controlName, isHeld: true);
+    ///// <summary>
+    ///// Handles beginning of a hold input for specific controls (e.g. L1/R1).
+    ///// </summary>
+    //private void HandleHoldStart(string controlName)
+    //{
+    //    Debug.Log($"Hold started: {controlName}");
+    //    if (!buttonHoldState.ContainsKey(controlName) || !buttonHoldState[controlName])
+    //    {
+    //        ProcessInput(controlName, isHeld: true);
 
-            buttonHoldState[controlName] = true;
-        }
-    }
+    //        buttonHoldState[controlName] = true;
+    //    }
+    //}
 
-    /// <summary>
-    /// Optional handler for end of a hold input.
-    /// </summary>
-    private void HandleHoldEnd(InputAction.CallbackContext ctx)
-    {
-        string controlName = ctx.control.name;
+    ///// <summary>
+    ///// Optional handler for end of a hold input.
+    ///// </summary>
+    //private void HandleHoldEnd(InputAction.CallbackContext ctx)
+    //{
+    //    string controlName = ctx.control.name;
 
-        if (ctx.ReadValue<float>() == 0)
-        {
-            EventManager.OnSkillInputReceived?.Invoke(SkillInput.Hold_None);
-            if (buttonHoldState.ContainsKey(controlName))
-            {
-                buttonHoldState[controlName] = false;
-            }
-        }
-    }
+    //    if (ctx.ReadValue<float>() == 0)
+    //    {
+    //        EventManager.OnSkillInputReceived?.Invoke(SkillInput.Hold_None);
+    //        if (buttonHoldState.ContainsKey(controlName))
+    //        {
+    //            buttonHoldState[controlName] = false;
+    //        }
+    //    }
+    //}
 
     /// <summary>
     /// Processes button or hold input and invokes skill event if valid.
