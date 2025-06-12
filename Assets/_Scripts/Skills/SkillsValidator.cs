@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ public class SkillsValidator : MonoBehaviour
 
     [SerializeField] private List<SkillInput?> pressedSequenceInput = new();
 
-    private Skill currentSkill;
+    [SerializeField] private Skill currentSkill;
 
     [SerializeField] private float currentTime;
     [SerializeField] private int totalAttempts;
@@ -24,12 +25,21 @@ public class SkillsValidator : MonoBehaviour
     /// <summary>
     /// Subscribes to input events and initializes visualization.
     /// </summary>
-    private void Start()
+    private void OnEnable()
     {
+        EventManager.OnSkillChanged.AddListener(Init);
         EventManager.OnSkillInputReceived.AddListener(AddInput);
         EventManager.OnMultipleInputsSent.AddListener(AddInput);
-        currentSequenceInputHolder = new(currentSkill.inputSequence);
-        sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
+    }
+
+    private void Init(Skill s)
+    {
+        currentSkill = s;
+        if (currentSkill != null)
+        {
+            currentSequenceInputHolder = new(currentSkill.inputSequence);
+            sq.VisualizeSequence(currentSkill.inputSequence, pressedSequenceInput.Count);
+        }
     }
 
     /// <summary>
@@ -37,6 +47,7 @@ public class SkillsValidator : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
+        EventManager.OnSkillChanged.RemoveListener(Init);
         EventManager.OnSkillInputReceived.RemoveListener(AddInput);
         EventManager.OnMultipleInputsSent.RemoveListener(AddInput);
     }

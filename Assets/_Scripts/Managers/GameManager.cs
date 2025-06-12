@@ -1,4 +1,5 @@
 using Unity.Services.Authentication;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Manages general game-wide functionality such as authentication.
@@ -12,5 +13,10 @@ public static class GameManager
     {
         if (AuthenticationService.Instance.IsSignedIn)
             AuthenticationService.Instance.SignOut();
+    }
+
+    public static void GameSessionEnd()
+    {
+        SceneTransitionManager.LoadEndSessionSceneAndUnloadGameplay(5);
     }
 }

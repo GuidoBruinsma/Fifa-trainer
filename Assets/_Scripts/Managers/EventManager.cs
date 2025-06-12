@@ -17,11 +17,6 @@ public static class EventManager
     public static UnityEvent<SkillInput> OnSkillInputReceived = new();
 
     /// <summary>
-    /// Triggered when a skill input is received from the analog stick.
-    /// </summary>
-    public static UnityEvent<SkillInput> OnSkillInputReceivedFromStick = new();
-
-    /// <summary>
     /// Triggered when a skill input sequence is successfully completed.
     /// </summary>
     public static UnityEvent OnSequenceSuccess = new();
@@ -60,4 +55,10 @@ public static class EventManager
     /// Triggered when skill data is ready for analysis.
     /// </summary>
     public static UnityEvent<Skill> OnAnalyzeSkillDataSent = new();
+
+    /// <summary>
+    /// Triggered when the skill session should be ended (manually or naturally).
+    /// </summary>
+    public static UnityEvent OnRequestSessionEnd = new();
+    //NOTE: CURRENTLY NOT IN USE BUT IF IT'S NEEDED JUST SUBSCRIBE AND IT WILL BE CALLED WHEN SESSION ENDS
 }

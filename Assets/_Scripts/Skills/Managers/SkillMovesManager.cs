@@ -77,6 +77,8 @@ public class SkillMovesManager : MonoBehaviour
         LoadCurrentSkillMove();
     }
 
+
+
     private void StartSession()
     {
         if (!TimeManager.IsSessionActive())
@@ -236,6 +238,8 @@ public class SkillMovesManager : MonoBehaviour
         else
         {
             sequenceValidator.ResetSequence();
+            GameManager.GameSessionEnd(); 
+
             Debug.Log("All skill moves completed!");
         }
 
