@@ -19,11 +19,8 @@ public class SuccessRate_Slider : MonoBehaviour
     [Header("Visual Feedback")]
     [SerializeField] private Gradient successGradient;
     [SerializeField] private float lerpSpeed = 5f;
-    [SerializeField] private float popScale = 1.2f;
-    [SerializeField] private float popDuration = 0.1f;
 
     private float targetValue;
-    private Vector3 originalScale;
 
     /// <summary>
     /// Called before Start. Ensures slider reference is assigned.

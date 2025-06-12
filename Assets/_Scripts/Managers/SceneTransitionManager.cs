@@ -22,7 +22,6 @@ public class SceneTransitionManager : MonoBehaviour
         {
             currentIndex = unloadSceneIndex;
         }
-        Debug.Log(currentIndex);
         Instance.StartCoroutine(Instance.LoadAndUnloadRoutine(loadSceneIndex, currentIndex));
     }
 

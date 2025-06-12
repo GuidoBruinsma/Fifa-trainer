@@ -1,5 +1,5 @@
-using Unity.Services.Authentication;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
@@ -7,11 +7,15 @@ public class ButtonBehaviourByType : MonoBehaviour
 {
     private enum ButtonBehaviour
     {
-        EndSession,
+        LoadScene,
         EndSessionContinue
     }
 
     [SerializeField] private ButtonBehaviour type;
+
+    [Tooltip("Leave -1 if type != LoadScene")]
+    [Header("Leave -1 if type != LoadScene")]
+    [SerializeField] private int loadSceneIndex = -1;
 
     private Button b;
 
@@ -23,8 +27,8 @@ public class ButtonBehaviourByType : MonoBehaviour
         {
             switch (type)
             {
-                case ButtonBehaviour.EndSession:
-                    GameManager.GameSessionEnd();
+                case ButtonBehaviour.LoadScene:
+                    LoadScene(loadSceneIndex);
                     break;
                 case ButtonBehaviour.EndSessionContinue:
                     EndSessionContinue();
@@ -37,7 +41,18 @@ public class ButtonBehaviourByType : MonoBehaviour
     {
         GlobalDataManager.ClearTempData();
 
-        //if logged in, skip login page, go to menu
         SceneTransitionManager.LoadEndSessionSceneAndUnloadGameplay(0);
+    }
+
+    private void LoadScene(int index)
+    {
+        if (index < 0 || index > SceneManager.sceneCountInBuildSettings - 1)
+        {
+            Debug.LogError($"Invalid scene index on {transform.parent.name}");
+            return;
+        }
+        else {
+            SceneTransitionManager.LoadEndSessionSceneAndUnloadGameplay(index);
+        }
     }
 }
