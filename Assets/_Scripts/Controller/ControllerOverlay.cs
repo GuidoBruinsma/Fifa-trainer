@@ -46,12 +46,12 @@ public class ControllerOverlay : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        //ResetColors();
+        ResetColors();
 
-        //CheckAnalog();
-        //CheckTriggers();
-        //CheckButtons();
-        //StickButtons();
+        CheckAnalog();
+        CheckTriggers();
+        CheckButtons();
+        StickButtons();
     }
 
     /// <summary>

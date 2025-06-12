@@ -37,13 +37,28 @@ public class AuthenticationManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
+
         }
-        else { Destroy(this.gameObject); }
-
-
+        else if (instance != this)
+        {
+            Destroy(instance.gameObject);
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
 
         await UnityServices.InitializeAsync();
+
+        if (AuthenticationService.Instance.IsSignedIn)
+        {
+            if (loginPanel != null && startPanel != null)
+            {
+                PanelManager.OpenClosePanels(startPanel, loginPanel, true);
+                Debug.Log($"Successfully signed up {AuthenticationService.Instance.PlayerName}");
+            }
+            return;
+        }
+
         SetupEvents();
         if (PlayerPrefs.HasKey("rememberMe"))
         {
