@@ -214,6 +214,7 @@ public class SkillControlIconMap : ScriptableObject
 
             SkillInput.L2_None => L2Icon,
             SkillInput.R2_None => R2Icon,
+
             SkillInput.None => string.Empty,
             _ => string.Empty,
         };
