@@ -221,15 +221,6 @@ public class SkillControlIconMap : ScriptableObject
     }
 
     /// <summary>
-    /// Returns the icon string for the given SkillInput.
-    /// Currently just calls GetIconForSkillInput for convenience.
-    /// </summary>
-    public string SkillInputToString(SkillInput input)
-    {
-        return GetIconForSkillInput(input);
-    }
-
-    /// <summary>
     /// Creates a formatted display string representing a sequence of possible skill inputs.
     /// Supports highlighting a specific index in the sequence.
     /// </summary>
@@ -250,7 +241,7 @@ public class SkillControlIconMap : ScriptableObject
 
             for (int seqIndex = 0; seqIndex < possibleSequences.Count; seqIndex++)
             {
-                var inputStr = SkillInputToString(possibleSequences[seqIndex].input[i]);
+                string inputStr = GetIconForSkillInput(possibleSequences[seqIndex].input[i]);
 
                 if (highlight && i == highlightIndex)
                 {

@@ -10,17 +10,6 @@ public class UI_Manager : MonoBehaviour
 {
     public static UI_Manager Instance { get; private set; }
 
-    [Header("Time Related Section")]
-    [SerializeField] private TextMeshProUGUI timeleftText;
-    [SerializeField] private TextMeshProUGUI timeElapsedText;
-    [SerializeField] private TextMeshProUGUI timeElapsedComlpetionText;
-
-    [Space]
-
-    [Header("Next Move Section")]
-    [SerializeField] private TextMeshProUGUI nextMoveName;
-    [SerializeField] private TextMeshProUGUI nextMoveSequence;
-
     [SerializeField] private TextMeshProUGUI sequenceName;
     [SerializeField] private TextMeshProUGUI sequenceText;
     

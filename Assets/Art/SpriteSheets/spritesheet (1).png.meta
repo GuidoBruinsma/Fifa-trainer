@@ -178,7 +178,7 @@ TextureImporter:
       name: spritesheet (1)_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
         width: 74
         height: 77
@@ -464,7 +464,7 @@ TextureImporter:
       name: spritesheet (1)_13
       rect:
         serializedVersion: 2
-        x: 1010
+        x: 1009
         y: 0
         width: 59
         height: 77
@@ -685,9 +685,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1780
-        y: 12
+        y: 0
         width: 55
-        height: 53
+        height: 77
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -706,10 +706,10 @@ TextureImporter:
       name: spritesheet (1)_24
       rect:
         serializedVersion: 2
-        x: 1857
-        y: 12
+        x: 1856
+        y: 0
         width: 56
-        height: 52
+        height: 77
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -729,9 +729,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1934
-        y: 12
+        y: 0
         width: 54
-        height: 53
+        height: 77
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -742,6 +742,28 @@ TextureImporter:
       bones: []
       spriteID: c3db0e5be2345674d9bd246eac5b3de4
       internalID: 1703982399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet (1)_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1
+        height: 1
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69c2b39d76914864aa46107175029bfd
+      internalID: -674500460
       vertices: []
       indices: 
       edges: []
@@ -779,6 +801,9 @@ TextureImporter:
       spritesheet (1)_23: -1392867010
       spritesheet (1)_24: 634861706
       spritesheet (1)_25: 1703982399
+      spritesheet (1)_26: -2042913289
+      spritesheet (1)_27: -554866940
+      spritesheet (1)_28: -674500460
       spritesheet (1)_3: 1986666860
       spritesheet (1)_4: -357093953
       spritesheet (1)_5: 1988242064
