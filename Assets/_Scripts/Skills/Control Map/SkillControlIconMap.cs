@@ -245,7 +245,7 @@ public class SkillControlIconMap : ScriptableObject
 
                 if (highlight && i == highlightIndex)
                 {
-                    inputStr = $"<color=green>{inputStr}</color>";
+                    inputStr = AddSpriteColor(inputStr, "#55FF55FF");
                 }
 
                 if (!possibleInputsAtPosition.Contains(inputStr))
@@ -270,5 +270,18 @@ public class SkillControlIconMap : ScriptableObject
         }
 
         return display;
+    }
+
+    private string AddSpriteColor(string spriteTag, string colorHex)
+    {
+        if (spriteTag.Contains("color=")) return spriteTag;
+
+        int insertPos = spriteTag.IndexOf('>');
+        if (insertPos > 0)
+        {
+            return spriteTag.Insert(insertPos, $" color={colorHex}");
+        }
+
+        return spriteTag;
     }
 }

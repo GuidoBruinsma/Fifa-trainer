@@ -1,0 +1,1001 @@
+fileFormatVersion: 2
+guid: 72e8055f7169abb458c8571326e39c60
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2379962992081354475
+    second: Collapsed Buttonstriggersanalogs 512px_0
+  - first:
+      213: -4274070506477839821
+    second: Collapsed Buttonstriggersanalogs 512px_1
+  - first:
+      213: -6050367674984636644
+    second: Collapsed Buttonstriggersanalogs 512px_2
+  - first:
+      213: 7417597428667103589
+    second: Collapsed Buttonstriggersanalogs 512px_3
+  - first:
+      213: 76076123371180690
+    second: Collapsed Buttonstriggersanalogs 512px_4
+  - first:
+      213: -1883610103946107138
+    second: Collapsed Buttonstriggersanalogs 512px_5
+  - first:
+      213: -4288002345575843264
+    second: Collapsed Buttonstriggersanalogs 512px_6
+  - first:
+      213: 5129507523356611402
+    second: Collapsed Buttonstriggersanalogs 512px_7
+  - first:
+      213: -4949894421872107293
+    second: Collapsed Buttonstriggersanalogs 512px_8
+  - first:
+      213: -3881715932515103701
+    second: Collapsed Buttonstriggersanalogs 512px_9
+  - first:
+      213: 1428319376890448997
+    second: Collapsed Buttonstriggersanalogs 512px_10
+  - first:
+      213: 1861904469058178067
+    second: Collapsed Buttonstriggersanalogs 512px_11
+  - first:
+      213: 7764781643820101631
+    second: Collapsed Buttonstriggersanalogs 512px_12
+  - first:
+      213: 2595438167714887143
+    second: Collapsed Buttonstriggersanalogs 512px_13
+  - first:
+      213: -3828481317157306511
+    second: Collapsed Buttonstriggersanalogs 512px_14
+  - first:
+      213: -8164517185415487117
+    second: Collapsed Buttonstriggersanalogs 512px_15
+  - first:
+      213: -961715091449715322
+    second: Collapsed Buttonstriggersanalogs 512px_16
+  - first:
+      213: -6232377831047626199
+    second: Collapsed Buttonstriggersanalogs 512px_17
+  - first:
+      213: -5376108242274151488
+    second: Collapsed Buttonstriggersanalogs 512px_18
+  - first:
+      213: 194229671145922984
+    second: Collapsed Buttonstriggersanalogs 512px_19
+  - first:
+      213: 3092324509563247734
+    second: Collapsed Buttonstriggersanalogs 512px_20
+  - first:
+      213: 5058779658527516941
+    second: Collapsed Buttonstriggersanalogs 512px_21
+  - first:
+      213: -6846723154369712825
+    second: Collapsed Buttonstriggersanalogs 512px_22
+  - first:
+      213: 2181521908170604488
+    second: Collapsed Buttonstriggersanalogs 512px_23
+  - first:
+      213: -6573542180918011382
+    second: Collapsed Buttonstriggersanalogs 512px_24
+  - first:
+      213: -1257492640058062993
+    second: Collapsed Buttonstriggersanalogs 512px_25
+  - first:
+      213: -4930707912300416411
+    second: Collapsed Buttonstriggersanalogs 512px_26
+  - first:
+      213: 3655874826982595010
+    second: Collapsed Buttonstriggersanalogs 512px_27
+  - first:
+      213: 6485136536047796216
+    second: Collapsed Buttonstriggersanalogs 512px_28
+  - first:
+      213: 2806863496709181722
+    second: Collapsed Buttonstriggersanalogs 512px_29
+  - first:
+      213: 7251414689637470920
+    second: Collapsed Buttonstriggersanalogs 512px_30
+  - first:
+      213: -1631853518210542912
+    second: Collapsed Buttonstriggersanalogs 512px_31
+  - first:
+      213: -6511233247858947942
+    second: Collapsed Buttonstriggersanalogs 512px_32
+  - first:
+      213: 4109683224772162999
+    second: Collapsed Buttonstriggersanalogs 512px_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_0
+      rect:
+        serializedVersion: 2
+        x: 2230
+        y: 5112
+        width: 341
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e5c447dc841d44488685263aeb53e6b
+      internalID: -823753888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_1
+      rect:
+        serializedVersion: 2
+        x: 3159
+        y: 5112
+        width: 402
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b103001e7b1663746a4af385fdd67ef7
+      internalID: -1999009847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_2
+      rect:
+        serializedVersion: 2
+        x: 4149
+        y: 5112
+        width: 414
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0976896e8dd52714e8bc15a932659f4d
+      internalID: 497637901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_3
+      rect:
+        serializedVersion: 2
+        x: 5109
+        y: 5073
+        width: 343
+        height: 418
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 153d9b57600f845498e359dd8130b437
+      internalID: 1974525638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_4
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 4141
+        width: 343
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4fc77bfd4f4a64488bb2341b74395cc
+      internalID: 1908994519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_5
+      rect:
+        serializedVersion: 2
+        x: 1197
+        y: 4138
+        width: 403
+        height: 391
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb38d447bed8847458d8415ccf2020a9
+      internalID: 1171184896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_6
+      rect:
+        serializedVersion: 2
+        x: 2230
+        y: 4138
+        width: 382
+        height: 391
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb1c576afe77d994390d728d64839a3b
+      internalID: -1391941471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_7
+      rect:
+        serializedVersion: 2
+        x: 3116
+        y: 4138
+        width: 403
+        height: 380
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e0ac2923f0bad443b9d19f416e91b70
+      internalID: -383078083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_8
+      rect:
+        serializedVersion: 2
+        x: 4169
+        y: 4138
+        width: 371
+        height: 376
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3cc9c6a7f4539145b598edbfbfc9e07
+      internalID: -772670787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_9
+      rect:
+        serializedVersion: 2
+        x: 5109
+        y: 4138
+        width: 342
+        height: 343
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fbe385dcb4b3f04ea3c3cf9368f69cf
+      internalID: -207442189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_10
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 3192
+        width: 402
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb37332f6f5db324b865078040f75ae8
+      internalID: -1663422586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_11
+      rect:
+        serializedVersion: 2
+        x: 1234
+        y: 3192
+        width: 414
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 843e2f5c00aef474a857c575340cbae0
+      internalID: -1157987239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_12
+      rect:
+        serializedVersion: 2
+        x: 2230
+        y: 3192
+        width: 341
+        height: 417
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 072b7c1eb03d42649801aca53b4fe9ad
+      internalID: 1102701389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_13
+      rect:
+        serializedVersion: 2
+        x: 3190
+        y: 3192
+        width: 340
+        height: 428
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e432227733fc2744f9215803d904c2b2
+      internalID: -1890695909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_14
+      rect:
+        serializedVersion: 2
+        x: 4115
+        y: 3192
+        width: 377
+        height: 375
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2e85e5d112c5a2419aa6fa05c1e6079
+      internalID: 1492158810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_15
+      rect:
+        serializedVersion: 2
+        x: 5112
+        y: 3192
+        width: 377
+        height: 375
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2665f52c44bb0442b0be411eaaf3abd
+      internalID: 1404282490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_16
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 2222
+        width: 355
+        height: 337
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7364b830d38b19a49b46c6559a0df282
+      internalID: -317310030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_17
+      rect:
+        serializedVersion: 2
+        x: 1271
+        y: 2225
+        width: 354
+        height: 337
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8016ef2a2d8330488544cfc4af4db36
+      internalID: 950862362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_18
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 2222
+        width: 363
+        height: 346
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9262fddc8d24a36498cd57b5f64bd950
+      internalID: 1800625423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_19
+      rect:
+        serializedVersion: 2
+        x: 3195
+        y: 2233
+        width: 363
+        height: 343
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4979dd359ddd32e40a0f675e27463f46
+      internalID: 445318711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_20
+      rect:
+        serializedVersion: 2
+        x: 4141
+        y: 2222
+        width: 402
+        height: 377
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a30034e8a084db94e9d3ebc07859e00c
+      internalID: -975373111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_21
+      rect:
+        serializedVersion: 2
+        x: 5072
+        y: 2222
+        width: 379
+        height: 377
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 300d0d5a147a2ba4b8c191c83f997b55
+      internalID: 1854107026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_22
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 1348
+        width: 359
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 241cd8eeaf9781043bb95b73a0dc48a2
+      internalID: -893035011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_23
+      rect:
+        serializedVersion: 2
+        x: 1259
+        y: 1346
+        width: 358
+        height: 338
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d0b614588cb15d43bf0f7853348cf9c
+      internalID: 242423265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_24
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 1346
+        width: 365
+        height: 347
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc84d974e218fac40bed610184e48053
+      internalID: -33771801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_25
+      rect:
+        serializedVersion: 2
+        x: 3190
+        y: 1347
+        width: 365
+        height: 348
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 605ce7b9c880c454eb22a62d42236e84
+      internalID: 1592728880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_26
+      rect:
+        serializedVersion: 2
+        x: 4152
+        y: 1346
+        width: 340
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e38115d32881f2645bfcdb652fc741f3
+      internalID: 1904780575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_27
+      rect:
+        serializedVersion: 2
+        x: 5109
+        y: 1346
+        width: 340
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16584fd1150a30341ae4c915206303ce
+      internalID: -1566094261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_28
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 311
+        width: 341
+        height: 343
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6952499149e34c48bf50b0ddf15371b
+      internalID: -281835413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_29
+      rect:
+        serializedVersion: 2
+        x: 1259
+        y: 311
+        width: 341
+        height: 343
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bd042b2261353d44ae62033c762179e
+      internalID: -842374729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_30
+      rect:
+        serializedVersion: 2
+        x: 2219
+        y: 311
+        width: 340
+        height: 343
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1000b31f5466443448884e5ddddd31fa
+      internalID: -186092959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_31
+      rect:
+        serializedVersion: 2
+        x: 3190
+        y: 311
+        width: 340
+        height: 343
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f596247ed3b6a6c4298c55f4f7ff1994
+      internalID: -534793141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_32
+      rect:
+        serializedVersion: 2
+        x: 4141
+        y: 311
+        width: 340
+        height: 343
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad91e5438eadc4a4f9665aafbadeb62a
+      internalID: 1146104418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collapsed Buttonstriggersanalogs 512px_33
+      rect:
+        serializedVersion: 2
+        x: 5109
+        y: 311
+        width: 340
+        height: 343
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7a3a20080a7a544d9c577f34e004a60
+      internalID: 1353001671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 8251ef9ec33daf04bad9cf80e589028e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Collapsed Buttonstriggersanalogs 512px_0: -823753888
+      Collapsed Buttonstriggersanalogs 512px_1: -1999009847
+      Collapsed Buttonstriggersanalogs 512px_10: -1663422586
+      Collapsed Buttonstriggersanalogs 512px_11: -1157987239
+      Collapsed Buttonstriggersanalogs 512px_12: 1102701389
+      Collapsed Buttonstriggersanalogs 512px_13: -1890695909
+      Collapsed Buttonstriggersanalogs 512px_14: 1492158810
+      Collapsed Buttonstriggersanalogs 512px_15: 1404282490
+      Collapsed Buttonstriggersanalogs 512px_16: -317310030
+      Collapsed Buttonstriggersanalogs 512px_17: 950862362
+      Collapsed Buttonstriggersanalogs 512px_18: 1800625423
+      Collapsed Buttonstriggersanalogs 512px_19: 445318711
+      Collapsed Buttonstriggersanalogs 512px_2: 497637901
+      Collapsed Buttonstriggersanalogs 512px_20: -975373111
+      Collapsed Buttonstriggersanalogs 512px_21: 1854107026
+      Collapsed Buttonstriggersanalogs 512px_22: -893035011
+      Collapsed Buttonstriggersanalogs 512px_23: 242423265
+      Collapsed Buttonstriggersanalogs 512px_24: -33771801
+      Collapsed Buttonstriggersanalogs 512px_25: 1592728880
+      Collapsed Buttonstriggersanalogs 512px_26: 1904780575
+      Collapsed Buttonstriggersanalogs 512px_27: -1566094261
+      Collapsed Buttonstriggersanalogs 512px_28: -281835413
+      Collapsed Buttonstriggersanalogs 512px_29: -842374729
+      Collapsed Buttonstriggersanalogs 512px_3: 1974525638
+      Collapsed Buttonstriggersanalogs 512px_30: -186092959
+      Collapsed Buttonstriggersanalogs 512px_31: -534793141
+      Collapsed Buttonstriggersanalogs 512px_32: 1146104418
+      Collapsed Buttonstriggersanalogs 512px_33: 1353001671
+      Collapsed Buttonstriggersanalogs 512px_4: 1908994519
+      Collapsed Buttonstriggersanalogs 512px_5: 1171184896
+      Collapsed Buttonstriggersanalogs 512px_6: -1391941471
+      Collapsed Buttonstriggersanalogs 512px_7: -383078083
+      Collapsed Buttonstriggersanalogs 512px_8: -772670787
+      Collapsed Buttonstriggersanalogs 512px_9: -207442189
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
