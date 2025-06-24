@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 5dda25c4242ad5d44924b9cb1c781b25
+guid: 4e6f9822ff9f62243b88a338a465db08
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3643419794548232310
-    second: Pause Button_0
-  - first:
-      213: 5752877151337169816
-    second: Pause Button_1
+      213: 295256550461732896
+    second: SignUp_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,9 +46,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -99,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pause Button_0
+      name: SignUp_0
       rect:
         serializedVersion: 2
-        x: 647
-        y: 351
-        width: 245
-        height: 1219
+        x: 227
+        y: 197
+        width: 1498
+        height: 1498
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6709caddff6009230800000000000000
-      internalID: 3643419794548232310
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pause Button_1
-      rect:
-        serializedVersion: 2
-        x: 1028
-        y: 351
-        width: 245
-        height: 1219
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 893c9e10a4356df40800000000000000
-      internalID: 5752877151337169816
+      spriteID: 028f0efa446f81400800000000000000
+      internalID: 295256550461732896
       vertices: []
       indices: 
       edges: []
@@ -163,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -172,9 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Pause Button_0: 3643419794548232310
-      Pause Button_1: 5752877151337169816
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
