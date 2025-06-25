@@ -48,9 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  inputs: 
-  currentRequiredTypeInput: 0
-  a: 0
+  holdDetectionTime: 0.3
 --- !u!114 &5040368995911653376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +64,7 @@ MonoBehaviour:
   sq: {fileID: 4669528973469637405}
   currentSequenceInput: 
   currentSequenceInputHolder: []
+  currentSkill: {fileID: 0}
   currentTime: 0
   totalAttempts: 0
 --- !u!114 &2448964148894809276
@@ -80,8 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0117d33eab2c444ba5f1096e4dc903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sequenceValidator: {fileID: 5040368995911653376}
-  inputHandler: {fileID: 8613308472556165858}
+  type: 0
   skillsSettings: {fileID: 11400000, guid: 0d5b13ed1ec67b849959a929ade8c867, type: 2}
   skillMoves:
   - {fileID: 11400000, guid: d293118c4548b9a4ca1f429d3e8f1a42, type: 2}
@@ -147,6 +145,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 005c1fe57f55efc4aabb1e690b398952, type: 2}
   - {fileID: 11400000, guid: d5f063e5652587844af741853c9a6c3d, type: 2}
   currentSkill: {fileID: 0}
+  testTime: 0
+  testRTime: 0
+  testComplTime: 0
+  testbetewTime: []
 --- !u!114 &4669528973469637405
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -214,18 +214,10 @@ public class SkillControlIconMap : ScriptableObject
 
             SkillInput.L2_None => L2Icon,
             SkillInput.R2_None => R2Icon,
+
             SkillInput.None => string.Empty,
             _ => string.Empty,
         };
-    }
-
-    /// <summary>
-    /// Returns the icon string for the given SkillInput.
-    /// Currently just calls GetIconForSkillInput for convenience.
-    /// </summary>
-    public string SkillInputToString(SkillInput input)
-    {
-        return GetIconForSkillInput(input);
     }
 
     /// <summary>
@@ -249,11 +241,11 @@ public class SkillControlIconMap : ScriptableObject
 
             for (int seqIndex = 0; seqIndex < possibleSequences.Count; seqIndex++)
             {
-                var inputStr = SkillInputToString(possibleSequences[seqIndex].input[i]);
+                string inputStr = GetIconForSkillInput(possibleSequences[seqIndex].input[i]);
 
                 if (highlight && i == highlightIndex)
                 {
-                    inputStr = $"<color=green>{inputStr}</color>";
+                    inputStr = AddSpriteColor(inputStr, "#55FF55FF");
                 }
 
                 if (!possibleInputsAtPosition.Contains(inputStr))
@@ -278,5 +270,18 @@ public class SkillControlIconMap : ScriptableObject
         }
 
         return display;
+    }
+
+    private string AddSpriteColor(string spriteTag, string colorHex)
+    {
+        if (spriteTag.Contains("color=")) return spriteTag;
+
+        int insertPos = spriteTag.IndexOf('>');
+        if (insertPos > 0)
+        {
+            return spriteTag.Insert(insertPos, $" color={colorHex}");
+        }
+
+        return spriteTag;
     }
 }

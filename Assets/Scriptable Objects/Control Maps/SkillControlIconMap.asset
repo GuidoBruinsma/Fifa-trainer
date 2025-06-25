@@ -12,45 +12,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef13cd1c81527c4f88b510255ffd976, type: 3}
   m_Name: SkillControlIconMap
   m_EditorClassIdentifier: 
-  L1Icon: L1
-  L2Icon: L2
-  L3Icon: L3
-  R1Icon: R1
-  R2Icon: R2
-  R3Icon: R3
-  ButtonXIcon: X
-  ButtonTriangleIcon: Triangle
-  ButtonCircleIcon: O
-  ButtonSquareIcon: Square
-  ButtonXHoldIcon: Hold X
-  ButtonTriangleHoldIcon: Hold Triangle
-  ButtonCircleHoldIcon: Hold O
-  ButtonSquareHoldIcon: Hold Square
+  L1Icon: <sprite="spritesheet_new" name="L1">
+  L2Icon: <sprite="spritesheet_new" name="Hold_L2">
+  L3Icon: <sprite="spritesheet_new" name="L3">
+  R1Icon: <sprite="spritesheet_new" name="R1">
+  R2Icon: <sprite="spritesheet_new" name="Hold_R2">
+  R3Icon: <sprite="spritesheet_new" name="R3">
+  ButtonXIcon: <sprite="spritesheet_new" name="X">
+  ButtonTriangleIcon: <sprite="spritesheet_new" name="Triangle">
+  ButtonCircleIcon: <sprite="spritesheet_new" name="Circle">
+  ButtonSquareIcon: <sprite="spritesheet_new" name="Square">
+  ButtonXHoldIcon: <sprite="spritesheet_new" name="Hold_X">
+  ButtonTriangleHoldIcon: <sprite="spritesheet_new" name="Hold_Triangle">
+  ButtonCircleHoldIcon: <sprite="spritesheet_new" name="Hold_Circle">
+  ButtonSquareHoldIcon: <sprite="spritesheet_new" name="Hold_Square">
   L3Any: L3 Any
   R3Any: R3 Any
   L3_RotateIcon: L3 Rotate
   R3_RotateIcon: R3 Rotate
   L1_HoldIcon: L1 Hold
-  L2_HoldIcon: L2 Hold
+  L2_HoldIcon: <sprite="spritesheet_new" name="L2">
   R1_HoldIcon: R1 Hold
-  R2_HoldIcon: R2 Hold
-  R3_LeftIcon: R3 Left
-  R3_UpLeftIcon: R3 Up Left
-  R3_DownLeftIcon: R3 Down Left
-  R3_RightIcon: R3 Right
-  R3_UpRightIcon: R3 Up Right
-  R3_DownRightIcon: R3 Down Right
-  R3_UpIcon: R3 Up
-  R3_DownIcon: R3 Down
+  R2_HoldIcon: <sprite="spritesheet_new" name="R2">
+  R3_LeftIcon: <sprite="spritesheet_new" name="R3_Left">
+  R3_UpLeftIcon: <sprite="spritesheet_new" name="R3_UpLeft">
+  R3_DownLeftIcon: <sprite="spritesheet_new" name="R3_DownLeft">
+  R3_RightIcon: <sprite="spritesheet_new" name="R3_Right">
+  R3_UpRightIcon: <sprite="spritesheet_new" name="R3_UpRight">
+  R3_DownRightIcon: <sprite="spritesheet_new" name="R3_DownRight">
+  R3_UpIcon: <sprite="spritesheet_new" name="R3_Up">
+  R3_DownIcon: <sprite="spritesheet_new" name="R3_Down">
   R3_NoneIcon: 
-  L3_LeftIcon: L3 Left
-  L3_UpLeftIcon: L3 Up Left
-  L3_DownLeftIcon: L3 Down Left
-  L3_RightIcon: L3 Right
-  L3_UpRightIcon: L3 Up Right
-  L3_DownRightIcon: L3 Down Right
-  L3_UpIcon: L3 Up
-  L3_DownIcon: L3 Down
+  L3_LeftIcon: <sprite="spritesheet_new" name="L3_Left">
+  L3_UpLeftIcon: <sprite="spritesheet_new" name="L3_UpLeft">
+  L3_DownLeftIcon: <sprite="spritesheet_new" name="L3_DownLeft">
+  L3_RightIcon: <sprite="spritesheet_new" name="L3_Right">
+  L3_UpRightIcon: <sprite="spritesheet_new" name="L3_UpRight">
+  L3_DownRightIcon: <sprite="spritesheet_new" name="L3_DownRight">
+  L3_UpIcon: <sprite="spritesheet_new" name="L3_Up">
+  L3_DownIcon: <sprite="spritesheet_new" name="L3_Down">
   R3_RightToUpIcon: R3 Right to Up
   R3_RightToDownIcon: R3 Right to Down
   R3_UpToRightIcon: R3 Up to Right
