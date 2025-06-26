@@ -35,6 +35,7 @@ public class InfoLogManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        Application.runInBackground = true;
         EventManager.OnSkillInputReceived.AddListener(ValidateCurrentInput);
         EventManager.OnMultipleInputsSent.AddListener(ValidateMultipleCurrentInputs);
 
