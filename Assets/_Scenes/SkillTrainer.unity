@@ -2877,44 +2877,46 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<sprite=\"spritesheet_new\" name=\"L1\"> - <sprite=\"spritesheet_new\"
-    name=\"L2\"> - <sprite=\"spritesheet_new\" name=\"R1\"> - <sprite=\"spritesheet_new\"
-    name=\"R2\"> - <sprite=\"spritesheet_new\" name=\"X\"> - <sprite=\"spritesheet_new\"
-    name=\"Triangle\"> - <sprite=\"spritesheet_new\" name=\"Circle\"> - <sprite=\"spritesheet_new\"
-    name=\"Square\"> - <sprite=\"spritesheet_new\" name=\"Hold_X\"> - <sprite=\"spritesheet_new\"
-    name=\"Hold_Triangle\"> - <sprite=\"spritesheet_new\" name=\"Hold_Circle\"> -
-    <sprite=\"spritesheet_new\" name=\"Hold_Square\"> - <sprite=\"spritesheet_new\"
-    name=\"Hold_L1\"> - <sprite=\"spritesheet_new\" name=\"Hold_L2\"> - <sprite=\"spritesheet_new\"
-    name=\"Hold_R1\"> - <sprite=\"spritesheet_new\" name=\"Hold_R2\"> - <sprite=\"spritesheet_new\"
-    name=\"L3_Left\"> - <sprite=\"spritesheet_new\" name=\"L3_UpLeft\"> - <sprite=\"spritesheet_new\"
-    name=\"L3_DownLeft\"> - <sprite=\"spritesheet_new\" name=\"L3_Right\"> - <sprite=\"spritesheet_new\"
-    name=\"L3_UpRight\"> - <sprite=\"spritesheet_new\" name=\"L3_DownRight\"> - <sprite=\"spritesheet_new\"
-    name=\"L3_Up\"> - <sprite=\"spritesheet_new\" name=\"L3_Down\"> - <sprite=\"l3_spritesheet\"
-    name=\"Hold_L3_Left\"> - <sprite=\"l3_spritesheet\" name=\"Hold_L3_Right\"> -
-    <sprite=\"l3_spritesheet\" name=\"Hold_L3_Up\"> - <sprite=\"l3_spritesheet\"
-    name=\"Hold_L3_Down\"> - <sprite=\"l3_spritesheet\" name=\"Hold_L3_UpLeft\">
-    - <sprite=\"l3_spritesheet\" name=\"Hold_L3_DownLeft\"> - <sprite=\"l3_spritesheet\"
-    name=\"Hold_L3_UpRight\"> - <sprite=\"l3_spritesheet\" name=\"Hold_L3_DownRight\">
-    - <sprite=\"l3_spritesheet\" name=\"L3_RightToUp\"> - <sprite=\"l3_spritesheet\"
-    name=\"L3_RightToDown\"> - <sprite=\"l3_spritesheet\" name=\"L3_UpToRight\">
-    - <sprite=\"l3_spritesheet\" name=\"L3_UpToLeft\"> - <sprite=\"l3_spritesheet\"
-    name=\"L3_DownToRight\"> - <sprite=\"l3_spritesheet\" name=\"L3_DownToLeft\">
-    - <sprite=\"l3_spritesheet\" name=\"L3_LeftToUp\"> - <sprite=\"l3_spritesheet\"
-    name=\"L3_LeftToDown\"> - <sprite=\"l3_spritesheet\" name=\"L3_LeftToDownToLeft\">
-    - <sprite=\"l3_spritesheet\" name=\"L3_LeftToUpToLeft\"> - <sprite=\"l3_spritesheet\"
-    name=\"L3_DownToRightToDown\"> - <sprite=\"l3_spritesheet\" name=\"L3_RightToDownToRight\">
-    - <sprite=\"r3_spritesheet\" name=\"Hold_R3_Left\"> - <sprite=\"r3_spritesheet\"
-    name=\"Hold_R3_Right\"> - <sprite=\"r3_spritesheet\" name=\"Hold_R3_Up\"> - <sprite=\"r3_spritesheet\"
-    name=\"Hold_R3_Down\"> - <sprite=\"r3_spritesheet\" name=\"Hold_R3_UpLeft\">
-    - <sprite=\"r3_spritesheet\" name=\"Hold_R3_DownLeft\"> - <sprite=\"r3_spritesheet\"
-    name=\"Hold_R3_UpRight\"> - <sprite=\"r3_spritesheet\" name=\"Hold_R3_DownRight\">
-    - <sprite=\"r3_spritesheet\" name=\"R3_RightToUp\"> - <sprite=\"r3_spritesheet\"
-    name=\"R3_RightToDown\"> - <sprite=\"r3_spritesheet\" name=\"R3_UpToRight\">
-    - <sprite=\"r3_spritesheet\" name=\"R3_UpToLeft\"> - <sprite=\"r3_spritesheet\"
-    name=\"R3_DownToRight\"> - <sprite=\"r3_spritesheet\" name=\"R3_DownToLeft\">
-    - <sprite=\"r3_spritesheet\" name=\"R3_LeftToUp\"> - <sprite=\"r3_spritesheet\"
-    name=\"R3_LeftToDown\"> - <sprite=\"r3_spritesheet\" name=\"R3_LeftToUpToLeft\">
-    \r\n\r\n"
+  m_text: '<sprite="spritesheet_new" name="L1"> - <sprite="spritesheet_new" name="L2">
+    - <sprite="spritesheet_new" name="R1"> - <sprite="spritesheet_new" name="R2">
+    - <sprite="spritesheet_new" name="X"> - <sprite="spritesheet_new" name="Triangle">
+    - <sprite="spritesheet_new" name="Circle"> - <sprite="spritesheet_new" name="Square">
+    - <sprite="spritesheet_new" name="Hold_X"> - <sprite="spritesheet_new" name="Hold_Triangle">
+    - <sprite="spritesheet_new" name="Hold_Circle"> - <sprite="spritesheet_new" name="Hold_Square">
+    - <sprite="spritesheet_new" name="Hold_L1"> - <sprite="spritesheet_new" name="Hold_L2">
+    - <sprite="spritesheet_new" name="Hold_R1"> - <sprite="spritesheet_new" name="Hold_R2">
+    - <sprite="spritesheet_new" name="L3_Left"> - <sprite="spritesheet_new" name="L3_UpLeft">
+    - <sprite="spritesheet_new" name="L3_DownLeft"> - <sprite="spritesheet_new" name="L3_Right">
+    - <sprite="spritesheet_new" name="L3_UpRight"> - <sprite="spritesheet_new" name="L3_DownRight">
+    - <sprite="spritesheet_new" name="L3_Up"> - <sprite="spritesheet_new" name="L3_Down">
+    - <sprite="l3_spritesheet" name="Hold_L3_Left"> - <sprite="l3_spritesheet" name="Hold_L3_Right">
+    - <sprite="l3_spritesheet" name="Hold_L3_Up"> - <sprite="l3_spritesheet" name="Hold_L3_Down">
+    - <sprite="l3_spritesheet" name="Hold_L3_UpLeft"> - <sprite="l3_spritesheet"
+    name="Hold_L3_DownLeft"> - <sprite="l3_spritesheet" name="Hold_L3_UpRight"> -
+    <sprite="l3_spritesheet" name="Hold_L3_DownRight"> - <sprite="l3_spritesheet"
+    name="L3_RightToUp"> - <sprite="l3_spritesheet" name="L3_RightToDown"> - <sprite="l3_spritesheet"
+    name="L3_UpToRight"> - <sprite="l3_spritesheet" name="L3_UpToLeft"> - <sprite="l3_spritesheet"
+    name="L3_DownToRight"> - <sprite="l3_spritesheet" name="L3_DownToLeft"> - <sprite="l3_spritesheet"
+    name="L3_LeftToUp"> - <sprite="l3_spritesheet" name="L3_LeftToDown"> - <sprite="l3_spritesheet"
+    name="L3_LeftToDownToLeft"> - <sprite="l3_spritesheet" name="L3_LeftToUpToLeft">
+    - <sprite="l3_spritesheet" name="L3_DownToRightToDown"> - <sprite="l3_spritesheet"
+    name="L3_RightToDownToRight"> - <sprite="r3_spritesheet" name="Hold_R3_Left">
+    - <sprite="r3_spritesheet" name="Hold_R3_Right"> - <sprite="r3_spritesheet" name="Hold_R3_Up">
+    - <sprite="r3_spritesheet" name="Hold_R3_Down"> - <sprite="r3_spritesheet" name="Hold_R3_UpLeft">
+    - <sprite="r3_spritesheet" name="Hold_R3_DownLeft"> - <sprite="r3_spritesheet"
+    name="Hold_R3_UpRight"> - <sprite="r3_spritesheet" name="Hold_R3_DownRight">
+    - <sprite="r3_spritesheet" name="R3_RightToUp"> - <sprite="r3_spritesheet" name="R3_RightToDown">
+    - <sprite="r3_spritesheet" name="R3_UpToRight"> - <sprite="r3_spritesheet" name="R3_UpToLeft">
+    - <sprite="r3_spritesheet" name="R3_DownToRight"> - <sprite="r3_spritesheet"
+    name="R3_DownToLeft"> - <sprite="r3_spritesheet" name="R3_LeftToUp"> - <sprite="r3_spritesheet"
+    name="R3_LeftToDown"> - <sprite="r3_spritesheet" name="R3_LeftToUpToLeft"> -
+    <sprite="analog_any_spritesheet" name="L3_Any"> - <sprite="analog_any_spritesheet"
+    name="R3_Any"> - <sprite="analog_any_spritesheet" name="Hold_L3_Any"> - <sprite="analog_any_spritesheet"
+    name="Hold_R3_Any">
+
+    
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

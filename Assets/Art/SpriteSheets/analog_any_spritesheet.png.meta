@@ -1,0 +1,293 @@
+fileFormatVersion: 2
+guid: 2bfa7d9a081aa7246b78bb4cc069a868
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7728592582448288770
+    second: analog_any_spritesheet_0
+  - first:
+      213: 3485283146326809772
+    second: analog_any_spritesheet_1
+  - first:
+      213: 7195246613572720707
+    second: analog_any_spritesheet_2
+  - first:
+      213: -3848663434190042156
+    second: analog_any_spritesheet_3
+  - first:
+      213: 1109408378683936288
+    second: analog_any_spritesheet_4
+  - first:
+      213: -5241959969624644242
+    second: analog_any_spritesheet_5
+  - first:
+      213: 6522234806590715990
+    second: analog_any_spritesheet_6
+  - first:
+      213: 1177705313124526331
+    second: analog_any_spritesheet_7
+  - first:
+      213: -8519930625116776757
+    second: analog_any_spritesheet_8
+  - first:
+      213: 3733128623452398432
+    second: analog_any_spritesheet_9
+  - first:
+      213: 8265733643449068221
+    second: analog_any_spritesheet_10
+  - first:
+      213: -7220698734218183440
+    second: analog_any_spritesheet_11
+  - first:
+      213: 6537669548832242450
+    second: analog_any_spritesheet_12
+  - first:
+      213: 8878605990551182161
+    second: analog_any_spritesheet_13
+  - first:
+      213: -4115366977639770442
+    second: analog_any_spritesheet_14
+  - first:
+      213: 2057424487365692443
+    second: analog_any_spritesheet_15
+  - first:
+      213: -1424373116333948557
+    second: analog_any_spritesheet_16
+  - first:
+      213: 7809419593286449325
+    second: analog_any_spritesheet_17
+  - first:
+      213: 5621026318740679719
+    second: analog_any_spritesheet_18
+  - first:
+      213: 1517252959623005325
+    second: analog_any_spritesheet_19
+  - first:
+      213: 3139889052395611415
+    second: analog_any_spritesheet_20
+  - first:
+      213: -6163874919785896864
+    second: analog_any_spritesheet_21
+  - first:
+      213: 8267509577363860114
+    second: analog_any_spritesheet_22
+  - first:
+      213: -5590916234063847904
+    second: analog_any_spritesheet_23
+  - first:
+      213: 5097809574986779161
+    second: analog_any_spritesheet_24
+  - first:
+      213: 6895542402927203803
+    second: analog_any_spritesheet_25
+  - first:
+      213: -7931393337354716008
+    second: analog_any_spritesheet_26
+  - first:
+      213: -820439675925860605
+    second: analog_any_spritesheet_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: analog_any_spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 4878
+        width: 787
+        height: 801
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2049c82810a714b60800000000000000
+      internalID: 7728592582448288770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: analog_any_spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 4884
+        width: 801
+        height: 799
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4db41196ffcc69ac0800000000000000
+      internalID: -3848663434190042156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: analog_any_spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 1996
+        y: 4894
+        width: 803
+        height: 781
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da870d77eb1a06c60800000000000000
+      internalID: 7809419593286449325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: analog_any_spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 2952
+        y: 4894
+        width: 803
+        height: 781
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 715ad221570239b20800000000000000
+      internalID: 3139889052395611415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 11e80eaa30172c242b98fc868cdbadc7
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      analog_any_spritesheet_0: 7728592582448288770
+      analog_any_spritesheet_17: 7809419593286449325
+      analog_any_spritesheet_20: 3139889052395611415
+      analog_any_spritesheet_3: -3848663434190042156
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

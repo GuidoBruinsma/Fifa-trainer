@@ -26,8 +26,8 @@ MonoBehaviour:
   ButtonTriangleHoldIcon: <sprite="spritesheet_new" name="Hold_Triangle">
   ButtonCircleHoldIcon: <sprite="spritesheet_new" name="Hold_Circle">
   ButtonSquareHoldIcon: <sprite="spritesheet_new" name="Hold_Square">
-  L3Any: L3 Any
-  R3Any: R3 Any
+  L3Any: <sprite="analog_any_spritesheet" name="L3_Any">
+  R3Any: <sprite="analog_any_spritesheet" name="R3_Any">
   L3_RotateIcon: L3 Rotate
   R3_RotateIcon: R3 Rotate
   L1_HoldIcon: <sprite="spritesheet_new" name="Hold_L1">
@@ -74,8 +74,8 @@ MonoBehaviour:
   Hold_L3_RightIcon: <sprite="l3_spritesheet" name="Hold_L3_Right">
   Hold_L3_UpIcon: <sprite="l3_spritesheet" name="Hold_L3_Up">
   Hold_L3_DownIcon: <sprite="l3_spritesheet" name="Hold_L3_Down">
-  Hold_L3_AnyIcon: Hold L3 Any
-  Hold_R3_AnyIcon: Hold R3 Any
+  Hold_L3_AnyIcon: <sprite="analog_any_spritesheet" name="Hold_L3_Any">
+  Hold_R3_AnyIcon: <sprite="analog_any_spritesheet" name="Hold_R3_Any">
   Hold_L3_UpLeftIcon: <sprite="l3_spritesheet" name="Hold_L3_UpLeft">
   Hold_L3_DownLeftIcon: <sprite="l3_spritesheet" name="Hold_L3_DownLeft">
   Hold_L3_UpRightIcon: <sprite="l3_spritesheet" name="Hold_L3_UpRight">
