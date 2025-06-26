@@ -30,9 +30,9 @@ MonoBehaviour:
   R3Any: R3 Any
   L3_RotateIcon: L3 Rotate
   R3_RotateIcon: R3 Rotate
-  L1_HoldIcon: L1 Hold
+  L1_HoldIcon: <sprite="spritesheet_new" name="Hold_L1">
   L2_HoldIcon: <sprite="spritesheet_new" name="L2">
-  R1_HoldIcon: R1 Hold
+  R1_HoldIcon: <sprite="spritesheet_new" name="Hold_R1">
   R2_HoldIcon: <sprite="spritesheet_new" name="R2">
   R3_LeftIcon: <sprite="spritesheet_new" name="R3_Left">
   R3_UpLeftIcon: <sprite="spritesheet_new" name="R3_UpLeft">
@@ -51,44 +51,44 @@ MonoBehaviour:
   L3_DownRightIcon: <sprite="spritesheet_new" name="L3_DownRight">
   L3_UpIcon: <sprite="spritesheet_new" name="L3_Up">
   L3_DownIcon: <sprite="spritesheet_new" name="L3_Down">
-  R3_RightToUpIcon: R3 Right to Up
-  R3_RightToDownIcon: R3 Right to Down
-  R3_UpToRightIcon: R3 Up to Right
-  R3_UpToLeftIcon: R3 Up to Left
-  R3_DownToRightIcon: R3 Down to Right
-  R3_DownToLeftIcon: R3 Down to Left
-  R3_LeftToUpIcon: R3 Left to Up
-  R3_LeftToDownIcon: R3 Left to Down
-  R3_LeftToDownToLeftIcon: R3 Left to Down to Left
-  R3_LeftToUpToLeftIcon: R3 Left to Up to Left
-  Hold_R3_LeftIcon: Hold R3 Left
-  Hold_R3_UpLeftIcon: Hold R3 Up Left
-  Hold_R3_DownLeftIcon: Hold R3 Down Left
-  Hold_R3_RightIcon: Hold R3 Right
-  Hold_R3_UpRightIcon: Hold R3 Up Right
-  Hold_R3_DownRightIcon: Hold R3 Down Right
-  Hold_R3_UpIcon: Hold R3 Up
-  Hold_R3_DownIcon: Hold R3 Down
+  R3_RightToUpIcon: <sprite="r3_spritesheet" name="R3_RightToUp">
+  R3_RightToDownIcon: <sprite="r3_spritesheet" name="R3_RightToDown">
+  R3_UpToRightIcon: <sprite="r3_spritesheet" name="R3_UpToRight">
+  R3_UpToLeftIcon: <sprite="r3_spritesheet" name="R3_UpToLeft">
+  R3_DownToRightIcon: <sprite="r3_spritesheet" name="R3_DownToRight">
+  R3_DownToLeftIcon: <sprite="r3_spritesheet" name="R3_DownToLeft">
+  R3_LeftToUpIcon: <sprite="r3_spritesheet" name="R3_LeftToUp">
+  R3_LeftToDownIcon: <sprite="r3_spritesheet" name="R3_LeftToDown">
+  R3_LeftToDownToLeftIcon: <sprite="r3_spritesheet" name="R3_LeftToDownToLeft">
+  R3_LeftToUpToLeftIcon: <sprite="r3_spritesheet" name="R3_LeftToUpToLeft">
+  Hold_R3_LeftIcon: <sprite="r3_spritesheet" name="Hold_R3_Left">
+  Hold_R3_UpLeftIcon: <sprite="r3_spritesheet" name="Hold_R3_UpLeft">
+  Hold_R3_DownLeftIcon: <sprite="r3_spritesheet" name="Hold_R3_DownLeft">
+  Hold_R3_RightIcon: <sprite="r3_spritesheet" name="Hold_R3_Right">
+  Hold_R3_UpRightIcon: <sprite="r3_spritesheet" name="Hold_R3_UpRight">
+  Hold_R3_DownRightIcon: <sprite="r3_spritesheet" name="Hold_R3_DownRight">
+  Hold_R3_UpIcon: <sprite="r3_spritesheet" name="Hold_R3_Up">
+  Hold_R3_DownIcon: <sprite="r3_spritesheet" name="Hold_R3_Down">
   Hold_R3_NoneIcon: 
-  Hold_L3_LeftIcon: Hold L3 Left
-  Hold_L3_RightIcon: Hold L3 Right
-  Hold_L3_UpIcon: Hold L3 Up
-  Hold_L3_DownIcon: Hold L3 Down
+  Hold_L3_LeftIcon: <sprite="l3_spritesheet" name="Hold_L3_Left">
+  Hold_L3_RightIcon: <sprite="l3_spritesheet" name="Hold_L3_Right">
+  Hold_L3_UpIcon: <sprite="l3_spritesheet" name="Hold_L3_Up">
+  Hold_L3_DownIcon: <sprite="l3_spritesheet" name="Hold_L3_Down">
   Hold_L3_AnyIcon: Hold L3 Any
   Hold_R3_AnyIcon: Hold R3 Any
-  Hold_L3_UpLeftIcon: Hold L3 Up Left
-  Hold_L3_DownLeftIcon: Hold L3 Down Left
-  Hold_L3_UpRightIcon: Hold L3 Up Right
-  Hold_L3_DownRightIcon: Hold L3 Down Right
-  L3_RightToUpIcon: L3 Right to Up
-  L3_RightToDownIcon: L3 Right To Down
-  L3_UpToRightIcon: L3 Up to Right
-  L3_UpToLeftIcon: L3 Up to Left
-  L3_DownToRightIcon: L3 Down to Right
-  L3_DownToLeftIcon: L3 Down to Left
-  L3_LeftToUpIcon: L3 Left to Up
-  L3_LeftToDownIcon: L3 Left to Down
-  L3_LeftToDownToLeftIcon: L3 Left to Down to Left
-  L3_LeftToUpToLeftIcon: L3 Left to Up to Left
-  L3_DownToRightToDown: L3 Down to Right to Down
-  L3_RightToDownToRight: L3 Right to Down to Right
+  Hold_L3_UpLeftIcon: <sprite="l3_spritesheet" name="Hold_L3_UpLeft">
+  Hold_L3_DownLeftIcon: <sprite="l3_spritesheet" name="Hold_L3_DownLeft">
+  Hold_L3_UpRightIcon: <sprite="l3_spritesheet" name="Hold_L3_UpRight">
+  Hold_L3_DownRightIcon: <sprite="l3_spritesheet" name="Hold_L3_DownRight">
+  L3_RightToUpIcon: <sprite="l3_spritesheet" name="L3_RightToUp">
+  L3_RightToDownIcon: <sprite="l3_spritesheet" name="L3_RightToDown">
+  L3_UpToRightIcon: <sprite="l3_spritesheet" name="L3_UpToRight">
+  L3_UpToLeftIcon: <sprite="l3_spritesheet" name="L3_UpToLeft">
+  L3_DownToRightIcon: <sprite="l3_spritesheet" name="L3_DownToRight">
+  L3_DownToLeftIcon: <sprite="l3_spritesheet" name="L3_DownToLeft">
+  L3_LeftToUpIcon: <sprite="l3_spritesheet" name="L3_LeftToUp">
+  L3_LeftToDownIcon: <sprite="l3_spritesheet" name="L3_LeftToDown">
+  L3_LeftToDownToLeftIcon: <sprite="l3_spritesheet" name="L3_LeftToDownToLeft">
+  L3_LeftToUpToLeftIcon: <sprite="l3_spritesheet" name="L3_LeftToUpToLeft">
+  L3_DownToRightToDown: <sprite="l3_spritesheet" name="L3_DownToRightToDown">
+  L3_RightToDownToRight: <sprite="l3_spritesheet" name="L3_RightToDownToRight">

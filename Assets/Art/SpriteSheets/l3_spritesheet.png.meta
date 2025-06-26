@@ -1,0 +1,753 @@
+fileFormatVersion: 2
+guid: 49c085937461e134192870cd5af75091
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6676828457712901261
+    second: Analogsmove 4 512px_0
+  - first:
+      213: -7766757572293017748
+    second: Analogsmove 4 512px_1
+  - first:
+      213: -6151592741368311746
+    second: Analogsmove 4 512px_2
+  - first:
+      213: 8956983073365264744
+    second: Analogsmove 4 512px_3
+  - first:
+      213: -1015492503310258989
+    second: Analogsmove 4 512px_4
+  - first:
+      213: -3119551620834334489
+    second: Analogsmove 4 512px_5
+  - first:
+      213: -8992460977462929969
+    second: Analogsmove 4 512px_6
+  - first:
+      213: -4193426145991115369
+    second: Analogsmove 4 512px_7
+  - first:
+      213: -4576274983087326250
+    second: Analogsmove 4 512px_8
+  - first:
+      213: -1309371492622430520
+    second: Analogsmove 4 512px_9
+  - first:
+      213: -4773508336056769653
+    second: Analogsmove 4 512px_10
+  - first:
+      213: -4822831301241978824
+    second: Analogsmove 4 512px_11
+  - first:
+      213: 8837470473532585604
+    second: Analogsmove 4 512px_12
+  - first:
+      213: 7221661319915635032
+    second: Analogsmove 4 512px_13
+  - first:
+      213: 1082774193873897143
+    second: Analogsmove 4 512px_14
+  - first:
+      213: 3997742488161114785
+    second: Analogsmove 4 512px_15
+  - first:
+      213: -6946838930661640102
+    second: Analogsmove 4 512px_16
+  - first:
+      213: 4599455820528212897
+    second: Analogsmove 4 512px_17
+  - first:
+      213: -7524103127809292192
+    second: Analogsmove 4 512px_18
+  - first:
+      213: 2773038793350151346
+    second: Analogsmove 4 512px_19
+  - first:
+      213: 5643360813397458084
+    second: Analogsmove 4 512px_20
+  - first:
+      213: -2158018135536187004
+    second: Analogsmove 4 512px_21
+  - first:
+      213: 8148197976830533304
+    second: Analogsmove 4 512px_22
+  - first:
+      213: -2985603339429724148
+    second: Analogsmove 4 512px_23
+  - first:
+      213: -5134642928848649599
+    second: Analogsmove 4 512px_24
+  - first:
+      213: 1783426921653070878
+    second: Analogsmove 4 512px_25
+  - first:
+      213: -7171138172767562489
+    second: Analogsmove 4 512px_26
+  - first:
+      213: 5607190025844143606
+    second: Analogsmove 4 512px_27
+  - first:
+      213: -6891254908440725293
+    second: Analogsmove 4 512px_28
+  - first:
+      213: -4012968668062421571
+    second: Analogsmove 4 512px_29
+  - first:
+      213: -3953206886474112791
+    second: Analogsmove 4 512px_30
+  - first:
+      213: -9083061483212076829
+    second: Analogsmove 4 512px_31
+  - first:
+      213: 909865399013080793
+    second: Analogsmove 4 512px_32
+  - first:
+      213: -4900896521228766535
+    second: Analogsmove 4 512px_33
+  - first:
+      213: 4411585838475807046
+    second: Analogsmove 4 512px_34
+  - first:
+      213: -1439984765930961673
+    second: Analogsmove 4 512px_35
+  - first:
+      213: -6565275135417623416
+    second: Analogsmove 4 512px_36
+  - first:
+      213: 431909189184909586
+    second: Analogsmove 4 512px_37
+  - first:
+      213: -1707922960466129915
+    second: Analogsmove 4 512px_38
+  - first:
+      213: 8152351874465794026
+    second: Analogsmove 4 512px_39
+  - first:
+      213: 5454350129130349119
+    second: Analogsmove 4 512px_40
+  - first:
+      213: -6936397989271850320
+    second: Analogsmove 4 512px_41
+  - first:
+      213: -7057545406969382070
+    second: Analogsmove 4 512px_42
+  - first:
+      213: -7599778249348852691
+    second: Analogsmove 4 512px_43
+  - first:
+      213: 5787638153492960713
+    second: Analogsmove 4 512px_44
+  - first:
+      213: -8632314827403309582
+    second: Analogsmove 4 512px_45
+  - first:
+      213: 831143228355567243
+    second: Analogsmove 4 512px_46
+  - first:
+      213: -490004032878380570
+    second: Analogsmove 4 512px_47
+  - first:
+      213: 1039295360177397412
+    second: Analogsmove 4 512px_48
+  - first:
+      213: 305171403311510360
+    second: Analogsmove 4 512px_49
+  - first:
+      213: -2098234686537048071
+    second: Analogsmove 4 512px_50
+  - first:
+      213: 4591670388271639725
+    second: Analogsmove 4 512px_51
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_2
+      rect:
+        serializedVersion: 2
+        x: 2189
+        y: 5042
+        width: 430
+        height: 545
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e30ded78ef621aaa0800000000000000
+      internalID: -6151592741368311746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_3
+      rect:
+        serializedVersion: 2
+        x: 3144
+        y: 4915
+        width: 427
+        height: 550
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8698f1b26a89d4c70800000000000000
+      internalID: 8956983073365264744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_8
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 4996
+        width: 550
+        height: 432
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dbb296262ecd70c0800000000000000
+      internalID: -4576274983087326250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_9
+      rect:
+        serializedVersion: 2
+        x: 1236
+        y: 4999
+        width: 544
+        height: 423
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ce8737909d24dde0800000000000000
+      internalID: -1309371492622430520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_14
+      rect:
+        serializedVersion: 2
+        x: 3954
+        y: 5042
+        width: 524
+        height: 507
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b640dd7469c60f00800000000000000
+      internalID: 1082774193873897143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_17
+      rect:
+        serializedVersion: 2
+        x: 4920
+        y: 4909
+        width: 523
+        height: 506
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1abdfa623bc84df30800000000000000
+      internalID: 4599455820528212897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_18
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 4089
+        width: 499
+        height: 506
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0688585d114059790800000000000000
+      internalID: -7524103127809292192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_21
+      rect:
+        serializedVersion: 2
+        x: 1256
+        y: 3960
+        width: 507
+        height: 499
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 489c38c70fd2d02e0800000000000000
+      internalID: -2158018135536187004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_24
+      rect:
+        serializedVersion: 2
+        x: 2232
+        y: 4082
+        width: 482
+        height: 539
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1824181f5751eb8b0800000000000000
+      internalID: -5134642928848649599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_27
+      rect:
+        serializedVersion: 2
+        x: 3193
+        y: 4037
+        width: 516
+        height: 531
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f5bd8ece9db0dd40800000000000000
+      internalID: 5607190025844143606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_28
+      rect:
+        serializedVersion: 2
+        x: 4163
+        y: 4087
+        width: 529
+        height: 477
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d839b51c285d50a0800000000000000
+      internalID: -6891254908440725293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_31
+      rect:
+        serializedVersion: 2
+        x: 4935
+        y: 4089
+        width: 513
+        height: 486
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e88c1484bb72f180800000000000000
+      internalID: -9083061483212076829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_32
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 3107
+        width: 523
+        height: 480
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9def79d72cd70ac00800000000000000
+      internalID: 909865399013080793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_35
+      rect:
+        serializedVersion: 2
+        x: 1094
+        y: 3099
+        width: 516
+        height: 486
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f406b81c75240ce0800000000000000
+      internalID: -1439984765930961673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_37
+      rect:
+        serializedVersion: 2
+        x: 2124
+        y: 3114
+        width: 467
+        height: 540
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 211f7948e137ef500800000000000000
+      internalID: 431909189184909586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_39
+      rect:
+        serializedVersion: 2
+        x: 3030
+        y: 3053
+        width: 502
+        height: 534
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae7068936d8f22170800000000000000
+      internalID: 8152351874465794026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_42
+      rect:
+        serializedVersion: 2
+        x: 3960
+        y: 3061
+        width: 559
+        height: 526
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4b766748df8e0e90800000000000000
+      internalID: -7057545406969382070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_45
+      rect:
+        serializedVersion: 2
+        x: 4890
+        y: 3175
+        width: 589
+        height: 559
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fdc943866bd33880800000000000000
+      internalID: -8632314827403309582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_46
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 2078
+        width: 556
+        height: 566
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8eda93dc50d88b00800000000000000
+      internalID: 831143228355567243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Analogsmove 4 512px_49
+      rect:
+        serializedVersion: 2
+        x: 1272
+        y: 2070
+        width: 588
+        height: 568
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8537df146cf2c3400800000000000000
+      internalID: 305171403311510360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 98982ae826489534294def4647ba4b4c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Analogsmove 4 512px_14: 1082774193873897143
+      Analogsmove 4 512px_17: 4599455820528212897
+      Analogsmove 4 512px_18: -7524103127809292192
+      Analogsmove 4 512px_19: 2773038793350151346
+      Analogsmove 4 512px_2: -6151592741368311746
+      Analogsmove 4 512px_20: 5643360813397458084
+      Analogsmove 4 512px_21: -2158018135536187004
+      Analogsmove 4 512px_22: 8148197976830533304
+      Analogsmove 4 512px_23: -2985603339429724148
+      Analogsmove 4 512px_24: -5134642928848649599
+      Analogsmove 4 512px_25: 1783426921653070878
+      Analogsmove 4 512px_26: -7171138172767562489
+      Analogsmove 4 512px_27: 5607190025844143606
+      Analogsmove 4 512px_28: -6891254908440725293
+      Analogsmove 4 512px_29: -4012968668062421571
+      Analogsmove 4 512px_3: 8956983073365264744
+      Analogsmove 4 512px_30: -3953206886474112791
+      Analogsmove 4 512px_31: -9083061483212076829
+      Analogsmove 4 512px_32: 909865399013080793
+      Analogsmove 4 512px_33: -4900896521228766535
+      Analogsmove 4 512px_34: 4411585838475807046
+      Analogsmove 4 512px_35: -1439984765930961673
+      Analogsmove 4 512px_36: -6565275135417623416
+      Analogsmove 4 512px_37: 431909189184909586
+      Analogsmove 4 512px_38: -1707922960466129915
+      Analogsmove 4 512px_39: 8152351874465794026
+      Analogsmove 4 512px_40: 5454350129130349119
+      Analogsmove 4 512px_41: -6936397989271850320
+      Analogsmove 4 512px_42: -7057545406969382070
+      Analogsmove 4 512px_43: -7599778249348852691
+      Analogsmove 4 512px_44: 5787638153492960713
+      Analogsmove 4 512px_45: -8632314827403309582
+      Analogsmove 4 512px_46: 831143228355567243
+      Analogsmove 4 512px_47: -490004032878380570
+      Analogsmove 4 512px_48: 1039295360177397412
+      Analogsmove 4 512px_49: 305171403311510360
+      Analogsmove 4 512px_50: -2098234686537048071
+      Analogsmove 4 512px_51: 4591670388271639725
+      Analogsmove 4 512px_8: -4576274983087326250
+      Analogsmove 4 512px_9: -1309371492622430520
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

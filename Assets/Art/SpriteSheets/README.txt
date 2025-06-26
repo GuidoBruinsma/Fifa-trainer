@@ -1,0 +1,1 @@
+Put sprite assets in TextMeshPro => Resources => Sprite Assets 
